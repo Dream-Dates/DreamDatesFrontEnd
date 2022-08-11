@@ -1,0 +1,15 @@
+// baseStyles.scss
+
+.App {
+    display: flex;
+    justify-content: center;
+}
+
+.pinkButton {
+    background: #FFC7D0;
+    border: 1px solid #000000;
+    border-radius: 16px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+}

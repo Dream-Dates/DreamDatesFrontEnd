@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -228,4 +229,79 @@ template {
           clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.pinkButton {
+  background: #FFC7D0;
+  border: 1px solid #000000;
+  border-radius: 16px;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pinkButton {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 16;
+}
+
+.header {
+  width: 1440px;
+  height: 186px;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-template-columns: 269px 681px 150px 150px;
+  gap: 30px;
+  grid-template-areas: "logo headerSearchBar saved userAuth" "main headerFilter . sidebar";
+}
+
+.logo {
+  grid-area: logo;
+  width: 100%;
+  border: 1px solid red;
+}
+
+.headerSearchBar {
+  grid-area: headerSearchBar;
+}
+.headerSearchBar input {
+  width: 100%;
+}
+
+.headerFilter {
+  grid-area: headerFilter;
+  border: 1px solid red;
+}
+.headerFilter input {
+  border: 1px solid #B1B1B1;
+  border-radius: 16px;
+  width: 100%;
+}
+
+.saved {
+  grid-area: saved;
+}
+
+.userAuth {
+  grid-area: userAuth;
+}
+
+.magnifyingGlass {
+  position: absolute;
+}
+
+.headerFilter input {
+  position: absolute;
+  left: -5000px;
 }

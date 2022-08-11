@@ -1,0 +1,54 @@
+// header.scss
+
+.header {
+    width: 1440px;
+    height: 186px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: 269px 681px 150px 150px;
+    // grid-template-rows: auto;
+    gap: 30px;
+    grid-template-areas:
+        "logo headerSearchBar saved userAuth"
+        "main headerFilter . sidebar";
+}
+
+.logo {
+    grid-area: logo;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.headerSearchBar {
+    grid-area: headerSearchBar;
+    input {
+        width: 100%;
+    }
+}
+
+.headerFilter {
+    grid-area: headerFilter;
+    input {
+        border: 1px solid #B1B1B1;
+        border-radius: 16px;
+        width: 100%;
+    }
+    border: 1px solid red;
+}
+
+.saved {
+    grid-area: saved;
+}
+
+.userAuth {
+    grid-area: userAuth;
+}
+
+.magnifyingGlass {
+    position: absolute;
+}
+
+.headerFilter input {
+    position: absolute;
+    left: -5000px;
+}
