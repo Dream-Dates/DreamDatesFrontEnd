@@ -1,6 +1,6 @@
 // Header.js
-import { GiMagnifyingGlass } from 'react-icons/gi';
 import redHeart from '../assets/redHeart.svg';
+import magnifyingGlass from '../assets/magnifyingGlass.svg';
 
 
 function Header() {
@@ -12,7 +12,8 @@ function Header() {
             
             <form className="headerSearchBar">
                     <div className="magnifyingGlass">
-                        <GiMagnifyingGlass />
+                    <img src={magnifyingGlass} alt="" />
+                        
                     </div>
                     <label htmlFor="search" className="sr-only">Search for</label>
                     <input

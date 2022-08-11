@@ -2,14 +2,15 @@
 
 .App {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
 .pinkButton {
-    background: #FFC7D0;
-    border: 1px solid #000000;
-    border-radius: 16px;
-    padding: 10px 20px;
-    margin: 0 5px;
+    background: #FFC7D0 !important;
+    border: 1px solid #000000 !important;
+    border-radius: 16px !important;
+    padding: 10px 20px !important;
+    margin: 0 5px !important;
     cursor: pointer;
 }

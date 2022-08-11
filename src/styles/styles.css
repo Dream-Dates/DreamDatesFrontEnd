@@ -235,24 +235,29 @@ template {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
 .pinkButton {
-  background: #FFC7D0;
-  border: 1px solid #000000;
-  border-radius: 16px;
-  padding: 10px 20px;
-  margin: 0 5px;
+  background: #FFC7D0 !important;
+  border: 1px solid #000000 !important;
+  border-radius: 16px !important;
+  padding: 10px 20px !important;
+  margin: 0 5px !important;
   cursor: pointer;
 }
 
 .pinkButton {
-  font-family: "Roboto", sans-serif;
-  font-weight: 600;
-  font-size: 16;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 16 !important;
+  color: black !important;
 }
 
 .header {
