@@ -6,7 +6,7 @@ import magnifyingGlass from '../assets/magnifyingGlass.svg';
 
 function Header() {
     return (
-        <div className="header">
+        <div className="header wrapper">
             <div className="logo">
                 <img src={logo} alt="DreamDates Logo" />
             </div>

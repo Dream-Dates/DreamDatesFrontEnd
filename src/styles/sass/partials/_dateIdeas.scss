@@ -1,0 +1,37 @@
+// _dateIdeas.scss
+
+.dateIdeasList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 43px;
+    padding: 50px 62px;
+}
+
+.dateIdeasCard {
+    width: 182px;
+    height: 315px;
+    border-radius: 8px;
+    background: #941C2F;
+    position: relative;
+    .imageContainer {
+        height: 205px;
+        overflow: hidden;
+        border-radius: 8px 8px 0 0;
+    }
+    .textContainer {
+        // border: 1px solid green;
+        margin: 10px 15px;
+        overflow: hidden;
+    }
+    p {
+        white-space: nowrap;
+        padding: 5px 0;
+    }
+}
+
+.heart {
+    width: 30px;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+}
