@@ -39,11 +39,7 @@ function DateIdeas(){
 
     return (
         <div className="dateIdeas">
-            DateIdeas
-            {/* <DateIdeasList ideas={eventIdeas}/>
-            <DateIdeasList ideas={movieIdeas}/> */}
             <DateIdeasList ideas={dateIdeas} />
-
         </div>
     )
 }
