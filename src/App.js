@@ -1,11 +1,10 @@
 import Header from './pages/Header';
 import './styles/styles.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Home from "../src/components/Home.js"
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Home/>
     </div>
   );
 }
