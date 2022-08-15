@@ -9,6 +9,9 @@ function DateIdeasList({ideas}) {
         ideas[category].forEach(item => mainList.push(item))
     }
 
+    // randomize the list
+    mainList = mainList.sort(() => Math.random() - 0.5 )
+
     return(
         <div className="dateIdeasList wrapper">
             {mainList.map(idea => {

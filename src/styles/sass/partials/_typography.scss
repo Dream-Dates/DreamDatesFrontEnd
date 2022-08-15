@@ -9,6 +9,7 @@
     font-weight: 600;
     font-size: 16px;
     color: black;
+    cursor: pointer;
     p {
         color: black;
     }
@@ -19,4 +20,20 @@ p, a {
     font-size: 16px;
     color: white;
     line-height: 20px;
+}
+
+.userAuth p {
+    color: black;
+}
+
+.signOut a {
+    color: #941C2F;
+    text-decoration: underline;
+}
+
+.signInBottom p,
+.signUpBottom p {
+    color: black;
+    font-size: 24px;
+    font-weight: 400;
 }

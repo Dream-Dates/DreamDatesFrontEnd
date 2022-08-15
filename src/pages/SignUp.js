@@ -1,30 +1,48 @@
 // SignUp.js
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 function SignUp() {
+    const [signUpForm, setSignUpForm] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password1: '',
+        password2: ''
+    })
+
+    const handleChange = (e) => {
+        const itemName = e.target.name;
+        const itemValue = e.target.value;
+
+        setSignUpForm({...signUpForm, [itemName]: itemValue})
+    }
+
     return (
         <div className="signUp">
-            <form action="">
-                <label className="sr-only" htmlFor="firstName">First Name</label>
-                <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    placeholder="First Name"
-                    required
-                    // onChange={}
-                    // value={}
-                />
-                <label className="sr-only" htmlFor="lastName">Last Name</label>
-                <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    placeholder="Last Name"
-                    required
-                    // onChange={}
-                    // value={}
-                />
+            <form action="/register" method="POST">
+                <section>
+                    <label className="sr-only" htmlFor="firstName">First Name</label>
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="First Name"
+                        required
+                        onChange={handleChange}
+                        value={signUpForm.firstName}
+                    />
+                    <label className="sr-only" htmlFor="lastName">Last Name</label>
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Last Name"
+                        required
+                        onChange={handleChange}
+                        value={signUpForm.lastName}
+                    />
+                </section>
                 <label className="sr-only" htmlFor="email">Email</label>
                 <input
                     type="email"
@@ -32,8 +50,8 @@ function SignUp() {
                     name="email"
                     placeholder="Email"
                     required
-                    // onChange={}
-                    // value={}
+                    onChange={handleChange}
+                    value={signUpForm.email}
                 />
                 <label className="sr-only" htmlFor="password1">Password</label>
                 <input
@@ -42,25 +60,27 @@ function SignUp() {
                     name="password1"
                     placeholder="Password"
                     required
-                    // onChange={}
-                    // value={}
+                    onChange={handleChange}
+                    value={signUpForm.password1}
                 />
                 <label className="sr-only" htmlFor="password2">Password</label>
                 <input
                     type="password"
                     id="password2"
                     name="password2"
-                    placeholder="Password"
+                    placeholder="Confirm Password"
                     required
-                    // onChange={}
-                    // value={}
+                    onChange={handleChange}
+                    value={signUpForm.password2}
                 />
-                <input type="button" value='Sign Up'/>
+                <div className="buttonContainer">
+                    <button className="pinkButton">Sign Up</button>
+                </div>
             </form>
 
-            <div>
+            <div className="signUpBottom">
                 <p>Already have an account?</p>
-                <Link to={'/signin'}>Sign in</Link>
+                <Link to={'/signin'} className="pinkButton">Sign in</Link>
             </div>
         </div>
     )

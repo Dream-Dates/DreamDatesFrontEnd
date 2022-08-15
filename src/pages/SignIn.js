@@ -1,7 +1,25 @@
 // SignIn.js
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
-function SignIn() {
+function SignIn({setToken}) {
+    const [signInForm, setSignInForm] = useState({
+        email: '',
+        password: ''
+    })
+
+    const handleChange = (e) => {
+        const itemName = e.target.name;
+        const itemValue = e.target.value;
+
+        setSignInForm({... signInForm, [itemName]: itemValue})
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+    }
+
     return (
         <div className="signIn">
             <form action="">
@@ -12,8 +30,8 @@ function SignIn() {
                     name="email"
                     placeholder="Email"
                     required
-                // onChange={}
-                // value={}
+                onChange={handleChange}
+                value={signInForm.email}
                 />
                 <label className="sr-only" htmlFor="password1">Password</label>
                 <input
@@ -22,18 +40,21 @@ function SignIn() {
                     name="password"
                     placeholder="Password"
                     required
-                // onChange={}
-                // value={}
+                onChange={handleChange}
+                value={signInForm.password}
                 />
-                <input type="button" value='Sign In'/>
+                <div className="buttonContainer">
+                    <button className="pinkButton">Sign In</button>
+                </div>
             </form>
 
-            <div>
+            <div className="signInBottom">
                 <p>Don't have an account?</p>
-                <Link to={'/signup'}>Sign Up</Link>
+                <Link to={'/signup'} className="pinkButton">Sign Up</Link>
             </div>
         </div>
     )
 }
+
 
 export default SignIn

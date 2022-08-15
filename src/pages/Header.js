@@ -3,13 +3,16 @@ import logo from '../assets/dreamDatesLogo.png'
 import redHeart from '../assets/redHeart.svg';
 import magnifyingGlass from '../assets/magnifyingGlass.svg';
 import { Link } from "react-router-dom"
+import { useState } from 'react';
 
 
 function Header() {
+    const [user, setUser] = useState(true)
+
     return (
         <div className="header wrapper">
             <div className="logo">
-                <img src={logo} alt="DreamDates Logo" />
+                <Link to='/'><img src={logo} alt="DreamDates Logo" /></Link>
             </div>
             
             <form className="headerSearchBar">
@@ -53,10 +56,20 @@ function Header() {
             </div>
             
             <div className="userAuth">
-                <Link to={'/signin'} className="pinkButton">
-                    <p>Sign In</p>
-                </Link>
+                {user ?
+                    <p className='welcome'>Welcome back, James!</p>
+                :
+                    <Link to={'/signin'} className="pinkButton" onClick={() => setUser(!user)}>
+                        <p>Sign In</p>
+                    </Link>
+                }
             </div>
+
+            {user &&
+                <div className='signOut'>
+                    <Link to='/' onClick={() => setUser(!user)}>Sign out</Link>
+                </div>
+            }
         </div>
     )
 }
