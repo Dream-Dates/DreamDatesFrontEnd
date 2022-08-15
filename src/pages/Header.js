@@ -2,6 +2,7 @@
 import logo from '../assets/dreamDatesLogo.png'
 import redHeart from '../assets/redHeart.svg';
 import magnifyingGlass from '../assets/magnifyingGlass.svg';
+import { Link } from "react-router-dom"
 
 
 function Header() {
@@ -52,9 +53,9 @@ function Header() {
             </div>
             
             <div className="userAuth">
-                <button className="pinkButton">
+                <Link to={'/signin'} className="pinkButton">
                     <p>Sign In</p>
-                </button>
+                </Link>
             </div>
         </div>
     )

@@ -239,6 +239,10 @@ p {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .wrapper {
   width: 1440px;
   margin: 0 auto;
@@ -265,7 +269,7 @@ p {
   color: black;
 }
 
-p {
+p, a {
   font-weight: 600;
   font-size: 16px;
   color: white;
@@ -357,6 +361,7 @@ p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-align: center;
 }
 
 .magnifyingGlass {
