@@ -296,7 +296,7 @@ p, a {
   color: black;
 }
 
-.signOut a {
+.signOut {
   color: #941C2F;
   text-decoration: underline;
 }
@@ -373,12 +373,33 @@ h2 {
   margin: 0 auto;
 }
 
-.rightSide {
+.headerRightSide {
   grid-area: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  margin-right: 60px;
+  margin-top: 20px;
 }
 
-.saved img {
+.saved .pinkButton, .userAuth .pinkButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+.saved img, .userAuth img {
   width: 22px;
+}
+
+.userAuth {
+  padding-left: 20px;
+  width: 140px;
 }
 
 .logo,
@@ -427,6 +448,10 @@ h2 {
   border-radius: 8px;
   background: #941C2F;
   position: relative;
+}
+.dateIdeasCard:hover {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
 }
 .dateIdeasCard .imageContainer {
   height: 205px;

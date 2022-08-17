@@ -48,28 +48,35 @@ function Header() {
                 </div>
             </div>
 
-            <div className="rightSide">
+            <div className="headerRightSide">
                 <div className="saved">
-                    <button className="pinkButton">
+                    <Link to='/' className="pinkButton">
                         <img src={redHeart} alt="red heart" />
                         <p>Saved</p>
-                    </button>
+                    </Link>
                 </div>
-                
-                <div className="userAuth">
+
+                {/* <div className="userAuth"> */}
                     {user ?
-                        <p className='welcome'>Welcome back, James!</p>
+                        <div className="userAuth">
+                            <p className='welcome'>Welcome back, James!</p>
+                            <br />
+                            <Link to='/' onClick={() => setUser(!user)} className="signOut">Sign out</Link>
+                        </div>
                     :
-                        <Link to={'/signin'} className="pinkButton" onClick={() => setUser(!user)}>
-                            <p>Sign In</p>
-                        </Link>
+                        <div className="userAuth">
+                            <Link to={'/signin'} className="pinkButton" onClick={() => setUser(!user)}>
+                                <p>Sign In</p>
+                            </Link>
+                        </div>
                     }
-                </div>
-                {user &&
+                {/* </div> */}
+
+                {/* {user &&
                     <div className='signOut'>
                         <Link to='/' onClick={() => setUser(!user)}>Sign out</Link>
                     </div>
-                }
+                } */}
             </div>
         </div>
     )
