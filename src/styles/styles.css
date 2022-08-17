@@ -250,6 +250,15 @@ p {
   line-height: 1.4 !important;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
 .wrapper {
   margin: 0 auto;
 }
@@ -408,6 +417,7 @@ h2 {
       flex-wrap: wrap;
   gap: 60px;
   padding: 236px 62px;
+  border: 1px solid green;
 }
 
 .dateIdeasCard {
@@ -444,10 +454,10 @@ h2 {
 
 .modal {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(150, 29, 47, 0.1);
   padding-top: 300px;
-  position: absolute;
+  position: fixed;
   z-index: 10;
 }
 
@@ -459,6 +469,7 @@ h2 {
   border-radius: 16px;
   background-color: white;
   border-radius: 16px;
+  position: relative;
 }
 .modalContainer .imageContainer {
   height: 450px;
@@ -548,6 +559,30 @@ h2 {
 }
 .modalContainer .rightSide {
   padding-left: 108px;
+}
+
+.buttonContainer {
+  position: absolute;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.buttonContainer button {
+  width: 40px;
+  margin: 20px 20px;
+}
+.buttonContainer img {
+  background-color: transparent;
+}
+
+.test {
+  border: 1px solid #941C2F;
+  width: 80%;
+  height: 200px;
 }
 
 .signIn form {

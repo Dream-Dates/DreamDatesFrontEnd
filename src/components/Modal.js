@@ -7,15 +7,18 @@ import x from '../assets/X.svg'
 function Modal({eventDetails, closeModal}) {
     const {title, description, img, adress_street, city} = eventDetails
 
-    const handleClick = () => {
-        closeModal()
+    const handleClick = (e) => {
+        if (e.target.className === 'modal' || e.target.id) {
+            closeModal()
+        }
     }
+
     return (
-        <div className="modal">
+        <div className="modal" onClick={handleClick}>
             <div className="modalContainer">
                 <div className="buttonContainer">
                     <button><img src={whiteHeart} alt="white heart icon" /></button>
-                    <button onClick={handleClick}><img src={x} alt="x icon" /></button>
+                    <button onClick={handleClick}><img src={x} alt="x icon" id='close' /></button>
                 </div>
                 <div className="imageContainer">
                     <img src={img} alt={`A photo of ${title}`}/>
@@ -41,7 +44,8 @@ function Modal({eventDetails, closeModal}) {
                             <p>{adress_street}</p>
                             <p>{city}</p>
                             <h2>Photos</h2>
-                            <img src="" alt="" />
+                            <img src="" alt="" className='test'/>
+                            <img src="" alt="" className='test'/>
                         </div>
                         <div className="rightSide">
                             <h2>Hours</h2>

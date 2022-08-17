@@ -2,12 +2,14 @@
 
 .modal {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: rgb(150, 29, 47, 0.1);
     padding-top: 300px;
-    position: absolute;
+    position: fixed;
+    
     z-index: 10;
-    // top: 500px;
+    // top: 0;
+    // bottom: 0;
 }
 .modalContainer {
     width: 1000px;
@@ -17,6 +19,7 @@
     border-radius: 16px;
     background-color: white;
     border-radius: 16px;
+    position: relative;
     .imageContainer {
         height: 450px;
         overflow: hidden;
@@ -83,4 +86,23 @@
     .rightSide {
         padding-left: 108px;
     }
+}
+.buttonContainer {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    button {
+        width: 40px;
+        margin: 20px 20px;
+    }
+    img {
+        background-color: transparent;
+    }
+}
+
+.test {
+    border: 1px solid #941C2F;
+    width: 80%;
+    height: 200px;
 }

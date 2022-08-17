@@ -22,6 +22,15 @@ p {
 h2 {
 
 }
+
+button {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
 // .App {
 //     display: flex;
 //     flex-direction: column;
