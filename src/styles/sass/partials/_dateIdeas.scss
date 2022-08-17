@@ -3,7 +3,8 @@
 .dateIdeasList {
     display: flex;
     flex-wrap: wrap;
-    gap: 60px;
+    justify-content: space-between;
+    gap: max(5%, 60px);
     padding: 236px 62px;
     border: 1px solid green;
 }
@@ -11,6 +12,7 @@
 .dateIdeasCard {
     width: 182px;
     width: 12%;
+    width: max(12%, 182px);
     height: 315px;
     border-radius: 8px;
     background: #941C2F;
