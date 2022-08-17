@@ -1,0 +1,86 @@
+// modal.scss
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(150, 29, 47, 0.1);
+    padding-top: 300px;
+    position: absolute;
+    z-index: 10;
+    // top: 500px;
+}
+.modalContainer {
+    width: 1000px;
+    height: 70vh;
+    overflow: auto;
+    margin: 0 auto;
+    border-radius: 16px;
+    background-color: white;
+    border-radius: 16px;
+    .imageContainer {
+        height: 450px;
+        overflow: hidden;
+        border-radius: 16px 16px 0 0;
+        background-color: #941C2F;
+    }
+    .titleContainer {
+        background-color: #941C2F;
+        // height: 91px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .textContainer {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        color: black;
+    }
+    .titleContainer,
+    .textContainer {
+        padding: 0 112.5px;
+    }
+    .topSide {
+        min-height: 200px;
+        .heading {
+            display: flex;
+            align-items: center;
+            a {
+                display: flex;
+                align-items: center;
+                padding: 0 30px;
+                margin-left: 30px;
+                img {
+                    margin-right: 15px;
+                }
+            }
+        }
+        .title {
+            display: flex;
+            align-items: center;
+        } 
+        img {
+            width: 29px;
+        }
+        h2 {
+            padding: 0 0 10px 0;
+        }
+    }
+    h2 {
+        padding: 34px 0;
+    }
+    .bottomSide {
+        display: flex;
+        p {
+            padding-bottom: 22px;
+        }
+    }
+    .leftSide, 
+    .rightSide {
+        width: 50%;
+    }
+    .rightSide {
+        padding-left: 108px;
+    }
+}

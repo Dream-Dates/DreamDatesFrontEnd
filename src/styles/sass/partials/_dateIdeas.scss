@@ -3,12 +3,13 @@
 .dateIdeasList {
     display: flex;
     flex-wrap: wrap;
-    gap: 43px;
-    padding: 50px 62px;
+    gap: 60px;
+    padding: 236px 62px;
 }
 
 .dateIdeasCard {
     width: 182px;
+    width: 12%;
     height: 315px;
     border-radius: 8px;
     background: #941C2F;
@@ -23,9 +24,12 @@
         margin: 10px 15px;
         overflow: hidden;
     }
-    p {
+    h2 {
         white-space: nowrap;
         padding: 5px 0;
+    }
+    p {
+        padding: 2px 0;
     }
 }
 

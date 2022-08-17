@@ -1,6 +1,7 @@
 // DateIdeas.js
 import { useEffect, useState } from "react"
 import DateIdeasList from "./DateIdeasList"
+import Modal from "./Modal"
 
 function DateIdeas(){
     const [dateIdeas, setDateIdeas] = useState({
@@ -9,6 +10,17 @@ function DateIdeas(){
     })
     const [eventIdeas, setEventIdeas] = useState([])
     const [movieIdeas, setMovieIdeas] = useState([])
+    const [chosenEvent, setChoseEvent] = useState([])
+    const [showModal, setShowModal] = useState(false)
+
+    const openModal = (event) => {
+        setChoseEvent(event)
+        setShowModal(true)
+    }
+
+    const closeModal = () => {
+        setShowModal(false)
+    }
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -39,7 +51,10 @@ function DateIdeas(){
 
     return (
         <div className="dateIdeas">
-            <DateIdeasList ideas={dateIdeas} />
+            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal}/>
+            }
+            <DateIdeasList ideas={dateIdeas} selectedEvent={openModal}/>
+            
         </div>
     )
 }

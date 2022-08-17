@@ -1,8 +1,8 @@
 // typography.scss
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Raleway:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mirza:wght@700&family=Raleway:wght@600&display=swap');
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 .pinkButton {
@@ -35,5 +35,23 @@ p, a {
 .signUpBottom p {
     color: black;
     font-size: 24px;
+    font-weight: 400;
+}
+
+h2 {
+    font-family: 'Mirza', cursive;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+.modal h2 {
+    font-size: 40px;
+}
+.modal .textContainer p {
+    font-size: 32px;
+}
+.modal .textContainer h2,
+.modal .textContainer p {
+    color: black;
     font-weight: 400;
 }

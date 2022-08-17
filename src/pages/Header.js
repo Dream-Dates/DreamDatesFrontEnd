@@ -17,7 +17,7 @@ function Header() {
             
             <form className="headerSearchBar">
                     <div className="magnifyingGlass">
-                        <img src={magnifyingGlass} alt="" />
+                        <img src={magnifyingGlass} alt="magnifying glass" />
                     </div>
                     <label htmlFor="search" className="sr-only">Search for</label>
                     <input
@@ -48,28 +48,29 @@ function Header() {
                 </div>
             </div>
 
-            <div className="saved">
-                <button className="pinkButton">
-                    <img src={redHeart} alt="red heart" /> 
-                    <p>Saved</p>
-                </button>
-            </div>
-            
-            <div className="userAuth">
-                {user ?
-                    <p className='welcome'>Welcome back, James!</p>
-                :
-                    <Link to={'/signin'} className="pinkButton" onClick={() => setUser(!user)}>
-                        <p>Sign In</p>
-                    </Link>
+            <div className="rightSide">
+                <div className="saved">
+                    <button className="pinkButton">
+                        <img src={redHeart} alt="red heart" />
+                        <p>Saved</p>
+                    </button>
+                </div>
+                
+                <div className="userAuth">
+                    {user ?
+                        <p className='welcome'>Welcome back, James!</p>
+                    :
+                        <Link to={'/signin'} className="pinkButton" onClick={() => setUser(!user)}>
+                            <p>Sign In</p>
+                        </Link>
+                    }
+                </div>
+                {user &&
+                    <div className='signOut'>
+                        <Link to='/' onClick={() => setUser(!user)}>Sign out</Link>
+                    </div>
                 }
             </div>
-
-            {user &&
-                <div className='signOut'>
-                    <Link to='/' onClick={() => setUser(!user)}>Sign out</Link>
-                </div>
-            }
         </div>
     )
 }
