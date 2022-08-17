@@ -4,7 +4,7 @@
 .signIn form {
     width: 1025px;
     margin: 0 auto;
-    padding-top: 110px;
+    padding-top: 250px;
     input {
         width: 100%;
         background: #E1E1E1;
@@ -17,7 +17,7 @@
     input::placeholder{
         color: black;
     }
-    .buttonContainer {
+    .formButtonContainer {
         display: flex;
         justify-content: center;
         padding-top: 25px;

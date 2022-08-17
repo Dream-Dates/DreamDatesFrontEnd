@@ -73,14 +73,16 @@ function SignUp() {
                     onChange={handleChange}
                     value={signUpForm.password2}
                 />
-                <div className="buttonContainer">
+                <div className="formButtonContainer">
                     <button className="pinkButton">Sign Up</button>
                 </div>
             </form>
 
             <div className="signUpBottom">
                 <p>Already have an account?</p>
-                <Link to={'/signin'} className="pinkButton">Sign in</Link>
+                <Link to={'/signin'} className="pinkButton">
+                    <p>Sign in</p>
+                </Link>
             </div>
         </div>
     )

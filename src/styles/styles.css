@@ -617,7 +617,7 @@ h2 {
 .signIn form {
   width: 1025px;
   margin: 0 auto;
-  padding-top: 110px;
+  padding-top: 250px;
 }
 .signIn form input {
   width: 100%;
@@ -644,7 +644,7 @@ h2 {
 .signIn form input::placeholder {
   color: black;
 }
-.signIn form .buttonContainer {
+.signIn form .formButtonContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -676,7 +676,7 @@ h2 {
 .signUp form {
   width: 1025px;
   margin: 0 auto;
-  padding-top: 110px;
+  padding-top: 250px;
 }
 .signUp form input {
   width: 100%;
@@ -703,7 +703,7 @@ h2 {
 .signUp form input::placeholder {
   color: black;
 }
-.signUp form .buttonContainer {
+.signUp form .formButtonContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

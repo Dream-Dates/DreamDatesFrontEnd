@@ -43,14 +43,16 @@ function SignIn({setToken}) {
                 onChange={handleChange}
                 value={signInForm.password}
                 />
-                <div className="buttonContainer">
+                <div className="formButtonContainer">
                     <button className="pinkButton">Sign In</button>
                 </div>
             </form>
 
             <div className="signInBottom">
                 <p>Don't have an account?</p>
-                <Link to={'/signup'} className="pinkButton">Sign Up</Link>
+                <Link to={'/signup'} className="pinkButton">
+                    <p>Sign Up</p>
+                </Link>
             </div>
         </div>
     )
