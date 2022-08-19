@@ -23,6 +23,9 @@
         width: 300px;
         // margin: 0 auto;
         margin-left: 60px;
+        &:hover {
+            background-color: transparent;
+        }
     }
 }
 
@@ -36,8 +39,14 @@
         border-radius: 16px;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
         width: 100%;
-        padding: 11px 0 5px 35px;
+        padding: 8px 0 8px 35px;
         // padding-left: 30px;
+        // &:focus {
+        //     border: 1px solid #941C2F;
+        // }
+        &:focus + .magnifyingGlass>img {
+            filter: invert(7%) sepia(28%) saturate(9909%) hue-rotate(32deg) brightness(101%) contrast(102%);
+        }
     }
 }
 
@@ -73,6 +82,9 @@
     // grid-area: userAuth;
     padding-left: 20px;
     width: 140px;
+    .signOut:hover {
+        background-color: transparent;
+    }
 }
 
 .signOut {
@@ -107,4 +119,5 @@
     position: absolute;
     left: 8px;
     z-index: 2;
+    width: 24px;
 }

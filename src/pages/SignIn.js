@@ -65,7 +65,7 @@ function SignIn({setToken}) {
                 value={signIn.password}
                 />
                 <div className="formButtonContainer">
-                    <button className="pinkButton">Sign In</button>
+                    <button className="pinkButton"><p>Sign In</p></button>
                 </div>
             </form>
 

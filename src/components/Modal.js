@@ -8,7 +8,7 @@ function Modal({eventDetails, closeModal}) {
     const {title, description, img, adress_street, city} = eventDetails
 
     const handleClick = (e) => {
-        if (e.target.className === 'modal' || e.target.id) {
+        if (e.target.className === 'modal' || e.target.id === 'close') {
             closeModal()
         }
     }
@@ -17,7 +17,7 @@ function Modal({eventDetails, closeModal}) {
         <div className="modal" onClick={handleClick}>
             <div className="modalContainer">
                 <div className="buttonContainer">
-                    <button><img src={whiteHeart} alt="white heart icon" /></button>
+                    <button><img src={whiteHeart} alt="white heart icon" id='save'/></button>
                     <button onClick={handleClick}><img src={x} alt="x icon" id='close' /></button>
                 </div>
                 <div className="imageContainer">

@@ -32,7 +32,7 @@ function DateIdeasList({ideas, selectedEvent}) {
                         </div>
                         <div className="textContainer">
                             <h2>{idea.title}</h2>
-                            <p>$$$$$$$</p>
+                            <p>$$$</p>
                             <p>{idea.city? idea.city : 'No Location'}</p>
                         </div>
                     </div>
