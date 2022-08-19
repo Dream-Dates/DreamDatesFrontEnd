@@ -3,17 +3,17 @@
 .modal {
     width: 100vw;
     height: 100%;
-    background-color: rgb(150, 29, 47, 0.1);
-    padding-top: 200px;
+    background-color: rgba(0, 0, 0, 0.25);
+    // padding-top: 200px;
     position: fixed;
     
-    z-index: 10;
+    z-index: 30;
     // top: 0;
     // bottom: 0;
 }
 .modalContainer {
     width: 1000px;
-    height: 60vh;
+    height: 100vh;
     overflow: auto;
     margin: 0 auto;
     border-radius: 16px;
@@ -93,8 +93,8 @@
     display: flex;
     justify-content: space-between;
     button {
-        width: 40px;
-        margin: 20px 20px;
+        width: 76px;
+        margin: 47px 39px;
     }
     img {
         background-color: transparent;

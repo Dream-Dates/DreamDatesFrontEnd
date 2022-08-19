@@ -24,7 +24,7 @@ function Header() {
                         type="text"
                         name="search"
                         id="search"
-                        placeholder="Search for movies, restaurants, active"
+                        placeholder="Search for food, movies, active"
                         // onChange={}
                         // value={}
                     />
