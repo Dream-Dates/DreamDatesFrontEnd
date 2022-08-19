@@ -21,31 +21,31 @@ function SignUp() {
 
     }
 
-    const createUser = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch("http://localhost:4000/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    "name": signUp.name,
-                    "email": signUp.email,
-                    "lastname": signUp.last_name,
-                    "password": signUp.password
-                })
-            }).then(res => res.json())
-                .then(data => setError(data))
+ const createUser = async (e) =>{
+    e.preventDefault();
 
-            const parseRes = response.json()
-            if (typeof parseRes === typeof {}) {
-                localStorage.setItem("token", parseRes.token);
-                navigate("/")
-                console.log("didnt")
+    const response = await fetch("http://localhost:4000/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "name": signUp.name,
+            "email": signUp.email,
+            "lastname": signUp.last_name,
+            "password": signUp.password
+          })
+        }).then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.errorMessage){
+                setMistake(data.errorMessage)
             }
-        } catch (err) {
-            console.log(err)
-        }
-    }
+            if(data.token){
+         localStorage.setItem("token", data.token);
+    console.log("didnt")
+     navigate("/")    
+            }
+
+        })
 
   return false
 }
