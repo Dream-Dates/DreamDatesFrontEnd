@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 function SignIn({setToken}) {
+    const navigate = useNavigate()
     const [signIn, setSignIn] = useState({
         email: '',
         password: ''
@@ -25,10 +26,13 @@ function SignIn({setToken}) {
                 "email": signIn.email,
                 "password": signIn.password
               })
-            })
+            }).then(res => res.json())
+            .then(data => console.log(data))
         const parseRes = await response.json()
-        localStorage.setItem("token", parseRes.token);
-    console.log(parseRes)
+            localStorage.setItem("token", parseRes.token);
+            navigate("http://localhost:3000/home")
+            console.log("didnt")
+       console.log("work")
     }
 
 
