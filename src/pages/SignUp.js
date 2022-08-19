@@ -3,14 +3,14 @@ import { useState } from "react"
 import { Link,useNavigate } from "react-router-dom"
 
 function SignUp() {
-    const navigate = useNavigate()
+    let navigate = useNavigate()
     const [signUp, setSignUp] = useState({
         name: '',
         last_name: '',
         email: '',
         password: '',
     })
-    const [error,setError] = useState("yup")
+    const [mistakeMessage,setMistake] = useState(null)
     
 
     const handleChange = (e) => {
@@ -47,11 +47,12 @@ function SignUp() {
         }
     }
 
-
+  return false
+}
 
     return (
         <div className="signUp">
-            <form onSubmit={(e) => createUser(e)}> 
+            <form onSubmit={(e) => createUser(e)} > 
                 <section>
                     <label className="sr-only" htmlFor="firstName">First Name</label>
                     <input
@@ -104,9 +105,9 @@ function SignUp() {
                     onChange={(e) => handleChange(e)}
                     value={signUp.password2}
                 /> */}
-                <h3 className="errormessage">{error}</h3>
+                 <h3 className="errormessage">{mistakeMessage}</h3>
                 <div className="formButtonContainer">
-                    <button className="pinkButton"><p>Sign Up</p></button>
+                    <button className="pinkButton">Sign Up</button>
                 </div>
             </form>
 
