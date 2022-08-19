@@ -1,28 +1,45 @@
 // SignIn.js
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 function SignIn({setToken}) {
-    const [signInForm, setSignInForm] = useState({
+    const [signIn, setSignIn] = useState({
         email: '',
         password: ''
     })
 
     const handleChange = (e) => {
-        const itemName = e.target.name;
-        const itemValue = e.target.value;
+        const newdata = {...signIn}
+        newdata[e.target.id] = e.target.value
+        setSignIn(newdata)
+        console.log(newdata)
 
-        setSignInForm({... signInForm, [itemName]: itemValue})
     }
+
+    const signInUser = async (e) =>{
+        e.preventDefault();
+            const response = await fetch("http://localhost:4000/login", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                "email": signIn.email,
+                "password": signIn.password
+              })
+            })
+        const parseRes = await response.json()
+        localStorage.setItem("token", parseRes.token);
+    console.log(parseRes)
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
     }
-
+    
     return (
         <div className="signIn">
-            <form action="">
+            <form onSubmit={(e) => signInUser(e)}>
                 <label className="sr-only" htmlFor="firstName">Email</label>
                 <input
                     type="email"
@@ -31,7 +48,7 @@ function SignIn({setToken}) {
                     placeholder="Email"
                     required
                 onChange={handleChange}
-                value={signInForm.email}
+                value={signIn.email}
                 />
                 <label className="sr-only" htmlFor="password1">Password</label>
                 <input
@@ -41,7 +58,7 @@ function SignIn({setToken}) {
                     placeholder="Password"
                     required
                 onChange={handleChange}
-                value={signInForm.password}
+                value={signIn.password}
                 />
                 <div className="formButtonContainer">
                     <button className="pinkButton">Sign In</button>
