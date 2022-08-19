@@ -7,7 +7,7 @@ export default function Home() {
     useEffect(() => {
         const fetchEvents = async () => {
             try{
-                const response = await fetch("http://localhost:4000/dreamdates/events")
+                const response = await fetch("http://localhost:4000/dreamdates/append/events")
                 if(!response.ok) throw Error("did not received expected data")
                 const listEvents = await response.json()
                 console.log(listEvents)
