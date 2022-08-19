@@ -59,7 +59,7 @@ function Header() {
                 {/* <div className="userAuth"> */}
                     {user ?
                         <div className="userAuth">
-                            <p className='welcome'>Welcome back, James!</p>
+                            <p className='welcome'></p>
                             <br />
                             <Link to='/' onClick={() => setUser(!user)} className="signOut">Sign out</Link>
                         </div>

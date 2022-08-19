@@ -1,46 +1,78 @@
 // SignUp.js
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 
 function SignUp() {
-    const [signUpForm, setSignUpForm] = useState({
-        firstName: '',
-        lastName: '',
+    const navigate = useNavigate()
+    const [signUp, setSignUp] = useState({
+        name: '',
+        last_name: '',
         email: '',
-        password1: '',
-        password2: ''
+        password: '',
     })
+    const [error,setError] =("yup")
+    
 
     const handleChange = (e) => {
-        const itemName = e.target.name;
-        const itemValue = e.target.value;
+        const newdata = {...signUp}
+        newdata[e.target.id] = e.target.value
+        setSignUp(newdata)
+        console.log(newdata)
 
-        setSignUpForm({...signUpForm, [itemName]: itemValue})
     }
+
+ const createUser = async (e) =>{
+    e.preventDefault();
+try{
+    const response = await fetch("http://localhost:4000/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            "name": signUp.name,
+            "email": signUp.email,
+            "lastname": signUp.last_name,
+            "password": signUp.password
+          })
+        })
+    const parseRes = await response.json()
+if(typeof parseRes=== typeof {}){
+     localStorage.setItem("token", parseRes.token);
+     navigate("/home")
+     console.log("didnt")
+}
+} catch (err){
+    console.log(err)
+}
+        
+     
+
+}
+
+
 
     return (
         <div className="signUp">
-            <form action="/register" method="POST">
+            <form onSubmit={(e) => createUser(e)}> 
                 <section>
                     <label className="sr-only" htmlFor="firstName">First Name</label>
                     <input
+                    onChange={(e) => handleChange(e)}
                         type="text"
-                        id="firstName"
-                        name="firstName"
-                        placeholder="First Name"
+                        id="name"
+                        name="name"
+                        placeholder="name"
                         required
-                        onChange={handleChange}
-                        value={signUpForm.firstName}
+                        value={signUp.name}
                     />
                     <label className="sr-only" htmlFor="lastName">Last Name</label>
                     <input
                         type="text"
-                        id="lastName"
+                        id="last_name"
                         name="lastName"
                         placeholder="Last Name"
                         required
-                        onChange={handleChange}
-                        value={signUpForm.lastName}
+                        onChange={(e) => handleChange(e)}
+                        value={signUp.last_name}
                     />
                 </section>
                 <label className="sr-only" htmlFor="email">Email</label>
@@ -50,29 +82,30 @@ function SignUp() {
                     name="email"
                     placeholder="Email"
                     required
-                    onChange={handleChange}
-                    value={signUpForm.email}
+                    onChange={(e) => handleChange(e)}
+                    value={signUp.email}
                 />
                 <label className="sr-only" htmlFor="password1">Password</label>
                 <input
                     type="password"
-                    id="password1"
+                    id="password"
                     name="password1"
                     placeholder="Password"
                     required
-                    onChange={handleChange}
-                    value={signUpForm.password1}
+                    onChange={(e) => handleChange(e)}
+                    value={signUp.password}
                 />
-                <label className="sr-only" htmlFor="password2">Password</label>
+                {/* <label className="sr-only" htmlFor="password2">Password</label>
                 <input
                     type="password"
                     id="password2"
                     name="password2"
                     placeholder="Confirm Password"
                     required
-                    onChange={handleChange}
-                    value={signUpForm.password2}
-                />
+                    onChange={(e) => handleChange(e)}
+                    value={signUp.password2}
+                /> */}
+                <h3 className="errormessage">{error}</h3>
                 <div className="formButtonContainer">
                     <button className="pinkButton">Sign Up</button>
                 </div>
