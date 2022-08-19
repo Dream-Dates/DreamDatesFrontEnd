@@ -16,9 +16,6 @@ function Header() {
             </div>
             
             <form className="headerSearchBar">
-                    <div className="magnifyingGlass">
-                        <img src={magnifyingGlass} alt="magnifying glass" />
-                    </div>
                     <label htmlFor="search" className="sr-only">Search for</label>
                     <input
                         type="text"
@@ -28,29 +25,32 @@ function Header() {
                         // onChange={}
                         // value={}
                     />
+                    <div className="magnifyingGlass">
+                        <img src={magnifyingGlass} alt="magnifying glass" />
+                    </div>
             </form>
 
             <div className='headerFilter'>
                 <div>
-                    <button htmlFor="food" className="pinkButton">Food</button>
+                    <button htmlFor="food" className="pinkButton"><p>Food</p></button>
                 </div>
                 <div>
-                    <button htmlFor="movies" className="pinkButton">Movies</button>
+                    <button htmlFor="movies" className="pinkButton"><p>Movies</p></button>
                 </div>
                 <div>
-                    <button htmlFor="active" className="pinkButton">Active</button>
+                    <button htmlFor="active" className="pinkButton"><p>Active</p></button>
                 </div>
                 <div>
-                    <button htmlFor="attractions" className="pinkButton">Attractions</button>
+                    <button htmlFor="attractions" className="pinkButton"><p>Attractions</p></button>
                 </div>
                 <div>
-                    <button htmlFor="liveEntertainment" className="pinkButton">Live Entertainment</button>
+                    <button htmlFor="liveEntertainment" className="pinkButton"><p>Live Entertainment</p></button>
                 </div>
             </div>
 
             <div className="headerRightSide">
                 <div className="saved">
-                    <Link to='/' className="pinkButton">
+                    <Link to='/' className="pinkButton disable-link">
                         <img src={redHeart} alt="red heart" />
                         <p>Saved</p>
                     </Link>

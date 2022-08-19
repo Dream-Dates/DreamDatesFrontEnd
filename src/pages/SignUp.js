@@ -10,7 +10,7 @@ function SignUp() {
         email: '',
         password: '',
     })
-    const [error,setError] =("yup")
+    const [error,setError] = useState("yup")
     
 
     const handleChange = (e) => {
@@ -33,11 +33,12 @@ try{
             "lastname": signUp.last_name,
             "password": signUp.password
           })
-        })
+        }).then(res =>res.json())
+        .then(data => setError(data))
     const parseRes = await response.json()
 if(typeof parseRes=== typeof {}){
      localStorage.setItem("token", parseRes.token);
-     navigate("/home")
+     navigate("/")
      console.log("didnt")
 }
 } catch (err){
@@ -107,7 +108,7 @@ if(typeof parseRes=== typeof {}){
                 /> */}
                 <h3 className="errormessage">{error}</h3>
                 <div className="formButtonContainer">
-                    <button className="pinkButton">Sign Up</button>
+                    <button className="pinkButton"><p>Sign Up</p></button>
                 </div>
             </form>
 

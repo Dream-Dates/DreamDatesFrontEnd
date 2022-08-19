@@ -8,9 +8,6 @@ html {
 body {
   margin: 0;
 }
-h3{
-  text-align: center;
-}
 
 article, aside, footer, header, nav, section {
   display: block;
@@ -248,18 +245,33 @@ img {
 a {
   text-decoration: none;
 }
+a:hover {
+  background-color: #941C2F;
+}
+a:hover p {
+  color: white;
+}
 
 p {
   line-height: 1.4 !important;
 }
 
 button {
-  background-color: transparent;
+  background: transparent;
   border: none;
-  text-align: center;
   text-decoration: none;
-  display: inline-block;
+  color: inherit;
+  padding: 0;
+  font: inherit;
   cursor: pointer;
+  outline: inherit;
+  display: inline-block;
+}
+button:hover {
+  background-color: #941C2F;
+}
+button:hover p {
+  color: white;
 }
 
 .wrapper {
@@ -270,29 +282,43 @@ button {
   background: #FFC7D0;
   border: 1px solid #000000;
   border-radius: 16px;
-  padding: 8px 10px;
+  padding: 8px 0;
   min-width: 110px;
+  cursor: pointer;
+}
+
+.disable-link {
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+input:focus {
+  border: 1px solid #941C2F;
 }
 
 * {
   font-family: "Raleway", sans-serif;
 }
 
+p,
+a {
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  line-height: 20px;
+}
+
 .pinkButton {
   font-weight: 600;
   font-size: 16px;
   color: black;
-  cursor: pointer;
 }
 .pinkButton p {
   color: black;
 }
 
-p, a {
-  font-weight: 600;
-  font-size: 16px;
-  color: white;
-  line-height: 20px;
+button p {
+  padding: 0 20px;
 }
 
 .userAuth p {
@@ -336,7 +362,7 @@ h2 {
   font-weight: 500;
 }
 
-.header input {
+input {
   font-family: "Raleway", sans-serif;
 }
 
@@ -362,6 +388,9 @@ h2 {
   width: 300px;
   margin-left: 60px;
 }
+.logo a:hover {
+  background-color: transparent;
+}
 
 .headerSearchBar {
   grid-area: headerSearchBar;
@@ -377,8 +406,9 @@ h2 {
   width: 100%;
   padding: 8px 0 8px 35px;
 }
-.headerSearchBar input:focus, .headerSearchBar input:hover {
-  border: 1px solid red;
+.headerSearchBar input:focus + .magnifyingGlass > img {
+  -webkit-filter: invert(7%) sepia(28%) saturate(9909%) hue-rotate(32deg) brightness(101%) contrast(102%);
+          filter: invert(7%) sepia(28%) saturate(9909%) hue-rotate(32deg) brightness(101%) contrast(102%);
 }
 
 .headerFilter {
@@ -414,6 +444,9 @@ h2 {
 .userAuth {
   padding-left: 20px;
   width: 140px;
+}
+.userAuth .signOut:hover {
+  background-color: transparent;
 }
 
 .logo,
@@ -501,7 +534,7 @@ h2 {
 .modal {
   width: 100vw;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   z-index: 30;
 }
@@ -619,6 +652,9 @@ h2 {
 .buttonContainer button {
   width: 76px;
   margin: 47px 39px;
+}
+.buttonContainer button:hover {
+  background-color: transparent;
 }
 .buttonContainer img {
   background-color: transparent;
