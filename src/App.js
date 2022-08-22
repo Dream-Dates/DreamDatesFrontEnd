@@ -5,6 +5,7 @@ import './styles/styles.css'
 import { Routes, Route } from 'react-router-dom'
 import SignIn from './pages/SignIn';
 import { useState } from 'react';
+import ContextProvider from "../src/context/contextProvider";
 
 function App() {
   const [token, setToken] = useState()
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <div className="App">
+      <ContextProvider>
       <Header />
       
       
@@ -24,6 +26,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/signin' element={<SignIn setToken={setToken}/>} />
       </Routes>
+      </ContextProvider>
     </div>
   );
 }
