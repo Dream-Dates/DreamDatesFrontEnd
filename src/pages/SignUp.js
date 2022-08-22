@@ -25,7 +25,7 @@ function SignUp() {
  const createUser = async (e) =>{
     e.preventDefault();
 
-    const response = await fetch("http://localhost:4000/register", {
+    const response = await fetch("https://dream-dates.herokuapp.com/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -61,7 +61,7 @@ function SignUp() {
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="name"
+                        placeholder="First Name"
                         required
                         value={signUp.name}
                     />
@@ -97,7 +97,7 @@ function SignUp() {
                     value={signUp.password}
                 />
                 <label className="sr-only" htmlFor="password2">Retype-Password</label>
-                <input
+                {/* <input
                     type="password"
                     id="password2"
                     name="password2"
@@ -105,7 +105,7 @@ function SignUp() {
                     required
                     onChange={(e) => handleChange(e)}
                     value={signUp.retypePasswrod}
-                />
+                /> */}
                  <h3 className="errormessage">{mistakeMessage}</h3>
                 <div className="formButtonContainer">
                     <button className="pinkButton">Sign Up</button>
