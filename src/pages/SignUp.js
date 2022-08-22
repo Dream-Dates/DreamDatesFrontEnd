@@ -61,7 +61,7 @@ function SignUp() {
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="name"
+                        placeholder="First name"
                         required
                         value={signUp.name}
                     />
