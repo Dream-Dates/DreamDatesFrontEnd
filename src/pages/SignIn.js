@@ -24,7 +24,7 @@ function SignIn({setToken}) {
 const signInUser = async (e) =>{
     e.preventDefault();
 
-            const response = await fetch("https://dream-dates.herokuapp.com/login", {
+            const response = await fetch("http://localhost:4000/login", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -33,23 +33,29 @@ const signInUser = async (e) =>{
               })
             }).then(res => res.json())
             .then(data => {
+                console.log(data)
                 if(data.errorMessage){
                     setMistake(data.errorMessage)
                 }
                 if(data.token){
              localStorage.setItem("token", data.token);
               localStorage.setItem("id", data.getUser[0].id);
-        context.setUserId(data.getUser[0].id)
-        context.setEmail(data.getUser[0].email)
-        context.setName(data.getUser[0].name)
-        context.setLastName(data.getUser[0].last_name)
-        console.log(context)
+    //    let id = data.getUser[0].id
+        let email = data.getUser[0].email
+        let name = data.getUser[0].name
+        let lastname = data.getUser[0].last_name
+setUserInfo(email,name,lastname)
          navigate("/")    
                 }
             })
             return false
     }
-
+    function setUserInfo(email,name,lastname){
+        context.setEmail(email)
+        context.setName(name)
+        context.setLastName(lastname)
+        console.log("work")
+    }
     
     return (
         <div className="signIn">

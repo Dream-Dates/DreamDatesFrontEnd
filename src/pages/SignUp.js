@@ -25,7 +25,7 @@ function SignUp() {
  const createUser = async (e) =>{
     e.preventDefault();
 
-    const response = await fetch("https://dream-dates.herokuapp.com/register", {
+    const response = await fetch("http://localhost:4000/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -42,7 +42,6 @@ function SignUp() {
             }
             if(data.token){
          localStorage.setItem("token", data.token);
-    console.log("didnt")
      navigate("/")    
             }
 
