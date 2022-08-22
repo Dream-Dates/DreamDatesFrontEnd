@@ -9,7 +9,7 @@ function SignUp() {
         last_name: '',
         email: '',
         password: '',
-        retypePasswrod: ""
+        retypePassword: ""
     })
     const [mistakeMessage,setMistake] = useState(null)
     
@@ -99,12 +99,12 @@ function SignUp() {
                 <label className="sr-only" htmlFor="password2">Retype-Password</label>
                 <input
                     type="password"
-                    id="password2"
-                    name="password2"
+                    id="retypePassword"
+                    name="retypePassword"
                     placeholder="Confirm Password"
                     required
                     onChange={(e) => handleChange(e)}
-                    value={signUp.retypePasswrod}
+                    value={signUp.retypePassword}
                 />
                  <h3 className="errormessage">{mistakeMessage}</h3>
                 <div className="formButtonContainer">
