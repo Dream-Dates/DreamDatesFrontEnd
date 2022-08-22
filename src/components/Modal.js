@@ -3,6 +3,12 @@ import globe from '../assets/globe.svg'
 import { Link } from 'react-router-dom'
 import whiteHeart from '../assets/whiteHeart.svg'
 import x from '../assets/X.svg'
+import clock from '../assets/clock.svg'
+import about from '../assets/about.svg'
+import phone from '../assets/phone.svg'
+import location from '../assets/location.svg'
+import image from '../assets/image.svg'
+
 
 function Modal({eventDetails, closeModal}) {
     const {title, description, img, adress_street, city} = eventDetails
@@ -29,28 +35,70 @@ function Modal({eventDetails, closeModal}) {
                 <div className="textContainer">
                     <div className="topSide">
                         <div className="heading">
-                            <h2>About</h2>
                             <Link to='' className='pinkButton'>
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
                             </Link>
+                            <h2>$$$</h2>
+                            <h2>Restaurant</h2>
                         </div>
-                        <p>{description}</p>
                     </div>
-                    <div className="bottomSide">
+                    <div className="midSide">
                         <div className="leftSide">
-                            <h2>Phone</h2>
+                            <div className="subTitle">
+                                <div className="midIcon">
+                                    <img src={about} alt='information icon'/>
+                                </div>
+                                <h2>About</h2>
+                            </div>
+                            <p>{description}</p>
+                            <div className="subTitle">
+                                <div className="midIcon">
+                                    <img src={phone} alt='phone icon'/>
+                                </div>
+                                <h2>Phone</h2>
+                            </div>
                             <p>(123)-456-7890</p>
-                            <h2>Location</h2>
+                            <div className="subTitle">
+                                <div className="midIcon">
+                                    <img src={location} alt='map pin icon' />
+                                </div>
+                                <h2>Location</h2>
+                            </div>
                             <p>{adress_street}</p>
                             <p>{city}</p>
-                            <h2>Photos</h2>
-                            <img src="" alt="" className='test'/>
-                            <img src="" alt="" className='test'/>
                         </div>
                         <div className="rightSide">
-                            <h2>Hours</h2>
+                            <div className="subTitle">
+                                <div className="midIcon">
+                                    <img src={clock} alt='clock icon'/>
+                                </div>
+                                <h2>Hours</h2>
+                            </div>
                             <p>WE CLOSED</p>
                         </div>
+                    </div>
+                    <div className="botSide">
+                            <div className="subTitle">
+                                <div className="midIcon">
+                                    <img src={image} alt='image icon'/>
+                                </div>
+                                <h2>Photos</h2>
+                            </div>
+
+                            <div className="carousel">
+                                <div className="carouselCard">
+                                    <img src="" alt="" className='test'/>
+                                </div>
+                                <div className="carouselCard">
+                                    <img src="" alt="" className='test'/>
+                                </div>
+                                <div className="carouselCard">
+                                    <img src="" alt="" className='test'/>
+                                </div>
+                                <div className="carouselCard">
+                                    <img src="" alt="" className='test'/>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

@@ -19,13 +19,17 @@ function DateIdeasList({ideas, selectedEvent}) {
         setList(mainList)
     }, [ideas])
 
+    const toggleHeart = (e) => {
+        console.log(e.target.className)
+    }
+
     return(
         <div className="dateIdeasList wrapper">
             {list.map(idea => {
                 return (
                     <div className="dateIdeasCard" onClick={() => selectedEvent(idea)}>
-                        <div className="heart">
-                            <img src={whiteHeart} alt="White Heart" />
+                        <div onMouseOver={toggleHeart} className="heart whiteHeart">
+                            {/* <img src={whiteHeart} alt="White Heart" /> */}
                         </div>
                         <div className="imageContainer">
                             <img src={idea.img} alt={`Image of ${idea.title}`} />
