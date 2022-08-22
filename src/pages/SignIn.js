@@ -1,14 +1,18 @@
 // SignIn.js
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import Context from "../context/context";
 
 function SignIn({setToken}) {
+    const context = useContext(Context);
+    console.log(context)
+
     const navigate = useNavigate()
     const [signIn, setSignIn] = useState({
         email: '',
         password: ''
     })
-
+    const [mistakeMessage,setMistake] = useState(null)
     const handleChange = (e) => {
         const newdata = {...signIn}
         newdata[e.target.id] = e.target.value
@@ -17,8 +21,9 @@ function SignIn({setToken}) {
 
     }
 
-    const signInUser = async (e) =>{
-        e.preventDefault();
+const signInUser = async (e) =>{
+    e.preventDefault();
+
             const response = await fetch("http://localhost:4000/login", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -27,19 +32,24 @@ function SignIn({setToken}) {
                 "password": signIn.password
               })
             }).then(res => res.json())
-            .then(data => console.log(data))
-        const parseRes = await response.json()
-            localStorage.setItem("token", parseRes.token);
-            navigate("http://localhost:3000/home")
-            console.log("didnt")
-       console.log("work")
+            .then(data => {
+                if(data.errorMessage){
+                    setMistake(data.errorMessage)
+                }
+                if(data.token){
+             localStorage.setItem("token", data.token);
+              localStorage.setItem("id", data.getUser[0].id);
+        context.setUserId(data.getUser[0].id)
+        context.setEmail(data.getUser[0].email)
+        context.setName(data.getUser[0].name)
+        context.setLastName(data.getUser[0].last_name)
+        console.log(context)
+         navigate("/")    
+                }
+            })
+            return false
     }
 
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-    }
     
     return (
         <div className="signIn">
@@ -51,7 +61,7 @@ function SignIn({setToken}) {
                     name="email"
                     placeholder="Email"
                     required
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 value={signIn.email}
                 />
                 <label className="sr-only" htmlFor="password1">Password</label>
@@ -61,9 +71,10 @@ function SignIn({setToken}) {
                     name="password"
                     placeholder="Password"
                     required
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 value={signIn.password}
                 />
+                <h3 className="errormessage">{mistakeMessage}</h3>
                 <div className="formButtonContainer">
                     <button className="pinkButton"><p>Sign In</p></button>
                 </div>
