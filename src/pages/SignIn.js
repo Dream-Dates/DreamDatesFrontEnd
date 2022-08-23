@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState, useContext } from "react"
 import Context from "../context/context";
-//this is a test
+
 function SignIn({ setToken }) {
     const context = useContext(Context);
     console.log(context)
