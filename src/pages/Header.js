@@ -3,11 +3,14 @@ import logo from '../assets/dreamDatesLogo.png'
 import redHeart from '../assets/redHeart.svg';
 import magnifyingGlass from '../assets/magnifyingGlass.svg';
 import { Link } from "react-router-dom"
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import Context from "../context/context";
 
 
 function Header() {
     const [user, setUser] = useState(false)
+
+    const context = useContext(Context);
 
     return (
         <div className="header wrapper">
@@ -59,7 +62,7 @@ function Header() {
                 {/* <div className="userAuth"> */}
                     {user ?
                         <div className="userAuth">
-                            <p className='welcome'>Welcome back, John</p>
+                            <p className='welcome'>Welcome back, {context.name}</p>
                             <br />
                             <Link to='/' onClick={() => setUser(!user)} className="signOut">Sign out</Link>
                         </div>

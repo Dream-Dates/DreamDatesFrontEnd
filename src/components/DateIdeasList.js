@@ -23,21 +23,30 @@ function DateIdeasList({ideas, selectedEvent}) {
         console.log(e.target.className)
     }
 
+    const noZipCode = (addy) => {
+        console.log('noZip')
+        const reg = /(?<![0-9-])([0-9]{5}(?:[ -][0-9]{4})?)(?![0-9-])/gm
+        const str = addy
+        return str.replace(reg, '')
+    }
+
     return(
         <div className="dateIdeasList wrapper">
             {list.map(idea => {
                 return (
-                    <div className="dateIdeasCard" onClick={() => selectedEvent(idea)}>
-                        <div onMouseOver={toggleHeart} className="heart whiteHeart">
-                            {/* <img src={whiteHeart} alt="White Heart" /> */}
-                        </div>
+                    <div className="dateIdeasCard" onClick={(e) => selectedEvent(e, idea)} key={idea.id}>
+                        {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
+                        </div> */}
+                        <button className="heart">
+                            <img src={whiteHeart} alt="White Heart" id='save'/>
+                        </button>
                         <div className="imageContainer">
                             <img src={idea.img} alt={`Image of ${idea.title}`} />
                         </div>
                         <div className="textContainer">
                             <h2>{idea.title}</h2>
                             <p>$$$</p>
-                            <p>{idea.city? idea.city : 'No Location'}</p>
+                            <p>{idea.city? noZipCode(idea.city) : 'No Location'}</p>
                         </div>
                     </div>
                 )

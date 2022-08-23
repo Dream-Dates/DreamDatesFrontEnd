@@ -45,7 +45,8 @@
         //     border: 1px solid #941C2F;
         // }
         &:focus + .magnifyingGlass>img {
-            filter: invert(7%) sepia(28%) saturate(9909%) hue-rotate(32deg) brightness(101%) contrast(102%);
+            // filter: invert(7%) sepia(28%) saturate(9909%) hue-rotate(32deg) brightness(101%) contrast(102%);
+            filter: invert(16%) sepia(23%) saturate(7495%) hue-rotate(332deg) brightness(96%) contrast(96%);
         }
     }
 }

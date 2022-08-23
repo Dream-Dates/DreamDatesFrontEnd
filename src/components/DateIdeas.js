@@ -13,9 +13,16 @@ function DateIdeas(){
     const [chosenEvent, setChoseEvent] = useState([])
     const [showModal, setShowModal] = useState(false)
 
-    const openModal = (event) => {
-        setChoseEvent(event)
-        setShowModal(true)
+    const openModal = (e, eventDetails) => {
+        setChoseEvent(eventDetails)
+        // console.log(e.target.id)
+
+        // if you click on the heart it will run save method if not it will open the modal
+        if (e.target.id === 'save') {
+
+        } else {
+            setShowModal(true)
+        }
     }
 
     const closeModal = () => {

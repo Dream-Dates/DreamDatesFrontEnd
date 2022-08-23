@@ -40,17 +40,18 @@ function SignIn({ setToken }) {
                 if (data.token) {
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("id", data.getUser[0].id);
-                    //    let id = data.getUser[0].id
+                    let id = data.getUser[0].id
                     let email = data.getUser[0].email
                     let name = data.getUser[0].name
                     let lastname = data.getUser[0].last_name
-                    setUserInfo(email, name, lastname)
+                    setUserInfo(id, email, name, lastname)
                     navigate("/")
                 }
             })
         return false
     }
-    function setUserInfo(email, name, lastname) {
+    function setUserInfo(id, email, name, lastname) {
+        context.setUserId(id)
         context.setEmail(email)
         context.setName(name)
         context.setLastName(lastname)

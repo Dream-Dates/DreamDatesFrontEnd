@@ -252,6 +252,14 @@ a:hover p {
   color: white;
 }
 
+.textContainer a:hover img {
+  -webkit-filter: invert(100%) sepia(93%) saturate(0%) hue-rotate(174deg) brightness(109%) contrast(101%);
+          filter: invert(100%) sepia(93%) saturate(0%) hue-rotate(174deg) brightness(109%) contrast(101%);
+}
+.textContainer a:hover p {
+  color: white;
+}
+
 p {
   line-height: 1.4 !important;
 }
@@ -337,6 +345,13 @@ button p {
   font-weight: 400;
 }
 
+h1 {
+  font-family: "Mirza", cursive;
+  font-size: 40;
+  font-weight: 700;
+  color: white;
+}
+
 h2 {
   font-family: "Mirza", cursive;
   font-size: 20px;
@@ -407,8 +422,8 @@ input {
   padding: 8px 0 8px 35px;
 }
 .headerSearchBar input:focus + .magnifyingGlass > img {
-  -webkit-filter: invert(7%) sepia(28%) saturate(9909%) hue-rotate(32deg) brightness(101%) contrast(102%);
-          filter: invert(7%) sepia(28%) saturate(9909%) hue-rotate(32deg) brightness(101%) contrast(102%);
+  -webkit-filter: invert(16%) sepia(23%) saturate(7495%) hue-rotate(332deg) brightness(96%) contrast(96%);
+          filter: invert(16%) sepia(23%) saturate(7495%) hue-rotate(332deg) brightness(96%) contrast(96%);
 }
 
 .headerFilter {
@@ -526,6 +541,9 @@ input {
 .dateIdeasCard:hover h2 {
   white-space: normal;
 }
+.dateIdeasCard button:hover {
+  background-color: transparent;
+}
 
 .heart {
   width: 30.48px;
@@ -555,10 +573,9 @@ input {
 
 .modalContainer {
   width: 1000px;
-  height: 100vh;
+  height: calc(100vh - 40px);
   overflow: auto;
-  margin: 0 auto;
-  padding-top: 20px;
+  margin: 20px auto 0 auto;
   border-radius: 16px;
   background-color: white;
   border-radius: 16px;
@@ -610,7 +627,7 @@ input {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 50%;
+  width: 56%;
 }
 .modalContainer .topSide .heading a {
   display: -webkit-box;
@@ -619,10 +636,10 @@ input {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 30px;
+  padding: 5px 30px;
 }
 .modalContainer .topSide .heading a img {
-  margin-right: 15px;
+  margin-right: 10px;
 }
 .modalContainer .topSide .title {
   display: -webkit-box;
@@ -707,6 +724,10 @@ input {
 .carouselCard {
   width: 100%;
   border: 1px solid yellow;
+}
+
+h1 {
+  margin: 49px 0;
 }
 
 .signIn form {

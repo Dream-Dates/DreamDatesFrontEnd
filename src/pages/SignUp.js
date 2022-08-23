@@ -108,7 +108,7 @@ function SignUp() {
                 />
                 <h3 className="errormessage">{mistakeMessage}</h3>
                 <div className="formButtonContainer">
-                    <button className="pinkButton">Sign Up</button>
+                    <button className="pinkButton"><p>Sign Up</p></button>
                 </div>
             </form>
 
