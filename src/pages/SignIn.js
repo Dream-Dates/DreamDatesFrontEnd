@@ -33,24 +33,29 @@ function SignIn({ setToken }) {
             })
         }).then(res => res.json())
             .then(data => {
+                console.log(data)
                 if (data.errorMessage) {
                     setMistake(data.errorMessage)
                 }
                 if (data.token) {
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("id", data.getUser[0].id);
-                    context.setUserId(data.getUser[0].id)
-                    context.setEmail(data.getUser[0].email)
-                    context.setName(data.getUser[0].name)
-                    context.setLastName(data.getUser[0].last_name)
-                    console.log(context)
+                    //    let id = data.getUser[0].id
+                    let email = data.getUser[0].email
+                    let name = data.getUser[0].name
+                    let lastname = data.getUser[0].last_name
+                    setUserInfo(email, name, lastname)
                     navigate("/")
                 }
             })
         return false
     }
-
-
+    function setUserInfo(email, name, lastname) {
+        context.setEmail(email)
+        context.setName(name)
+        context.setLastName(lastname)
+        console.log("work")
+    }
     return (
         <div className="signIn">
             <form onSubmit={(e) => signInUser(e)}>
