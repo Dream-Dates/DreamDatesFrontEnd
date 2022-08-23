@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 
 function Header() {
-    const [user, setUser] = useState(true)
+    const [user, setUser] = useState(false)
 
     return (
         <div className="header wrapper">

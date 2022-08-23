@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState, useContext } from "react"
 import Context from "../context/context";
 
-function SignIn({setToken}) {
+function SignIn({ setToken }) {
     const context = useContext(Context);
     console.log(context)
 
@@ -12,45 +12,45 @@ function SignIn({setToken}) {
         email: '',
         password: ''
     })
-    const [mistakeMessage,setMistake] = useState(null)
+    const [mistakeMessage, setMistake] = useState(null)
     const handleChange = (e) => {
-        const newdata = {...signIn}
+        const newdata = { ...signIn }
         newdata[e.target.id] = e.target.value
         setSignIn(newdata)
         console.log(newdata)
 
     }
 
-const signInUser = async (e) =>{
-    e.preventDefault();
+    const signInUser = async (e) => {
+        e.preventDefault();
 
-            const response = await fetch("http://localhost:4000/login", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
+        const response = await fetch("http://localhost:4000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
                 "email": signIn.email,
                 "password": signIn.password
-              })
-            }).then(res => res.json())
+            })
+        }).then(res => res.json())
             .then(data => {
-                if(data.errorMessage){
+                if (data.errorMessage) {
                     setMistake(data.errorMessage)
                 }
-                if(data.token){
-             localStorage.setItem("token", data.token);
-              localStorage.setItem("id", data.getUser[0].id);
-        context.setUserId(data.getUser[0].id)
-        context.setEmail(data.getUser[0].email)
-        context.setName(data.getUser[0].name)
-        context.setLastName(data.getUser[0].last_name)
-        console.log(context)
-         navigate("/")    
+                if (data.token) {
+                    localStorage.setItem("token", data.token);
+                    localStorage.setItem("id", data.getUser[0].id);
+                    context.setUserId(data.getUser[0].id)
+                    context.setEmail(data.getUser[0].email)
+                    context.setName(data.getUser[0].name)
+                    context.setLastName(data.getUser[0].last_name)
+                    console.log(context)
+                    navigate("/")
                 }
             })
-            return false
+        return false
     }
 
-    
+
     return (
         <div className="signIn">
             <form onSubmit={(e) => signInUser(e)}>
@@ -61,8 +61,8 @@ const signInUser = async (e) =>{
                     name="email"
                     placeholder="Email"
                     required
-                onChange={(e) => handleChange(e)}
-                value={signIn.email}
+                    onChange={(e) => handleChange(e)}
+                    value={signIn.email}
                 />
                 <label className="sr-only" htmlFor="password1">Password</label>
                 <input
@@ -71,8 +71,8 @@ const signInUser = async (e) =>{
                     name="password"
                     placeholder="Password"
                     required
-                onChange={(e) => handleChange(e)}
-                value={signIn.password}
+                    onChange={(e) => handleChange(e)}
+                    value={signIn.password}
                 />
                 <h3 className="errormessage">{mistakeMessage}</h3>
                 <div className="formButtonContainer">

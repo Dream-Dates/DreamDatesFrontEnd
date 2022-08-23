@@ -1,6 +1,6 @@
 // SignUp.js
 import { useState } from "react"
-import { Link,useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 function SignUp() {
     let navigate = useNavigate()
@@ -11,53 +11,53 @@ function SignUp() {
         password: '',
         retypePassword: ""
     })
-    const [mistakeMessage,setMistake] = useState(null)
-    
+    const [mistakeMessage, setMistake] = useState(null)
+
 
     const handleChange = (e) => {
-        const newdata = {...signUp}
+        const newdata = { ...signUp }
         newdata[e.target.id] = e.target.value
         setSignUp(newdata)
         console.log(newdata)
 
     }
 
- const createUser = async (e) =>{
-    e.preventDefault();
+    const createUser = async (e) => {
+        e.preventDefault();
 
-    const response = await fetch("http://localhost:4000/register", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            "name": signUp.name,
-            "email": signUp.email,
-            "lastname": signUp.last_name,
-            "password": signUp.password
-          })
+        const response = await fetch("http://localhost:4000/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                "name": signUp.name,
+                "email": signUp.email,
+                "lastname": signUp.last_name,
+                "password": signUp.password
+            })
         }).then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.errorMessage){
-                setMistake(data.errorMessage)
-            }
-            if(data.token){
-         localStorage.setItem("token", data.token);
-    console.log("didnt")
-     navigate("/")    
-            }
+            .then(data => {
+                console.log(data)
+                if (data.errorMessage) {
+                    setMistake(data.errorMessage)
+                }
+                if (data.token) {
+                    localStorage.setItem("token", data.token);
+                    console.log("didnt")
+                    navigate("/")
+                }
 
-        })
+            })
 
-  return false
-}
+        return false
+    }
 
     return (
         <div className="signUp">
-            <form onSubmit={(e) => createUser(e)} > 
+            <form onSubmit={(e) => createUser(e)} >
                 <section>
                     <label className="sr-only" htmlFor="firstName">First Name</label>
                     <input
-                    onChange={(e) => handleChange(e)}
+                        onChange={(e) => handleChange(e)}
                         type="text"
                         id="name"
                         name="name"
@@ -106,7 +106,7 @@ function SignUp() {
                     onChange={(e) => handleChange(e)}
                     value={signUp.retypePassword}
                 />
-                 <h3 className="errormessage">{mistakeMessage}</h3>
+                <h3 className="errormessage">{mistakeMessage}</h3>
                 <div className="formButtonContainer">
                     <button className="pinkButton">Sign Up</button>
                 </div>
