@@ -26,8 +26,10 @@ function Modal({eventDetails, closeModal}) {
     const handleClickSave = () => {
         console.log('Save');
         console.log(context.userid)
-        fetch ('http://localhost:4000/datingideas/saved', {
+        console.log(description)
+        fetch ('http://localhost:4000/dreamdates/datingideas/saved', {
             method: 'POST',
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 "id": id,
                 "title": title,

@@ -6,25 +6,55 @@ import { Routes, Route } from 'react-router-dom'
 import SignIn from './pages/SignIn';
 import { useState } from 'react';
 import ContextProvider from "../src/context/contextProvider";
+import { useEffect } from 'react';
+import Saved from './pages/Saved';
 
 function App() {
-  const [token, setToken] = useState()
+  const [user, setUser] = useState({
+    'token': null,
+    'id': null,
+    'name': null
+  })
 
-  // if (!token) {
-  //   return <SignIn setToken={setToken} />
-  // }
+  const [toggle, setToggle] = useState(true)
+
+  const rerender = () => {
+    setToggle(!toggle)
+  }
+
+  useEffect(() => {
+    setUser({
+      'token': localStorage.token,
+      'id': localStorage.id,
+      'name': localStorage.name
+    })
+  }, [toggle])
+
+  const logUserOut = (e) => {
+
+    setUser({
+      'token': null,
+      'id': null,
+      'name': null
+    })
+
+    localStorage.removeItem('token')
+    localStorage.removeItem('id')
+    localStorage.removeItem('name')
+  }
 
   return (
     <div className="App">
       <ContextProvider>
-      <Header />
+      <Header user={user} logUserOut={logUserOut}/>
       
       
 
       <Routes>
         <Route path='/' element={<DateIdeas />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route path='/signin' element={<SignIn setToken={setToken}/>} />
+          <Route path='/signin' element={<SignIn rerender={rerender} />} />
+          <Route path='/saved' element={<Saved />}
       </Routes>
       </ContextProvider>
     </div>

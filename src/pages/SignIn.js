@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState, useContext } from "react"
 import Context from "../context/context";
 
-function SignIn({ setToken }) {
+function SignIn({rerender}) {
     const context = useContext(Context);
     console.log(context)
 
@@ -40,11 +40,13 @@ function SignIn({ setToken }) {
                 if (data.token) {
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("id", data.getUser[0].id);
+                    localStorage.setItem("name", data.getUser[0].name);
                     let id = data.getUser[0].id
                     let email = data.getUser[0].email
                     let name = data.getUser[0].name
                     let lastname = data.getUser[0].last_name
                     setUserInfo(id, email, name, lastname)
+                    rerender()
                     navigate("/")
                 }
             })

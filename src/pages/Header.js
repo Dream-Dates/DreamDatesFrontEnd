@@ -7,10 +7,11 @@ import { useState, useContext } from 'react';
 import Context from "../context/context";
 
 
-function Header() {
-    const [user, setUser] = useState(false)
+function Header({user, logUserOut}) {
+    // const [user, setUser] = useState([])
 
     const context = useContext(Context);
+
 
     return (
         <div className="header wrapper">
@@ -53,22 +54,22 @@ function Header() {
 
             <div className="headerRightSide">
                 <div className="saved">
-                    <Link to='/' className="pinkButton disable-link">
+                    <Link to='/saved' className={`pinkButton ${!user.token && 'disable-link'}`}>
                         <img src={redHeart} alt="red heart" />
                         <p>Saved</p>
                     </Link>
                 </div>
 
                 {/* <div className="userAuth"> */}
-                    {user ?
+                    {user.token ?
                         <div className="userAuth">
-                            <p className='welcome'>Welcome back, {context.name}</p>
+                            <p className='welcome'>Welcome back, {user.name}</p>
                             <br />
-                            <Link to='/' onClick={() => setUser(!user)} className="signOut">Sign out</Link>
+                            <Link to='/' onClick={logUserOut} className="signOut">Sign out</Link>
                         </div>
                     :
                         <div className="userAuth">
-                            <Link to={'/signin'} className="pinkButton" onClick={() => setUser(!user)}>
+                            <Link to={'/signin'} className="pinkButton">
                                 <p>Sign In</p>
                             </Link>
                         </div>
