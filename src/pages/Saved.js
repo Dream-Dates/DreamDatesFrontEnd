@@ -18,8 +18,9 @@ function Saved() {
                 savedList.forEach(item => item.categoryType = 'saved')
                 console.log(typeof(savedList));
                 setSaved({'saved': savedList})
+                console.log(saved)
             } catch (err) {
-                alert(err.message)
+                console.log(err.message)
             }
         }
         fetchSaved()

@@ -4,16 +4,12 @@
     width: 100vw;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    // padding-top: 200px;
     position: fixed;
-    
     z-index: 30;
-    // top: 0;
-    // bottom: 0;
 }
 .modalContainer {
     width: 1000px;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 20px);
     overflow: auto;
     margin: 20px auto 0 auto;
     // margin-top: 20px;
@@ -26,6 +22,12 @@
         overflow: hidden;
         border-radius: 16px 16px 0 0;
         background-color: #941C2F;
+        display: flex;
+        justify-content: center;
+        .fullImage {
+            width: auto;
+            height: 450px;
+        }
     }
     .titleContainer {
         background-color: #941C2F;
@@ -78,9 +80,6 @@
     }
     .midSide {
         display: flex;
-        p {
-            // padding-bottom: 22px;
-        }
     }
     .leftSide, 
     .rightSide {
@@ -133,12 +132,29 @@
 }
 
 .carousel {
-    display: flex;
+    width: 100%;
+    border: 1px solid navy;
+}
+
+.carouselContainer {
+    width: 100%;
+    border: 1px solid white;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    background-color: #941C2F;
+
 }
 
 .carouselCard {
-    width: 100%;
-    border: 1px solid yellow;
+    width: 200px;
+    height: calc(100% - 40px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    // box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.15);
+    // background-color: white;
+    border: 1px solid white;
 }
 
 h1 {

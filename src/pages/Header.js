@@ -53,7 +53,7 @@ function Header({user, logUserOut}) {
             </div>
 
             <div className="headerRightSide">
-                <div className="saved">
+                <div className="savedButton">
                     <Link to='/saved' className={`pinkButton ${!user.token && 'disable-link'}`}>
                         <img src={redHeart} alt="red heart" />
                         <p>Saved</p>

@@ -447,7 +447,7 @@ input {
   margin-top: 20px;
 }
 
-.saved .pinkButton, .userAuth .pinkButton {
+.savedButton .pinkButton, .userAuth .pinkButton {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -455,7 +455,7 @@ input {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
 }
-.saved img, .userAuth img {
+.savedButton img, .userAuth img {
   width: 22px;
 }
 
@@ -497,10 +497,12 @@ input {
 }
 
 .dateIdeasList {
-  padding: 236px 62px;
+  border: 1px solid green;
 }
 
 .dateIdeasContainer {
+  padding: 236px 62px;
+  border: 1px solid purple;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -583,6 +585,7 @@ input {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
+  z-index: 35;
 }
 
 .notSignedIn {
@@ -591,6 +594,7 @@ input {
   height: 350px;
   border-radius: 16px;
   border: 1px solid #941C2F;
+  background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -632,7 +636,7 @@ input {
 
 .modalContainer {
   width: 1000px;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 20px);
   overflow: auto;
   margin: 20px auto 0 auto;
   border-radius: 16px;
@@ -645,6 +649,16 @@ input {
   overflow: hidden;
   border-radius: 16px 16px 0 0;
   background-color: #941C2F;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.modalContainer .imageContainer .fullImage {
+  width: auto;
+  height: 450px;
 }
 .modalContainer .titleContainer {
   background-color: #941C2F;
@@ -772,14 +786,32 @@ input {
 }
 
 .carousel {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  width: 100%;
+  border: 1px solid navy;
+}
+
+.carouselContainer {
+  width: 100%;
+  border: 1px solid white;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background-color: #941C2F;
 }
 
 .carouselCard {
-  width: 100%;
-  border: 1px solid yellow;
+  width: 200px;
+  height: calc(100% - 40px);
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid white;
 }
 
 h1 {

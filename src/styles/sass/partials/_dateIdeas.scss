@@ -1,16 +1,18 @@
 // _dateIdeas.scss
 
 .dateIdeasList {
-    padding: 236px 62px;
-    // border: 1px solid green;
+    border: 1px solid green;
     // position: relative;
 }
 
 .dateIdeasContainer {
+    padding: 236px 62px;
+    border: 1px solid purple;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: max(5%, 60px);
+    // display: none
 }
 
 .dateIdeasCard {
@@ -79,7 +81,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
-    // z-index: 35;
+    z-index: 35;
 }
 
 .notSignedIn {
@@ -88,7 +90,7 @@
     height: 350px;
     border-radius: 16px;
     border: 1px solid #941C2F;
-    // top: 100%;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;

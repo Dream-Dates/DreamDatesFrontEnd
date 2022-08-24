@@ -9,6 +9,7 @@ import { Link,} from "react-router-dom"
 function DateIdeasList({ideas, selectedEvent, userId}) {
     let mainList = []
     const [list, setList] = useState([])
+    const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
 
     
     useEffect(()=>{
@@ -40,42 +41,23 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
             //save method
         } else {
             // sign up or sign in pop up
+            setCloseNotSignedIn(!closeNotSignedIn)
         }
     }
 
-    const handleClickClose = (e) => {
-        console.log('click', e);
+    const handleClickNotSignInClose = (e) => {
+        if (e.target.className === 'catch' || e.target.id === 'closeCatch') {
+            setCloseNotSignedIn(!closeNotSignedIn)
+        }
     }
 
     return(
         <div className="dateIdeasList">
-            <div className="dateIdeasContainer wrapper">
-                {list.map(idea => {
-                    return (
-                        <div className="dateIdeasCard" onClick={(e) => selectedEvent(e, idea)} key={idea.id}>
-                            {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
-                            </div> */}
-                            <button className="heart">
-                                <img src={whiteHeart} alt="White Heart" id='save'/>
-                            </button>
-                            <div className="imageContainer">
-                                <img src={idea.img ? idea.img : events_backdrop} alt={`Image of ${idea.title}`} />
-                            </div>
-                            <div className="textContainer">
-                                <h2>{idea.title}</h2>
-                                <p>$$$</p>
-                                <p>{idea.city? noZipCode(idea.city) : 'No Location'}</p>
-                            </div>
-                        </div>
-                    )
-                })
-                }
-            </div>
 
-            <div className="catch">
+            {closeNotSignedIn && <div className="catch" onClick={handleClickNotSignInClose}>
                 <div className="notSignedIn">
                     <div className="closeButton">
-                        <button onClick={handleClickClose}><img src={x} alt="x icon" id='close' /></button>
+                        <button onClick={handleClickNotSignInClose}><img src={x} alt="x icon" id='closeCatch' /></button>
                     </div>
                     <div className="userAuth">
                         <Link to={'/signin'} className="pinkButton userAuthTop">
@@ -87,6 +69,33 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
                     </div>
                 </div>
             </div>
+            }
+
+            <div className="dateIdeasContainer wrapper">
+                {list.map(idea => {
+                    return (
+                        <div className="dateIdeasCard" onClick={(e) => selectedEvent(e, idea)} key={idea.id}>
+                            {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
+                            </div> */}
+                            <button className="heart" onClick={handleClick}>
+                                <img src={whiteHeart} alt="White Heart" id='save'/>
+                            </button>
+                            <div className="imageContainer">
+                                <img src={idea.img ? idea.img : events_backdrop} alt={`Image of ${idea.title}`} />
+                            </div>
+                            <div className="textContainer">
+                                <h2>{idea.title}</h2>
+                                {/* <p>{price ? price : ' '}</p> */}
+                                <p>$$$</p>
+                                <p>{idea.city? noZipCode(idea.city) : ' '}</p>
+                            </div>
+                        </div>
+                    )
+                })
+                }
+            </div>
+
+
 
         </div>
     )
