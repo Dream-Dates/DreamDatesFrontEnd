@@ -63,7 +63,7 @@ function DateIdeas({userId}){
         <div className="dateIdeas">
             {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId}/>
             }
-            <DateIdeasList ideas={dateIdeas} selectedEvent={openModal}/>
+            <DateIdeasList ideas={dateIdeas} selectedEvent={openModal} userId={userId}/>
             
         </div>
     )

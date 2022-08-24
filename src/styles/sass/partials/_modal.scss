@@ -35,7 +35,7 @@
         align-items: center;
     }
     .textContainer {
-        margin-top: 50px;
+        margin-top: 40px;
         display: flex;
         flex-direction: column;
         color: black;
@@ -46,7 +46,7 @@
     }
     .topSide {
         // min-height: 200px;
-        padding-bottom: 50px;
+        // padding-bottom: 20px;
         .heading {
             display: flex;
             justify-content: space-between;
@@ -96,7 +96,7 @@
     display: flex;
     justify-content: space-between;
     button {
-        width: 76px;
+        width: 60px;
         margin: 47px 39px;
         // background-image: url(../assets/whiteHeart.svg);
         &:hover {
@@ -142,5 +142,5 @@
 }
 
 h1 {
-    margin: 49px 0;
+    margin: 38px 0 49px;
 }

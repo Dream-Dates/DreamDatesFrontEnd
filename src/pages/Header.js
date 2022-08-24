@@ -25,7 +25,7 @@ function Header({user, logUserOut}) {
                         type="text"
                         name="search"
                         id="search"
-                        placeholder="Search for food, movies, active"
+                        placeholder="Search for Food, Movies, Active..."
                         // onChange={}
                         // value={}
                     />

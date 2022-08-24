@@ -1,12 +1,16 @@
 // _dateIdeas.scss
 
 .dateIdeasList {
+    padding: 236px 62px;
+    // border: 1px solid green;
+    // position: relative;
+}
+
+.dateIdeasContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: max(5%, 60px);
-    padding: 236px 62px;
-    // border: 1px solid green;
 }
 
 .dateIdeasCard {
@@ -65,4 +69,47 @@
 }
 .redHeart {
     background-image: url(../assets/redHeart.svg);
+}
+
+.catch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    // z-index: 35;
+}
+
+.notSignedIn {
+    position: relative;
+    width: 496px;
+    height: 350px;
+    border-radius: 16px;
+    border: 1px solid #941C2F;
+    // top: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .closeButton {
+        position: absolute;
+        top: 23px;
+        right: 23px
+    }
+    .userAuth {
+        padding-left: 0;
+    }
+    a {
+        margin: 0 auto;
+    }
+    .userAuthTop{
+        margin-bottom: 35px;
+    }
+    .pinkButton {
+        width: 110px;
+    }
+    button:hover {
+        background-color: transparent;
+    }
 }

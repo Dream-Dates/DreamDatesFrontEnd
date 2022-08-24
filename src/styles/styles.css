@@ -290,7 +290,7 @@ button:hover p {
   background: #FFC7D0;
   border: 1px solid #000000;
   border-radius: 16px;
-  padding: 8px 0;
+  padding: 5px 0;
   min-width: 110px;
   cursor: pointer;
 }
@@ -347,7 +347,7 @@ button p {
 
 h1 {
   font-family: "Mirza", cursive;
-  font-size: 40;
+  font-size: 40px;
   font-weight: 700;
   color: white;
 }
@@ -420,6 +420,9 @@ input {
           filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   width: 100%;
   padding: 8px 0 8px 35px;
+}
+.headerSearchBar input:focus {
+  border: 1px solid #941C2F;
 }
 .headerSearchBar input:focus + .magnifyingGlass > img {
   -webkit-filter: invert(16%) sepia(23%) saturate(7495%) hue-rotate(332deg) brightness(96%) contrast(96%);
@@ -494,6 +497,10 @@ input {
 }
 
 .dateIdeasList {
+  padding: 236px 62px;
+}
+
+.dateIdeasContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -503,7 +510,6 @@ input {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   gap: max(5%, 60px);
-  padding: 236px 62px;
 }
 
 .dateIdeasCard {
@@ -563,6 +569,59 @@ input {
   background-image: url(../assets/redHeart.svg);
 }
 
+.catch {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+}
+
+.notSignedIn {
+  position: relative;
+  width: 496px;
+  height: 350px;
+  border-radius: 16px;
+  border: 1px solid #941C2F;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.notSignedIn .closeButton {
+  position: absolute;
+  top: 23px;
+  right: 23px;
+}
+.notSignedIn .userAuth {
+  padding-left: 0;
+}
+.notSignedIn a {
+  margin: 0 auto;
+}
+.notSignedIn .userAuthTop {
+  margin-bottom: 35px;
+}
+.notSignedIn .pinkButton {
+  width: 110px;
+}
+.notSignedIn button:hover {
+  background-color: transparent;
+}
+
 .modal {
   width: 100vw;
   height: 100%;
@@ -600,7 +659,7 @@ input {
           align-items: center;
 }
 .modalContainer .textContainer {
-  margin-top: 50px;
+  margin-top: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -613,9 +672,6 @@ input {
 .modalContainer .titleContainer,
 .modalContainer .textContainer {
   padding: 0 112.5px;
-}
-.modalContainer .topSide {
-  padding-bottom: 50px;
 }
 .modalContainer .topSide .heading {
   display: -webkit-box;
@@ -682,7 +738,7 @@ input {
           justify-content: space-between;
 }
 .buttonContainer button {
-  width: 76px;
+  width: 60px;
   margin: 47px 39px;
 }
 .buttonContainer button:hover {
@@ -727,7 +783,7 @@ input {
 }
 
 h1 {
-  margin: 49px 0;
+  margin: 38px 0 49px;
 }
 
 .signIn form {
@@ -786,7 +842,7 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
   gap: 30px;
-  margin-top: 100px;
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -852,6 +908,6 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
   gap: 30px;
-  margin-top: 100px;
+  margin-top: 50px;
   text-align: center;
 }

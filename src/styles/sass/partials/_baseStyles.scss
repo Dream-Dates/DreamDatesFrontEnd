@@ -31,13 +31,12 @@ a {
     }
 }
 
+.notSignedIn {
+    
+}
 
 p {
     line-height: 1.4 !important;
-}
-
-h2 {
-
 }
 
 button {
@@ -73,7 +72,7 @@ button {
     background: #FFC7D0;
     border: 1px solid #000000;
     border-radius: 16px;
-    padding: 8px 0;
+    padding: 5px 0;
     min-width: 110px;
     cursor: pointer;
 }

@@ -49,14 +49,6 @@ function Modal({eventDetails, closeModal, userId}) {
             .then(data => console.log(data))
     }
 
-    const noZipCode = (addy) => {
-        console.log('noZip')
-        // regmatches(adress_street, gregexpr('(?<!\\d)\\d{5}(?:[ -]\\d{4})?\\b', text.var, perl=T))
-        const reg = /(?<![0-9-])([0-9]{5}(?:[ -][0-9]{4})?)(?![0-9-])/gm
-        const str = addy
-        console.log(str.replace(reg, '-'))
-        return str.replace(reg, '-')
-    }
 
     return (
         <div className="modal" onClick={handleClickClose}>
