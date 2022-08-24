@@ -51,10 +51,10 @@ function App() {
       
 
       <Routes>
-        <Route path='/' element={<DateIdeas />} />
+        <Route path='/' element={<DateIdeas userId={user.id}/>} />
         <Route path='/signup' element={<SignUp />} />
           <Route path='/signin' element={<SignIn rerender={rerender} />} />
-          <Route path='/saved' element={<Saved />}
+          <Route path='/saved' element={<Saved />} />
       </Routes>
       </ContextProvider>
     </div>

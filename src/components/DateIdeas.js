@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import DateIdeasList from "./DateIdeasList"
 import Modal from "./Modal"
 
-function DateIdeas(){
+function DateIdeas({userId}){
     const [dateIdeas, setDateIdeas] = useState({
         events: [],
         movies: []
@@ -33,7 +33,8 @@ function DateIdeas(){
         const fetchEvents = async () => {
             try {
                 //events
-                const eventsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/events")
+                // const eventsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/events")
+                const eventsResponse = await fetch("http://localhost:4000/dreamdates/events")
                 if (!eventsResponse.ok) throw Error("did not received expected data")
                 const listEvents = await eventsResponse.json()
                 console.log(listEvents)
@@ -41,11 +42,13 @@ function DateIdeas(){
                 console.log(listEvents)
                 
                 //movies
-                const moviesResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/movies")
+                // const moviesResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/movies")
+                const moviesResponse = await fetch("http://localhost:4000/dreamdates/movies")
                 if (!moviesResponse.ok) throw Error("did not received expected data")
                 const listMovies = await moviesResponse.json()
                 listMovies.forEach(item => item.categoryType = 'movies')
                 
+                console.log(listMovies)
                 setDateIdeas({...dateIdeas, 'events': listEvents, 'movies': listMovies})
                 setEventIdeas(listEvents)
                 setMovieIdeas(listMovies)
@@ -58,7 +61,7 @@ function DateIdeas(){
 
     return (
         <div className="dateIdeas">
-            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal}/>
+            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId}/>
             }
             <DateIdeasList ideas={dateIdeas} selectedEvent={openModal}/>
             

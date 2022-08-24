@@ -10,9 +10,12 @@ function DateIdeasList({ideas, selectedEvent}) {
     
     useEffect(()=>{
         // making the object into an array
-        for(let category in ideas) {
-            ideas[category].forEach(item => mainList.push(item))
-        }
+        console.log(typeof(ideas))
+
+            for(let category in ideas) {
+                ideas[category].forEach(item => mainList.push(item))
+            }
+
         
         // randomize the list
         mainList = mainList.sort(() => Math.random() - 0.5 )
@@ -24,7 +27,6 @@ function DateIdeasList({ideas, selectedEvent}) {
     }
 
     const noZipCode = (addy) => {
-        console.log('noZip')
         const reg = /(?<![0-9-])([0-9]{5}(?:[ -][0-9]{4})?)(?![0-9-])/gm
         const str = addy
         return str.replace(reg, '')

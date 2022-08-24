@@ -12,7 +12,7 @@ import Context from "../context/context";
 import { useContext } from 'react'
 
 
-function Modal({eventDetails, closeModal}) {
+function Modal({eventDetails, closeModal, userId}) {
     const { id, title, description, img, type, adress_street, city, venue, country, price_range, votes, rating } = eventDetails
 
     const handleClickClose = (e) => {
@@ -35,7 +35,7 @@ function Modal({eventDetails, closeModal}) {
                 "title": title,
                 "description": description,
                 "img": img,
-                "user_id": context.userid,
+                "user_id": userId,
                 "type": type,
                 "adress_street": adress_street,
                 "city": city,
