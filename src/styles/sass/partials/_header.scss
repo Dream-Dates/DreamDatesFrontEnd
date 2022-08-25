@@ -4,12 +4,13 @@
     height: 186px;
     box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
     display: grid;
-    grid-template-columns: 2fr 4fr 2fr;
+    grid-template-columns: 2fr minmax(200px, 4fr) 2fr;
+    grid-template-rows: 120px;
     // grid-template-rows: auto;
-    gap: 30px;
+    column-gap: 30px;
     grid-template-areas:
         "logo headerSearchBar right"
-        "main headerFilter right";
+        "headerFilter headerFilter headerFilter";
     position: fixed;
     width: 100vw;
     z-index: 20;
@@ -20,7 +21,7 @@
     grid-area: logo;
     width: 100%;
     a {
-        width: 300px;
+        max-width: 300px;
         // margin: 0 auto;
         margin-left: 60px;
         &:hover {
@@ -31,7 +32,7 @@
 
 .headerSearchBar {
     grid-area: headerSearchBar;
-    width: 700px;
+    width: min(100%,700px);
     margin: 0 auto;
     position: relative;
     input {
@@ -55,6 +56,7 @@
     width: 700px;
     margin: 0 auto;
     // border: 1px solid red;
+    // padding-bottom: 50px;
 }
 
 .headerRightSide {
@@ -62,7 +64,7 @@
     display: flex;
     justify-content: end;
     margin-right: 60px;
-    margin-top: 20px;
+    transform: translate(0px, 42px);
 
 }
 

@@ -1,0 +1,34 @@
+// _mediaQueries.scss
+
+@media  (max-width: 744px) {
+    .header {
+            height: 274px;
+            grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
+            column-gap: 20;
+            grid-template-areas:
+                "logo right"
+                "headerSearchBar headerSearchBar"
+                "headerFilter x";
+        }
+    .headerSearchBar {
+        width: 100%;
+        margin: 0 60px;
+        padding-right: 121px;
+    }
+    .headerFilter {
+        width: 100vw;
+        overflow-x: auto;
+        padding: 0 50px;
+        div {
+            margin: 0 5px;
+            p {
+                white-space: nowrap;
+            }
+        }
+    }
+    .headerRightSide {
+        // transform: translate(0px, 32px);
+    }
+}
+
+@media (max-width: 580px) {}
