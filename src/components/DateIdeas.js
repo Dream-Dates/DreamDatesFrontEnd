@@ -52,7 +52,7 @@ function DateIdeas({userId}){
                 
                 //restaurants
                 // const restaurantsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/restaurants")
-                const restaurantsResponse = await fetch("http://localhost:4000/dreamdates/restaurants")
+                // const restaurantsResponse = await fetch("http://localhost:4000/dreamdates/restaurants")
                 if (!restaurantsResponse.ok) throw Error("did not received expected data")
                 const listRestaurants = await restaurantsResponse.json()
                 listRestaurants.forEach(item => item.categoryType = 'restaurants')

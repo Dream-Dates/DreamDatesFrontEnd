@@ -37,11 +37,21 @@ function Modal({eventDetails, closeModal, userId}) {
 
     const context = useContext(Context);
     
-    const handleClickSave = () => {
+    const handleClickSave = (e) => {
         if (!userId) setCloseNotSignedIn(!closeNotSignedIn)
         console.log('Save');
-        console.log(context.userid)
+        console.log(id)
+        console.log(typeof(id))
+        console.log(typeof(parseInt(id)))
+        console.log(((id)))
+        console.log(typeof(id))
+        let number = Number(id)
+        console.log(number);
+        console.log((parseInt(id)))
+        
         console.log(description)
+        console.log(userId);
+        console.log(typeof(userId));
 
 
         // const fetchSaved = async () => {
@@ -59,35 +69,46 @@ function Modal({eventDetails, closeModal, userId}) {
         // fetchSaved()
 
 
-        fetch ('http://localhost:4000/dreamdates/datingideas/saved', {
-            method: 'POST',
+        // fetch ('http://localhost:4000/dreamdates/datingideas/saved', {
+        //     method: 'POST',
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({
+        //         "id": id,
+        //         "title": title,
+        //         "description": description,
+        //         "img": img,
+        //         "user_id": userId,
+        //         "type": type,
+        //         "adress_street": adress_street,
+        //         "city": city,
+        //         "venue": venue,
+        //         "country": country,
+        //         "price_range": price_range,
+        //         "votes": votes,
+        //         "rating": rating
+        //     })
+        // }).then(res => res.json())
+        //     .then(data => console.log(data))
+
+        console.log(userId);
+
+        // fetch(`http://localhost:4000/dreamdates/datingideas/delete/${id}`, {
+        //     method: 'DELETE',
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify({
+        //         "userid": userId
+        //     })
+        // }).then(res => res.json())
+        // .then(data => console.log(data))
+
+        fetch('http://localhost:4000/dreamdates/saved/dates', {
+            method: 'GET',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                "id": id,
-                "title": title,
-                "description": description,
-                "img": img,
-                "user_id": userId,
-                "type": type,
-                "adress_street": adress_street,
-                "city": city,
-                "venue": venue,
-                "country": country,
-                "price_range": price_range,
-                "votes": votes,
-                "rating": rating
-            })
         }).then(res => res.json())
             .then(data => console.log(data))
 
 
-        // fetch(`http://localhost:4000/dreamdates/datingideas/delete/${id}`, {
-        //     method: 'DELETE',
-        //     body: JSON.stringify({
-        //         userid: userId
-        //     })
-        // }).then(res => res.json())
-        // .then(data => console.log(data))
+
     }
 
     const dollarSigns = (num) => {
