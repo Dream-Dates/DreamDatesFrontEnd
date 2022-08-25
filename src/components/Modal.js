@@ -12,10 +12,12 @@ import Context from "../context/context";
 import { useContext } from 'react'
 import { useState } from 'react'
 import yourNextDateDestination from '../assets/yourNextDateDestination.png'
+import Carousel from './carousel'
+
 
 
 function Modal({eventDetails, closeModal, userId}) {
-    const { id, title, description, img, type, adress_street, city, venue, country, price_range, votes, rating } = eventDetails
+    const { id, title, description, img, type, adress_street, city, venue, country, price_range, votes, rating, categoryType} = eventDetails
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
 
@@ -24,6 +26,7 @@ function Modal({eventDetails, closeModal, userId}) {
             closeModal()
         }
     }
+
 
     const handleClickNotSignInClose = (e) => {
         if (e.target.className === 'catch' || e.target.id === 'closeCatch') {
@@ -86,6 +89,8 @@ function Modal({eventDetails, closeModal, userId}) {
         // .then(data => console.log(data))
     }
 
+    const data = ['http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300']
+
 
     return (
         <div className="modal" onClick={handleClickModalClose}>
@@ -121,46 +126,67 @@ function Modal({eventDetails, closeModal, userId}) {
                 <div className="textContainer">
                     <div className="topSide">
                         <div className="heading">
-                            <Link to='' className='pinkButton'>
+                            {/* <Link to='' className='pinkButton'>
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
                             </Link>
-                            <h2>$$$</h2>
-                            <h2>Restaurant</h2>
+                            <h2>$$$</h2> */}
+                    <h2> </h2>
+                    {/* property name */}
+                            {/* {website && <Link to={website} className='pinkButton'>
+                                <img src={globe} alt="globe icon" /> <p>Website</p>
+                            </Link>}
+                            <h2>{price ? price : ''}</h2> */}
+                            {categoryType === 'events' && <h2>Ticket Event</h2>}
+                            {categoryType === 'movies' && <h2>Movie</h2>}
                         </div>
                     </div>
                     <div className="midSide">
                         <div className="leftSide">
-                            <div className="subTitle">
-                                <div className="midIcon">
-                                    <img src={about} alt='information icon'/>
+                            {description && <div className="aboutContainer">
+                                    <div className="subTitle">
+                                        <div className="midIcon">
+                                            <img src={about} alt='information icon' />
+                                        </div>
+                                        <h2>About</h2>
+                                    </div>
+                                    <p>{description}</p>
                                 </div>
-                                <h2>About</h2>
-                            </div>
-                            <p>{description}</p>
-                            <div className="subTitle">
-                                <div className="midIcon">
-                                    <img src={phone} alt='phone icon'/>
+                            }
+
+                            
+                            {/* <div className="phoneContainer">
+                                <div className="subTitle">
+                                    <div className="midIcon">
+                                        <img src={phone} alt='phone icon'/>
+                                    </div>
+                                    <h2>Phone</h2>
                                 </div>
-                                <h2>Phone</h2>
-                            </div>
-                            <p>(123)-456-7890</p>
-                            <div className="subTitle">
-                                <div className="midIcon">
-                                    <img src={location} alt='map pin icon' />
+                                <p>(123)-456-7890</p>
+                            </div> */}
+
+                            {adress_street && <div className="locationContainer">
+                                    <div className="subTitle">
+                                        <div className="midIcon">
+                                            <img src={location} alt='map pin icon' />
+                                        </div>
+                                        <h2>Location</h2>
+                                    </div>
+                                    <p>{adress_street}</p>
+                                    <p>{city}</p>
                                 </div>
-                                <h2>Location</h2>
-                            </div>
-                            <p>{adress_street}</p>
-                            <p>{city}</p>
+                            }
+
                         </div>
                         <div className="rightSide">
-                            <div className="subTitle">
-                                <div className="midIcon">
-                                    <img src={clock} alt='clock icon'/>
+                            {/* <div className="hoursContainer">
+                                <div className="subTitle">
+                                    <div className="midIcon">
+                                        <img src={clock} alt='clock icon'/>
+                                    </div>
+                                    <h2>Hours</h2>
                                 </div>
-                                <h2>Hours</h2>
-                            </div>
-                            <p>WE CLOSED</p>
+                                <p>WE CLOSED</p>
+                            </div> */}
                         </div>
                     </div>
                     <div className="botSide">
@@ -170,23 +196,7 @@ function Modal({eventDetails, closeModal, userId}) {
                                 </div>
                                 <h2>Photos</h2>
                             </div>
-
-                            <div className="carousel">
-                                <div className="carouselContainer">
-                                    <div className="carouselCard">
-                                        <img src="" alt="" className='test'/>
-                                    </div>
-                                    <div className="carouselCard">
-                                        <img src="" alt="" className='test'/>
-                                    </div>
-                                    <div className="carouselCard">
-                                        <img src="" alt="" className='test'/>
-                                    </div>
-                                    <div className="carouselCard">
-                                        <img src="" alt="" className='test'/>
-                                    </div>
-                                </div>
-                            </div>
+                            <Carousel data={data} />
                     </div>
                 </div>
             </div>
