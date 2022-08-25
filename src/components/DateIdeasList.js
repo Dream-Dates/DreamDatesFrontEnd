@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import whiteHeart from '../assets/whiteHeart.svg';
 import x from '../assets/X.svg';
-import dateCardStock from '../assets/dateCardStock.jpg';
+import defaultImagePlaceholder from '../assets/defaultImagePlaceholder.jpg';
 import { Link,} from "react-router-dom"
 
 function DateIdeasList({ideas, selectedEvent, userId}) {
@@ -81,7 +81,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
                                 <img src={whiteHeart} alt="White Heart" id='save'/>
                             </button>
                             <div className="imageContainer">
-                                <img src={idea.img ? idea.img : dateCardStock} alt={`Image of ${idea.title}`} />
+                                <img src={idea.img ? idea.img : defaultImagePlaceholder} alt={`Image of ${idea.title}`} />
                             </div>
                             <div className="textContainer">
                                 <h2>{idea.title}</h2>

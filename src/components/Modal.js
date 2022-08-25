@@ -11,8 +11,9 @@ import image from '../assets/image.svg'
 import Context from "../context/context";
 import { useContext } from 'react'
 import { useState } from 'react'
-import yourNextDateDestination from '../assets/yourNextDateDestination.png'
+import defaultImagePlaceholder from '../assets/defaultImagePlaceholder.jpg'
 import Carousel from './carousel'
+
 
 
 
@@ -118,7 +119,7 @@ function Modal({eventDetails, closeModal, userId}) {
                     <button onClick={handleClickModalClose}><img src={x} alt="x icon" id='close' /></button>
                 </div>
                 <div className="imageContainer">
-                    <img src={img ? img : yourNextDateDestination} alt={`A photo of ${title}`} className={img && 'fullImage'}/>
+                    <img src={img ? img : defaultImagePlaceholder} alt={`A photo of ${title}`} className={img && 'fullImage'}/>
                 </div>
                 <div className="titleContainer">
                     <h1>{title}</h1>
