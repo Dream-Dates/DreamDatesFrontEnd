@@ -28,7 +28,7 @@ function Saved() {
 
     return (
         <div className="saved">
-            <h5>Saved</h5>
+            <h3>Saved</h3>
             <DateIdeasList ideas={saved} />
         </div>
     )

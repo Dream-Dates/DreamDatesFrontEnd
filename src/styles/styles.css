@@ -359,6 +359,13 @@ h2 {
   color: white;
 }
 
+h3 {
+  font-family: "Mirza", cursive;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+}
+
 .modal h2 {
   font-size: 24px;
 }
@@ -965,6 +972,13 @@ h1 {
   gap: 30px;
   margin-top: 50px;
   text-align: center;
+}
+
+.saved {
+  padding-top: 210px;
+}
+.saved .dateIdeasContainer {
+  padding: 40px 62px;
 }
 
 @media (max-width: 744px) {
