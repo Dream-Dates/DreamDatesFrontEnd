@@ -696,7 +696,7 @@ input {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 56%;
+  width: 50%;
 }
 .modalContainer .topSide .heading a {
   display: -webkit-box;
@@ -709,6 +709,10 @@ input {
 }
 .modalContainer .topSide .heading a img {
   margin-right: 10px;
+}
+.modalContainer .topSide .heading h2 {
+  -webkit-transform: translate(50%);
+          transform: translate(50%);
 }
 .modalContainer .topSide .title {
   display: -webkit-box;
