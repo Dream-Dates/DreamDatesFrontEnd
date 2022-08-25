@@ -90,6 +90,14 @@ function Modal({eventDetails, closeModal, userId}) {
         // .then(data => console.log(data))
     }
 
+    const dollarSigns = (num) => {
+        const dollar = [];
+        for (let i = 0; i < num; i++) {
+            dollar.push('$')
+        }
+        return dollar.join('')
+    }
+
     const data = ['http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300']
 
 
@@ -130,15 +138,15 @@ function Modal({eventDetails, closeModal, userId}) {
                             {/* <Link to='' className='pinkButton'>
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
                             </Link>
-                            <h2>$$$</h2> */}
-                    <h2> </h2>
+
                     {/* property name */}
                             {/* {website && <Link to={website} className='pinkButton'>
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
-                            </Link>}
-                            <h2>{price ? price : ''}</h2> */}
+                            </Link>}*/}
+                            <h2>{price_range ? dollarSigns(price_range) : ''}</h2> 
                             {categoryType === 'events' && <h2>Ticket Event</h2>}
                             {categoryType === 'movies' && <h2>Movie</h2>}
+                            {categoryType === 'restaurants' && <h2>Restaurant</h2>}
                         </div>
                     </div>
                     <div className="midSide">

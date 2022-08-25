@@ -14,7 +14,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
     
     useEffect(()=>{
         // making the object into an array
-        console.log(typeof(ideas))
+        console.log(ideas)
 
             for(let category in ideas) {
                 ideas[category].forEach(item => mainList.push(item))
@@ -24,6 +24,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
         // randomize the list
         mainList = mainList.sort(() => Math.random() - 0.5 )
         setList(mainList)
+        console.log(list)
     }, [ideas])
 
     const toggleHeart = (e) => {
@@ -49,6 +50,14 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
         if (e.target.className === 'catch' || e.target.id === 'closeCatch') {
             setCloseNotSignedIn(!closeNotSignedIn)
         }
+    }
+
+    const dollarSigns = (num) => {
+        const dollar = [];
+        for (let i = 0; i < num; i++) {
+            dollar.push('$')
+        }
+        return dollar.join('')
     }
 
     return(
@@ -85,8 +94,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
                             </div>
                             <div className="textContainer">
                                 <h2>{idea.title}</h2>
-                                {/* <p>{price ? price : ' '}</p> */}
-                                <p>$$$</p>
+                                <p>{idea.price_range ? dollarSigns(idea.price_range) : ' '}</p>
                                 <p>{idea.city? noZipCode(idea.city) : ' '}</p>
                             </div>
                         </div>

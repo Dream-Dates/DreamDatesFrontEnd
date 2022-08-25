@@ -6,10 +6,9 @@ import Modal from "./Modal"
 function DateIdeas({userId}){
     const [dateIdeas, setDateIdeas] = useState({
         events: [],
-        movies: []
+        movies: [],
+        restaurants: []
     })
-    const [eventIdeas, setEventIdeas] = useState([])
-    const [movieIdeas, setMovieIdeas] = useState([])
     const [chosenEvent, setChoseEvent] = useState([])
     const [showModal, setShowModal] = useState(false)
 
@@ -37,7 +36,7 @@ function DateIdeas({userId}){
                 // const eventsResponse = await fetch("http://localhost:4000/dreamdates/events")
                 if (!eventsResponse.ok) throw Error("did not received expected data")
                 const listEvents = await eventsResponse.json()
-                console.log(listEvents)
+                // console.log(listEvents)
                 listEvents.forEach(item => item.categoryType = 'events')
                 console.log(listEvents)
                 
@@ -48,10 +47,21 @@ function DateIdeas({userId}){
                 const listMovies = await moviesResponse.json()
                 listMovies.forEach(item => item.categoryType = 'movies')
                 
-                console.log(listMovies)
+                // console.log(listMovies)
                 setDateIdeas({...dateIdeas, 'events': listEvents, 'movies': listMovies})
-                setEventIdeas(listEvents)
-                setMovieIdeas(listMovies)
+                
+                //restaurants
+                // const restaurantsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/restaurants")
+                const restaurantsResponse = await fetch("http://localhost:4000/dreamdates/restaurants")
+                if (!restaurantsResponse.ok) throw Error("did not received expected data")
+                const listRestaurants = await restaurantsResponse.json()
+                listRestaurants.forEach(item => item.categoryType = 'restaurants')
+                
+                console.log(listRestaurants)
+                setDateIdeas({...dateIdeas, 'events': listEvents, 'movies': listMovies, 'restaurants': listRestaurants})
+
+                //restaurants
+
             } catch (err) {
                 alert(err.message)
             }
