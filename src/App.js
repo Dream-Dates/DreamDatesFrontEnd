@@ -52,7 +52,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<DateIdeas userId={user.id}/>} />
-        <Route path='/signup' element={<SignUp />} />
+        <Route path='/signup' element={<SignUp rerender={rerender}/>} />
           <Route path='/signin' element={<SignIn rerender={rerender} />} />
           <Route path='/saved' element={<Saved userId={user.id} />} />
       </Routes>

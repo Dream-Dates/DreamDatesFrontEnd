@@ -1,9 +1,11 @@
 // SignUp.js
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
-
-function SignUp() {
+import Context from "../context/context";
+function SignUp({rerender}) {
     let navigate = useNavigate()
+    const context = useContext(Context);
+
     const [signUp, setSignUp] = useState({
         name: '',
         last_name: '',
@@ -42,12 +44,25 @@ function SignUp() {
                 }
                 if (data.token) {
                     localStorage.setItem("token", data.token);
-                    console.log("didnt")
+                    localStorage.setItem("id", data.getUser[0].id);
+                    localStorage.setItem("name", data.getUser[0].name);
+                    let id = data.getUser[0].id
+                    let email = data.getUser[0].email
+                    let name = data.getUser[0].name
+                    let lastname = data.getUser[0].last_name
+                    setUserInfo(id, email, name, lastname)
+                    rerender()
                     navigate("/")
                 }
 
             })
-
+            function setUserInfo(id, email, name, lastname) {
+                context.setUserId(id)
+                context.setEmail(email)
+                context.setName(name)
+                context.setLastName(lastname)
+                console.log("work")
+            }
         return false
     }
 
