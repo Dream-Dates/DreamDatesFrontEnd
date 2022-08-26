@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Mirza:wght@700&family=Raleway:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Mirza:wght@700&family=Raleway:wght@500;600&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -388,6 +388,13 @@ input {
   font-family: "Raleway", sans-serif;
 }
 
+.savePopup p {
+  color: #941C2F;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
 .header {
   height: 186px;
   -webkit-box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
@@ -468,6 +475,10 @@ input {
 }
 .savedButton img, .userAuth img {
   width: 22px;
+}
+.savedButton .heartContainer, .userAuth .heartContainer {
+  width: 22px;
+  height: 22px;
 }
 
 .userAuth {
@@ -975,10 +986,40 @@ h1 {
 }
 
 .saved {
+  position: relative;
   padding-top: 210px;
 }
 .saved .dateIdeasContainer {
   padding: 40px 62px;
+}
+.saved .modal {
+  top: 0;
+}
+
+.savePopup {
+  width: 496px;
+  height: 350px;
+  background-color: #FFC7D0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 16px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -175px;
+  margin-left: -248px;
+  z-index: 40;
+}
+.savePopup .imageContainer {
+  width: 44.9px;
+  margin: 0 auto;
 }
 
 @media (max-width: 744px) {

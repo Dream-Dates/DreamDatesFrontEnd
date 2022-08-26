@@ -2,32 +2,64 @@
 import logo from '../assets/dreamDatesLogo.png'
 import redHeart from '../assets/redHeart.svg';
 import magnifyingGlass from '../assets/magnifyingGlass.svg';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState, useContext } from 'react';
 import Context from "../context/context";
 
 
-function Header({user, logUserOut}) {
+function Header({user, logUserOut, getSearchTerm, getCategoryName}) {
     // const [user, setUser] = useState([])
 
     const context = useContext(Context);
+    
+    const [searchTerm, setSearchTerm] = useState('')
 
+    const handleChange = (e) => {
+        console.log(e.target.value);
+        setSearchTerm(e.target.value)
+        getSearchTerm(e, e.target.value)
+    }
+
+    const navigate = useNavigate()
+
+    const handleClickHome = (e) => {
+        setSearchTerm('')
+        getSearchTerm(e, '')
+        getCategoryName('')
+        navigate('/')
+    }
+    
+    const handleClickSaved = (e) => {
+        setSearchTerm('')
+        getSearchTerm(e, '')
+        getCategoryName('')
+        navigate('/saved')
+    }
+
+    const handleClickButtons = (e) => {
+        console.log('click', e)
+        if (e.target.tagName === 'BUTTON') {
+            getCategoryName(e.target.id)
+        } else {
+            getCategoryName(e.target.parentElement.id)
+        }
+    }
 
     return (
         <div className="header wrapper">
             <div className="logo">
-                <Link to='/'><img src={logo} alt="DreamDates Logo" /></Link>
+                <Link to='/' onClick={handleClickHome}><img src={logo} alt="DreamDates Logo" /></Link>
             </div>
             
-            <form className="headerSearchBar">
+            <form className="headerSearchBar" onSubmit={(e) => e.preventDefault()}>
                     <label htmlFor="search" className="sr-only">Search for</label>
                     <input
                         type="text"
                         name="search"
                         id="search"
                         placeholder="Search for Food, Movies, Active..."
-                        // onChange={}
-                        // value={}
+                        onChange={handleChange}
+                        value={searchTerm}
                     />
                     <div className="magnifyingGlass">
                         <img src={magnifyingGlass} alt="magnifying glass" />
@@ -36,26 +68,27 @@ function Header({user, logUserOut}) {
 
             <div className='headerFilter'>
                 <div>
-                    <button htmlFor="food" className="pinkButton"><p>Food</p></button>
+                    <button id="restaurants" onClick={handleClickButtons} className="pinkButton"><p>Food</p></button>
                 </div>
                 <div>
-                    <button htmlFor="movies" className="pinkButton"><p>Movies</p></button>
+                    <button id="movies" onClick={handleClickButtons} className="pinkButton"><p>Movies</p></button>
                 </div>
                 <div>
-                    <button htmlFor="active" className="pinkButton"><p>Active</p></button>
+                    <button id="active" onClick={handleClickButtons} className="pinkButton"><p>Active</p></button>
                 </div>
                 <div>
-                    <button htmlFor="attractions" className="pinkButton"><p>Attractions</p></button>
+                    <button id="attractions" onClick={handleClickButtons} className="pinkButton"><p>Attractions</p></button>
                 </div>
                 <div>
-                    <button htmlFor="liveEntertainment" className="pinkButton"><p>Live Entertainment</p></button>
+                    <button id="events" onClick={handleClickButtons} className="pinkButton"><p>Live Entertainment</p></button>
                 </div>
             </div>
 
             <div className="headerRightSide">
                 <div className="savedButton">
-                    <Link to='/saved' className={`pinkButton ${!user.token && 'disable-link'}`}>
+                    <Link to='/saved' onClick={handleClickSaved} className={`pinkButton ${!user.token && 'disable-link'}`}>
                         <img src={redHeart} alt="red heart" />
+                        {/* <div style={{ backgroundImage: `url(${redHeart})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", width:"22px", height: "22px" }}></div> */}
                         <p>Saved</p>
                     </Link>
                 </div>

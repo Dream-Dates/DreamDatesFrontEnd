@@ -1,8 +1,12 @@
 // _saved.scss
 
 .saved {
+    position: relative;
     padding-top: 210px;
     .dateIdeasContainer {
         padding: 40px 62px;
+    }
+    .modal {
+        top: 0;
     }
 }

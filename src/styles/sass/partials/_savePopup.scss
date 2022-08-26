@@ -1,0 +1,21 @@
+// _savePopup.scss
+
+.savePopup {
+    width: 496px;
+    height: 350px;
+    background-color: #FFC7D0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -175px;
+    margin-left: -248px;
+    z-index: 40;
+    .imageContainer {
+        width: 44.9px;
+        margin: 0 auto;
+    }
+}

@@ -6,7 +6,7 @@ import x from '../assets/X.svg';
 import defaultImagePlaceholderSmall from '../assets/defaultImagePlaceholderSmall.jpg';
 import { Link,} from "react-router-dom"
 
-function DateIdeasList({ideas, selectedEvent, userId}) {
+function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName}) {
     let mainList = []
     const [list, setList] = useState([])
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
@@ -14,7 +14,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
     
     useEffect(()=>{
         // making the object into an array
-        console.log(ideas)
+        // console.log(ideas)
 
             for(let category in ideas) {
                 ideas[category].forEach(item => mainList.push(item))
@@ -24,7 +24,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
         // randomize the list
         mainList = mainList.sort(() => Math.random() - 0.5 )
         setList(mainList)
-        console.log(list)
+        // console.log(list)
     }, [ideas])
 
     const toggleHeart = (e) => {
@@ -38,9 +38,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
     }
 
     const handleClick = () => {
-        if(userId) {
-            //save method
-        } else {
+        if(!userId) {
             // sign up or sign in pop up
             setCloseNotSignedIn(!closeNotSignedIn)
         }
@@ -59,6 +57,10 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
         }
         return dollar.join('')
     }
+
+    const filteredList = list.filter( item => (item.title.toLowerCase().match(searchTerm.toLowerCase())&&(item.categoryType.match(categoryName))))
+
+    // console.log(filteredList)
 
     return(
         <div className="dateIdeasList">
@@ -81,7 +83,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
             }
 
             <div className="dateIdeasContainer wrapper">
-                {list.map(idea => {
+                {filteredList.map(idea => {
                     return (
                         <div className="dateIdeasCard" onClick={(e) => selectedEvent(e, idea)} key={idea.id}>
                             {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
@@ -95,7 +97,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
                             <div className="textContainer">
                                 <h2>{idea.title}</h2>
                                 <p>{idea.price_range && dollarSigns(idea.price_range)}</p>
-                                <p>{idea.city? noZipCode(idea.city) : ' '}</p>
+                                <p>{idea.city && noZipCode(idea.city)}</p>
                             </div>
                         </div>
                     )

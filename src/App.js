@@ -17,6 +17,8 @@ function App() {
   })
 
   const [toggle, setToggle] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [categoryName, setCategoryName] = useState('')
 
   const rerender = () => {
     setToggle(!toggle)
@@ -43,18 +45,27 @@ function App() {
     localStorage.removeItem('name')
   }
 
+  const getSearchTerm = (e, term) => {
+    e.preventDefault()
+    setSearchTerm(term)
+  }
+
+  const getCategoryName = (categoryNameName) => {
+    setCategoryName(categoryNameName)
+  }
+
   return (
     <div className="App">
       <ContextProvider>
-      <Header user={user} logUserOut={logUserOut}/>
+      <Header user={user} logUserOut={logUserOut} getSearchTerm={getSearchTerm} getCategoryName={getCategoryName}/>
       
       
 
       <Routes>
-        <Route path='/' element={<DateIdeas userId={user.id}/>} />
+        <Route path='/' element={<DateIdeas userId={user.id} searchTerm={searchTerm} categoryName={categoryName} />} />
         <Route path='/signup' element={<SignUp rerender={rerender}/>} />
           <Route path='/signin' element={<SignIn rerender={rerender} />} />
-          <Route path='/saved' element={<Saved userId={user.id} />} />
+          <Route path='/saved' element={<Saved userId={user.id} searchTerm={searchTerm} categoryName={categoryName} />} />
       </Routes>
       </ContextProvider>
     </div>

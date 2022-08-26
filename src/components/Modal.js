@@ -7,20 +7,22 @@ import clock from '../assets/clock.svg'
 import about from '../assets/about.svg'
 import phone from '../assets/phone.svg'
 import location from '../assets/location.svg'
-import image from '../assets/image.svg'
+import imageIcon from '../assets/image.svg'
 import Context from "../context/context";
 import { useContext } from 'react'
 import { useState } from 'react'
 import defaultImagePlaceholder from '../assets/defaultImagePlaceholder.jpg'
 import Carousel from './carousel'
+import SavePopup from './SavePopup'
 
 
 
 
 function Modal({ eventDetails, closeModal, userId }) {
-    const { id, type, title, adress_street, city, country, venue, price_range, link, img, time, description, votes, price, opening_hours, website, rating, user_id, categoryType } = eventDetails
+    const { id, type, title, adress_street, city, country, venue, price_range, link, img, time, description, votes, price, opening_hours, website, rating, image, categoryType } = eventDetails
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
+    const [showSavePopup, setShowSavePopup] = useState(false)
 
     const handleClickModalClose = (e) => {
         if (e.target.className === 'modal' || e.target.id === 'close') {
@@ -90,9 +92,13 @@ function Modal({ eventDetails, closeModal, userId }) {
                             })
                         }).then(res => res.json())
                             .then(data => console.log(data))
+                        setShowSavePopup(true)
+                        setTimeout(() => {
+                            setShowSavePopup(false)
+                        }, 500)
                     }
                 })
-            }
+        }
     }
 
     const dollarSigns = (num) => {
@@ -140,15 +146,13 @@ function Modal({ eventDetails, closeModal, userId }) {
                 <div className="textContainer">
                     <div className="topSide">
                         <div className="heading">
-                            {/* <Link to='' className='pinkButton'>
+                            {website && <Link to={website} className='pinkButton' target="_blank">
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
-                            </Link>
-
-                    {/* property name */}
-                            {/* {website && <Link to={website} className='pinkButton'>
+                            </Link>}
+                            {link && <Link to={link} className='pinkButton' target="_blank">
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
-                            </Link>}*/}
-                            <h2>{price_range ? dollarSigns(price_range) : ''}</h2>
+                            </Link>}
+                            <h2>{price_range ? dollarSigns(price_range) : price ? price : ' '}</h2>
                             {categoryType === 'events' && <h2>Ticket Event</h2>}
                             {categoryType === 'movies' && <h2>Movie</h2>}
                             {categoryType === 'restaurants' && <h2>Restaurant</h2>}
@@ -185,6 +189,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                                     </div>
                                     <h2>Location</h2>
                                 </div>
+                                <p>{venue}</p>
                                 <p>{adress_street}</p>
                                 <p>{city}</p>
                             </div>
@@ -192,28 +197,42 @@ function Modal({ eventDetails, closeModal, userId }) {
 
                         </div>
                         <div className="rightSide">
-                            {/* <div className="hoursContainer">
-                                <div className="subTitle">
-                                    <div className="midIcon">
-                                        <img src={clock} alt='clock icon'/>
+                            {opening_hours && <div className="hoursContainer">
+                                    <div className="subTitle">
+                                        <div className="midIcon">
+                                            <img src={clock} alt='clock icon' />
+                                        </div>
+                                        <h2>Hours</h2>
                                     </div>
-                                    <h2>Hours</h2>
+                                    <p>{opening_hours}</p>
                                 </div>
-                                <p>WE CLOSED</p>
-                            </div> */}
+                            }
+                            {time && <div className="hoursContainer">
+                                    <div className="subTitle">
+                                        <div className="midIcon">
+                                            <img src={clock} alt='clock icon' />
+                                        </div>
+                                        <h2>Time</h2>
+                                    </div>
+                                    <p>{time}</p>
+                                </div>
+                            }
                         </div>
                     </div>
-                    <div className="botSide">
+                    {image && <div className="botSide">
                         <div className="subTitle">
                             <div className="midIcon">
-                                <img src={image} alt='image icon' />
+                                <img src={imageIcon} alt='image icon' />
                             </div>
                             <h2>Photos</h2>
                         </div>
                         <Carousel data={data} />
                     </div>
+                    }
                 </div>
             </div>
+
+            {showSavePopup && <SavePopup />}
         </div>
     )
 }
