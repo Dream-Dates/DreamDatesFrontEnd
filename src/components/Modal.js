@@ -140,14 +140,9 @@ function Modal({ eventDetails, closeModal, userId }) {
                 <div className="textContainer">
                     <div className="topSide">
                         <div className="heading">
-                            {/* <Link to='' className='pinkButton'>
+                            {website && <Link to={website} className='pinkButton'>
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
-                            </Link>
-
-                    {/* property name */}
-                            {/* {website && <Link to={website} className='pinkButton'>
-                                <img src={globe} alt="globe icon" /> <p>Website</p>
-                            </Link>}*/}
+                            </Link>}
                             <h2>{price_range ? dollarSigns(price_range) : ''}</h2>
                             {categoryType === 'events' && <h2>Ticket Event</h2>}
                             {categoryType === 'movies' && <h2>Movie</h2>}

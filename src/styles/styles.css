@@ -975,10 +975,20 @@ h1 {
 }
 
 .saved {
+  position: relative;
   padding-top: 210px;
 }
 .saved .dateIdeasContainer {
   padding: 40px 62px;
+}
+.saved .modal {
+  top: 0;
+}
+
+.savePopup {
+  width: 496px;
+  height: 350px;
+  background-color: #FFC7D0;
 }
 
 @media (max-width: 744px) {
