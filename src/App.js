@@ -63,7 +63,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<DateIdeas userId={user.id} searchTerm={searchTerm} categoryName={categoryName} />} />
-        <Route path='/signup' element={<SignUp />} />
+        <Route path='/signup' element={<SignUp rerender={rerender}/>} />
           <Route path='/signin' element={<SignIn rerender={rerender} />} />
           <Route path='/saved' element={<Saved userId={user.id} searchTerm={searchTerm} categoryName={categoryName} />} />
       </Routes>
