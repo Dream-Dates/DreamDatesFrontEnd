@@ -34,6 +34,7 @@ function SignIn({rerender}) {
         }).then(res => res.json())
             .then(data => {
                 console.log(data)
+                console.log('TOKEN',data.token)
                 if (data.errorMessage) {
                     setMistake(data.errorMessage)
                 }

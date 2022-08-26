@@ -54,7 +54,7 @@ function App() {
         <Route path='/' element={<DateIdeas userId={user.id}/>} />
         <Route path='/signup' element={<SignUp />} />
           <Route path='/signin' element={<SignIn rerender={rerender} />} />
-          <Route path='/saved' element={<Saved />} />
+          <Route path='/saved' element={<Saved userId={user.id} />} />
       </Routes>
       </ContextProvider>
     </div>
