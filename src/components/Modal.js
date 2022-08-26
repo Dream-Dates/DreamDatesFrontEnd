@@ -17,8 +17,8 @@ import Carousel from './carousel'
 
 
 
-function Modal({eventDetails, closeModal, userId}) {
-    const { id, title, description, img, type, adress_street, city, venue, country, price_range, votes, rating, categoryType} = eventDetails
+function Modal({ eventDetails, closeModal, userId }) {
+    const { id, type, title, adress_street, city, country, venue, price_range, link, img, time, description, votes, price, opening_hours, website, rating, user_id, categoryType } = eventDetails
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
 
@@ -36,79 +36,63 @@ function Modal({eventDetails, closeModal, userId}) {
     }
 
     const context = useContext(Context);
-    
-    const handleClickSave = (e) => {
-        if (!userId) setCloseNotSignedIn(!closeNotSignedIn)
-        console.log('Save');
-        console.log(id)
-        console.log(typeof(id))
-        console.log(typeof(parseInt(id)))
-        console.log(((id)))
-        console.log(typeof(id))
-        let number = Number(id)
-        console.log(number);
-        console.log((parseInt(id)))
-        
-        console.log(description)
-        console.log(userId);
-        console.log(typeof(userId));
 
-
-        // const fetchSaved = async () => {
-        //     try {
-        //         const response = await fetch('http://localhost:4000/dreamdates/saved/dates')
-        //         if (!response.ok) throw Error("did not received expected data")
-        //         const savedList = await response.json()
-
-        //         console.log(savedList)
-
-        //     } catch (err) {
-        //         alert(err.message)
-        //     }
-        // }
-        // fetchSaved()
-
-
-        // fetch ('http://localhost:4000/dreamdates/datingideas/saved', {
-        //     method: 'POST',
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({
-        //         "id": id,
-        //         "title": title,
-        //         "description": description,
-        //         "img": img,
-        //         "user_id": userId,
-        //         "type": type,
-        //         "adress_street": adress_street,
-        //         "city": city,
-        //         "venue": venue,
-        //         "country": country,
-        //         "price_range": price_range,
-        //         "votes": votes,
-        //         "rating": rating
-        //     })
-        // }).then(res => res.json())
-        //     .then(data => console.log(data))
-
-        console.log(userId);
-
-        // fetch(`http://localhost:4000/dreamdates/datingideas/delete/${id}`, {
-        //     method: 'DELETE',
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({
-        //         "userid": userId
-        //     })
-        // }).then(res => res.json())
-        // .then(data => console.log(data))
-
-        fetch('http://localhost:4000/dreamdates/saved/dates', {
-            method: 'GET',
-            headers: { "Content-Type": "application/json" },
-        }).then(res => res.json())
-            .then(data => console.log(data))
-
-
-
+    const handleClickSave = () => {
+        if (!userId) {
+            // if not signed in the pop up
+            setCloseNotSignedIn(!closeNotSignedIn)
+        } else {
+            fetch('http://localhost:4000/dreamdates/saved/dates', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    "user_id": userId
+                })
+            }).then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.some(item => item.id === id)) {
+                        console.log('match - unsave')
+                        // if id match then we remove
+                        fetch(`http://localhost:4000/dreamdates/datingideas/delete/${id}`, {
+                            method: 'DELETE',
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                "userid": userId
+                            })
+                        }).then(res => res.json())
+                            .then(data => console.log(data))
+                    } else {
+                        console.log('no match - save')
+                        // if id does not match then we save
+                        fetch('http://localhost:4000/dreamdates/datingideas/saved', {
+                            method: 'POST',
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                "id": id,
+                                "type": type,
+                                "title": title,
+                                "adress_street": adress_street,
+                                "city": city,
+                                "country": country,
+                                "venue": venue,
+                                "price_range": price_range,
+                                "link": link,
+                                "img": img,
+                                "time": time,
+                                "description": description,
+                                "votes": votes,
+                                "price": price,
+                                "opening_hours": opening_hours,
+                                "website": website,
+                                "rating": rating,
+                                "user_id": userId
+                            })
+                        }).then(res => res.json())
+                            .then(data => console.log(data))
+                    }
+                })
+            }
     }
 
     const dollarSigns = (num) => {
@@ -144,11 +128,11 @@ function Modal({eventDetails, closeModal, userId}) {
 
             <div className="modalContainer">
                 <div className="buttonContainer">
-                    <button onClick={handleClickSave}><img src={whiteHeart} alt="white heart icon" id='save'/></button>
+                    <button onClick={handleClickSave}><img src={whiteHeart} alt="white heart icon" id='save' /></button>
                     <button onClick={handleClickModalClose}><img src={x} alt="x icon" id='close' /></button>
                 </div>
                 <div className="imageContainer">
-                    <img src={img ? img : defaultImagePlaceholder} alt={`A photo of ${title}`} className={img && 'fullImage'}/>
+                    <img src={img ? img : defaultImagePlaceholder} alt={`A photo of ${title}`} className={img && 'fullImage'} />
                 </div>
                 <div className="titleContainer">
                     <h1>{title}</h1>
@@ -164,7 +148,7 @@ function Modal({eventDetails, closeModal, userId}) {
                             {/* {website && <Link to={website} className='pinkButton'>
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
                             </Link>}*/}
-                            <h2>{price_range ? dollarSigns(price_range) : ''}</h2> 
+                            <h2>{price_range ? dollarSigns(price_range) : ''}</h2>
                             {categoryType === 'events' && <h2>Ticket Event</h2>}
                             {categoryType === 'movies' && <h2>Movie</h2>}
                             {categoryType === 'restaurants' && <h2>Restaurant</h2>}
@@ -173,17 +157,17 @@ function Modal({eventDetails, closeModal, userId}) {
                     <div className="midSide">
                         <div className="leftSide">
                             {description && <div className="aboutContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img src={about} alt='information icon' />
-                                        </div>
-                                        <h2>About</h2>
+                                <div className="subTitle">
+                                    <div className="midIcon">
+                                        <img src={about} alt='information icon' />
                                     </div>
-                                    <p>{description}</p>
+                                    <h2>About</h2>
                                 </div>
+                                <p>{description}</p>
+                            </div>
                             }
 
-                            
+
                             {/* <div className="phoneContainer">
                                 <div className="subTitle">
                                     <div className="midIcon">
@@ -195,15 +179,15 @@ function Modal({eventDetails, closeModal, userId}) {
                             </div> */}
 
                             {adress_street && <div className="locationContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img src={location} alt='map pin icon' />
-                                        </div>
-                                        <h2>Location</h2>
+                                <div className="subTitle">
+                                    <div className="midIcon">
+                                        <img src={location} alt='map pin icon' />
                                     </div>
-                                    <p>{adress_street}</p>
-                                    <p>{city}</p>
+                                    <h2>Location</h2>
                                 </div>
+                                <p>{adress_street}</p>
+                                <p>{city}</p>
+                            </div>
                             }
 
                         </div>
@@ -220,13 +204,13 @@ function Modal({eventDetails, closeModal, userId}) {
                         </div>
                     </div>
                     <div className="botSide">
-                            <div className="subTitle">
-                                <div className="midIcon">
-                                    <img src={image} alt='image icon'/>
-                                </div>
-                                <h2>Photos</h2>
+                        <div className="subTitle">
+                            <div className="midIcon">
+                                <img src={image} alt='image icon' />
                             </div>
-                            <Carousel data={data} />
+                            <h2>Photos</h2>
+                        </div>
+                        <Carousel data={data} />
                     </div>
                 </div>
             </div>
