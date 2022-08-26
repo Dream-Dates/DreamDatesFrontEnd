@@ -6,11 +6,12 @@ import DateIdeasList from "../components/DateIdeasList"
 import Modal from "../components/Modal"
 
 
-function Saved({userId}) {
+function Saved({ userId, searchTerm, categoryName }) {
     const [saved, setSaved] = useState({})
 
     const [chosenEvent, setChoseEvent] = useState([])
     const [showModal, setShowModal] = useState(false)
+    const [toggle, setToggle] = useState(false)
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails)
@@ -40,6 +41,7 @@ function Saved({userId}) {
                                 })
                             }).then(res => res.json())
                                 .then(data => console.log(data))
+                                setToggle(!toggle)
                         } else {
                             console.log('no match - save')
                             console.log(eventDetails)
@@ -103,14 +105,14 @@ function Saved({userId}) {
         }
 
         fetchSaved()
-    }, [])
+    }, [toggle])
 
     return (
         <div className="saved">
             {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId} />
             }
             <h3>Saved</h3>
-            <DateIdeasList ideas={saved} selectedEvent={openModal} userId={userId}/>
+            <DateIdeasList ideas={saved} selectedEvent={openModal} userId={userId} searchTerm={searchTerm} categoryName={categoryName} />
         </div>
     )
 }

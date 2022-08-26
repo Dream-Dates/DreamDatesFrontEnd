@@ -5,11 +5,13 @@ function SavePopup() {
     return (
         <div className="savePopup">
             <div className="savePopupContainer">
-                <img src={redHeart} alt="red heart" />
-                <p>Saved</p>
+                <div className="imageContainer">
+                    <img src={redHeart} alt="red heart" />
+                </div>
+                <p>Saved!</p>
             </div>
         </div>
     )
 }
 
-export default SavePopup()
+export default SavePopup

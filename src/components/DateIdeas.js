@@ -4,7 +4,7 @@ import DateIdeasList from "./DateIdeasList"
 import Modal from "./Modal"
 import SavePopup from "./SavePopup"
 
-function DateIdeas({userId}){
+function DateIdeas({userId, searchTerm, categoryName}){
     const [dateIdeas, setDateIdeas] = useState({
         events: [],
         movies: [],
@@ -12,6 +12,7 @@ function DateIdeas({userId}){
     })
     const [chosenEvent, setChoseEvent] = useState([])
     const [showModal, setShowModal] = useState(false)
+    const [showSavePopup, setShowSavePopup] = useState(false)
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails)
@@ -58,7 +59,7 @@ function DateIdeas({userId}){
                                     "venue": eventDetails.venue,
                                     "price_range": eventDetails.price_range,
                                     "link": eventDetails.link,
-                                    "img": eventDetails.image,
+                                    "img": eventDetails.img,
                                     "time": eventDetails.time,
                                     "description": eventDetails.description,
                                     "votes": eventDetails.votes,
@@ -70,6 +71,11 @@ function DateIdeas({userId}){
                                 })
                             }).then(res => res.json())
                                 .then(data => console.log(data))
+
+                            setShowSavePopup(true)
+                            setTimeout(() => {
+                                setShowSavePopup(false)
+                            }, 500)
                         }
                     })
             }
@@ -127,8 +133,8 @@ function DateIdeas({userId}){
         <div className="dateIdeas">
             {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId}/>
             }
-            <DateIdeasList ideas={dateIdeas} selectedEvent={openModal} userId={userId}/>
-            <SavePopup />
+            <DateIdeasList ideas={dateIdeas} selectedEvent={openModal} userId={userId} searchTerm={searchTerm} categoryName={categoryName} />
+            {showSavePopup && <SavePopup />}
         </div>
     )
 }

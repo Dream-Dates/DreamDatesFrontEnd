@@ -6,7 +6,7 @@ import x from '../assets/X.svg';
 import defaultImagePlaceholderSmall from '../assets/defaultImagePlaceholderSmall.jpg';
 import { Link,} from "react-router-dom"
 
-function DateIdeasList({ideas, selectedEvent, userId}) {
+function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName}) {
     let mainList = []
     const [list, setList] = useState([])
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
@@ -58,6 +58,10 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
         return dollar.join('')
     }
 
+    const filteredList = list.filter( item => (item.title.toLowerCase().match(searchTerm.toLowerCase())&&(item.categoryType.match(categoryName))))
+
+    // console.log(filteredList)
+
     return(
         <div className="dateIdeasList">
 
@@ -79,7 +83,7 @@ function DateIdeasList({ideas, selectedEvent, userId}) {
             }
 
             <div className="dateIdeasContainer wrapper">
-                {list.map(idea => {
+                {filteredList.map(idea => {
                     return (
                         <div className="dateIdeasCard" onClick={(e) => selectedEvent(e, idea)} key={idea.id}>
                             {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
