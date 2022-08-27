@@ -23,6 +23,7 @@ function Modal({ eventDetails, closeModal, userId }) {
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [showSavePopup, setShowSavePopup] = useState(false)
+    const [saveMessage, setSaveMessage] = useState('')
 
     const handleClickModalClose = (e) => {
         if (e.target.className === 'modal' || e.target.id === 'close') {
@@ -64,6 +65,11 @@ function Modal({ eventDetails, closeModal, userId }) {
                             })
                         }).then(res => res.json())
                             .then(data => console.log(data))
+                        setShowSavePopup(true)
+                        setSaveMessage('Unsaved')
+                        setTimeout(() => {
+                            setShowSavePopup(false)
+                        }, 500)
                     } else {
                         console.log('no match - save')
                         // if id does not match then we save
@@ -93,6 +99,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                         }).then(res => res.json())
                             .then(data => console.log(data))
                         setShowSavePopup(true)
+                        setSaveMessage('Saved')
                         setTimeout(() => {
                             setShowSavePopup(false)
                         }, 500)
@@ -232,7 +239,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                 </div>
             </div>
 
-            {showSavePopup && <SavePopup />}
+            {showSavePopup && <SavePopup text={saveMessage}/>}
         </div>
     )
 }
