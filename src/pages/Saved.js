@@ -8,7 +8,7 @@ import Modal from "../components/Modal"
 
 function Saved({ userId, searchTerm, categoryName }) {
     const [saved, setSaved] = useState({})
-
+    console.log(userId)
     const [chosenEvent, setChoseEvent] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [toggle, setToggle] = useState(false)
@@ -85,27 +85,54 @@ function Saved({ userId, searchTerm, categoryName }) {
     }
 
 
+    // useEffect(() => {
+    //     const fetchSaved = async () => {
+    //         console.log('fetchSaved', userId)
+    //         const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify({
+    //                 "user_id": userId
+    //             })
+    //         }).then(res => res.json())
+    //             .then(data => {
+    //                 console.log('DATA', data)
+    //                 data.forEach(item => item.categoryType = 'saved')
+                    
+    //                 setSaved({'saved': data})
+    //                 console.log(saved)
+    //             })
+    //     }
+
+    //     fetchSaved()
+    // }, [toggle])
     useEffect(() => {
         const fetchSaved = async () => {
             console.log('fetchSaved', userId)
-            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
-                method: "POST",
+            const data = await fetch(`http://localhost:4000/dreamdates/saved/dates/${ userId }`, {
+                method: "GET",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    "user_id": userId
-                })
-            }).then(res => res.json())
-                .then(data => {
-                    console.log('DATA', data)
-                    data.forEach(item => item.categoryType = 'saved')
-                    
-                    setSaved({'saved': data})
-                    console.log(saved)
-                })
+
+            // }).then(res => res.json())
+            }).then( res => res.json() )
+            // .then(data => {
+            console.log('DATA', data)
+            const savedDates = data.map( date => {
+                return {
+                    ...date,
+                    categoryType: "saved",
+                    saved: true,
+                }
+            })
+            
+            setSaved({'saved': savedDates})
+            console.log("THIS IS SAVED",saved.saved, userId)
+            // })
         }
 
         fetchSaved()
     }, [toggle])
+
 
     return (
         <div className="saved">
