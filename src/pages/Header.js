@@ -88,7 +88,6 @@ function Header({user, logUserOut, getSearchTerm, getCategoryName}) {
                 <div className="savedButton">
                     <Link to='/saved' onClick={handleClickSaved} className={`pinkButton ${!user.token && 'disable-link'}`}>
                         <img src={redHeart} alt="red heart" />
-                        {/* <div style={{ backgroundImage: `url(${redHeart})`, backgroundRepeat: "no-repeat", backgroundSize: "contain", width:"22px", height: "22px" }}></div> */}
                         <p>Saved</p>
                     </Link>
                 </div>

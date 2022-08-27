@@ -473,12 +473,12 @@ input {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
 }
+.savedButton .pinkButton:hover img, .userAuth .pinkButton:hover img {
+  -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1);
+}
 .savedButton img, .userAuth img {
   width: 22px;
-}
-.savedButton .heartContainer, .userAuth .heartContainer {
-  width: 22px;
-  height: 22px;
 }
 
 .userAuth {
@@ -579,13 +579,17 @@ input {
   background-position: center;
   background-size: cover;
 }
-
-.whiteHeart {
-  background-image: url(../assets/whiteHeart.svg);
+.heart .whiteHeart:hover {
+  -webkit-filter: invert(26%) sepia(20%) saturate(7415%) hue-rotate(320deg) brightness(51%) contrast(93%);
+          filter: invert(26%) sepia(20%) saturate(7415%) hue-rotate(320deg) brightness(51%) contrast(93%);
+}
+.heart .redHeart:hover {
+  -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1);
 }
 
-.redHeart {
-  background-image: url(../assets/redHeart.svg);
+.hideHeart {
+  display: none;
 }
 
 .catch {
@@ -1016,6 +1020,7 @@ h1 {
   margin-top: -175px;
   margin-left: -248px;
   z-index: 40;
+  border: 1px solid black;
 }
 .savePopup .imageContainer {
   width: 44.9px;

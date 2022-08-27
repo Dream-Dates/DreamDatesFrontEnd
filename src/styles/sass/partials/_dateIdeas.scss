@@ -65,13 +65,26 @@
     // border: 1px solid white;
     background-position: center;
     background-size: cover;
+    .whiteHeart:hover {
+        // filter: invert(15%) sepia(33%) saturate(6563%) hue-rotate(336deg) brightness(87%) contrast(92%);
+        // filter: invert(26%) sepia(20%) saturate(7407%) hue-rotate(330deg) brightness(65%) contrast(99%);
+        filter: invert(26%) sepia(20%) saturate(7415%) hue-rotate(320deg) brightness(51%) contrast(93%);
+    }
+    .redHeart:hover {
+        filter: brightness(0) invert(1);
+    }
 }
-.whiteHeart {
-    background-image: url(../assets/whiteHeart.svg);
+
+.hideHeart {
+    display: none
 }
-.redHeart {
-    background-image: url(../assets/redHeart.svg);
-}
+
+// .whiteHeart {
+//     background-image: url(../assets/whiteHeart.svg);
+// }
+// .redHeart {
+//     background-image: url(../assets/redHeart.svg);
+// }
 
 .catch {
     display: flex;
