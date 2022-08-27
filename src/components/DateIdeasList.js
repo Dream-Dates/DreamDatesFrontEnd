@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import whiteHeart from '../assets/whiteHeart.svg';
+import redHeart from "../assets/redHeart.svg"
 import x from '../assets/X.svg';
 import defaultImagePlaceholderSmall from '../assets/defaultImagePlaceholderSmall.jpg';
 import { Link,} from "react-router-dom"
@@ -14,9 +15,9 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
     
     useEffect(()=>{
         // making the object into an array
-        // console.log(ideas)
 
             for(let category in ideas) {
+                console.log(ideas[category], "hhhhhhhhhhhhhhhhhhhere I am")
                 ideas[category].forEach(item => mainList.push(item))
             }
 
@@ -24,9 +25,9 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
         // randomize the list
         mainList = mainList.sort(() => Math.random() - 0.5 )
         setList(mainList)
-        // console.log(list)
+        console.log("LIST", mainList)
     }, [ideas])
-
+// console.log(list, "title list")
     const toggleHeart = (e) => {
         console.log(e.target.className)
     }
@@ -89,7 +90,8 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
                             {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
                             </div> */}
                             <button className="heart" onClick={handleClick}>
-                                <img src={whiteHeart} alt="White Heart" id='save'/>
+                                {/* <img src={whiteHeart} alt="White Heart" id='save'/> */}
+                                {idea.saved ? <img src={redHeart} alt="Red Heart" id='save'/> : <img src={whiteHeart} alt="White Heart" id='save'/>}
                             </button>
                             <div className="imageContainer">
                                 <img src={idea.img ? idea.img : defaultImagePlaceholderSmall} alt={`Image of ${idea.title}`} />
