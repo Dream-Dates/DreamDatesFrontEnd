@@ -99,7 +99,7 @@
 
 .notSignedIn {
     position: relative;
-    width: 496px;
+    width: min(90%,496px);
     height: 350px;
     border-radius: 16px;
     border: 1px solid #941C2F;

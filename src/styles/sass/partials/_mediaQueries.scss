@@ -14,6 +14,7 @@
 
 
 @media (max-width: 900px) {
+    //header
     .headerNormal {
         height: 274px;
         grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
@@ -57,12 +58,56 @@
     }
 
     //signIn signUp
-
     .signIn form,
     .signUp form {
         padding-top: 325px;
     }
+
+    //saved 
+    .saved {
+        padding-top: 325px;
+    }
 }
+
+@media (max-width: 800px) {
+    //modal
+    .modalContainer {
+        .midSide {
+            flex-direction: column;
+        }
+        .rightSide {
+            padding-left: 0;
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    //modal
+    .modalContainer {
+        .textContainer {
+            padding: 0 50px;
+        }
+        .topSide {
+            text-align: center;
+            .heading {
+                display: block;
+                width: auto;
+                a {
+                    width: 177px;
+                    margin: 0 auto;
+                }
+                h2 {
+                    transform: translate(0);
+                    display: inline-block;
+                    margin: 0 20px;
+                }
+            }
+        }
+    }
+}
+
+
+
 
 @media (max-width: 600px) {
     .headerNormal {
@@ -100,6 +145,7 @@
         z-index: 20;
         background-color: #FFDEE4;
         padding-top: 20px;
+        position: fixed;
     }
 
     .headerSearchBar {
@@ -147,10 +193,15 @@
     //signIn signUp
     .signIn form,
     .signUp form {
-        padding-top: 35px;
+        padding-top: 255px;
     }
 
     .signUp section {
         display: block;
     }
+
+        //saved 
+        .saved {
+            padding-top: 210px;
+        }
 }

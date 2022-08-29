@@ -622,7 +622,7 @@ input {
 
 .notSignedIn {
   position: relative;
-  width: 496px;
+  width: min(90%, 496px);
   height: 350px;
   border-radius: 16px;
   border: 1px solid #941C2F;
@@ -1016,7 +1016,7 @@ h4 {
 }
 
 .savePopup {
-  width: 496px;
+  width: min(90%, 496px);
   height: 350px;
   background-color: #FFC7D0;
   display: -webkit-box;
@@ -1087,6 +1087,42 @@ h4 {
 .signUp form {
     padding-top: 325px;
   }
+  .saved {
+    padding-top: 325px;
+  }
+}
+@media (max-width: 800px) {
+  .modalContainer .midSide {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .modalContainer .rightSide {
+    padding-left: 0;
+  }
+}
+@media (max-width: 750px) {
+  .modalContainer .textContainer {
+    padding: 0 50px;
+  }
+  .modalContainer .topSide {
+    text-align: center;
+  }
+  .modalContainer .topSide .heading {
+    display: block;
+    width: auto;
+  }
+  .modalContainer .topSide .heading a {
+    width: 177px;
+    margin: 0 auto;
+  }
+  .modalContainer .topSide .heading h2 {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    display: inline-block;
+    margin: 0 20px;
+  }
 }
 @media (max-width: 600px) {
   .headerNormal {
@@ -1119,6 +1155,7 @@ h4 {
     z-index: 20;
     background-color: #FFDEE4;
     padding-top: 20px;
+    position: fixed;
   }
   .headerSearchBar {
     margin: 0;
@@ -1170,9 +1207,12 @@ h4 {
   }
   .signIn form,
 .signUp form {
-    padding-top: 35px;
+    padding-top: 255px;
   }
   .signUp section {
     display: block;
+  }
+  .saved {
+    padding-top: 210px;
   }
 }
