@@ -2,7 +2,7 @@
 import { useState, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Context from "../context/context";
-function SignUp({rerender}) {
+function SignUp({ rerender }) {
     let navigate = useNavigate()
     const context = useContext(Context);
 
@@ -56,19 +56,20 @@ function SignUp({rerender}) {
                 }
 
             })
-            function setUserInfo(id, email, name, lastname) {
-                context.setUserId(id)
-                context.setEmail(email)
-                context.setName(name)
-                context.setLastName(lastname)
-                console.log("work")
-            }
+        function setUserInfo(id, email, name, lastname) {
+            context.setUserId(id)
+            context.setEmail(email)
+            context.setName(name)
+            context.setLastName(lastname)
+            console.log("work")
+        }
         return false
     }
 
     return (
         <div className="signUp">
             <form onSubmit={(e) => createUser(e)} >
+                <h4 className="errormessage">{mistakeMessage}</h4>
                 <section>
                     <label className="sr-only" htmlFor="firstName">First Name</label>
                     <input
@@ -121,7 +122,6 @@ function SignUp({rerender}) {
                     onChange={(e) => handleChange(e)}
                     value={signUp.retypePassword}
                 />
-                <h3 className="errormessage">{mistakeMessage}</h3>
                 <div className="formButtonContainer">
                     <button className="pinkButton"><p>Sign Up</p></button>
                 </div>

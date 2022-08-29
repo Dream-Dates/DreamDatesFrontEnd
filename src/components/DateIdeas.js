@@ -4,7 +4,7 @@ import DateIdeasList from "./DateIdeasList"
 import Modal from "./Modal"
 import SavePopup from "./SavePopup"
 
-function DateIdeas({userId, searchTerm, categoryName}){
+function DateIdeas({ userId, searchTerm, categoryName }) {
     const [dateIdeas, setDateIdeas] = useState({
         events: [],
         movies: [],
@@ -13,6 +13,7 @@ function DateIdeas({userId, searchTerm, categoryName}){
     const [chosenEvent, setChoseEvent] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [showSavePopup, setShowSavePopup] = useState(false)
+    const [saveMessage, setSaveMessage] = useState('')
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails)
@@ -31,7 +32,7 @@ function DateIdeas({userId, searchTerm, categoryName}){
                 }).then(res => res.json())
                     .then(data => {
                         console.log(data)
-                        if (data.some(item => item.id === eventDetails.id)) {
+                        if (data.some(item => item.id == eventDetails.id)) {
                             console.log('match - unsave')
                             // if id match then we remove
                             fetch(`http://localhost:4000/dreamdates/datingideas/delete/${eventDetails.id}`, {
@@ -42,6 +43,11 @@ function DateIdeas({userId, searchTerm, categoryName}){
                                 })
                             }).then(res => res.json())
                                 .then(data => console.log(data))
+                            setShowSavePopup(true)
+                            setSaveMessage('Unsaved')
+                            setTimeout(() => {
+                                setShowSavePopup(false)
+                            }, 500)
                         } else {
                             console.log('no match - save')
                             console.log(eventDetails)
@@ -63,7 +69,7 @@ function DateIdeas({userId, searchTerm, categoryName}){
                                     "time": eventDetails.time,
                                     "description": eventDetails.description,
                                     "votes": eventDetails.votes,
-                                    "price":eventDetails.price,
+                                    "price": eventDetails.price,
                                     "opening_hours": eventDetails.opening_hours,
                                     "website": eventDetails.website,
                                     "rating": eventDetails.rating,
@@ -73,6 +79,7 @@ function DateIdeas({userId, searchTerm, categoryName}){
                                 .then(data => console.log(data))
 
                             setShowSavePopup(true)
+                            setSaveMessage('Saved')
                             setTimeout(() => {
                                 setShowSavePopup(false)
                             }, 500)
@@ -100,27 +107,27 @@ function DateIdeas({userId, searchTerm, categoryName}){
                 // console.log(listEvents)
                 listEvents.forEach(item => item.categoryType = 'events')
                 // console.log(listEvents)
-                
+
                 //movies
                 const moviesResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/movies")
                 // const moviesResponse = await fetch("http://localhost:4000/dreamdates/movies")
                 if (!moviesResponse.ok) throw Error("did not received expected data")
                 const listMovies = await moviesResponse.json()
                 listMovies.forEach(item => item.categoryType = 'movies')
-                
+
                 // console.log(listMovies)
-                setDateIdeas({...dateIdeas, 'events': listEvents, 'movies': listMovies})
-                
+                setDateIdeas({ ...dateIdeas, 'events': listEvents, 'movies': listMovies })
+
                 //restaurants
-                
+
                 const restaurantsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/restaurants")
                 if (!restaurantsResponse.ok) throw Error("did not received expected data")
                 const listRestaurants = await restaurantsResponse.json()
                 listRestaurants.forEach(item => item.categoryType = 'restaurants')
 
-                
+
                 // console.log(listRestaurants)
-                setDateIdeas({...dateIdeas, 'events': listEvents, 'movies': listMovies, 'restaurants': listRestaurants})
+                setDateIdeas({ ...dateIdeas, 'events': listEvents, 'movies': listMovies, 'restaurants': listRestaurants })
 
             } catch (err) {
                 alert(err.message)
@@ -131,10 +138,10 @@ function DateIdeas({userId, searchTerm, categoryName}){
 
     return (
         <div className="dateIdeas">
-            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId}/>
+            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId} />
             }
             <DateIdeasList ideas={dateIdeas} selectedEvent={openModal} userId={userId} searchTerm={searchTerm} categoryName={categoryName} />
-            {showSavePopup && <SavePopup />}
+            {showSavePopup && <SavePopup text={saveMessage} />}
         </div>
     )
 }

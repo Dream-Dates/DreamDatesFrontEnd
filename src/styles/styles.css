@@ -366,6 +366,13 @@ h3 {
   text-align: center;
 }
 
+h4 {
+  color: #CC0000;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
 .modal h2 {
   font-size: 24px;
 }
@@ -395,7 +402,11 @@ input {
   font-weight: 700;
 }
 
-.header {
+.headerMobile {
+  display: none;
+}
+
+.headerNormal {
   height: 186px;
   -webkit-box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
@@ -473,12 +484,12 @@ input {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
 }
+.savedButton .pinkButton:hover img, .userAuth .pinkButton:hover img {
+  -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1);
+}
 .savedButton img, .userAuth img {
   width: 22px;
-}
-.savedButton .heartContainer, .userAuth .heartContainer {
-  width: 22px;
-  height: 22px;
 }
 
 .userAuth {
@@ -579,13 +590,17 @@ input {
   background-position: center;
   background-size: cover;
 }
-
-.whiteHeart {
-  background-image: url(../assets/whiteHeart.svg);
+.heart .whiteHeart:hover {
+  -webkit-filter: invert(26%) sepia(20%) saturate(7415%) hue-rotate(320deg) brightness(51%) contrast(93%);
+          filter: invert(26%) sepia(20%) saturate(7415%) hue-rotate(320deg) brightness(51%) contrast(93%);
+}
+.heart .redHeart:hover {
+  -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1);
 }
 
-.redHeart {
-  background-image: url(../assets/redHeart.svg);
+.hideHeart {
+  display: none;
 }
 
 .catch {
@@ -607,7 +622,7 @@ input {
 
 .notSignedIn {
   position: relative;
-  width: 496px;
+  width: min(90%, 496px);
   height: 350px;
   border-radius: 16px;
   border: 1px solid #941C2F;
@@ -652,7 +667,7 @@ input {
 }
 
 .modalContainer {
-  width: 1000px;
+  width: min(90vw, 1000px);
   padding-bottom: 123px;
   height: calc(100vh - 20px);
   overflow: auto;
@@ -718,7 +733,7 @@ input {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 50%;
+  width: 358px;
 }
 .modalContainer .topSide .heading a {
   display: -webkit-box;
@@ -860,7 +875,7 @@ h1 {
 }
 
 .signIn form {
-  width: 1025px;
+  width: min(90%, 1025px);
   margin: 0 auto;
   padding-top: 250px;
 }
@@ -919,8 +934,12 @@ h1 {
   text-align: center;
 }
 
+h4 {
+  padding-bottom: 20px;
+}
+
 .signUp form {
-  width: 1025px;
+  width: min(90%, 1025px);
   margin: 0 auto;
   padding-top: 250px;
 }
@@ -997,7 +1016,7 @@ h1 {
 }
 
 .savePopup {
-  width: 496px;
+  width: min(90%, 496px);
   height: 350px;
   background-color: #FFC7D0;
   display: -webkit-box;
@@ -1016,14 +1035,24 @@ h1 {
   margin-top: -175px;
   margin-left: -248px;
   z-index: 40;
+  border: 1px solid black;
 }
 .savePopup .imageContainer {
   width: 44.9px;
   margin: 0 auto;
 }
 
-@media (max-width: 744px) {
-  .header {
+@media (max-width: 1080px) {
+  .userAuth {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+  .userAuth a {
+    margin-top: 15px;
+  }
+}
+@media (max-width: 900px) {
+  .headerNormal {
     height: 274px;
     grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
     -webkit-column-gap: 20;
@@ -1046,5 +1075,144 @@ h1 {
   }
   .headerFilter div p {
     white-space: nowrap;
+  }
+  .userAuth {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+  .userAuth a {
+    margin-top: 15px;
+  }
+  .signIn form,
+.signUp form {
+    padding-top: 325px;
+  }
+  .saved {
+    padding-top: 325px;
+  }
+}
+@media (max-width: 800px) {
+  .modalContainer .midSide {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .modalContainer .rightSide {
+    padding-left: 0;
+  }
+}
+@media (max-width: 750px) {
+  .modalContainer .textContainer {
+    padding: 0 50px;
+  }
+  .modalContainer .topSide {
+    text-align: center;
+  }
+  .modalContainer .topSide .heading {
+    display: block;
+    width: auto;
+  }
+  .modalContainer .topSide .heading a {
+    width: 177px;
+    margin: 0 auto;
+  }
+  .modalContainer .topSide .heading h2 {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+    display: inline-block;
+    margin: 0 20px;
+  }
+}
+@media (max-width: 600px) {
+  .headerNormal {
+    display: none;
+  }
+  .headerRightSide .pinkButton {
+    min-width: auto;
+    padding: 5px;
+  }
+  .userAuth {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    width: auto;
+  }
+  .userAuth a {
+    margin-top: 0px;
+  }
+  .userAuth ul {
+    width: auto;
+  }
+  .headerMobile {
+    height: 200px;
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) minmax(100px, 4fr) minmax(100px, 1fr);
+    -webkit-column-gap: 2px;
+       -moz-column-gap: 2px;
+            column-gap: 2px;
+    grid-template-areas: "logo headerSearchBar right" "headerFilter headerFilter headerFilter";
+    width: 100vw;
+    z-index: 20;
+    background-color: #FFDEE4;
+    padding-top: 20px;
+    position: fixed;
+  }
+  .headerSearchBar {
+    margin: 0;
+    padding-right: 70px;
+  }
+  .headerRightSide {
+    -webkit-transform: translateY(24px);
+            transform: translateY(24px);
+  }
+  .userAuth .pinkButton {
+    position: relative;
+  }
+  .profile {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 16px;
+    width: 269px;
+    height: 222px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: none;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -193px;
+  }
+  .userAuth .pinkButton:hover .profile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .profileContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .signIn form,
+.signUp form {
+    padding-top: 255px;
+  }
+  .signUp section {
+    display: block;
+  }
+  .saved {
+    padding-top: 210px;
   }
 }

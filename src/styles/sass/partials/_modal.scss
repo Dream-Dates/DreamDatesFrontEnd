@@ -8,7 +8,7 @@
     z-index: 30;
 }
 .modalContainer {
-    width: 1000px;
+    width: min(90vw, 1000px);
     padding-bottom: 123px;
     height: calc(100vh - 20px);
     overflow: auto;
@@ -55,7 +55,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 50%;
+            width: 358px;
             a {
                 display: flex;
                 align-items: center;

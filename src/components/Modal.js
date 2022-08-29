@@ -23,6 +23,7 @@ function Modal({ eventDetails, closeModal, userId }) {
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [showSavePopup, setShowSavePopup] = useState(false)
+    const [saveMessage, setSaveMessage] = useState('')
 
     const handleClickModalClose = (e) => {
         if (e.target.className === 'modal' || e.target.id === 'close') {
@@ -53,7 +54,9 @@ function Modal({ eventDetails, closeModal, userId }) {
             }).then(res => res.json())
                 .then(data => {
                     console.log(data)
-                    if (data.some(item => item.id === id)) {
+                    console.log(id)
+                    data.some(item =>console.log(item.id))
+                    if (data.some(item => item.id == id)) {
                         console.log('match - unsave')
                         // if id match then we remove
                         fetch(`http://localhost:4000/dreamdates/datingideas/delete/${id}`, {
@@ -64,6 +67,11 @@ function Modal({ eventDetails, closeModal, userId }) {
                             })
                         }).then(res => res.json())
                             .then(data => console.log(data))
+                        setShowSavePopup(true)
+                        setSaveMessage('Unsaved')
+                        setTimeout(() => {
+                            setShowSavePopup(false)
+                        }, 500)
                     } else {
                         console.log('no match - save')
                         // if id does not match then we save
@@ -93,6 +101,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                         }).then(res => res.json())
                             .then(data => console.log(data))
                         setShowSavePopup(true)
+                        setSaveMessage('Saved')
                         setTimeout(() => {
                             setShowSavePopup(false)
                         }, 500)
@@ -111,6 +120,8 @@ function Modal({ eventDetails, closeModal, userId }) {
 
     const data = ['http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300']
 
+    console.log('opening_hours',typeof(opening_hours))
+    console.log('image', typeof(image))
 
     return (
         <div className="modal" onClick={handleClickModalClose}>
@@ -227,12 +238,13 @@ function Modal({ eventDetails, closeModal, userId }) {
                             <h2>Photos</h2>
                         </div>
                         <Carousel data={data} />
+                        {/* <Carousel data={image} /> */}
                     </div>
                     }
                 </div>
             </div>
 
-            {showSavePopup && <SavePopup />}
+            {showSavePopup && <SavePopup text={saveMessage}/>}
         </div>
     )
 }

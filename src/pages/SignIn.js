@@ -63,6 +63,7 @@ function SignIn({rerender}) {
     return (
         <div className="signIn">
             <form onSubmit={(e) => signInUser(e)}>
+                <h4 className="errormessage">{mistakeMessage}</h4>
                 <label className="sr-only" htmlFor="firstName">Email</label>
                 <input
                     type="email"
@@ -83,7 +84,6 @@ function SignIn({rerender}) {
                     onChange={(e) => handleChange(e)}
                     value={signIn.password}
                 />
-                <h3 className="errormessage">{mistakeMessage}</h3>
                 <div className="formButtonContainer">
                     <button className="pinkButton"><p>Sign In</p></button>
                 </div>

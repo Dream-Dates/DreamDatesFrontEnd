@@ -1,7 +1,7 @@
 // _savePopup.scss
 
 .savePopup {
-    width: 496px;
+    width: min(90%, 496px);
     height: 350px;
     background-color: #FFC7D0;
     display: flex;
@@ -14,6 +14,7 @@
     margin-top: -175px;
     margin-left: -248px;
     z-index: 40;
+    border: 1px solid black;
     .imageContainer {
         width: 44.9px;
         margin: 0 auto;

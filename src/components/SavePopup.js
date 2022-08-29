@@ -1,14 +1,18 @@
 // SavePopup.js
 import redHeart from '../assets/redHeart.svg';
+import whiteHeart from '../assets/whiteHeart.svg';
 
-function SavePopup() {
+function SavePopup({text}) {
     return (
         <div className="savePopup">
             <div className="savePopupContainer">
                 <div className="imageContainer">
-                    <img src={redHeart} alt="red heart" />
+                    {text === 'Saved' ?
+                        <img src={redHeart} alt="red heart" />
+                        : <img src={whiteHeart} alt="white heart" />
+                    }
                 </div>
-                <p>Saved!</p>
+                <p>{text}!</p>
             </div>
         </div>
     )

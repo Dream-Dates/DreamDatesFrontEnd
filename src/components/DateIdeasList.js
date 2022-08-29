@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import whiteHeart from '../assets/whiteHeart.svg';
+import redHeart from '../assets/redHeart.svg';
 import x from '../assets/X.svg';
 import defaultImagePlaceholderSmall from '../assets/defaultImagePlaceholderSmall.jpg';
 import { Link,} from "react-router-dom"
@@ -10,6 +11,7 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
     let mainList = []
     const [list, setList] = useState([])
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
+    const [saved, setSaved] = useState([])
 
     
     useEffect(()=>{
@@ -27,9 +29,31 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
         // console.log(list)
     }, [ideas])
 
-    const toggleHeart = (e) => {
-        console.log(e.target.className)
-    }
+    useEffect(() => {
+        const fetchSaved = async () => {
+            console.log('fetchSaved', userId)
+            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    "user_id": userId
+                })
+            }).then(res => res.json())
+                .then(data => {
+                    console.log('DATA', data)
+                    const savedId = []
+                    data.forEach(item => {
+                        savedId.push(item.id)
+                        console.log(item.id)
+                    })
+                    console.log(savedId)
+                    setSaved(savedId)
+                    console.log(saved)
+                })
+        }
+
+        fetchSaved()
+    }, [])
 
     const noZipCode = (addy) => {
         const reg = /(?<![0-9-])([0-9]{5}(?:[ -][0-9]{4})?)(?![0-9-])/gm
@@ -60,7 +84,9 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
 
     const filteredList = list.filter( item => (item.title.toLowerCase().match(searchTerm.toLowerCase())&&(item.categoryType.match(categoryName))))
 
-    // console.log(filteredList)
+    const checkIfSaved = (eventId) => {
+        return saved.some( item => item == eventId)
+    }
 
     return(
         <div className="dateIdeasList">
@@ -88,8 +114,11 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
                         <div className="dateIdeasCard" onClick={(e) => selectedEvent(e, idea)} key={idea.id}>
                             {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
                             </div> */}
-                            <button className="heart" onClick={handleClick}>
-                                <img src={whiteHeart} alt="White Heart" id='save'/>
+                            <button className={`heart ${checkIfSaved(idea.id) && 'hideHeart'}`} onClick={handleClick}>
+                                <img src={whiteHeart} className="whiteHeart" alt="White Heart" id='save'/>
+                            </button>
+                            <button className={`heart ${!checkIfSaved(idea.id) && 'hideHeart'}`} onClick={handleClick}>
+                                <img src={redHeart} className="redHeart" alt="White Heart" id='save'/>
                             </button>
                             <div className="imageContainer">
                                 <img src={idea.img ? idea.img : defaultImagePlaceholderSmall} alt={`Image of ${idea.title}`} />

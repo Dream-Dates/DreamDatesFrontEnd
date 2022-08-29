@@ -2,7 +2,7 @@
 
 
 .signIn form {
-    width: 1025px;
+    width: min(90%,1025px);
     margin: 0 auto;
     padding-top: 250px;
     input {
@@ -34,4 +34,8 @@
     gap: 30px;
     margin-top: 50px;
     text-align: center;
+}
+
+h4 {
+    padding-bottom: 20px;
 }
