@@ -46,10 +46,8 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
                         savedId.push(item.id)
                         console.log(item.id)
                     })
-                    // data.forEach(item => item.categoryType = 'saved')
-                    
+                    console.log(savedId)
                     setSaved(savedId)
-                    // setSaved({ 'saved': data })
                     console.log(saved)
                 })
         }
@@ -87,7 +85,7 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
     const filteredList = list.filter( item => (item.title.toLowerCase().match(searchTerm.toLowerCase())&&(item.categoryType.match(categoryName))))
 
     const checkIfSaved = (eventId) => {
-        return saved.some( item => item === eventId)
+        return saved.some( item => item == eventId)
     }
 
     return(

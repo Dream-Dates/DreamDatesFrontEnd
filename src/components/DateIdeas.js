@@ -32,7 +32,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 }).then(res => res.json())
                     .then(data => {
                         console.log(data)
-                        if (data.some(item => item.id === eventDetails.id)) {
+                        if (data.some(item => item.id == eventDetails.id)) {
                             console.log('match - unsave')
                             // if id match then we remove
                             fetch(`http://localhost:4000/dreamdates/datingideas/delete/${eventDetails.id}`, {
