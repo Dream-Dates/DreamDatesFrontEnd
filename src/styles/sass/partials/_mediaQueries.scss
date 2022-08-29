@@ -1,34 +1,138 @@
 // _mediaQueries.scss
 
-@media  (max-width: 744px) {
-    .header {
-            height: 274px;
-            grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
-            column-gap: 20;
-            grid-template-areas:
-                "logo right"
-                "headerSearchBar headerSearchBar"
-                "headerFilter x";
+
+@media (max-width: 1080px) {
+    .userAuth {
+        transform: translateY(-15px);
+
+        a {
+            margin-top: 15px;
         }
+    }
+}
+
+
+
+@media (max-width: 900px) {
+    .headerNormal {
+        height: 274px;
+        grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
+        column-gap: 20;
+        grid-template-areas:
+            "logo right"
+            "headerSearchBar headerSearchBar"
+            "headerFilter x";
+    }
+
     .headerSearchBar {
         width: 100%;
         margin: 0 60px;
         padding-right: 121px;
     }
+
     .headerFilter {
         width: 100vw;
         overflow-x: auto;
         padding: 0 50px;
+
         div {
             margin: 0 5px;
+
             p {
                 white-space: nowrap;
             }
         }
     }
+
     .headerRightSide {
         // transform: translate(0px, 32px);
     }
+
+    .userAuth {
+        transform: translateY(-15px);
+
+        a {
+            margin-top: 15px;
+        }
+    }
 }
 
-@media (max-width: 580px) {}
+@media (max-width: 600px) {
+    .headerNormal {
+        display: none;
+    }
+
+    .headerRightSide .pinkButton {
+        min-width: auto;
+        padding: 5px;
+    }
+
+    .userAuth {
+        transform: translateY(0px);
+        width: auto;
+
+        a {
+            margin-top: 0px;
+        }
+
+        ul {
+            width: auto;
+        }
+    }
+
+    .headerMobile {
+        height: 200px;
+        display: grid;
+        grid-template-columns: minmax(100px, 1fr) minmax(100px, 4fr) minmax(100px, 1fr);
+        // grid-template-rows: auto;
+        column-gap: 2px;
+        grid-template-areas:
+            "logo headerSearchBar right"
+            "headerFilter headerFilter headerFilter";
+        width: 100vw;
+            z-index: 20;
+            background-color: #FFDEE4;
+            padding-top: 20px;
+    }
+
+    .headerSearchBar {
+        margin: 0;
+        padding-right: 70px;
+    }
+
+    .headerRightSide {
+            transform: translateY(24px);
+    }
+
+    .userAuth .pinkButton {
+        position: relative;
+    }
+
+    .profile {
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 16px;
+        width: 269px;
+        height: 222px;
+        justify-content: center;
+        align-items: center;
+        display: none;
+        // display: flex;
+        position: absolute;
+        // padding-top: 35px;
+        margin-top: 20px;
+        margin-left: -193px;
+    }
+
+    .userAuth .pinkButton:hover .profile {
+        display: flex;
+    }
+
+
+    .profileContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -402,7 +402,11 @@ input {
   font-weight: 700;
 }
 
-.header {
+.headerMobile {
+  display: none;
+}
+
+.headerNormal {
   height: 186px;
   -webkit-box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
@@ -413,7 +417,6 @@ input {
      -moz-column-gap: 30px;
           column-gap: 30px;
   grid-template-areas: "logo headerSearchBar right" "headerFilter headerFilter headerFilter";
-  position: fixed;
   width: 100vw;
   z-index: 20;
   background-color: #FFDEE4;
@@ -1038,8 +1041,17 @@ h4 {
   margin: 0 auto;
 }
 
-@media (max-width: 744px) {
-  .header {
+@media (max-width: 1080px) {
+  .userAuth {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+  .userAuth a {
+    margin-top: 15px;
+  }
+}
+@media (max-width: 900px) {
+  .headerNormal {
     height: 274px;
     grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
     -webkit-column-gap: 20;
@@ -1062,5 +1074,93 @@ h4 {
   }
   .headerFilter div p {
     white-space: nowrap;
+  }
+  .userAuth {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+  .userAuth a {
+    margin-top: 15px;
+  }
+}
+@media (max-width: 600px) {
+  .headerNormal {
+    display: none;
+  }
+  .headerRightSide .pinkButton {
+    min-width: auto;
+    padding: 5px;
+  }
+  .userAuth {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    width: auto;
+  }
+  .userAuth a {
+    margin-top: 0px;
+  }
+  .userAuth ul {
+    width: auto;
+  }
+  .headerMobile {
+    height: 200px;
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) minmax(100px, 4fr) minmax(100px, 1fr);
+    -webkit-column-gap: 2px;
+       -moz-column-gap: 2px;
+            column-gap: 2px;
+    grid-template-areas: "logo headerSearchBar right" "headerFilter headerFilter headerFilter";
+    width: 100vw;
+    z-index: 20;
+    background-color: #FFDEE4;
+    padding-top: 20px;
+  }
+  .headerSearchBar {
+    margin: 0;
+    padding-right: 70px;
+  }
+  .headerRightSide {
+    -webkit-transform: translateY(24px);
+            transform: translateY(24px);
+  }
+  .userAuth .pinkButton {
+    position: relative;
+  }
+  .profile {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 16px;
+    width: 269px;
+    height: 222px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    display: none;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: -193px;
+  }
+  .userAuth .pinkButton:hover .profile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .profileContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
