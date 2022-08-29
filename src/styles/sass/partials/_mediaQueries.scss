@@ -55,6 +55,13 @@
             margin-top: 15px;
         }
     }
+
+    //signIn signUp
+
+    .signIn form,
+    .signUp form {
+        padding-top: 325px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -90,9 +97,9 @@
             "logo headerSearchBar right"
             "headerFilter headerFilter headerFilter";
         width: 100vw;
-            z-index: 20;
-            background-color: #FFDEE4;
-            padding-top: 20px;
+        z-index: 20;
+        background-color: #FFDEE4;
+        padding-top: 20px;
     }
 
     .headerSearchBar {
@@ -101,7 +108,7 @@
     }
 
     .headerRightSide {
-            transform: translateY(24px);
+        transform: translateY(24px);
     }
 
     .userAuth .pinkButton {
@@ -134,5 +141,16 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+
+    //signIn signUp
+    .signIn form,
+    .signUp form {
+        padding-top: 35px;
+    }
+
+    .signUp section {
+        display: block;
     }
 }
