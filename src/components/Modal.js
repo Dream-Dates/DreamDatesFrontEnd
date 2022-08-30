@@ -2,6 +2,7 @@
 import globe from '../assets/globe.svg'
 import { Link } from 'react-router-dom'
 import whiteHeart from '../assets/whiteHeart.svg'
+import redHeart from '../assets/redHeart.svg'
 import x from '../assets/X.svg'
 import clock from '../assets/clock.svg'
 import about from '../assets/about.svg'
@@ -10,7 +11,7 @@ import location from '../assets/location.svg'
 import imageIcon from '../assets/image.svg'
 import Context from "../context/context";
 import { useContext } from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import defaultImagePlaceholder from '../assets/defaultImagePlaceholder.jpg'
 import Carousel from './carousel'
 import SavePopup from './SavePopup'
@@ -24,6 +25,7 @@ function Modal({ eventDetails, closeModal, userId }) {
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [showSavePopup, setShowSavePopup] = useState(false)
     const [saveMessage, setSaveMessage] = useState('')
+    const [saved, setSaved] = useState([])
 
     const handleClickModalClose = (e) => {
         if (e.target.className === 'modal' || e.target.id === 'close') {
@@ -48,19 +50,52 @@ function Modal({ eventDetails, closeModal, userId }) {
         return array
     }
 
-    // const newDateFormat = (time) => {
-    //     const reg = /T/g
-    //     const reg2 = /:/g
-    //     const reg3 = /-/g
-    //     const str = time;
-    //     console.log( str.replace(reg, '-').replace(reg2,'-'))
-    //     // return str.replace(reg, '-').replace(reg2,'-').replace(reg3, ' ')
-    //     const adjustedDate = str.replace(reg, '-').replace(reg2,'-').replace(reg3, ', ')
-    //     console.log(adjustedDate)
-    //     const date = new Date(Date.UTC(adjustedDate));
-    //     console.log(date);
-    //     console.log(new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(date)
-    // )}
+    const newDateFormat = (time) => {
+        const reg = /-/g
+        const reg2 = /:/g
+        const reg3 = /T/g
+        const str = time;
+        console.log( str.replace(reg, '-').replace(reg2,'-'))
+        // return str.replace(reg, '-').replace(reg2,'-').replace(reg3, ' ')
+        const adjustedDate = str.replace(reg, ' ')
+        console.log(adjustedDate)
+        let dateArray = adjustedDate.split('T')
+        console.log(dateArray)
+        dateArray[1] = dateArray[1].slice(0,5)
+        console.log(dateArray)
+        return dateArray
+        
+        // const date = new Date(Date.UTC(2022, 08, 27, 03, 30, 00, 000));
+        // const date = new Date(Date.UTC(2020, 11, 20, 3, 23, 16, 738));
+        // console.log(date);
+        // console.log(new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(date)
+    }
+
+    useEffect(() => {
+        const fetchSaved = async () => {
+            console.log('fetchSaved', userId)
+            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    "user_id": userId
+                })
+            }).then(res => res.json())
+                .then(data => {
+                    console.log('DATA', data)
+                    const savedId = []
+                    data.forEach(item => {
+                        savedId.push(item.id)
+                        console.log(item.id)
+                    })
+                    console.log(savedId)
+                    setSaved(savedId)
+                    console.log(saved)
+                })
+        }
+
+        fetchSaved()
+    }, [])
 
     const handleClickSave = () => {
         if (!userId) {
@@ -142,8 +177,11 @@ function Modal({ eventDetails, closeModal, userId }) {
 
     const data = ['http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300', 'http://placekitten.com/g/200/300', 'http://placekitten.com/200/300']
 
-    console.log('opening_hours',typeof(opening_hours))
-    console.log('image', typeof(image))
+
+    const checkIfSaved = (eventId) => {
+        return saved.some(item => item == eventId)
+    }
+
 
     return (
         <div className="modal" onClick={handleClickModalClose}>
@@ -167,7 +205,14 @@ function Modal({ eventDetails, closeModal, userId }) {
 
             <div className="modalContainer">
                 <div className="buttonContainer">
-                    <button onClick={handleClickSave}><img src={whiteHeart} alt="white heart icon" id='save' /></button>
+                    <div className="heartContainer">
+                        <button className={`heart ${checkIfSaved(id) && 'hideHeart'}`} onClick={handleClickSave}>
+                            <img src={whiteHeart} className="whiteHeart" alt="White Heart" id='save' />
+                        </button>
+                        <button className={`heart ${!checkIfSaved(id) && 'hideHeart'}`} onClick={handleClickSave}>
+                        <img src={redHeart} className="redHeart" alt="White Heart" id='save' />
+                    </button>
+                    </div>
                     <button onClick={handleClickModalClose}><img src={x} alt="x icon" id='close' /></button>
                 </div>
                 <div className="imageContainer">
@@ -259,7 +304,11 @@ function Modal({ eventDetails, closeModal, userId }) {
                                         </div>
                                         <h2>Date</h2>
                                     </div>
-                                <p>{time}</p>
+                                {newDateFormat(time).map(each => {
+                                    return (
+                                        <p>{each}</p>
+                                )
+                                })}
                                 </div>
                             }
                         </div>
