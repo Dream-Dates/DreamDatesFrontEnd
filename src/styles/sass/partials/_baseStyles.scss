@@ -36,7 +36,7 @@ p {
 }
 
 button {
-    background: transparent;
+    background-color: transparent;
     border: none;
     text-decoration: none;
     color: inherit;
@@ -52,6 +52,8 @@ button {
         }
     }
 }
+
+
 // .App {
 //     display: flex;
 //     flex-direction: column;
@@ -65,7 +67,7 @@ button {
 }
 
 .pinkButton {
-    background: #FFC7D0;
+    background-color: #FFC7D0;
     border: 1px solid #000000;
     border-radius: 16px;
     padding: 5px 0;
@@ -81,3 +83,10 @@ button {
 input:focus {
     border: 1px solid #941C2F;
 }
+
+    .selectedCategory {
+        background-color: #941C2F;
+            p {
+                color: white !important;
+            }
+    }

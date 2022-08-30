@@ -125,7 +125,7 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
                             </div>
                             <div className="textContainer">
                                 <h2>{idea.title}</h2>
-                                <p>{idea.price_range && dollarSigns(idea.price_range)}</p>
+                                <p>{idea.price_range && dollarSigns(idea.price_range)} {idea.categoryType}</p>
                                 <p>{idea.city && noZipCode(idea.city)}</p>
                             </div>
                         </div>

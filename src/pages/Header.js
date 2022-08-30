@@ -10,7 +10,7 @@ import Context from "../context/context";
 
 
 function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
-    // const [user, setUser] = useState([])
+    const [selectedCategory, setSelectedCategory] = useState("")
 
     const context = useContext(Context);
 
@@ -26,13 +26,15 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
 
     const handleClickHome = (e) => {
         setSearchTerm('')
+        setSelectedCategory('')
         getSearchTerm(e, '')
         getCategoryName('')
         navigate('/')
     }
-
+    
     const handleClickSaved = (e) => {
         setSearchTerm('')
+        setSelectedCategory('')
         getSearchTerm(e, '')
         getCategoryName('')
         navigate('/saved')
@@ -42,8 +44,10 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
         console.log('click', e)
         if (e.target.tagName === 'BUTTON') {
             getCategoryName(e.target.id)
+            setSelectedCategory(e.target.id)
         } else {
             getCategoryName(e.target.parentElement.id)
+            setSelectedCategory(e.target.parentElement.id)
         }
     }
 
@@ -70,19 +74,19 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                 </form>
                 <div className='headerFilter'>
                     <div>
-                        <button id="restaurants" onClick={handleClickButtons} className="pinkButton"><p>Food</p></button>
+                        <button id="restaurants" onClick={handleClickButtons} className={`pinkButton ${selectedCategory == "restaurants" && 'selectedCategory'}`}><p>Food</p></button>
                     </div>
                     <div>
-                        <button id="movies" onClick={handleClickButtons} className="pinkButton"><p>Movies</p></button>
+                        <button id="movies" onClick={handleClickButtons} className={`pinkButton ${selectedCategory == "movies" && 'selectedCategory'}`}><p>Movies</p></button>
                     </div>
                     <div>
-                        <button id="active" onClick={handleClickButtons} className="pinkButton"><p>Active</p></button>
+                        <button id="active" onClick={handleClickButtons} className={`pinkButton ${selectedCategory == "active" && 'selectedCategory'}`}><p>Active</p></button>
                     </div>
                     <div>
-                        <button id="attractions" onClick={handleClickButtons} className="pinkButton"><p>Attractions</p></button>
+                        <button id="attractions" onClick={handleClickButtons} className={`pinkButton ${selectedCategory == "attractions" && 'selectedCategory'}`}><p>Attractions</p></button>
                     </div>
                     <div>
-                        <button id="events" onClick={handleClickButtons} className="pinkButton"><p>Live Entertainment</p></button>
+                        <button id="events" onClick={handleClickButtons} className={`pinkButton ${selectedCategory == "events" && 'selectedCategory'}`}><p>Live Entertainment</p></button>
                     </div>
                 </div>
                 <div className="headerRightSide">

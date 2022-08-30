@@ -117,17 +117,31 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
 
                 // console.log(listMovies)
                 setDateIdeas({ ...dateIdeas, 'events': listEvents, 'movies': listMovies })
-
+                
                 //restaurants
-
-                const restaurantsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/restaurants")
+                
+                // const restaurantsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/restaurants")
+                const restaurantsResponse = await fetch("http://localhost:4000/dreamdates/restaurants")
                 if (!restaurantsResponse.ok) throw Error("did not received expected data")
                 const listRestaurants = await restaurantsResponse.json()
                 listRestaurants.forEach(item => item.categoryType = 'restaurants')
 
 
                 // console.log(listRestaurants)
-                setDateIdeas({ ...dateIdeas, 'events': listEvents, 'movies': listMovies, 'restaurants': listRestaurants })
+                
+                
+                //attractions
+
+                
+                // const attractionsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/attractions")
+                const attractionsResponse = await fetch("http://localhost:4000/dreamdates/attractions")
+                if (!attractionsResponse.ok) throw Error("did not received expected data")
+                const listAttractions = await attractionsResponse.json()
+                listAttractions.forEach(item => item.categoryType = 'attractions')
+
+
+                // console.log(listAttractions)
+                setDateIdeas({ ...dateIdeas, 'events': listEvents, 'movies': listMovies, 'restaurants': listRestaurants, 'attractions': listAttractions })
 
             } catch (err) {
                 alert(err.message)
