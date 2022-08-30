@@ -48,6 +48,20 @@ function Modal({ eventDetails, closeModal, userId }) {
         return array
     }
 
+    // const newDateFormat = (time) => {
+    //     const reg = /T/g
+    //     const reg2 = /:/g
+    //     const reg3 = /-/g
+    //     const str = time;
+    //     console.log( str.replace(reg, '-').replace(reg2,'-'))
+    //     // return str.replace(reg, '-').replace(reg2,'-').replace(reg3, ' ')
+    //     const adjustedDate = str.replace(reg, '-').replace(reg2,'-').replace(reg3, ', ')
+    //     console.log(adjustedDate)
+    //     const date = new Date(Date.UTC(adjustedDate));
+    //     console.log(date);
+    //     console.log(new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(date)
+    // )}
+
     const handleClickSave = () => {
         if (!userId) {
             // if not signed in the pop up
@@ -245,7 +259,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                                         </div>
                                         <h2>Date</h2>
                                     </div>
-                                <p>{time.toLocaleString()}</p>
+                                <p>{time}</p>
                                 </div>
                             }
                         </div>
