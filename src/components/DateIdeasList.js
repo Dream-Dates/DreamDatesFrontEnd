@@ -12,7 +12,7 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName 
     const [list, setList] = useState([])
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [saved, setSaved] = useState([])
-
+    console.log('dateDetails')
 
     useEffect(() => {
         // making the object into an array
@@ -27,7 +27,7 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName 
 
     useEffect(() => {
         const fetchSaved = async () => {
-            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
+            const response = await fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

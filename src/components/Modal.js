@@ -60,7 +60,7 @@ function Modal({ eventDetails, closeModal, userId }) {
 
     useEffect(() => {
         const fetchSaved = async () => {
-            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
+            const response = await fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -84,7 +84,7 @@ function Modal({ eventDetails, closeModal, userId }) {
             // if not signed in the pop up
             setCloseNotSignedIn(!closeNotSignedIn)
         } else {
-            fetch('http://localhost:4000/dreamdates/saved/dates', {
+            fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -95,7 +95,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                     if (data.some(item => item.id == id)) {
                         console.log('match - unsave')
                         // if id match then we remove
-                        fetch(`http://localhost:4000/dreamdates/datingideas/delete/${id}`, {
+                        fetch(`https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${id}`, {
                             method: 'DELETE',
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
@@ -110,8 +110,9 @@ function Modal({ eventDetails, closeModal, userId }) {
                         }, 500)
                     } else {
                         console.log('no match - save')
+                        console.log(eventDetails)
                         // if id does not match then we save
-                        fetch('http://localhost:4000/dreamdates/datingideas/saved', {
+                        fetch('https://dream-dates.herokuapp.com/dreamdates/datingideas/saved', {
                             method: 'POST',
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
