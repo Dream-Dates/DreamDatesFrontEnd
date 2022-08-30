@@ -2,17 +2,17 @@
 import leftArrow from '../assets/leftArrow.svg'
 import rightArrow from '../assets/rightArrow.svg'
 
-function Carousel({data}) {
+function Carousel({ data }) {
 
     const slideLeft = () => {
         const slider = document.getElementById('slider');
         slider.scrollLeft = slider.scrollLeft - 300;
-    } 
+    }
 
     const slideRight = () => {
         const slider = document.getElementById('slider');
         slider.scrollLeft = slider.scrollLeft + 300;
-    } 
+    }
 
     return (
         <div className="carousel">

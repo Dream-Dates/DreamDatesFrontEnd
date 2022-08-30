@@ -17,7 +17,6 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     const [searchTerm, setSearchTerm] = useState('')
 
     const handleChange = (e) => {
-        console.log(e.target.value);
         setSearchTerm(e.target.value)
         getSearchTerm(e, e.target.value)
     }
@@ -31,7 +30,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
         getCategoryName('')
         navigate('/')
     }
-    
+
     const handleClickSaved = (e) => {
         setSearchTerm('')
         setSelectedCategory('')
@@ -41,7 +40,6 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     }
 
     const handleClickButtons = (e) => {
-        console.log('click', e)
         if (e.target.tagName === 'BUTTON') {
             getCategoryName(e.target.id)
             setSelectedCategory(e.target.id)
@@ -96,7 +94,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                             <p>Saved</p>
                         </Link>
                     </div>
-                    {/* <div className="userAuth"> */}
+
                     {user.token ?
                         <div className="userAuth">
                             <p className='welcome'>Welcome back, {user.name}!</p>
@@ -110,12 +108,6 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                             </Link>
                         </div>
                     }
-                    {/* </div> */}
-                    {/* {user &&
-                        <div className='signOut'>
-                            <Link to='/' onClick={() => setUser(!user)}>Sign out</Link>
-                        </div>
-                    } */}
                 </div>
             </div>
             {/* MOBILE */}
@@ -159,7 +151,6 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                     <div className="savedButton">
                         <Link to='/saved' onClick={handleClickSaved} className={`pinkButton ${!user.token && 'disable-link'}`}>
                             <img src={redHeart} alt="red heart" />
-                            {/* <p>Saved</p> */}
                         </Link>
                     </div>
 
@@ -167,13 +158,13 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <div className="userAuth">
                             <div className="pinkButton">
                                 <img src={profileIcon} alt="" />
-                            <div className='profile'>
-                                <div className="profileContainer">
-                                    <p className='welcome'>Welcome back, {user.name}!</p>
-                                    <br />
-                                    <Link to='/' onClick={logUserOut} className="signOut">Sign out</Link>
+                                <div className='profile'>
+                                    <div className="profileContainer">
+                                        <p className='welcome'>Welcome back, {user.name}!</p>
+                                        <br />
+                                        <Link to='/' onClick={logUserOut} className="signOut">Sign out</Link>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                         :

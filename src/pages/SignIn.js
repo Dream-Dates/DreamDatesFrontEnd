@@ -5,7 +5,6 @@ import Context from "../context/context";
 
 function SignIn({rerender}) {
     const context = useContext(Context);
-    console.log(context)
 
     const navigate = useNavigate()
     const [signIn, setSignIn] = useState({
@@ -17,7 +16,6 @@ function SignIn({rerender}) {
         const newdata = { ...signIn }
         newdata[e.target.id] = e.target.value
         setSignIn(newdata)
-        console.log(newdata)
 
     }
 
@@ -33,8 +31,6 @@ function SignIn({rerender}) {
             })
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
-                console.log('TOKEN',data.token)
                 if (data.errorMessage) {
                     setMistake(data.errorMessage)
                 }
@@ -58,7 +54,6 @@ function SignIn({rerender}) {
         context.setEmail(email)
         context.setName(name)
         context.setLastName(lastname)
-        console.log("work")
     }
     return (
         <div className="signIn">

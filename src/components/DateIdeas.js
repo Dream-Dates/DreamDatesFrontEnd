@@ -17,7 +17,6 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails)
-        // console.log(e.target.id)
 
         // if you click on the heart it will run save method if not it will open the modal
         if (e.target.id === 'save') {
@@ -104,9 +103,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 // const eventsResponse = await fetch("http://localhost:4000/dreamdates/events")
                 if (!eventsResponse.ok) throw Error("did not received expected data")
                 const listEvents = await eventsResponse.json()
-                // console.log(listEvents)
                 listEvents.forEach(item => item.categoryType = 'events')
-                // console.log(listEvents)
 
                 //movies
                 const moviesResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/movies")
@@ -115,32 +112,20 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 const listMovies = await moviesResponse.json()
                 listMovies.forEach(item => item.categoryType = 'movies')
 
-                // console.log(listMovies)
-                setDateIdeas({ ...dateIdeas, 'events': listEvents, 'movies': listMovies })
-                
                 //restaurants
-                
                 const restaurantsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/restaurants")
                 // const restaurantsResponse = await fetch("http://localhost:4000/dreamdates/restaurants")
                 if (!restaurantsResponse.ok) throw Error("did not received expected data")
                 const listRestaurants = await restaurantsResponse.json()
                 listRestaurants.forEach(item => item.categoryType = 'restaurants')
 
-
-                // console.log(listRestaurants)
-                
-                
                 //attractions
-
-                
                 const attractionsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/attractions")
                 // const attractionsResponse = await fetch("http://localhost:4000/dreamdates/attractions")
                 if (!attractionsResponse.ok) throw Error("did not received expected data")
                 const listAttractions = await attractionsResponse.json()
                 listAttractions.forEach(item => item.categoryType = 'attractions')
 
-
-                // console.log(listAttractions)
                 setDateIdeas({ ...dateIdeas, 'events': listEvents, 'movies': listMovies, 'restaurants': listRestaurants, 'attractions': listAttractions })
 
             } catch (err) {

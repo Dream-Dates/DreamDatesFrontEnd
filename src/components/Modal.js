@@ -43,9 +43,6 @@ function Modal({ eventDetails, closeModal, userId }) {
     const context = useContext(Context);
 
     const newLine = (time) => {
-        // const reg = /\:/g
-        // const str = time;
-        // return str.replace(reg, ' /n')
         let array = time.split(': ')
         return array
     }
@@ -55,25 +52,14 @@ function Modal({ eventDetails, closeModal, userId }) {
         const reg2 = /:/g
         const reg3 = /T/g
         const str = time;
-        console.log( str.replace(reg, '-').replace(reg2,'-'))
-        // return str.replace(reg, '-').replace(reg2,'-').replace(reg3, ' ')
         const adjustedDate = str.replace(reg, ' ')
-        console.log(adjustedDate)
         let dateArray = adjustedDate.split('T')
-        console.log(dateArray)
-        dateArray[1] = dateArray[1].slice(0,5)
-        console.log(dateArray)
+        dateArray[1] = dateArray[1].slice(0, 5)
         return dateArray
-        
-        // const date = new Date(Date.UTC(2022, 08, 27, 03, 30, 00, 000));
-        // const date = new Date(Date.UTC(2020, 11, 20, 3, 23, 16, 738));
-        // console.log(date);
-        // console.log(new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(date)
     }
 
     useEffect(() => {
         const fetchSaved = async () => {
-            console.log('fetchSaved', userId)
             const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -82,15 +68,11 @@ function Modal({ eventDetails, closeModal, userId }) {
                 })
             }).then(res => res.json())
                 .then(data => {
-                    console.log('DATA', data)
                     const savedId = []
                     data.forEach(item => {
                         savedId.push(item.id)
-                        console.log(item.id)
                     })
-                    console.log(savedId)
                     setSaved(savedId)
-                    console.log(saved)
                 })
         }
 
@@ -110,9 +92,6 @@ function Modal({ eventDetails, closeModal, userId }) {
                 })
             }).then(res => res.json())
                 .then(data => {
-                    console.log(data)
-                    console.log(id)
-                    data.some(item =>console.log(item.id))
                     if (data.some(item => item.id == id)) {
                         console.log('match - unsave')
                         // if id match then we remove
@@ -210,8 +189,8 @@ function Modal({ eventDetails, closeModal, userId }) {
                             <img src={whiteHeart} className="whiteHeart" alt="White Heart" id='save' />
                         </button>
                         <button className={`heart ${!checkIfSaved(id) && 'hideHeart'}`} onClick={handleClickSave}>
-                        <img src={redHeart} className="redHeart" alt="White Heart" id='save' />
-                    </button>
+                            <img src={redHeart} className="redHeart" alt="White Heart" id='save' />
+                        </button>
                     </div>
                     <button onClick={handleClickModalClose}><img src={x} alt="x icon" id='close' /></button>
                 </div>
@@ -277,39 +256,39 @@ function Modal({ eventDetails, closeModal, userId }) {
                         </div>
                         <div className="rightSide">
                             {opening_hours && <div className="hoursContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img src={clock} alt='clock icon' />
-                                        </div>
-                                        <h2>Hours</h2>
+                                <div className="subTitle">
+                                    <div className="midIcon">
+                                        <img src={clock} alt='clock icon' />
                                     </div>
-                                    {opening_hours.map(item => {
-                                        return (
-                                            <>
+                                    <h2>Hours</h2>
+                                </div>
+                                {opening_hours.map(item => {
+                                    return (
+                                        <>
                                             {newLine(item).map(each => {
                                                 return (
                                                     <p>{each}</p>
                                                 )
                                             })}
-                                            <br/>
-                                            </>
-                                        )
-                                    })}
-                                </div>
+                                            <br />
+                                        </>
+                                    )
+                                })}
+                            </div>
                             }
                             {time && <div className="hoursContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img src={clock} alt='clock icon' />
-                                        </div>
-                                        <h2>Date</h2>
+                                <div className="subTitle">
+                                    <div className="midIcon">
+                                        <img src={clock} alt='clock icon' />
                                     </div>
+                                    <h2>Date</h2>
+                                </div>
                                 {newDateFormat(time).map(each => {
                                     return (
                                         <p>{each}</p>
-                                )
+                                    )
                                 })}
-                                </div>
+                            </div>
                             }
                         </div>
                     </div>
@@ -327,7 +306,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                 </div>
             </div>
 
-            {showSavePopup && <SavePopup text={saveMessage}/>}
+            {showSavePopup && <SavePopup text={saveMessage} />}
         </div>
     )
 }

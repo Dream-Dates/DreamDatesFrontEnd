@@ -15,7 +15,6 @@ function Saved({ userId, searchTerm, categoryName }) {
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails)
-        // console.log(e.target.id)
 
         // if you click on the heart it will run save method if not it will open the modal
         if (e.target.id === 'save') {
@@ -41,7 +40,7 @@ function Saved({ userId, searchTerm, categoryName }) {
                                 })
                             }).then(res => res.json())
                                 .then(data => console.log(data))
-                                setToggle(!toggle)
+                            setToggle(!toggle)
                         } else {
                             console.log('no match - save')
                             console.log(eventDetails)
@@ -87,7 +86,6 @@ function Saved({ userId, searchTerm, categoryName }) {
 
     useEffect(() => {
         const fetchSaved = async () => {
-            console.log('fetchSaved', userId)
             const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -96,11 +94,9 @@ function Saved({ userId, searchTerm, categoryName }) {
                 })
             }).then(res => res.json())
                 .then(data => {
-                    console.log('DATA', data)
                     data.forEach(item => item.categoryType = 'saved')
-                    
-                    setSaved({'saved': data})
-                    console.log(saved)
+
+                    setSaved({ 'saved': data })
                 })
         }
 

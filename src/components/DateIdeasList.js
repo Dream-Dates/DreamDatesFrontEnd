@@ -5,33 +5,28 @@ import whiteHeart from '../assets/whiteHeart.svg';
 import redHeart from '../assets/redHeart.svg';
 import x from '../assets/X.svg';
 import defaultImagePlaceholderSmall from '../assets/defaultImagePlaceholderSmall.jpg';
-import { Link,} from "react-router-dom"
+import { Link, } from "react-router-dom"
 
-function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName}) {
+function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName }) {
     let mainList = []
     const [list, setList] = useState([])
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [saved, setSaved] = useState([])
 
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         // making the object into an array
-        // console.log(ideas)
+        for (let category in ideas) {
+            ideas[category].forEach(item => mainList.push(item))
+        }
 
-            for(let category in ideas) {
-                ideas[category].forEach(item => mainList.push(item))
-            }
-
-        
         // randomize the list
-        mainList = mainList.sort(() => Math.random() - 0.5 )
+        mainList = mainList.sort(() => Math.random() - 0.5)
         setList(mainList)
-        // console.log(list)
     }, [ideas])
 
     useEffect(() => {
         const fetchSaved = async () => {
-            console.log('fetchSaved', userId)
             const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -40,15 +35,11 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
                 })
             }).then(res => res.json())
                 .then(data => {
-                    console.log('DATA', data)
                     const savedId = []
                     data.forEach(item => {
                         savedId.push(item.id)
-                        console.log(item.id)
                     })
-                    console.log(savedId)
                     setSaved(savedId)
-                    console.log(saved)
                 })
         }
 
@@ -62,7 +53,7 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
     }
 
     const handleClick = () => {
-        if(!userId) {
+        if (!userId) {
             // sign up or sign in pop up
             setCloseNotSignedIn(!closeNotSignedIn)
         }
@@ -82,13 +73,13 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
         return dollar.join('')
     }
 
-    const filteredList = list.filter( item => (item.title.toLowerCase().match(searchTerm.toLowerCase())&&(item.categoryType.match(categoryName))))
+    const filteredList = list.filter(item => (item.title.toLowerCase().match(searchTerm.toLowerCase()) && (item.categoryType.match(categoryName))))
 
     const checkIfSaved = (eventId) => {
-        return saved.some( item => item == eventId)
+        return saved.some(item => item == eventId)
     }
 
-    return(
+    return (
         <div className="dateIdeasList">
 
             {closeNotSignedIn && <div className="catch" onClick={handleClickNotSignInClose}>
@@ -115,10 +106,10 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
                             {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
                             </div> */}
                             <button className={`heart ${checkIfSaved(idea.id) && 'hideHeart'}`} onClick={handleClick}>
-                                <img src={whiteHeart} className="whiteHeart" alt="White Heart" id='save'/>
+                                <img src={whiteHeart} className="whiteHeart" alt="White Heart" id='save' />
                             </button>
                             <button className={`heart ${!checkIfSaved(idea.id) && 'hideHeart'}`} onClick={handleClick}>
-                                <img src={redHeart} className="redHeart" alt="White Heart" id='save'/>
+                                <img src={redHeart} className="redHeart" alt="White Heart" id='save' />
                             </button>
                             <div className="imageContainer">
                                 <img src={idea.img ? idea.img : defaultImagePlaceholderSmall} alt={`Image of ${idea.title}`} />

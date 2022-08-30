@@ -20,7 +20,6 @@ function SignUp({ rerender }) {
         const newdata = { ...signUp }
         newdata[e.target.id] = e.target.value
         setSignUp(newdata)
-        console.log(newdata)
 
     }
 
@@ -38,7 +37,6 @@ function SignUp({ rerender }) {
             })
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data.errorMessage) {
                     setMistake(data.errorMessage)
                 }
@@ -61,7 +59,6 @@ function SignUp({ rerender }) {
             context.setEmail(email)
             context.setName(name)
             context.setLastName(lastname)
-            console.log("work")
         }
         return false
     }
