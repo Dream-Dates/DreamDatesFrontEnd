@@ -83,8 +83,14 @@ h4 {
     font-weight: 400;
 }
 
+.modal .hoursContainer p {
+    font-family: 'Mirza', cursive;
+    font-size: 20;
+}
+
 .dateIdeasList .textContainer p {
     font-weight: 500;
+    text-transform: capitalize;
 }
 
 input {

@@ -265,7 +265,7 @@ p {
 }
 
 button {
-  background: transparent;
+  background-color: transparent;
   border: none;
   text-decoration: none;
   color: inherit;
@@ -287,7 +287,7 @@ button:hover p {
 }
 
 .pinkButton {
-  background: #FFC7D0;
+  background-color: #FFC7D0;
   border: 1px solid #000000;
   border-radius: 16px;
   padding: 5px 0;
@@ -302,6 +302,13 @@ button:hover p {
 
 input:focus {
   border: 1px solid #941C2F;
+}
+
+.selectedCategory {
+  background-color: #941C2F;
+}
+.selectedCategory p {
+  color: white !important;
 }
 
 * {
@@ -387,8 +394,14 @@ h4 {
   font-weight: 400;
 }
 
+.modal .hoursContainer p {
+  font-family: "Mirza", cursive;
+  font-size: 20;
+}
+
 .dateIdeasList .textContainer p {
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 input {
@@ -560,11 +573,12 @@ input {
 }
 .dateIdeasCard .textContainer {
   margin: 10px 15px;
-  overflow: hidden;
 }
 .dateIdeasCard h2 {
   white-space: nowrap;
+  overflow: hidden;
   padding: 5px 0;
+  text-overflow: ellipsis;
 }
 .dateIdeasCard p {
   padding: 2px 0;
@@ -667,7 +681,7 @@ input {
 }
 
 .modalContainer {
-  width: min(90vw, 1000px);
+  width: min(90vw, 750px);
   padding-bottom: 123px;
   height: calc(100vh - 20px);
   overflow: auto;
@@ -848,12 +862,15 @@ h1 {
   overflow: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px 0 5px 0;
 }
 .carousel .carouselCard {
   width: 167px;
-  height: 156px;
+  max-height: 156px;
   display: inline-block;
   padding: 0 5px;
+  overflow: hidden;
 }
 .carousel button:hover {
   background-color: transparent;
@@ -1101,6 +1118,10 @@ h4 {
   .modalContainer .rightSide {
     padding-left: 0;
   }
+  .modalContainer .rightSide,
+.modalContainer .leftSide {
+    width: 100%;
+  }
 }
 @media (max-width: 750px) {
   .modalContainer .textContainer {
@@ -1189,6 +1210,10 @@ h4 {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+  }
+  .userAuth .pinkButton:hover img {
+    -webkit-filter: none;
+            filter: none;
   }
   .profileContainer {
     display: -webkit-box;

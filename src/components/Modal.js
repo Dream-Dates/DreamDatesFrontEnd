@@ -40,6 +40,14 @@ function Modal({ eventDetails, closeModal, userId }) {
 
     const context = useContext(Context);
 
+    const newLine = (time) => {
+        // const reg = /\:/g
+        // const str = time;
+        // return str.replace(reg, ' /n')
+        let array = time.split(': ')
+        return array
+    }
+
     const handleClickSave = () => {
         if (!userId) {
             // if not signed in the pop up
@@ -157,16 +165,17 @@ function Modal({ eventDetails, closeModal, userId }) {
                 <div className="textContainer">
                     <div className="topSide">
                         <div className="heading">
-                            {website && <Link to={website} className='pinkButton' target="_blank">
+                            {website && <a href={website} className='pinkButton' target="_blank">
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
-                            </Link>}
-                            {link && <Link to={link} className='pinkButton' target="_blank">
+                            </a>}
+                            {link && <a href={link} className='pinkButton' target="_blank">
                                 <img src={globe} alt="globe icon" /> <p>Website</p>
-                            </Link>}
+                            </a>}
                             <h2>{price_range ? dollarSigns(price_range) : price ? price : ' '}</h2>
                             {categoryType === 'events' && <h2>Ticket Event</h2>}
                             {categoryType === 'movies' && <h2>Movie</h2>}
                             {categoryType === 'restaurants' && <h2>Restaurant</h2>}
+                            {categoryType === 'attractions' && <h2>Attractions</h2>}
                         </div>
                     </div>
                     <div className="midSide">
@@ -215,7 +224,18 @@ function Modal({ eventDetails, closeModal, userId }) {
                                         </div>
                                         <h2>Hours</h2>
                                     </div>
-                                    <p>{opening_hours}</p>
+                                    {opening_hours.map(item => {
+                                        return (
+                                            <>
+                                            {newLine(item).map(each => {
+                                                return (
+                                                    <p>{each}</p>
+                                                )
+                                            })}
+                                            <br/>
+                                            </>
+                                        )
+                                    })}
                                 </div>
                             }
                             {time && <div className="hoursContainer">
@@ -223,9 +243,9 @@ function Modal({ eventDetails, closeModal, userId }) {
                                         <div className="midIcon">
                                             <img src={clock} alt='clock icon' />
                                         </div>
-                                        <h2>Time</h2>
+                                        <h2>Date</h2>
                                     </div>
-                                    <p>{time}</p>
+                                <p>{time.toLocaleString()}</p>
                                 </div>
                             }
                         </div>
@@ -237,8 +257,8 @@ function Modal({ eventDetails, closeModal, userId }) {
                             </div>
                             <h2>Photos</h2>
                         </div>
-                        <Carousel data={data} />
-                        {/* <Carousel data={image} /> */}
+                        {/* <Carousel data={data} /> */}
+                        <Carousel data={image} />
                     </div>
                     }
                 </div>

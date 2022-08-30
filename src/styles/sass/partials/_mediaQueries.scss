@@ -78,6 +78,10 @@
         .rightSide {
             padding-left: 0;
         }
+        .rightSide,
+        .leftSide {
+            width: 100%;
+        }
     }
 }
 
@@ -181,6 +185,13 @@
         display: flex;
     }
 
+.userAuth {
+    .pinkButton {
+        &:hover img {
+            filter: none;
+        }
+    }
+}
 
     .profileContainer {
         display: flex;

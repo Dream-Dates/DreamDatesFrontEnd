@@ -34,11 +34,13 @@
     .textContainer {
         // border: 1px solid green;
         margin: 10px 15px;
-        overflow: hidden;
+        // overflow: hidden;
     }
     h2 {
         white-space: nowrap;
+        overflow: hidden;
         padding: 5px 0;
+        text-overflow: ellipsis;
     }
     p {
         padding: 2px 0;
