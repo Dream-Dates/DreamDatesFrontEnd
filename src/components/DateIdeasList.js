@@ -7,11 +7,14 @@ import x from '../assets/X.svg';
 import defaultImagePlaceholderSmall from '../assets/defaultImagePlaceholderSmall.jpg';
 import { Link, } from "react-router-dom"
 
-function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName }) {
+function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName, refresh }) {
     let mainList = []
     const [list, setList] = useState([])
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [saved, setSaved] = useState([])
+    const [reload, setReload] = useState(refresh)
+    console.log({refresh, reload})
+    
     console.log('dateDetails')
 
     useEffect(() => {
@@ -19,15 +22,19 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName 
         for (let category in ideas) {
             ideas[category].forEach(item => mainList.push(item))
         }
-
+        setList(mainList)
+        
+    }, [ideas])
+    
+    useEffect(() => {
         // randomize the list
         mainList = mainList.sort(() => Math.random() - 0.5)
         setList(mainList)
-    }, [ideas])
+    }, [reload])
 
     useEffect(() => {
         const fetchSaved = async () => {
-            const response = await fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
+            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -40,11 +47,12 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName 
                         savedId.push(item.id)
                     })
                     setSaved(savedId)
+                    setReload(false)
                 })
         }
 
         fetchSaved()
-    }, [])
+    }, [ideas])
 
     const noZipCode = (addy) => {
         const reg = /(?<![0-9-])([0-9]{5}(?:[ -][0-9]{4})?)(?![0-9-])/gm

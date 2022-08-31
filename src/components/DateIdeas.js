@@ -4,7 +4,7 @@ import DateIdeasList from "./DateIdeasList"
 import Modal from "./Modal"
 import SavePopup from "./SavePopup"
 
-function DateIdeas({ userId, searchTerm, categoryName }) {
+function DateIdeas({ userId, searchTerm, categoryName, refresh }) {
     const [dateIdeas, setDateIdeas] = useState({
         events: [],
         movies: [],
@@ -14,6 +14,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
     const [showModal, setShowModal] = useState(false)
     const [showSavePopup, setShowSavePopup] = useState(false)
     const [saveMessage, setSaveMessage] = useState('')
+    
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails)
@@ -22,7 +23,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
         if (e.target.id === 'save') {
             if (userId) {
                 console.log('card Save');
-                fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
+                fetch('http://localhost:4000/dreamdates/saved/dates', {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -34,7 +35,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                         if (data.some(item => item.id == eventDetails.id)) {
                             console.log('match - unsave')
                             // if id match then we remove
-                            fetch(`https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${eventDetails.id}`, {
+                            fetch(`http://localhost:4000/dreamdates/datingideas/delete/${eventDetails.id}`, {
                                 method: 'DELETE',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
@@ -51,7 +52,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                             console.log('no match - save')
                             console.log(eventDetails)
                             // if id does not match then we save
-                            fetch('https://dream-dates.herokuapp.com/dreamdates/datingideas/saved', {
+                            fetch('http://localhost:4000/dreamdates/datingideas/saved', {
                                 method: 'POST',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
@@ -141,7 +142,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
             {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId} />
             }
             <DateIdeasList ideas={dateIdeas} selectedEvent={openModal} userId={userId} searchTerm={searchTerm} categoryName={categoryName} />
-            {showSavePopup && <SavePopup text={saveMessage} />}
+            {showSavePopup && <SavePopup text={saveMessage} refresh={refresh}/>}
         </div>
     )
 }

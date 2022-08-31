@@ -22,7 +22,7 @@ function SignIn({rerender}) {
     const signInUser = async (e) => {
         e.preventDefault();
 
-        const response = await fetch("https://dream-dates.herokuapp.com/login", {
+        const response = await fetch("http://localhost:4000/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -42,19 +42,19 @@ function SignIn({rerender}) {
                     let email = data.getUser[0].email
                     let name = data.getUser[0].name
                     let lastname = data.getUser[0].last_name
-                    setUserInfo(id, email, name, lastname)
+                    // setUserInfo(id, email, name, lastname)
                     rerender()
                     navigate("/")
                 }
             })
         return false
     }
-    function setUserInfo(id, email, name, lastname) {
-        context.setUserId(id)
-        context.setEmail(email)
-        context.setName(name)
-        context.setLastName(lastname)
-    }
+    // function setUserInfo(id, email, name, lastname) {
+    //     context.setUserId(id)
+    //     context.setEmail(email)
+    //     context.setName(name)
+    //     context.setLastName(lastname)
+    // }
     return (
         <div className="signIn">
             <form onSubmit={(e) => signInUser(e)}>

@@ -23,7 +23,7 @@ function Saved({ userId, searchTerm, categoryName }) {
             console.log(eventDetails.title)
             if (userId) {
                 console.log('card Save');
-                fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
+                fetch('http://localhost:4000/dreamdates/saved/dates', {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -35,7 +35,7 @@ function Saved({ userId, searchTerm, categoryName }) {
                         if (data.some(item => item.id == eventDetails.id)) {
                             console.log('match - unsave')
                             // if id match then we remove
-                            fetch(`https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${eventDetails.id}`, {
+                            fetch(`http://localhost:4000/dreamdates/datingideas/delete/${eventDetails.id}`, {
                                 method: 'DELETE',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
@@ -44,13 +44,14 @@ function Saved({ userId, searchTerm, categoryName }) {
                             }).then(res => res.json())
                                 .then(data => {
                                     console.log(data)
+                                    console.log('toggle')
                                     setToggle(!toggle)
                                 })
                         } else {
                             console.log('no match - save')
                             console.log(eventDetails)
                             // if id does not match then we save
-                            fetch('https://dream-dates.herokuapp.com/dreamdates/datingideas/saved', {
+                            fetch('http://localhost:4000/dreamdates/datingideas/saved', {
                                 method: 'POST',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
@@ -91,7 +92,7 @@ function Saved({ userId, searchTerm, categoryName }) {
 
     useEffect(() => {
         const fetchSaved = async () => {
-            const response = await fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
+            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -110,7 +111,7 @@ function Saved({ userId, searchTerm, categoryName }) {
 
         fetchSaved()
         // async function test() {
-        //     const apiRes =  await fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
+        //     const apiRes =  await fetch('http://localhost:4000/dreamdates/saved/dates', {
         //         method: "POST",
         //         headers: { "Content-Type": "application/json" },
         //         body: JSON.stringify({
@@ -125,7 +126,7 @@ function Saved({ userId, searchTerm, categoryName }) {
 
 
 
-        // fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
+        // fetch('http://localhost:4000/dreamdates/saved/dates', {
         //         method: "POST",
         //         headers: { "Content-Type": "application/json" },
         //         body: JSON.stringify({
