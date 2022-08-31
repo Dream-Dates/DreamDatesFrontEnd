@@ -66,6 +66,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                                     "price_range": eventDetails.price_range,
                                     "link": eventDetails.link,
                                     "img": eventDetails.img,
+                                    "image": eventDetails.image,
                                     "time": eventDetails.time,
                                     "description": eventDetails.description,
                                     "votes": eventDetails.votes,
