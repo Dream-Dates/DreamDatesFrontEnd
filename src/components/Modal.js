@@ -19,13 +19,14 @@ import SavePopup from './SavePopup'
 
 
 
-function Modal({ eventDetails, closeModal, userId }) {
+function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
     const { id, type, title, adress_street, city, country, venue, price_range, link, img, time, description, votes, price, opening_hours, website, rating, image, categoryType } = eventDetails
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [showSavePopup, setShowSavePopup] = useState(false)
     const [saveMessage, setSaveMessage] = useState('')
     const [saved, setSaved] = useState([])
+    const [toggle, setToggle] = useState(false)
 
     const handleClickModalClose = (e) => {
         if (e.target.className === 'modal' || e.target.id === 'close') {
@@ -43,9 +44,6 @@ function Modal({ eventDetails, closeModal, userId }) {
     const context = useContext(Context);
 
     const newLine = (time) => {
-        // const reg = /\:/g
-        // const str = time;
-        // return str.replace(reg, ' /n')
         let array = time.split(': ')
         return array
     }
@@ -55,26 +53,16 @@ function Modal({ eventDetails, closeModal, userId }) {
         const reg2 = /:/g
         const reg3 = /T/g
         const str = time;
-        console.log( str.replace(reg, '-').replace(reg2,'-'))
-        // return str.replace(reg, '-').replace(reg2,'-').replace(reg3, ' ')
         const adjustedDate = str.replace(reg, ' ')
-        console.log(adjustedDate)
         let dateArray = adjustedDate.split('T')
-        console.log(dateArray)
-        dateArray[1] = dateArray[1].slice(0,5)
-        console.log(dateArray)
+        dateArray[1] = dateArray[1].slice(0, 5)
         return dateArray
-        
-        // const date = new Date(Date.UTC(2022, 08, 27, 03, 30, 00, 000));
-        // const date = new Date(Date.UTC(2020, 11, 20, 3, 23, 16, 738));
-        // console.log(date);
-        // console.log(new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(date)
     }
 
     useEffect(() => {
+        console.log('useEffect MODAL')
         const fetchSaved = async () => {
-            console.log('fetchSaved', userId)
-            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
+            const response = await fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -82,27 +70,23 @@ function Modal({ eventDetails, closeModal, userId }) {
                 })
             }).then(res => res.json())
                 .then(data => {
-                    console.log('DATA', data)
                     const savedId = []
                     data.forEach(item => {
                         savedId.push(item.id)
-                        console.log(item.id)
                     })
-                    console.log(savedId)
                     setSaved(savedId)
-                    console.log(saved)
                 })
         }
 
         fetchSaved()
-    }, [])
+    }, [toggle])
 
     const handleClickSave = () => {
         if (!userId) {
             // if not signed in the pop up
             setCloseNotSignedIn(!closeNotSignedIn)
         } else {
-            fetch('http://localhost:4000/dreamdates/saved/dates', {
+            fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -110,20 +94,21 @@ function Modal({ eventDetails, closeModal, userId }) {
                 })
             }).then(res => res.json())
                 .then(data => {
-                    console.log(data)
-                    console.log(id)
-                    data.some(item =>console.log(item.id))
                     if (data.some(item => item.id == id)) {
                         console.log('match - unsave')
                         // if id match then we remove
-                        fetch(`http://localhost:4000/dreamdates/datingideas/delete/${id}`, {
+                        fetch(`https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${id}`, {
                             method: 'DELETE',
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
                                 "userid": userId
                             })
                         }).then(res => res.json())
-                            .then(data => console.log(data))
+                            .then(data => {
+                                console.log(data)
+                                setToggle(!toggle)
+                                triggerToggle()
+                            })
                         setShowSavePopup(true)
                         setSaveMessage('Unsaved')
                         setTimeout(() => {
@@ -131,8 +116,9 @@ function Modal({ eventDetails, closeModal, userId }) {
                         }, 500)
                     } else {
                         console.log('no match - save')
+                        console.log(eventDetails)
                         // if id does not match then we save
-                        fetch('http://localhost:4000/dreamdates/datingideas/saved', {
+                        fetch('https://dream-dates.herokuapp.com/dreamdates/datingideas/saved', {
                             method: 'POST',
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
@@ -146,6 +132,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                                 "price_range": price_range,
                                 "link": link,
                                 "img": img,
+                                "image": image,
                                 "time": time,
                                 "description": description,
                                 "votes": votes,
@@ -156,7 +143,11 @@ function Modal({ eventDetails, closeModal, userId }) {
                                 "user_id": userId
                             })
                         }).then(res => res.json())
-                            .then(data => console.log(data))
+                            .then(data => {
+                                console.log(data)
+                                setToggle(!toggle)
+                                triggerToggle()
+                            })
                         setShowSavePopup(true)
                         setSaveMessage('Saved')
                         setTimeout(() => {
@@ -164,6 +155,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                         }, 500)
                     }
                 })
+                
         }
     }
 
@@ -210,8 +202,8 @@ function Modal({ eventDetails, closeModal, userId }) {
                             <img src={whiteHeart} className="whiteHeart" alt="White Heart" id='save' />
                         </button>
                         <button className={`heart ${!checkIfSaved(id) && 'hideHeart'}`} onClick={handleClickSave}>
-                        <img src={redHeart} className="redHeart" alt="White Heart" id='save' />
-                    </button>
+                            <img src={redHeart} className="redHeart" alt="White Heart" id='save' />
+                        </button>
                     </div>
                     <button onClick={handleClickModalClose}><img src={x} alt="x icon" id='close' /></button>
                 </div>
@@ -277,39 +269,39 @@ function Modal({ eventDetails, closeModal, userId }) {
                         </div>
                         <div className="rightSide">
                             {opening_hours && <div className="hoursContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img src={clock} alt='clock icon' />
-                                        </div>
-                                        <h2>Hours</h2>
+                                <div className="subTitle">
+                                    <div className="midIcon">
+                                        <img src={clock} alt='clock icon' />
                                     </div>
-                                    {opening_hours.map(item => {
-                                        return (
-                                            <>
+                                    <h2>Hours</h2>
+                                </div>
+                                {opening_hours.map(item => {
+                                    return (
+                                        <>
                                             {newLine(item).map(each => {
                                                 return (
                                                     <p>{each}</p>
                                                 )
                                             })}
-                                            <br/>
-                                            </>
-                                        )
-                                    })}
-                                </div>
+                                            <br />
+                                        </>
+                                    )
+                                })}
+                            </div>
                             }
                             {time && <div className="hoursContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img src={clock} alt='clock icon' />
-                                        </div>
-                                        <h2>Date</h2>
+                                <div className="subTitle">
+                                    <div className="midIcon">
+                                        <img src={clock} alt='clock icon' />
                                     </div>
+                                    <h2>Date</h2>
+                                </div>
                                 {newDateFormat(time).map(each => {
                                     return (
                                         <p>{each}</p>
-                                )
+                                    )
                                 })}
-                                </div>
+                            </div>
                             }
                         </div>
                     </div>
@@ -327,7 +319,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                 </div>
             </div>
 
-            {showSavePopup && <SavePopup text={saveMessage}/>}
+            {showSavePopup && <SavePopup text={saveMessage} />}
         </div>
     )
 }

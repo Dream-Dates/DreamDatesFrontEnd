@@ -2,7 +2,7 @@
 import redHeart from '../assets/redHeart.svg';
 import whiteHeart from '../assets/whiteHeart.svg';
 
-function SavePopup({text}) {
+function SavePopup({ text }) {
     return (
         <div className="savePopup">
             <div className="savePopupContainer">

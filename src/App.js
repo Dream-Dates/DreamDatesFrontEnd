@@ -19,6 +19,7 @@ function App() {
   const [toggle, setToggle] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [categoryName, setCategoryName] = useState('')
+  const [refresh, setRefresh] = useState(true)
 
   const rerender = () => {
     setToggle(!toggle)
@@ -62,7 +63,7 @@ function App() {
       
 
       <Routes>
-        <Route path='/' element={<DateIdeas userId={user.id} searchTerm={searchTerm} categoryName={categoryName} />} />
+        <Route path='/' element={<DateIdeas userId={user.id} searchTerm={searchTerm} categoryName={categoryName} refresh={refresh}/>} />
         <Route path='/signup' element={<SignUp rerender={rerender}/>} />
           <Route path='/signin' element={<SignIn rerender={rerender} />} />
           <Route path='/saved' element={<Saved userId={user.id} searchTerm={searchTerm} categoryName={categoryName} />} />

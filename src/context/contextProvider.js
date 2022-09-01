@@ -7,6 +7,9 @@ export default function ContextProvider({children}){
     const [email, setEmail] = useState("");
     const [lastname, setLastName] = useState("")
 
+    const [initialDatesArray, setInitialDatesArray] = useState([])
+    const [initialSavedArray, setInitialSavedArray] = useState([])
+
     const state = {
         userid: userid,
         setUserId: setUserId,
@@ -15,8 +18,14 @@ export default function ContextProvider({children}){
         email: email,
         setEmail: setEmail,
         lastname: lastname,
-        setLastName: setLastName
+        setLastName: setLastName,
         
+        initialDatesArray: initialDatesArray,
+        setInitialDatesArray: setInitialDatesArray,
+        
+        initialSavedArray: initialSavedArray,
+        setInitialSavedArray: setInitialSavedArray,
+
     }
 
     return (

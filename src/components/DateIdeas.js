@@ -4,7 +4,7 @@ import DateIdeasList from "./DateIdeasList"
 import Modal from "./Modal"
 import SavePopup from "./SavePopup"
 
-function DateIdeas({ userId, searchTerm, categoryName }) {
+function DateIdeas({ userId, searchTerm, categoryName, refresh }) {
     const [dateIdeas, setDateIdeas] = useState({
         events: [],
         movies: [],
@@ -14,16 +14,17 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
     const [showModal, setShowModal] = useState(false)
     const [showSavePopup, setShowSavePopup] = useState(false)
     const [saveMessage, setSaveMessage] = useState('')
+    const [toggle, setToggle] = useState(false)
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails)
-        // console.log(e.target.id)
 
         // if you click on the heart it will run save method if not it will open the modal
         if (e.target.id === 'save') {
             if (userId) {
                 console.log('card Save');
-                fetch('http://localhost:4000/dreamdates/saved/dates', {
+                // fetch('http://localhost:4000/dreamdates/saved/dates', {
+                fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -35,7 +36,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                         if (data.some(item => item.id == eventDetails.id)) {
                             console.log('match - unsave')
                             // if id match then we remove
-                            fetch(`http://localhost:4000/dreamdates/datingideas/delete/${eventDetails.id}`, {
+                            fetch(`https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${eventDetails.id}`, {
                                 method: 'DELETE',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
@@ -52,7 +53,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                             console.log('no match - save')
                             console.log(eventDetails)
                             // if id does not match then we save
-                            fetch('http://localhost:4000/dreamdates/datingideas/saved', {
+                            fetch('https://dream-dates.herokuapp.com/dreamdates/datingideas/saved', {
                                 method: 'POST',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
@@ -87,7 +88,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                         }
                     })
             }
-
+            setToggle(!toggle)
         } else {
             setShowModal(true)
         }
@@ -95,6 +96,10 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
 
     const closeModal = () => {
         setShowModal(false)
+    }
+
+    const triggerToggle = () => {
+        setToggle(!toggle)
     }
 
     useEffect(() => {
@@ -105,9 +110,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 // const eventsResponse = await fetch("http://localhost:4000/dreamdates/events")
                 if (!eventsResponse.ok) throw Error("did not received expected data")
                 const listEvents = await eventsResponse.json()
-                // console.log(listEvents)
                 listEvents.forEach(item => item.categoryType = 'events')
-                // console.log(listEvents)
 
                 //movies
                 const moviesResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/movies")
@@ -116,32 +119,20 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 const listMovies = await moviesResponse.json()
                 listMovies.forEach(item => item.categoryType = 'movies')
 
-                // console.log(listMovies)
-                setDateIdeas({ ...dateIdeas, 'events': listEvents, 'movies': listMovies })
-                
                 //restaurants
-                
                 const restaurantsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/restaurants")
                 // const restaurantsResponse = await fetch("http://localhost:4000/dreamdates/restaurants")
                 if (!restaurantsResponse.ok) throw Error("did not received expected data")
                 const listRestaurants = await restaurantsResponse.json()
                 listRestaurants.forEach(item => item.categoryType = 'restaurants')
 
-
-                // console.log(listRestaurants)
-                
-                
                 //attractions
-
-                
                 const attractionsResponse = await fetch("https://dream-dates.herokuapp.com/dreamdates/attractions")
                 // const attractionsResponse = await fetch("http://localhost:4000/dreamdates/attractions")
                 if (!attractionsResponse.ok) throw Error("did not received expected data")
                 const listAttractions = await attractionsResponse.json()
                 listAttractions.forEach(item => item.categoryType = 'attractions')
 
-
-                // console.log(listAttractions)
                 setDateIdeas({ ...dateIdeas, 'events': listEvents, 'movies': listMovies, 'restaurants': listRestaurants, 'attractions': listAttractions })
 
             } catch (err) {
@@ -149,13 +140,13 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
             }
         }
         fetchEvents()
-    }, [])
+    }, [toggle])
 
     return (
         <div className="dateIdeas">
-            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId} />
+            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId} triggerToggle={triggerToggle}/>
             }
-            <DateIdeasList ideas={dateIdeas} selectedEvent={openModal} userId={userId} searchTerm={searchTerm} categoryName={categoryName} />
+            <DateIdeasList ideas={dateIdeas} selectedEvent={openModal} userId={userId} searchTerm={searchTerm} categoryName={categoryName} refresh={refresh}/>
             {showSavePopup && <SavePopup text={saveMessage} />}
         </div>
     )

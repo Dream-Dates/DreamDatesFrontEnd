@@ -5,34 +5,79 @@ import whiteHeart from '../assets/whiteHeart.svg';
 import redHeart from '../assets/redHeart.svg';
 import x from '../assets/X.svg';
 import defaultImagePlaceholderSmall from '../assets/defaultImagePlaceholderSmall.jpg';
-import { Link,} from "react-router-dom"
+import { Link, } from "react-router-dom"
+import { useContext } from 'react';
+import Context from '../context/context';
 
-function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName}) {
+function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName, refresh }) {
     let mainList = []
     const [list, setList] = useState([])
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [saved, setSaved] = useState([])
+    const [reload, setReload] = useState(refresh)
+    const [randomized, setRandomized] = useState(false)
+    // console.log({refresh, reload})
+    // console.log({refresh})
+    console.log('dateDetails')
 
-    
-    useEffect(()=>{
-        // making the object into an array
-        // console.log(ideas)
-
-            for(let category in ideas) {
-                ideas[category].forEach(item => mainList.push(item))
-            }
-
-        
-        // randomize the list
-        mainList = mainList.sort(() => Math.random() - 0.5 )
-        setList(mainList)
-        // console.log(list)
-    }, [ideas])
+    const context = useContext(Context)
 
     useEffect(() => {
+        // making the object into an array
+        for (let category in ideas) {
+            ideas[category].forEach(item => mainList.push(item))
+        }
+        setList(mainList)
+        console.log('randomize')
+        // randomize the list
+        mainList = mainList.sort(() => Math.random() - 0.5)
+        setList(mainList)
+        // console.log('test', mainList, mainList[0])
+        // // console.log(ideas)
+        // // console.log(ideas, ideas[0])
+        // if( mainList[0].categoryType) {
+        //     if (mainList[0].categoryType !== 'saved') {
+        //         context.setInitialDatesArray(mainList)
+        //     } else {
+        //         context.setInitialSavedArray(mainList)
+        //     }
+        // }
+        
+    }, [ideas])
+    
+    // useEffect(() => {
+    //     console.log('randomize')
+    //     // randomize the list
+    //     mainList = mainList.sort(() => Math.random() - 0.5)
+    //     setList(mainList)
+    //     console.log(mainList)
+    // }, [reload])
+
+    // useEffect(() => {
+    //     setRandomized(false)
+    // }, [])
+    
+    useEffect(() => {
+        // // making the object into an array
+        // for (let category in ideas) {
+        //     ideas[category].forEach(item => mainList.push(item))
+        // }
+        // setList(mainList)
+        // // if (!randomized) setList(mainList)
+        
+        // if (reload) {
+        //     console.log('randomize')
+        //     // randomize the list
+        //     mainList = mainList.sort(() => Math.random() - 0.5)
+        //     setList(mainList)
+        //     console.log(mainList)
+        //     setRandomized(true)
+        // }
+
+
+        // fetch saved date ideas
         const fetchSaved = async () => {
-            console.log('fetchSaved', userId)
-            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
+            const response = await fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -40,20 +85,18 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
                 })
             }).then(res => res.json())
                 .then(data => {
-                    console.log('DATA', data)
                     const savedId = []
                     data.forEach(item => {
                         savedId.push(item.id)
-                        console.log(item.id)
                     })
-                    console.log(savedId)
                     setSaved(savedId)
-                    console.log(saved)
+                    if (savedId.length != 0) setReload(false)
                 })
+                
         }
 
         fetchSaved()
-    }, [])
+    }, [ideas])
 
     const noZipCode = (addy) => {
         const reg = /(?<![0-9-])([0-9]{5}(?:[ -][0-9]{4})?)(?![0-9-])/gm
@@ -62,7 +105,7 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
     }
 
     const handleClick = () => {
-        if(!userId) {
+        if (!userId) {
             // sign up or sign in pop up
             setCloseNotSignedIn(!closeNotSignedIn)
         }
@@ -82,13 +125,13 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
         return dollar.join('')
     }
 
-    const filteredList = list.filter( item => (item.title.toLowerCase().match(searchTerm.toLowerCase())&&(item.categoryType.match(categoryName))))
+    const filteredList = list.filter(item => (item.title.toLowerCase().match(searchTerm.toLowerCase()) && (item.categoryType.match(categoryName))))
 
     const checkIfSaved = (eventId) => {
-        return saved.some( item => item == eventId)
+        return saved.some(item => item == eventId)
     }
 
-    return(
+    return (
         <div className="dateIdeasList">
 
             {closeNotSignedIn && <div className="catch" onClick={handleClickNotSignInClose}>
@@ -115,13 +158,13 @@ function DateIdeasList({ideas, selectedEvent, userId, searchTerm, categoryName})
                             {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
                             </div> */}
                             <button className={`heart ${checkIfSaved(idea.id) && 'hideHeart'}`} onClick={handleClick}>
-                                <img src={whiteHeart} className="whiteHeart" alt="White Heart" id='save'/>
+                                <img src={whiteHeart} className="whiteHeart" alt="White Heart" id='save' />
                             </button>
                             <button className={`heart ${!checkIfSaved(idea.id) && 'hideHeart'}`} onClick={handleClick}>
-                                <img src={redHeart} className="redHeart" alt="White Heart" id='save'/>
+                                <img src={redHeart} className="redHeart" alt="White Heart" id='save' />
                             </button>
                             <div className="imageContainer">
-                                <img src={idea.img ? idea.img : defaultImagePlaceholderSmall} alt={`Image of ${idea.title}`} />
+                                <img src={idea.img ? idea.img : idea.image ? idea.image[0] : defaultImagePlaceholderSmall} alt={`Image of ${idea.title}`} />
                             </div>
                             <div className="textContainer">
                                 <h2>{idea.title}</h2>
