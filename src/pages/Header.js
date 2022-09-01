@@ -125,7 +125,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <button
                             id="active"
                             onClick={handleClickButtons}
-                            className={`pinkButton ${
+                            className={`pinkButton disable-link ${
                                 selectedCategory == "active" &&
                                 "selectedCategory"
                             }`}

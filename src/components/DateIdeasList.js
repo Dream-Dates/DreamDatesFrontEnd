@@ -6,6 +6,8 @@ import redHeart from '../assets/redHeart.svg';
 import x from '../assets/X.svg';
 import defaultImagePlaceholderSmall from '../assets/defaultImagePlaceholderSmall.jpg';
 import { Link, } from "react-router-dom"
+import { useContext } from 'react';
+import Context from '../context/context';
 
 function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName, refresh }) {
     let mainList = []
@@ -14,21 +16,32 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName,
     const [saved, setSaved] = useState([])
     const [reload, setReload] = useState(refresh)
     const [randomized, setRandomized] = useState(false)
-    console.log({refresh, reload})
+    // console.log({refresh, reload})
     // console.log({refresh})
     console.log('dateDetails')
+
+    const context = useContext(Context)
 
     useEffect(() => {
         // making the object into an array
         for (let category in ideas) {
             ideas[category].forEach(item => mainList.push(item))
         }
-        // setList(mainList)
+        setList(mainList)
         console.log('randomize')
         // randomize the list
         mainList = mainList.sort(() => Math.random() - 0.5)
         setList(mainList)
-        console.log(mainList)
+        // console.log('test', mainList, mainList[0])
+        // // console.log(ideas)
+        // // console.log(ideas, ideas[0])
+        // if( mainList[0].categoryType) {
+        //     if (mainList[0].categoryType !== 'saved') {
+        //         context.setInitialDatesArray(mainList)
+        //     } else {
+        //         context.setInitialSavedArray(mainList)
+        //     }
+        // }
         
     }, [ideas])
     
@@ -79,6 +92,7 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName,
                     setSaved(savedId)
                     if (savedId.length != 0) setReload(false)
                 })
+                
         }
 
         fetchSaved()
