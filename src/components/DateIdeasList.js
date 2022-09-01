@@ -28,9 +28,7 @@ function DateIdeasList({
         for (let category in ideas) {
             ideas[category].forEach((item) => mainList.push(item));
         }
-        if(mainList.length && mainList.every((item) => item.categoryType === "saved")) {
-            context.setInitialSavedArray(mainList)
-        }
+
         // randomize the list
         let mainList2 = mainList.sort(() => Math.random() - 0.5);
 
@@ -44,8 +42,9 @@ function DateIdeasList({
                 // update state and context state
                 // context.setInitialSavedArray(mainList2);
                 context.setInitialSaved(false);
-                setList(context.initialSavedArray);
-                // else if it does not match saved and is the first time
+                //quick fix: save page has to remove date idea when unsaved
+                setList(mainList2);
+            // else if it does not match saved and is the first time
             } else if (
                 mainList2.every((item) => item.categoryType !== "saved") &&
                 context.initialDates
@@ -54,24 +53,20 @@ function DateIdeasList({
                 context.setInitialDatesArray(mainList2);
                 context.setInitialDates(false);
                 setList(mainList2);
-                // else if it matches saved
+            // else if it matches saved
             } else if (
                 mainList2.every((item) => item.categoryType === "saved")
             ) {
                 //set state to context state
                 //quick fix: save page has to remove date idea when unsaved
-                // let tempArray = []
-                // context.initialSavedArray.filter(item => {
-                //     if(item)
-                // })
-                setList(context.initialSavedArray);
-                // else if it does not match saved
+                setList(mainList2);
+            // else if it does not match saved
             } else if (
                 mainList2.every((item) => item.categoryType !== "saved")
             ) {
                 // set state to context state
                 setList(context.initialDatesArray);
-                // back up just incase something goes wrong
+            // back up just incase something goes wrong
             } else {
                 setList(mainList2);
             }

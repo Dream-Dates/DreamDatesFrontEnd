@@ -85,8 +85,10 @@ function Saved({ userId, searchTerm, categoryName }) {
                                         user_id: userId,
                                     }),
                                 }
-                            ).then((res) => res.json());
-                            // .then(data => console.log(data))
+                            ).then((res) => res.json())
+                            .then(data => {
+                                setToggle(!toggle)
+                            })
                         }
                     });
             }
