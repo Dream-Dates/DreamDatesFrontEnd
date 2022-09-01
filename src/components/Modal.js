@@ -9,8 +9,6 @@ import about from "../assets/about.svg";
 import phone from "../assets/phone.svg";
 import location from "../assets/location.svg";
 import imageIcon from "../assets/image.svg";
-import Context from "../context/context";
-import { useContext } from "react";
 import { useState, useEffect } from "react";
 import defaultImagePlaceholder from "../assets/defaultImagePlaceholder.jpg";
 import Carousel from "./carousel";
@@ -56,8 +54,6 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
             setCloseNotSignedIn(!closeNotSignedIn);
         }
     };
-
-    const context = useContext(Context);
 
     const newLine = (time) => {
         let array = time.split(": ");

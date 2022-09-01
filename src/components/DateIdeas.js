@@ -1,5 +1,7 @@
 // DateIdeas.js
+import { useContext } from "react";
 import { useEffect, useState } from "react";
+import Context from "../context/context";
 import DateIdeasList from "./DateIdeasList";
 import Modal from "./Modal";
 import SavePopup from "./SavePopup";
@@ -11,6 +13,9 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
     const [showSavePopup, setShowSavePopup] = useState(false);
     const [saveMessage, setSaveMessage] = useState("");
     const [toggle, setToggle] = useState(false);
+
+    const context = useContext(Context);
+    context.setPageIs("home");
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails);

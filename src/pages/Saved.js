@@ -1,9 +1,11 @@
 // Saved.js
 
 import { useState } from "react";
+import { useContext } from "react";
 import { useEffect } from "react";
 import DateIdeasList from "../components/DateIdeasList";
 import Modal from "../components/Modal";
+import Context from "../context/context";
 
 function Saved({ userId, searchTerm, categoryName }) {
     const [saved, setSaved] = useState({});
@@ -11,6 +13,9 @@ function Saved({ userId, searchTerm, categoryName }) {
     const [showModal, setShowModal] = useState(false);
     const [toggle, setToggle] = useState(false);
     const [loading, setLoading] = useState(true);
+
+    const context = useContext(Context);
+    context.setPageIs("saved");
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails);

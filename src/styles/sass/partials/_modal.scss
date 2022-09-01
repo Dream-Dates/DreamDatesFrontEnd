@@ -19,7 +19,7 @@
     border-radius: 16px;
     position: relative;
     .imageContainer {
-        height: 450px;
+        height: 300px;
         overflow: hidden;
         border-radius: 16px 16px 0 0;
         background-color: #FFC7D0;
@@ -27,7 +27,6 @@
         justify-content: center;
         .fullImage {
             width: auto;
-            height: 450px;
         }
     }
     .titleContainer {

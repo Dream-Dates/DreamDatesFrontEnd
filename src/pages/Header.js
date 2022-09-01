@@ -4,13 +4,17 @@ import logoMobile from "../assets/logoMobile.png";
 import redHeart from "../assets/redHeart.svg";
 import profileIcon from "../assets/profileIcon.svg";
 import magnifyingGlass from "../assets/magnifyingGlass.svg";
+import homeIcon from "../assets/homeIcon.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { useContext } from "react";
+import Context from "../context/context";
 
 function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
+
+    const context = useContext(Context);
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value);
@@ -71,14 +75,25 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                     <label htmlFor="search" className="sr-only">
                         Search for
                     </label>
-                    <input
-                        type="text"
-                        name="search"
-                        id="search"
-                        placeholder="Search for Food, Movies, Active..."
-                        onChange={handleChange}
-                        value={searchTerm}
-                    />
+                    {context.pageIs === "home" ? (
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            placeholder="Search for Food, Movies, Active..."
+                            onChange={handleChange}
+                            value={searchTerm}
+                        />
+                    ) : (
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            placeholder="Search Saved Ideas"
+                            onChange={handleChange}
+                            value={searchTerm}
+                        />
+                    )}
                     <div className="magnifyingGlass">
                         <img src={magnifyingGlass} alt="magnifying glass" />
                     </div>
@@ -148,16 +163,27 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                 </div>
                 <div className="headerRightSide">
                     <div className="savedButton">
-                        <Link
-                            to="/saved"
-                            onClick={handleClickSaved}
-                            className={`pinkButton ${
-                                !user.token && "disable-link"
-                            }`}
-                        >
-                            <img src={redHeart} alt="red heart" />
-                            <p>Saved</p>
-                        </Link>
+                        {context.pageIs === "home" ? (
+                            <Link
+                                to="/saved"
+                                onClick={handleClickSaved}
+                                className={`pinkButton ${
+                                    !user.token && "disable-link"
+                                }`}
+                            >
+                                <img src={redHeart} alt="red heart" />
+                                <p>Saved</p>
+                            </Link>
+                        ) : (
+                            <Link
+                                to="/"
+                                onClick={handleClickHome}
+                                className="pinkButton"
+                            >
+                                <img src={homeIcon} alt="home icon" />
+                                <p>Home</p>{" "}
+                            </Link>
+                        )}
                     </div>
 
                     {user.token ? (
@@ -260,15 +286,25 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                 </div>
                 <div className="headerRightSide">
                     <div className="savedButton">
-                        <Link
-                            to="/saved"
-                            onClick={handleClickSaved}
-                            className={`pinkButton ${
-                                !user.token && "disable-link"
-                            }`}
-                        >
-                            <img src={redHeart} alt="red heart" />
-                        </Link>
+                        {context.pageIs === "home" ? (
+                            <Link
+                                to="/saved"
+                                onClick={handleClickSaved}
+                                className={`pinkButton ${
+                                    !user.token && "disable-link"
+                                }`}
+                            >
+                                <img src={redHeart} alt="red heart" />
+                            </Link>
+                        ) : (
+                            <Link
+                                to="/"
+                                onClick={handleClickHome}
+                                className="pinkButton"
+                            >
+                                <img src={homeIcon} alt="home icon" />
+                            </Link>
+                        )}
                     </div>
 
                     {user.token ? (

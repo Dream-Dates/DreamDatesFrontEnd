@@ -77,13 +77,14 @@
     .pinkButton {
         display: flex;
         justify-content: space-evenly;
-        // align-items: center;
+        align-items: center;
         &:hover img{
             filter: brightness(0) invert(1);
         }
     }
     img {
         width: 22px;
+        height: 22px;
     }
 }
 

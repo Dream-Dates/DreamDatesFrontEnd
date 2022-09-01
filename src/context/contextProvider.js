@@ -7,6 +7,8 @@ export default function ContextProvider({ children }) {
     const [initialSavedArray, setInitialSavedArray] = useState([]);
     const [initialSaved, setInitialSaved] = useState(true);
 
+    const [pageIs, setPageIs] = useState("home");
+
     const state = {
         initialDatesArray: initialDatesArray,
         setInitialDatesArray: setInitialDatesArray,
@@ -21,6 +23,9 @@ export default function ContextProvider({ children }) {
         initialSaved: initialSaved,
         setInitialSaved,
         setInitialSaved,
+
+        pageIs: pageIs,
+        setPageIs: setPageIs,
     };
 
     return <Context.Provider value={state}>{children}</Context.Provider>;
