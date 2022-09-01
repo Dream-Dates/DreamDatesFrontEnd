@@ -1114,10 +1114,9 @@ h4 {
     margin-top: 15px;
   }
   .signIn form,
-.signUp form {
-    padding-top: 325px;
-  }
-  .saved {
+.signUp form,
+.dateIdeasContainer,
+.saved {
     padding-top: 325px;
   }
 }
@@ -1244,13 +1243,12 @@ h4 {
             align-items: center;
   }
   .signIn form,
-.signUp form {
+.signUp form,
+.dateIdeasContainer,
+.saved {
     padding-top: 255px;
   }
   .signUp section {
     display: block;
-  }
-  .saved {
-    padding-top: 210px;
   }
 }

@@ -28,7 +28,9 @@ function DateIdeasList({
         for (let category in ideas) {
             ideas[category].forEach((item) => mainList.push(item));
         }
-
+        if(mainList.length && mainList.every((item) => item.categoryType === "saved")) {
+            context.setInitialSavedArray(mainList)
+        }
         // randomize the list
         let mainList2 = mainList.sort(() => Math.random() - 0.5);
 
@@ -40,9 +42,9 @@ function DateIdeasList({
                 context.initialSaved
             ) {
                 // update state and context state
-                context.setInitialSavedArray(mainList2);
+                // context.setInitialSavedArray(mainList2);
                 context.setInitialSaved(false);
-                setList(mainList2);
+                setList(context.initialSavedArray);
                 // else if it does not match saved and is the first time
             } else if (
                 mainList2.every((item) => item.categoryType !== "saved") &&
@@ -57,6 +59,11 @@ function DateIdeasList({
                 mainList2.every((item) => item.categoryType === "saved")
             ) {
                 //set state to context state
+                //quick fix: save page has to remove date idea when unsaved
+                // let tempArray = []
+                // context.initialSavedArray.filter(item => {
+                //     if(item)
+                // })
                 setList(context.initialSavedArray);
                 // else if it does not match saved
             } else if (
