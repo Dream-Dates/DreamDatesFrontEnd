@@ -77,7 +77,7 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName,
 
         // fetch saved date ideas
         const fetchSaved = async () => {
-            const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
+            const response = await fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

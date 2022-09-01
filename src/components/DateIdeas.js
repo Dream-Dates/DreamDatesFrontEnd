@@ -23,7 +23,8 @@ function DateIdeas({ userId, searchTerm, categoryName, refresh }) {
         if (e.target.id === 'save') {
             if (userId) {
                 console.log('card Save');
-                fetch('http://localhost:4000/dreamdates/saved/dates', {
+                // fetch('http://localhost:4000/dreamdates/saved/dates', {
+                fetch('https://dream-dates.herokuapp.com/dreamdates/saved/dates', {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -35,7 +36,7 @@ function DateIdeas({ userId, searchTerm, categoryName, refresh }) {
                         if (data.some(item => item.id == eventDetails.id)) {
                             console.log('match - unsave')
                             // if id match then we remove
-                            fetch(`http://localhost:4000/dreamdates/datingideas/delete/${eventDetails.id}`, {
+                            fetch(`https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${eventDetails.id}`, {
                                 method: 'DELETE',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
@@ -52,7 +53,7 @@ function DateIdeas({ userId, searchTerm, categoryName, refresh }) {
                             console.log('no match - save')
                             console.log(eventDetails)
                             // if id does not match then we save
-                            fetch('http://localhost:4000/dreamdates/datingideas/saved', {
+                            fetch('https://dream-dates.herokuapp.com/dreamdates/datingideas/saved', {
                                 method: 'POST',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
