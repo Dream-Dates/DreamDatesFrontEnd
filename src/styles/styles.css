@@ -570,7 +570,11 @@ input {
   height: 205px;
   overflow: hidden;
   border-radius: 8px 8px 0 0;
-  background-image: url(../assets/defaultImagePlaceholderSmall.jpg);
+}
+.dateIdeasCard .imageContainer img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .dateIdeasCard .textContainer {
   margin: 10px 15px;
@@ -868,10 +872,15 @@ h1 {
 }
 .carousel .carouselCard {
   width: 167px;
-  max-height: 156px;
+  height: 156px;
   display: inline-block;
   padding: 0 5px;
   overflow: hidden;
+}
+.carousel .carouselCard img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .carousel button:hover {
   background-color: transparent;

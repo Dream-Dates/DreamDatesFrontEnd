@@ -143,36 +143,6 @@
     padding-top: 30px;
 }
 
-// .carousel {
-//     width: 100%;
-//     // border: 1px solid navy;
-// }
-
-// .carouselContainer {
-//     width: 100%;
-//     border: 1px solid white;
-//     overflow: hidden;
-//     // overflow-y: hidden;
-//     white-space: nowrap;
-//     background-color: #941C2F;
-//     // position: relative;
-// }
-
-// .carouselCard {
-//     width: 200px;
-//     height: calc(100% - 40px);
-//     display: inline-flex;
-//     align-items: center;
-//     justify-content: center;
-//     // box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.15);
-//     // background-color: white;
-//     border: 1px solid white;
-// }
-
-// .carouselControlsContainer {
-    
-// }
-
 
 h1 {
     margin: 38px 0 49px;
@@ -195,10 +165,14 @@ h1 {
     .carouselCard {
         
         width: 167px;
-        max-height: 156px;
+        height: 156px;
         display: inline-block;
         padding: 0 5px;
         overflow: hidden;
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
     }
     button:hover  {
         background-color: transparent;
