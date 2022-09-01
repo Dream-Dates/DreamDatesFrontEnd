@@ -71,12 +71,8 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
         const str = time;
         const adjustedDate = str.replace(reg, " ");
         let dateArray = adjustedDate.split("T");
-        // let tempArray = []
-        // tempArray.push([1])
-        // tempArray = dateArray[0]
-        //     dateArray[0] = tempArray.shift()
-        // console.log('test')
-        // console.log(dateArray)
+
+        dateArray[0] = dateArray[0].substr(5) + " " + dateArray[0].substr(0, 5);
 
         dateArray[1] = dateArray[1].slice(0, 5);
         return dateArray;
