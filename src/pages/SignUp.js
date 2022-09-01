@@ -22,7 +22,7 @@ function SignUp({ rerender }) {
     };
 
     const createUser = async (e) => {
-        e.preventDefault();
+        e.preventDefault();    
         const response = await fetch("https://dream-dates.herokuapp.com/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
