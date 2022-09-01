@@ -57,13 +57,10 @@
         }
     }
 
-    //signIn signUp
-    .signIn form,
-    .signUp form {
-        padding-top: 325px;
-    }
 
-    //saved 
+    .signIn form,
+    .signUp form,
+    .dateIdeasContainer,
     .saved {
         padding-top: 325px;
     }
@@ -177,7 +174,7 @@
         // display: flex;
         position: absolute;
         // padding-top: 35px;
-        margin-top: 20px;
+        top: 28px;
         margin-left: -193px;
     }
 
@@ -201,9 +198,10 @@
     }
 
 
-    //signIn signUp
     .signIn form,
-    .signUp form {
+    .signUp form,
+    .dateIdeasContainer,
+    .saved {
         padding-top: 255px;
     }
 
@@ -211,8 +209,4 @@
         display: block;
     }
 
-        //saved 
-        .saved {
-            padding-top: 210px;
-        }
 }

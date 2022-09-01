@@ -30,6 +30,10 @@
         height: 205px;
         overflow: hidden;
         border-radius: 8px 8px 0 0;
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
     }
     .textContainer {
         // border: 1px solid green;
