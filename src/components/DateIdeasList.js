@@ -15,18 +15,11 @@ function DateIdeasList({
     userId,
     searchTerm,
     categoryName,
-    refresh,
 }) {
     let mainList = [];
     const [list, setList] = useState([]);
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false);
     const [saved, setSaved] = useState([]);
-    const [reload, setReload] = useState(refresh);
-    const [loading, setLoading] = useState(true);
-    const [randomized, setRandomized] = useState(false);
-    // console.log({refresh, reload})
-    // console.log({refresh})
-    console.log("dateDetails");
 
     const context = useContext(Context);
 
@@ -65,7 +58,7 @@ function DateIdeasList({
             ) {
                 //set state to context state
                 setList(context.initialSavedArray);
-                // else if it mdoes not match saved
+                // else if it does not match saved
             } else if (
                 mainList2.every((item) => item.categoryType !== "saved")
             ) {
@@ -78,36 +71,7 @@ function DateIdeasList({
         }
     }, [ideas]);
 
-    // useEffect(() => {
-    //     console.log('randomize')
-    //     // randomize the list
-    //     mainList = mainList.sort(() => Math.random() - 0.5)
-    //     setList(mainList)
-    //     console.log(mainList)
-    // }, [reload])
-
-    // useEffect(() => {
-    //     setRandomized(false)
-    // }, [])
-
     useEffect(() => {
-        // // making the object into an array
-        // for (let category in ideas) {
-        //     ideas[category].forEach(item => mainList.push(item))
-        // }
-        // setList(mainList)
-        // // if (!randomized) setList(mainList)
-
-        // if (reload) {
-        //     console.log('randomize')
-        //     // randomize the list
-        //     mainList = mainList.sort(() => Math.random() - 0.5)
-        //     setList(mainList)
-        //     console.log(mainList)
-        //     setRandomized(true)
-        // }
-
-        // fetch saved date ideas
         const fetchSaved = async () => {
             const response = await fetch(
                 "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
@@ -126,19 +90,20 @@ function DateIdeasList({
                         savedId.push(item.id);
                     });
                     setSaved(savedId);
-                    if (savedId.length != 0) setLoading(false);
                 });
         };
 
         fetchSaved();
     }, [ideas]);
 
-    const noZipCode = (addy) => {
+    // remove zip code from city
+    const noZipCode = (city) => {
         const reg = /(?<![0-9-])([0-9]{5}(?:[ -][0-9]{4})?)(?![0-9-])/gm;
-        const str = addy;
+        const str = city;
         return str.replace(reg, "");
     };
 
+    // if no userId (not signed in) when trying to save
     const handleClick = () => {
         if (!userId) {
             // sign up or sign in pop up
@@ -146,12 +111,14 @@ function DateIdeasList({
         }
     };
 
+    // closing the sign in and sing up pop up
     const handleClickNotSignInClose = (e) => {
         if (e.target.className === "catch" || e.target.id === "closeCatch") {
             setCloseNotSignedIn(!closeNotSignedIn);
         }
     };
 
+    // converting the price range from numbers to $
     const dollarSigns = (num) => {
         const dollar = [];
         for (let i = 0; i < num; i++) {
@@ -160,12 +127,14 @@ function DateIdeasList({
         return dollar.join("");
     };
 
+    // filtering the list by user text input
     const filteredList = list.filter(
         (item) =>
             item.title.toLowerCase().match(searchTerm.toLowerCase()) &&
             item.categoryType.match(categoryName)
     );
 
+    // check if idea has been save and will toggle between white and red heart
     const checkIfSaved = (eventId) => {
         return saved.some((item) => item == eventId);
     };
@@ -203,8 +172,6 @@ function DateIdeasList({
                             onClick={(e) => selectedEvent(e, idea)}
                             key={idea.id}
                         >
-                            {/* <div onMouseOver={toggleHeart} className="heart whiteHeart">
-                            </div> */}
                             <button
                                 className={`heart ${
                                     checkIfSaved(idea.id) && "hideHeart"

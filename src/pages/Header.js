@@ -5,14 +5,11 @@ import redHeart from "../assets/redHeart.svg";
 import profileIcon from "../assets/profileIcon.svg";
 import magnifyingGlass from "../assets/magnifyingGlass.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
-import Context from "../context/context";
+import { useState } from "react";
+
 
 function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     const [selectedCategory, setSelectedCategory] = useState("");
-
-    const context = useContext(Context);
-
     const [searchTerm, setSearchTerm] = useState("");
 
     const handleChange = (e) => {
@@ -40,31 +37,21 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
 
     const handleClickButtons = (e) => {
         if (e.target.tagName === "BUTTON") {
-            if (selectedCategory == (e.target.id).toLowerCase()) {
-                console.log('click');
-                getCategoryName('')
-                setSelectedCategory('')
+            if (selectedCategory == e.target.id.toLowerCase()) {
+                getCategoryName("");
+                setSelectedCategory("");
             } else {
-                getCategoryName(e.target.id)
-                setSelectedCategory(e.target.id)
+                getCategoryName(e.target.id);
+                setSelectedCategory(e.target.id);
             }
-            // console.log("button", selectedCategory);
-            // getCategoryName(e.target.id);
-            // setSelectedCategory(e.target.id);
-            // console.log("button", selectedCategory);
         } else {
-            if (selectedCategory == (e.target.parentElement.id).toLowerCase()) {
-                console.log('click');
-                getCategoryName('')
-                setSelectedCategory('')
+            if (selectedCategory == e.target.parentElement.id.toLowerCase()) {
+                getCategoryName("");
+                setSelectedCategory("");
             } else {
-                getCategoryName(e.target.parentElement.id)
-                setSelectedCategory(e.target.parentElement.id)
+                getCategoryName(e.target.parentElement.id);
+                setSelectedCategory(e.target.parentElement.id);
             }
-            // console.log("p", etarget, selectedCategory);
-            // getCategoryName(e.target.parentElement.id);
-            // setSelectedCategory(e.target.parentElement.id);
-            // console.log("p", selectedCategory);
         }
     };
 
@@ -96,6 +83,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <img src={magnifyingGlass} alt="magnifying glass" />
                     </div>
                 </form>
+
                 <div className="headerFilter">
                     <div>
                         <button
@@ -195,6 +183,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                     )}
                 </div>
             </div>
+
             {/* MOBILE */}
             <div className="headerMobile wrapper">
                 <div className="logo">
