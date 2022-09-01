@@ -34,7 +34,8 @@ function SignUp({ rerender }) {
                 "name": signUp.name,
                 "email": signUp.email,
                 "lastname": signUp.last_name,
-                "password": signUp.password
+                "password": signUp.password,
+                "retypePassword": signUp.retypePassword
             })
         }).then(res => res.json())
             .then(data => {
