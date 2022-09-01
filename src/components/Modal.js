@@ -19,13 +19,14 @@ import SavePopup from './SavePopup'
 
 
 
-function Modal({ eventDetails, closeModal, userId }) {
+function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
     const { id, type, title, adress_street, city, country, venue, price_range, link, img, time, description, votes, price, opening_hours, website, rating, image, categoryType } = eventDetails
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [showSavePopup, setShowSavePopup] = useState(false)
     const [saveMessage, setSaveMessage] = useState('')
     const [saved, setSaved] = useState([])
+    const [toggle, setToggle] = useState(false)
 
     const handleClickModalClose = (e) => {
         if (e.target.className === 'modal' || e.target.id === 'close') {
@@ -59,6 +60,7 @@ function Modal({ eventDetails, closeModal, userId }) {
     }
 
     useEffect(() => {
+        console.log('useEffect MODAL')
         const fetchSaved = async () => {
             const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
                 method: "POST",
@@ -77,7 +79,7 @@ function Modal({ eventDetails, closeModal, userId }) {
         }
 
         fetchSaved()
-    }, [])
+    }, [toggle])
 
     const handleClickSave = () => {
         if (!userId) {
@@ -102,7 +104,11 @@ function Modal({ eventDetails, closeModal, userId }) {
                                 "userid": userId
                             })
                         }).then(res => res.json())
-                            .then(data => console.log(data))
+                            .then(data => {
+                                console.log(data)
+                                setToggle(!toggle)
+                                triggerToggle()
+                            })
                         setShowSavePopup(true)
                         setSaveMessage('Unsaved')
                         setTimeout(() => {
@@ -137,7 +143,11 @@ function Modal({ eventDetails, closeModal, userId }) {
                                 "user_id": userId
                             })
                         }).then(res => res.json())
-                            .then(data => console.log(data))
+                            .then(data => {
+                                console.log(data)
+                                setToggle(!toggle)
+                                triggerToggle()
+                            })
                         setShowSavePopup(true)
                         setSaveMessage('Saved')
                         setTimeout(() => {
@@ -145,6 +155,7 @@ function Modal({ eventDetails, closeModal, userId }) {
                         }, 500)
                     }
                 })
+                
         }
     }
 

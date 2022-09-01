@@ -13,8 +13,9 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName,
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false)
     const [saved, setSaved] = useState([])
     const [reload, setReload] = useState(refresh)
+    const [randomized, setRandomized] = useState(false)
     console.log({refresh, reload})
-    
+    // console.log({refresh})
     console.log('dateDetails')
 
     useEffect(() => {
@@ -22,17 +23,46 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName,
         for (let category in ideas) {
             ideas[category].forEach(item => mainList.push(item))
         }
-        setList(mainList)
-        
-    }, [ideas])
-    
-    useEffect(() => {
+        // setList(mainList)
+        console.log('randomize')
         // randomize the list
         mainList = mainList.sort(() => Math.random() - 0.5)
         setList(mainList)
-    }, [reload])
+        console.log(mainList)
+        
+    }, [ideas])
+    
+    // useEffect(() => {
+    //     console.log('randomize')
+    //     // randomize the list
+    //     mainList = mainList.sort(() => Math.random() - 0.5)
+    //     setList(mainList)
+    //     console.log(mainList)
+    // }, [reload])
 
+    // useEffect(() => {
+    //     setRandomized(false)
+    // }, [])
+    
     useEffect(() => {
+        // // making the object into an array
+        // for (let category in ideas) {
+        //     ideas[category].forEach(item => mainList.push(item))
+        // }
+        // setList(mainList)
+        // // if (!randomized) setList(mainList)
+        
+        // if (reload) {
+        //     console.log('randomize')
+        //     // randomize the list
+        //     mainList = mainList.sort(() => Math.random() - 0.5)
+        //     setList(mainList)
+        //     console.log(mainList)
+        //     setRandomized(true)
+        // }
+
+
+        // fetch saved date ideas
         const fetchSaved = async () => {
             const response = await fetch('http://localhost:4000/dreamdates/saved/dates', {
                 method: "POST",
@@ -47,7 +77,7 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName,
                         savedId.push(item.id)
                     })
                     setSaved(savedId)
-                    setReload(false)
+                    if (savedId.length != 0) setReload(false)
                 })
         }
 
@@ -120,7 +150,7 @@ function DateIdeasList({ ideas, selectedEvent, userId, searchTerm, categoryName,
                                 <img src={redHeart} className="redHeart" alt="White Heart" id='save' />
                             </button>
                             <div className="imageContainer">
-                                <img src={idea.img ? idea.img : defaultImagePlaceholderSmall} alt={`Image of ${idea.title}`} />
+                                <img src={idea.img ? idea.img : idea.image ? idea.image[0] : defaultImagePlaceholderSmall} alt={`Image of ${idea.title}`} />
                             </div>
                             <div className="textContainer">
                                 <h2>{idea.title}</h2>

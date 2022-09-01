@@ -89,6 +89,9 @@ function Saved({ userId, searchTerm, categoryName }) {
         setShowModal(false)
     }
 
+    const triggerToggle = () => {
+        setToggle(!toggle)
+    }
 
     useEffect(() => {
         const fetchSaved = async () => {
@@ -142,7 +145,7 @@ function Saved({ userId, searchTerm, categoryName }) {
 
     return (
         <div className="saved">
-            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId} />
+            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId} triggerToggle={triggerToggle}/>
             }
             <h3>Saved</h3>
             <DateIdeasList ideas={saved} selectedEvent={openModal} userId={userId} searchTerm={searchTerm} categoryName={categoryName} />

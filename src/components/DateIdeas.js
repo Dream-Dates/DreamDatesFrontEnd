@@ -14,7 +14,7 @@ function DateIdeas({ userId, searchTerm, categoryName, refresh }) {
     const [showModal, setShowModal] = useState(false)
     const [showSavePopup, setShowSavePopup] = useState(false)
     const [saveMessage, setSaveMessage] = useState('')
-    
+    const [toggle, setToggle] = useState(false)
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails)
@@ -87,7 +87,7 @@ function DateIdeas({ userId, searchTerm, categoryName, refresh }) {
                         }
                     })
             }
-
+            setToggle(!toggle)
         } else {
             setShowModal(true)
         }
@@ -95,6 +95,10 @@ function DateIdeas({ userId, searchTerm, categoryName, refresh }) {
 
     const closeModal = () => {
         setShowModal(false)
+    }
+
+    const triggerToggle = () => {
+        setToggle(!toggle)
     }
 
     useEffect(() => {
@@ -135,14 +139,14 @@ function DateIdeas({ userId, searchTerm, categoryName, refresh }) {
             }
         }
         fetchEvents()
-    }, [])
+    }, [toggle])
 
     return (
         <div className="dateIdeas">
-            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId} />
+            {showModal && <Modal eventDetails={chosenEvent} closeModal={closeModal} userId={userId} triggerToggle={triggerToggle}/>
             }
-            <DateIdeasList ideas={dateIdeas} selectedEvent={openModal} userId={userId} searchTerm={searchTerm} categoryName={categoryName} />
-            {showSavePopup && <SavePopup text={saveMessage} refresh={refresh}/>}
+            <DateIdeasList ideas={dateIdeas} selectedEvent={openModal} userId={userId} searchTerm={searchTerm} categoryName={categoryName} refresh={refresh}/>
+            {showSavePopup && <SavePopup text={saveMessage} />}
         </div>
     )
 }

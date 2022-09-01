@@ -245,7 +245,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <button
                             id="active"
                             onClick={handleClickButtons}
-                            className="pinkButton"
+                            className="pinkButton disable-link"
                         >
                             <p>Active</p>
                         </button>
