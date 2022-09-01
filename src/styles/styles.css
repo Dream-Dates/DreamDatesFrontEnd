@@ -261,7 +261,7 @@ a:hover p {
 }
 
 p {
-  line-height: 1.4 !important;
+  line-height: 1.6 !important;
 }
 
 button {
@@ -290,7 +290,7 @@ button:hover p {
   background-color: #FFC7D0;
   border: 1px solid #000000;
   border-radius: 16px;
-  padding: 5px 0;
+  padding: 1px 0;
   min-width: 110px;
   cursor: pointer;
 }
@@ -496,6 +496,9 @@ input {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .savedButton .pinkButton:hover img, .userAuth .pinkButton:hover img {
   -webkit-filter: brightness(0) invert(1);
@@ -503,6 +506,7 @@ input {
 }
 .savedButton img, .userAuth img {
   width: 22px;
+  height: 22px;
 }
 
 .userAuth {
@@ -570,7 +574,11 @@ input {
   height: 205px;
   overflow: hidden;
   border-radius: 8px 8px 0 0;
-  background-image: url(../assets/defaultImagePlaceholderSmall.jpg);
+}
+.dateIdeasCard .imageContainer img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .dateIdeasCard .textContainer {
   margin: 10px 15px;
@@ -693,7 +701,7 @@ input {
   position: relative;
 }
 .modalContainer .imageContainer {
-  height: 450px;
+  height: 300px;
   overflow: hidden;
   border-radius: 16px 16px 0 0;
   background-color: #FFC7D0;
@@ -706,7 +714,6 @@ input {
 }
 .modalContainer .imageContainer .fullImage {
   width: auto;
-  height: 450px;
 }
 .modalContainer .titleContainer {
   background-color: #941C2F;
@@ -868,10 +875,15 @@ h1 {
 }
 .carousel .carouselCard {
   width: 167px;
-  max-height: 156px;
+  height: 156px;
   display: inline-block;
   padding: 0 5px;
   overflow: hidden;
+}
+.carousel .carouselCard img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .carousel button:hover {
   background-color: transparent;
@@ -1102,10 +1114,9 @@ h4 {
     margin-top: 15px;
   }
   .signIn form,
-.signUp form {
-    padding-top: 325px;
-  }
-  .saved {
+.signUp form,
+.dateIdeasContainer,
+.saved {
     padding-top: 325px;
   }
 }
@@ -1204,7 +1215,7 @@ h4 {
             align-items: center;
     display: none;
     position: absolute;
-    margin-top: 20px;
+    top: 28px;
     margin-left: -193px;
   }
   .userAuth .pinkButton:hover .profile {
@@ -1232,13 +1243,12 @@ h4 {
             align-items: center;
   }
   .signIn form,
-.signUp form {
+.signUp form,
+.dateIdeasContainer,
+.saved {
     padding-top: 255px;
   }
   .signUp section {
     display: block;
-  }
-  .saved {
-    padding-top: 210px;
   }
 }

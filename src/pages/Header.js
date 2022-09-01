@@ -4,16 +4,17 @@ import logoMobile from "../assets/logoMobile.png";
 import redHeart from "../assets/redHeart.svg";
 import profileIcon from "../assets/profileIcon.svg";
 import magnifyingGlass from "../assets/magnifyingGlass.svg";
+import homeIcon from "../assets/homeIcon.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState } from "react";
+import { useContext } from "react";
 import Context from "../context/context";
 
 function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     const [selectedCategory, setSelectedCategory] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
 
     const context = useContext(Context);
-
-    const [searchTerm, setSearchTerm] = useState("");
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value);
@@ -40,31 +41,21 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
 
     const handleClickButtons = (e) => {
         if (e.target.tagName === "BUTTON") {
-            if (selectedCategory == (e.target.id).toLowerCase()) {
-                console.log('click');
-                getCategoryName('')
-                setSelectedCategory('')
+            if (selectedCategory == e.target.id.toLowerCase()) {
+                getCategoryName("");
+                setSelectedCategory("");
             } else {
-                getCategoryName(e.target.id)
-                setSelectedCategory(e.target.id)
+                getCategoryName(e.target.id);
+                setSelectedCategory(e.target.id);
             }
-            // console.log("button", selectedCategory);
-            // getCategoryName(e.target.id);
-            // setSelectedCategory(e.target.id);
-            // console.log("button", selectedCategory);
         } else {
-            if (selectedCategory == (e.target.parentElement.id).toLowerCase()) {
-                console.log('click');
-                getCategoryName('')
-                setSelectedCategory('')
+            if (selectedCategory == e.target.parentElement.id.toLowerCase()) {
+                getCategoryName("");
+                setSelectedCategory("");
             } else {
-                getCategoryName(e.target.parentElement.id)
-                setSelectedCategory(e.target.parentElement.id)
+                getCategoryName(e.target.parentElement.id);
+                setSelectedCategory(e.target.parentElement.id);
             }
-            // console.log("p", etarget, selectedCategory);
-            // getCategoryName(e.target.parentElement.id);
-            // setSelectedCategory(e.target.parentElement.id);
-            // console.log("p", selectedCategory);
         }
     };
 
@@ -84,18 +75,30 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                     <label htmlFor="search" className="sr-only">
                         Search for
                     </label>
-                    <input
-                        type="text"
-                        name="search"
-                        id="search"
-                        placeholder="Search for Food, Movies, Active..."
-                        onChange={handleChange}
-                        value={searchTerm}
-                    />
+                    {context.pageIs === "home" ? (
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            placeholder="Search for Food, Movies, Active..."
+                            onChange={handleChange}
+                            value={searchTerm}
+                        />
+                    ) : (
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            placeholder="Search Saved Ideas"
+                            onChange={handleChange}
+                            value={searchTerm}
+                        />
+                    )}
                     <div className="magnifyingGlass">
                         <img src={magnifyingGlass} alt="magnifying glass" />
                     </div>
                 </form>
+
                 <div className="headerFilter">
                     <div>
                         <button
@@ -160,16 +163,27 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                 </div>
                 <div className="headerRightSide">
                     <div className="savedButton">
-                        <Link
-                            to="/saved"
-                            onClick={handleClickSaved}
-                            className={`pinkButton ${
-                                !user.token && "disable-link"
-                            }`}
-                        >
-                            <img src={redHeart} alt="red heart" />
-                            <p>Saved</p>
-                        </Link>
+                        {context.pageIs === "home" ? (
+                            <Link
+                                to="/saved"
+                                onClick={handleClickSaved}
+                                className={`pinkButton ${
+                                    !user.token && "disable-link"
+                                }`}
+                            >
+                                <img src={redHeart} alt="red heart" />
+                                <p>Saved</p>
+                            </Link>
+                        ) : (
+                            <Link
+                                to="/"
+                                onClick={handleClickHome}
+                                className="pinkButton"
+                            >
+                                <img src={homeIcon} alt="home icon" />
+                                <p>Home</p>{" "}
+                            </Link>
+                        )}
                     </div>
 
                     {user.token ? (
@@ -195,6 +209,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                     )}
                 </div>
             </div>
+
             {/* MOBILE */}
             <div className="headerMobile wrapper">
                 <div className="logo">
@@ -271,15 +286,25 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                 </div>
                 <div className="headerRightSide">
                     <div className="savedButton">
-                        <Link
-                            to="/saved"
-                            onClick={handleClickSaved}
-                            className={`pinkButton ${
-                                !user.token && "disable-link"
-                            }`}
-                        >
-                            <img src={redHeart} alt="red heart" />
-                        </Link>
+                        {context.pageIs === "home" ? (
+                            <Link
+                                to="/saved"
+                                onClick={handleClickSaved}
+                                className={`pinkButton ${
+                                    !user.token && "disable-link"
+                                }`}
+                            >
+                                <img src={redHeart} alt="red heart" />
+                            </Link>
+                        ) : (
+                            <Link
+                                to="/"
+                                onClick={handleClickHome}
+                                className="pinkButton"
+                            >
+                                <img src={homeIcon} alt="home icon" />
+                            </Link>
+                        )}
                     </div>
 
                     {user.token ? (
