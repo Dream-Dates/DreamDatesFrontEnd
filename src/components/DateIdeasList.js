@@ -102,7 +102,7 @@ function DateIdeasList({
     const noZipCode = (city) => {
         // const reg = /(?<![0-9-])([0-9]{5}(?:[ -][0-9]{4})?)(?![0-9-])/gm;
         const str = city;
-        return str.replace(reg, "");
+        // return str.replace(reg, "");
     };
 
     // if no userId (not signed in) when trying to save
