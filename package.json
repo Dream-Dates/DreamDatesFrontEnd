@@ -1,6 +1,6 @@
 {
   "name": "dream-dates",
-  "homepage": ".",
+  "homepage": "https://dream-dates.netlify.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
