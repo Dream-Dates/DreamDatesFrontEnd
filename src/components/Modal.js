@@ -256,7 +256,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                 </div>
                 <div className="imageContainer">
                     <img
-                        src={img ? img : defaultImagePlaceholder}
+                        src={img ? img : image ? image[0] : defaultImagePlaceholder}
                         alt={`A photo of ${title}`}
                         className={img && "fullImage"}
                     />
@@ -363,7 +363,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                                 {newLine(item).map((each) => {
                                                     return <p>{each}</p>;
                                                 })}
-                                                <br />
+                                                {/* <br /> */}
                                             </>
                                         );
                                     })}
