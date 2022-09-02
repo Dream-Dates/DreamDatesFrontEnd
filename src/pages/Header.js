@@ -307,11 +307,11 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         )}
                     </div>
 
-                    {user.token ? (
-                        <div className="userAuth">
-                            <div className="pinkButton">
-                                <img src={profileIcon} alt="" />
-                                <div className="profile">
+                    <div className="userAuth">
+                        <div className="pinkButton">
+                            <img src={profileIcon} alt="" />
+                            <div className="profile">
+                                {user.token ? (
                                     <div className="profileContainer">
                                         <p className="welcome">
                                             Welcome back, {user.name}!
@@ -325,16 +325,27 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                             Sign out
                                         </Link>
                                     </div>
-                                </div>
+                                ) : (
+                                    <div className="profileContainer">
+                                        <Link
+                                            to={"/signup"}
+                                            className="pinkButton"
+                                        >
+                                            <p>Sign Up</p>
+                                        </Link>
+                                        <br />
+                                        <Link
+                                            to="/signin"
+                                            className="pinkButton"
+                                        >
+                                            <p>Sign In</p>
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
                         </div>
-                    ) : (
-                        <div className="userAuth">
-                            <Link to={"/signin"} className="pinkButton">
-                                <p>Sign In</p>
-                            </Link>
-                        </div>
-                    )}
+                    </div>
+                    <div className="userAuth"></div>
                 </div>
             </div>
         </div>
