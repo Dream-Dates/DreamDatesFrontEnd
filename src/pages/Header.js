@@ -57,6 +57,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                 setSelectedCategory(e.target.parentElement.id);
             }
         }
+        navigate("/");
     };
 
     return (
