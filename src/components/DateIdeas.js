@@ -35,7 +35,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 )
                     .then((res) => res.json())
                     .then((data) => {
-                        if (data.some((item) => item.id == eventDetails.id)) {
+                        if (data.some((item) => item.id === eventDetails.id)) {
                             // if id match then we remove
                             fetch(
                                 `https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${eventDetails.id}`,
@@ -119,6 +119,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 const eventsResponse = await fetch(
                     "https://dream-dates.herokuapp.com/dreamdates/events"
                 );
+                // const eventsResponse = await fetch("http://localhost:4000/dreamdates/events")
                 if (!eventsResponse.ok)
                     throw Error("did not received expected data");
                 const listEvents = await eventsResponse.json();
@@ -128,6 +129,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 const moviesResponse = await fetch(
                     "https://dream-dates.herokuapp.com/dreamdates/movies"
                 );
+                // const moviesResponse = await fetch("http://localhost:4000/dreamdates/movies")
                 if (!moviesResponse.ok)
                     throw Error("did not received expected data");
                 const listMovies = await moviesResponse.json();
@@ -137,6 +139,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 const restaurantsResponse = await fetch(
                     "https://dream-dates.herokuapp.com/dreamdates/restaurants"
                 );
+                // const restaurantsResponse = await fetch("http://localhost:4000/dreamdates/restaurants")
                 if (!restaurantsResponse.ok)
                     throw Error("did not received expected data");
                 const listRestaurants = await restaurantsResponse.json();
@@ -148,6 +151,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                 const attractionsResponse = await fetch(
                     "https://dream-dates.herokuapp.com/dreamdates/attractions"
                 );
+                // const attractionsResponse = await fetch("http://localhost:4000/dreamdates/attractions")
                 if (!attractionsResponse.ok)
                     throw Error("did not received expected data");
                 const listAttractions = await attractionsResponse.json();
