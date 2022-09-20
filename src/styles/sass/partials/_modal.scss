@@ -98,7 +98,7 @@
         padding: 30px 21px 15px 21px;
     }
     * {
-        border: 2px dashed blue;
+        // border: 2px dashed blue;
     }
 }
 
@@ -119,6 +119,11 @@
     img {
         background-color: transparent;
     }
+    .heart {
+        height: 60px;
+        top: 0;
+    }
+
 }
 
 .test {

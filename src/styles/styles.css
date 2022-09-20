@@ -806,10 +806,6 @@ input {
 .modalContainer .botSide .subTitle {
   padding: 30px 21px 15px 21px;
 }
-.modalContainer * {
-  border: 2px dashed blue;
-}
-
 .buttonContainer {
   position: absolute;
   width: 100%;
@@ -829,6 +825,10 @@ input {
 }
 .buttonContainer img {
   background-color: transparent;
+}
+.buttonContainer .heart {
+  height: 60px;
+  top: 0;
 }
 
 .test {
