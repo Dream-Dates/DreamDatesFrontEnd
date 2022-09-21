@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import DateIdeasList from "../components/DateIdeasList";
 import Modal from "../components/Modal";
 import Context from "../context/context";
+import mixpanel from "mixpanel-browser";
 
 function Saved({ userId, searchTerm, categoryName }) {
     const [saved, setSaved] = useState({});
@@ -16,6 +17,17 @@ function Saved({ userId, searchTerm, categoryName }) {
 
     const context = useContext(Context);
     context.setPageIs("saved");
+
+    // track how many times saved page is visited
+    useEffect(() => {
+        mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+            debug: true,
+        });
+        mixpanel.track("Page View", {
+            userID: userId,
+            pageLocation: "savedPage",
+        });
+    }, []);
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails);
@@ -85,10 +97,11 @@ function Saved({ userId, searchTerm, categoryName }) {
                                         user_id: userId,
                                     }),
                                 }
-                            ).then((res) => res.json())
-                            .then(data => {
-                                setToggle(!toggle)
-                            })
+                            )
+                                .then((res) => res.json())
+                                .then((data) => {
+                                    setToggle(!toggle);
+                                });
                         }
                     });
             }
