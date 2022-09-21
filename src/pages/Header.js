@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
 import Context from "../context/context";
+import mixpanel from "mixpanel-browser";
 
 function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     const [selectedCategory, setSelectedCategory] = useState("");
@@ -41,20 +42,40 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
 
     const handleClickButtons = (e) => {
         if (e.target.tagName === "BUTTON") {
+            // if they match that means it is already currently selected
             if (selectedCategory == e.target.id.toLowerCase()) {
                 getCategoryName("");
                 setSelectedCategory("");
             } else {
                 getCategoryName(e.target.id);
                 setSelectedCategory(e.target.id);
+
+                // track every time a category is clicked
+                mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                    debug: true,
+                });
+                mixpanel.track("Category Viewed", {
+                    userID: user.id,
+                    categoryName: e.target.id.toLowerCase(),
+                });
             }
         } else {
+            // if they match that means it is already currently selected
             if (selectedCategory == e.target.parentElement.id.toLowerCase()) {
                 getCategoryName("");
                 setSelectedCategory("");
             } else {
                 getCategoryName(e.target.parentElement.id);
                 setSelectedCategory(e.target.parentElement.id);
+                
+                // track every time a category is clicked
+                mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                    debug: true,
+                });
+                mixpanel.track("Category Viewed", {
+                    userID: user.id,
+                    categoryName: e.target.parentElement.id.toLowerCase(),
+                });
             }
         }
         navigate("/");
