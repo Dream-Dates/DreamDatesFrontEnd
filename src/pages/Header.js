@@ -323,11 +323,17 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                             onClick={logUserOut}
                                             className="signOut"
                                         >
-                                            Sign out
+                                            <p>Sign out</p>
                                         </Link>
                                     </div>
                                 ) : (
                                     <div className="profileContainer">
+                                        <Link
+                                            to="/signin"
+                                            className="pinkButton"
+                                        >
+                                            <p>Sign In</p>
+                                        </Link>
                                         <Link
                                             to={"/signup"}
                                             className="pinkButton"
@@ -335,12 +341,6 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                             <p>Sign Up</p>
                                         </Link>
                                         <br />
-                                        <Link
-                                            to="/signin"
-                                            className="pinkButton"
-                                        >
-                                            <p>Sign In</p>
-                                        </Link>
                                     </div>
                                 )}
                             </div>
