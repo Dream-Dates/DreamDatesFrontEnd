@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import defaultImagePlaceholder from "../assets/defaultImagePlaceholder.jpg";
 import Carousel from "./carousel";
 import SavePopup from "./SavePopup";
+import mixpanel from 'mixpanel-browser';
 
 function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
     const {
@@ -195,6 +196,18 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
         return saved.some((item) => item == eventId);
     };
 
+    // track when the website link is clicked
+    const handleClickWebsite = () => {
+            mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                debug: true,
+            });
+            mixpanel.track("Website Button Clicked", {
+                userID: userId,
+                dateID: id,
+                dateTitle: title,
+            });
+    }
+
     return (
         <div className="modal" onClick={handleClickModalClose}>
             {closeNotSignedIn && (
@@ -272,6 +285,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                     href={website}
                                     className="pinkButton"
                                     target="_blank"
+                                    onClick={handleClickWebsite}
                                 >
                                     <img src={globe} alt="globe icon" />{" "}
                                     <p>Website</p>
@@ -282,6 +296,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                     href={link}
                                     className="pinkButton"
                                     target="_blank"
+                                    onClick={handleClickWebsite}
                                 >
                                     <img src={globe} alt="globe icon" />{" "}
                                     <p>Website</p>
