@@ -5,6 +5,7 @@ import Context from "../context/context";
 import DateIdeasList from "./DateIdeasList";
 import Modal from "./Modal";
 import SavePopup from "./SavePopup";
+import mixpanel from "mixpanel-browser";
 
 function DateIdeas({ userId, searchTerm, categoryName }) {
     const [dateIdeas, setDateIdeas] = useState({});
@@ -101,6 +102,16 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
             setToggle(!toggle);
         } else {
             setShowModal(true);
+
+            // track when date detail modal is opened
+            mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                debug: true,
+            });
+            mixpanel.track("Date Idea Viewed", {
+                userID: userId,
+                dateID: eventDetails.id,
+                dateTitle: eventDetails.title,
+            });
         }
     };
 
