@@ -81,6 +81,15 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
         navigate("/");
     };
 
+    const handleClickSearchBar = () => {
+        mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+            debug: true,
+        });
+        mixpanel.track("Search Bar Clicked", {
+            userID: user.id,
+        });
+    }
+
     return (
         <div className="header">
             <div className="headerNormal wrapper">
@@ -105,6 +114,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                             placeholder="Search for Food, Movies, Active..."
                             onChange={handleChange}
                             value={searchTerm}
+                            onClick={handleClickSearchBar}
                         />
                     ) : (
                         <input
