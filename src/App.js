@@ -8,7 +8,7 @@ import { useState } from "react";
 import ContextProvider from "../src/context/contextProvider";
 import { useEffect } from "react";
 import Saved from "./pages/Saved";
-import mixpanel from "mixpanel-browser";
+// import mixpanel from "mixpanel-browser";
 
 function App() {
     const [user, setUser] = useState({
@@ -20,16 +20,16 @@ function App() {
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryName, setCategoryName] = useState("");
 
-    // track how many times homepage is visited
-    useEffect(() => {
-        mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
-            debug: true,
-        });
-        mixpanel.track("Page Visit", {
-            userID: user.id,
-            pageLocation: "homepage",
-        });
-    }, []);
+    // // track how many times homepage is visited
+    // useEffect(() => {
+    //     mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+    //         debug: true,
+    //     });
+    //     mixpanel.track("Page Visit", {
+    //         userID: user.id,
+    //         pageLocation: "homepage",
+    //     });
+    // }, []);
 
     const rerender = () => {
         setToggle(!toggle);

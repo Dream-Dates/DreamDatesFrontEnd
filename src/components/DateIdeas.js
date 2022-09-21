@@ -18,6 +18,17 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
     const context = useContext(Context);
     context.setPageIs("home");
 
+        // track how many times homepage is visited
+    useEffect(() => {
+        mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+            debug: true,
+        });
+        mixpanel.track("Page View", {
+            userID: userId,
+            pageLocation: "homepage",
+        });
+    }, []);
+
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails);
 
