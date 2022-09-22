@@ -179,6 +179,18 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                         }, 500);
                     }
                 });
+            // track every time a date is saved
+            mixpanel.init(
+                `${process.env.REACT_APP_MIXPANEL_TOKEN}`,
+                {
+                    debug: true,
+                }
+            );
+            mixpanel.track("Save/Unsave", {
+                userID: userId,
+                dateID: eventDetails.id,
+                dateTitle: eventDetails.title,
+            });
         }
     };
 

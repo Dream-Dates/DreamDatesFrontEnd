@@ -18,7 +18,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
     const context = useContext(Context);
     context.setPageIs("home");
 
-        // track how many times homepage is visited
+    // track how many times homepage is visited
     useEffect(() => {
         mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
             debug: true,
@@ -107,9 +107,22 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                             setTimeout(() => {
                                 setShowSavePopup(false);
                             }, 500);
+
                         }
                     });
-            }
+                }
+                // track every time a date is saved
+                mixpanel.init(
+                    `${process.env.REACT_APP_MIXPANEL_TOKEN}`,
+                    {
+                        debug: true,
+                    }
+                );
+                mixpanel.track("Save/Unsave", {
+                    userID: userId,
+                    dateID: eventDetails.id,
+                    dateTitle: eventDetails.title,
+                });
             setToggle(!toggle);
         } else {
             setShowModal(true);
