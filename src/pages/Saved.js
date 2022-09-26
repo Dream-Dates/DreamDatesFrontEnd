@@ -135,10 +135,7 @@ function Saved({ userId, searchTerm, categoryName }) {
                     data.forEach((item) => (item.categoryType = "saved"));
                     setSaved({ saved: data });
                     setLoading(false);
-                    console.log('setloading')
-                    console.log(data);
                 });
-                console.log('fetchSaved')
         };
 
         fetchSaved();
