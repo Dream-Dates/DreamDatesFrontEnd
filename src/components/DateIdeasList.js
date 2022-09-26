@@ -70,6 +70,8 @@ function DateIdeasList({
             } else {
                 setList(mainList2);
             }
+        } else {
+            setList(mainList2)
         }
     }, [ideas]);
 
