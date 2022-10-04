@@ -132,6 +132,15 @@
     width: 24px;
 }
 
+.profile::after {
+    content: 'b';
+    width: 10px;
+    height: 10px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid black;
+}
+
 .profileContainer a p {
     min-width: 60px;
     text-align: center;
