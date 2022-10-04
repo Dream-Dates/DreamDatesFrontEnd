@@ -11,7 +11,7 @@ import location from "../assets/location.svg";
 import imageIcon from "../assets/image.svg";
 import { useState, useEffect } from "react";
 import defaultImagePlaceholder from "../assets/defaultImagePlaceholder.jpg";
-import Carousel from "./Carousel";
+import Carousel from "./carousel";
 import SavePopup from "./SavePopup";
 import mixpanel from 'mixpanel-browser';
 

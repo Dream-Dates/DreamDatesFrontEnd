@@ -111,7 +111,8 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                             type="text"
                             name="search"
                             id="search"
-                            placeholder="Search for Food, Movies, Active..."
+                            // placeholder="Search for Food, Movies, Active..."
+                            placeholder={process.env.REACT_APP_MIXPANEL_TOKEN}
                             onChange={handleChange}
                             value={searchTerm}
                             onClick={handleClickSearchBar}
