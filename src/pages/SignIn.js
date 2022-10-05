@@ -9,6 +9,7 @@ function SignIn({ rerender }) {
         password: "",
     });
     const [mistakeMessage, setMistake] = useState(null);
+
     const handleChange = (e) => {
         const newData = { ...signIn };
         newData[e.target.id] = e.target.value;
@@ -60,6 +61,8 @@ function SignIn({ rerender }) {
                     required
                     onChange={(e) => handleChange(e)}
                     value={signIn.email}
+                    autoFocus
+                    autofocus
                 />
                 <label className="sr-only" htmlFor="password1">
                     Password

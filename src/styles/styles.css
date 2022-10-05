@@ -1237,10 +1237,16 @@ h4 {
     top: 28px;
     margin-left: -193px;
   }
-  .userAuth .pinkButton:hover .profile {
+  .userAuth .pinkButton:focus-within .profile {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+  }
+  .userAuth .pinkButton:hover {
+    background-color: #FFC7D0;
+  }
+  .userAuth .pinkButton:hover p {
+    color: black;
   }
   .userAuth .pinkButton:hover img {
     -webkit-filter: none;
@@ -1261,13 +1267,19 @@ h4 {
         -ms-flex-align: center;
             align-items: center;
   }
-  .profileContainer .userAuth {
+  .profileContainer .signInSignUp {
     padding-left: 0;
   }
   .profileContainer .pinkButton {
     margin: 0 auto;
     width: 110px;
     padding: 0;
+  }
+  .profileContainer .pinkButton:hover {
+    background-color: #941C2F;
+  }
+  .profileContainer .pinkButton:hover p {
+    color: white;
   }
   .profileContainer .userAuthTop {
     margin-bottom: 20px;

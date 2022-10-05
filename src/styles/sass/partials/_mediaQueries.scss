@@ -178,8 +178,15 @@
         margin-left: -193px;
     }
 
-    .userAuth .pinkButton:hover .profile {
+    .userAuth .pinkButton:focus-within .profile {
         display: flex;
+    }
+
+    .userAuth .pinkButton:hover {
+        background-color: #FFC7D0;;
+        p {
+            color: black;
+        }
     }
 
 .userAuth {
@@ -195,13 +202,19 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        .userAuth {
+        .signInSignUp {
             padding-left: 0;
         }
         .pinkButton {
             margin: 0 auto;
             width: 110px;
             padding: 0;
+            &:hover {
+                background-color: #941C2F;
+                p {
+                    color: white;
+                }
+            }
         }
         .userAuthTop {
             margin-bottom: 20px;

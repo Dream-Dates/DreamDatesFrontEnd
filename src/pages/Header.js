@@ -90,10 +90,6 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
         });
     }
 
-    const handleFocus = (e) => {
-        e.stopPropagation()
-    }
-
     return (
         <div className="header">
             <div className="headerNormal wrapper">
@@ -344,9 +340,9 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                     </div>
 
                     <div className="userAuth">
-                        <div className="pinkButton">
+                        <button className="pinkButton">
                             <img src={profileIcon} alt="" />
-                            <div className="profile" onFocus={handleFocus}>
+                            <div className="profile">
                                 {user.token ? (
                                     <div className="profileContainer">
                                         <p className="welcome">
@@ -363,7 +359,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                     </div>
                                 ) : (
                                     <div className="profileContainer">
-                                        <div className="userAuth">
+                                        <div className="signInSignUp">
                                             <Link
                                                 to="/signin"
                                                 className="pinkButton userAuthTop"
@@ -380,7 +376,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                     </div>
                                 )}
                             </div>
-                        </div>
+                        </button>
                     </div>
                     <div className="userAuth"></div>
                 </div>
