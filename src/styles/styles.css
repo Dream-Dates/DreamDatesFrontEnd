@@ -415,6 +415,10 @@ input {
   font-weight: 700;
 }
 
+.profileContainer > a p {
+  color: #941C2F;
+}
+
 .headerMobile {
   display: none;
 }
@@ -546,9 +550,16 @@ input {
   width: 24px;
 }
 
-.profileContainer a p {
-  min-width: 60px;
-  text-align: center;
+.userAuth svg polygon {
+  fill: white;
+  stroke: black;
+  stroke-width: 1px;
+}
+
+.second {
+  fill: white;
+  stroke: white;
+  stroke-width: 5px;
 }
 
 .dateIdeasContainer {
@@ -646,44 +657,6 @@ input {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   z-index: 35;
-}
-
-.notSignedIn {
-  position: relative;
-  width: min(90%, 496px);
-  height: 350px;
-  border-radius: 16px;
-  border: 1px solid #941C2F;
-  background-color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.notSignedIn .closeButton {
-  position: absolute;
-  top: 23px;
-  right: 23px;
-}
-.notSignedIn .userAuth {
-  padding-left: 0;
-}
-.notSignedIn a {
-  margin: 0 auto;
-}
-.notSignedIn .userAuthTop {
-  margin-bottom: 35px;
-}
-.notSignedIn .pinkButton {
-  width: 110px;
-}
-.notSignedIn button:hover {
-  background-color: transparent;
 }
 
 .modal {
@@ -910,6 +883,44 @@ h1 {
 
 .next {
   right: -45px;
+}
+
+.notSignedIn {
+  position: relative;
+  width: min(90%, 496px);
+  height: 350px;
+  border-radius: 16px;
+  border: 1px solid #941C2F;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.notSignedIn .closeButton {
+  position: absolute;
+  top: 23px;
+  right: 23px;
+}
+.notSignedIn .userAuth {
+  padding-left: 0;
+}
+.notSignedIn a {
+  margin: 0 auto;
+}
+.notSignedIn .userAuthTop {
+  margin-bottom: 35px;
+}
+.notSignedIn .pinkButton {
+  width: 110px;
+}
+.notSignedIn button:hover {
+  background-color: transparent;
 }
 
 .signIn form {
@@ -1249,6 +1260,21 @@ h4 {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  .profileContainer .userAuth {
+    padding-left: 0;
+  }
+  .profileContainer .pinkButton {
+    margin: 0 auto;
+    width: 110px;
+    padding: 0;
+  }
+  .profileContainer .userAuthTop {
+    margin-bottom: 20px;
+  }
+  .profileContainer p {
+    min-width: 60px;
+    text-align: center;
   }
   .signIn form,
 .signUp form,

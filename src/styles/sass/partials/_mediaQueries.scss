@@ -195,8 +195,22 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        .userAuth {
+            padding-left: 0;
+        }
+        .pinkButton {
+            margin: 0 auto;
+            width: 110px;
+            padding: 0;
+        }
+        .userAuthTop {
+            margin-bottom: 20px;
+        }
+        p {
+            min-width: 60px;
+            text-align: center;
+        }
     }
-
 
     .signIn form,
     .signUp form,

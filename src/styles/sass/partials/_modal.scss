@@ -200,3 +200,34 @@ h1 {
 .next {
     right: -45px;
 }
+.notSignedIn {
+    position: relative;
+    width: min(90%, 496px);
+    height: 350px;
+    border-radius: 16px;
+    border: 1px solid #941C2F;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .closeButton {
+        position: absolute;
+        top: 23px;
+        right: 23px
+    }
+    .userAuth {
+        padding-left: 0;
+    }
+    a {
+        margin: 0 auto;
+    }
+    .userAuthTop {
+        margin-bottom: 35px;
+    }
+    .pinkButton {
+        width: 110px;
+    }
+    button:hover {
+        background-color: transparent;
+    }
+}

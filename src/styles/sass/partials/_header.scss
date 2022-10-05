@@ -132,16 +132,35 @@
     width: 24px;
 }
 
-.profile::after {
-    content: 'b';
-    width: 10px;
-    height: 10px;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid black;
+// .profile::after {
+//     content: '';
+//     width: 10px;
+//     height: 10px;
+//     border-left: 5px solid transparent;
+//     border-right: 5px solid transparent;
+//     border-bottom: 5px solid black;
+// }
+
+// .profile::before {
+//         content: "\a/";
+//         border-style: solid;
+//         border-width: 10px 15px 10px 0;
+//         border-color: transparent #dd4397 transparent transparent;
+//         // position: absolute;
+//         // left: -15px;
+//     }
+
+
+
+.userAuth svg polygon {
+    fill:white;
+    stroke:black;
+    stroke-width:1px
+
 }
 
-.profileContainer a p {
-    min-width: 60px;
-    text-align: center;
+.second {
+    fill: white;
+    stroke:white;
+    stroke-width: 5px;
 }

@@ -359,19 +359,20 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                     </div>
                                 ) : (
                                     <div className="profileContainer">
-                                        <Link
-                                            to="/signin"
-                                            className="pinkButton"
-                                        >
-                                            <p>Sign In</p>
-                                        </Link>
-                                        <Link
-                                            to={"/signup"}
-                                            className="pinkButton"
-                                        >
-                                            <p>Sign Up</p>
-                                        </Link>
-                                        <br />
+                                        <div className="userAuth">
+                                            <Link
+                                                to="/signin"
+                                                className="pinkButton userAuthTop"
+                                            >
+                                                <p>Sign In</p>
+                                            </Link>
+                                            <Link
+                                                to={"/signup"}
+                                                className="pinkButton"
+                                            >
+                                                <p>Sign Up</p>
+                                            </Link>
+                                        </div>
                                     </div>
                                 )}
                             </div>
