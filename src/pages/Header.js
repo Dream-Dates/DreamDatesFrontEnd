@@ -14,6 +14,7 @@ import mixpanel from "mixpanel-browser";
 function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
+    const [showDropDown, setShowDropDown] = useState(true);
 
     const context = useContext(Context);
 
@@ -88,6 +89,13 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
         mixpanel.track("Search Bar Clicked", {
             userID: user.id,
         });
+    }
+
+    const handleClickProfile = (e) => {
+        console.log(e)
+        if (e.target.className === 'pinkButton' || e.target.id === 'profileIcon' || e.target.tagName === 'A' || e.target.parentElement.tagName === 'A') {
+            setShowDropDown(!showDropDown)
+        }
     }
 
     return (
@@ -340,9 +348,9 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                     </div>
 
                     <div className="userAuth">
-                        <button className="pinkButton">
-                            <img src={profileIcon} alt="" />
-                            <div className="profile">
+                        <button className="pinkButton" onClick={handleClickProfile}>
+                            <img src={profileIcon} alt="profile icon" id="profileIcon"/>
+                            <div className={`profile ${showDropDown && 'showDropDown'}`}>
                                 {user.token ? (
                                     <div className="profileContainer">
                                         <p className="welcome">

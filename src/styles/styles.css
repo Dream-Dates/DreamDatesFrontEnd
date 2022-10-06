@@ -1237,7 +1237,7 @@ h4 {
     top: 28px;
     margin-left: -193px;
   }
-  .userAuth .pinkButton:focus-within .profile {
+  .showDropDown {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
