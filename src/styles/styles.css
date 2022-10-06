@@ -1214,8 +1214,8 @@ h4 {
     padding-right: 70px;
   }
   .headerRightSide {
-    -webkit-transform: translateY(24px);
-            transform: translateY(24px);
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
   }
   .userAuth .pinkButton {
     position: relative;
@@ -1234,8 +1234,8 @@ h4 {
             align-items: center;
     display: none;
     position: absolute;
-    top: 28px;
-    margin-left: -193px;
+    top: 33px;
+    margin-left: -238px;
   }
   .showDropDown {
     display: -webkit-box;
