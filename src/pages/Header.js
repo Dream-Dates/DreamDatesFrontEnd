@@ -14,7 +14,7 @@ import mixpanel from "mixpanel-browser";
 function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
-    const [showDropDown, setShowDropDown] = useState(true);
+    const [showDropDown, setShowDropDown] = useState(false);
 
     const context = useContext(Context);
 
