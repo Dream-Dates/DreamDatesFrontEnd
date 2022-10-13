@@ -380,21 +380,30 @@ h4 {
   text-align: center;
 }
 
-.modal h2 {
+.modalMovie p {
+  color: black;
+}
+
+.modal h2,
+.modalMovie h2 {
   font-size: 24px;
 }
 
-.modal .textContainer p {
+.modal .textContainer p,
+.modalMovie .textContainer p {
   font-size: 20px;
 }
 
 .modal .textContainer h2,
-.modal .textContainer p {
+.modal .textContainer p,
+.modalMovie .textContainer h2,
+.modalMovie .textContainer p {
   color: black;
   font-weight: 400;
 }
 
-.modal .hoursContainer p {
+.modal .hoursContainer p,
+.modalMovie .hoursContainer p {
   font-family: "Mirza", cursive;
   font-size: 20;
 }
@@ -666,8 +675,7 @@ input {
   position: fixed;
   z-index: 30;
 }
-
-.modalContainer {
+.modal .modalContainer {
   width: min(90vw, 750px);
   padding-bottom: 123px;
   height: calc(100vh - 20px);
@@ -678,7 +686,7 @@ input {
   border-radius: 16px;
   position: relative;
 }
-.modalContainer .imageContainer {
+.modal .modalContainer .imageContainer {
   height: 300px;
   overflow: hidden;
   border-radius: 16px 16px 0 0;
@@ -690,10 +698,10 @@ input {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.modalContainer .imageContainer .fullImage {
+.modal .modalContainer .imageContainer .fullImage {
   width: auto;
 }
-.modalContainer .titleContainer {
+.modal .modalContainer .titleContainer {
   background-color: #941C2F;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -705,7 +713,7 @@ input {
       -ms-flex-align: center;
           align-items: center;
 }
-.modalContainer .textContainer {
+.modal .modalContainer .textContainer {
   margin-top: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -716,14 +724,14 @@ input {
           flex-direction: column;
   color: black;
 }
-.modalContainer .titleContainer,
-.modalContainer .textContainer {
+.modal .modalContainer .titleContainer,
+.modal .modalContainer .textContainer {
   padding: 0 112.5px;
 }
-.modalContainer .topSide {
+.modal .modalContainer .topSide {
   padding: 0 21px;
 }
-.modalContainer .topSide .heading {
+.modal .modalContainer .topSide .heading {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -735,7 +743,7 @@ input {
           align-items: center;
   width: 358px;
 }
-.modalContainer .topSide .heading a {
+.modal .modalContainer .topSide .heading a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -744,14 +752,14 @@ input {
           align-items: center;
   padding: 5px 30px;
 }
-.modalContainer .topSide .heading a img {
+.modal .modalContainer .topSide .heading a img {
   margin-right: 10px;
 }
-.modalContainer .topSide .heading h2 {
+.modal .modalContainer .topSide .heading h2 {
   -webkit-transform: translate(50%);
           transform: translate(50%);
 }
-.modalContainer .topSide .title {
+.modal .modalContainer .topSide .title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -759,32 +767,32 @@ input {
       -ms-flex-align: center;
           align-items: center;
 }
-.modalContainer .topSide img {
+.modal .modalContainer .topSide img {
   width: 29px;
 }
-.modalContainer .topSide h2 {
+.modal .modalContainer .topSide h2 {
   padding: 0 0 10px 0;
 }
-.modalContainer h2 {
+.modal .modalContainer h2 {
   padding: 5px 0 10px 0;
 }
-.modalContainer .midSide {
+.modal .modalContainer .midSide {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   padding: 0 21px;
 }
-.modalContainer .leftSide,
-.modalContainer .rightSide {
+.modal .modalContainer .leftSide,
+.modal .modalContainer .rightSide {
   width: 50%;
 }
-.modalContainer .rightSide {
+.modal .modalContainer .rightSide {
   padding-left: 50px;
 }
-.modalContainer .botSide .subTitle {
+.modal .modalContainer .botSide .subTitle {
   padding: 30px 21px 15px 21px;
 }
-.buttonContainer {
+.modal .buttonContainer {
   position: absolute;
   width: 100%;
   display: -webkit-box;
@@ -794,35 +802,32 @@ input {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.buttonContainer button {
+.modal .buttonContainer button {
   width: 60px;
   margin: 47px 39px;
 }
-.buttonContainer button:hover {
+.modal .buttonContainer button:hover {
   background-color: transparent;
 }
-.buttonContainer img {
+.modal .buttonContainer img {
   background-color: transparent;
 }
-.buttonContainer .heart {
+.modal .buttonContainer .heart {
   height: 60px;
   top: 0;
 }
-
-.test {
+.modal .test {
   border: 1px solid #941C2F;
   width: 40%;
   height: 200px;
 }
-
-.midIcon {
+.modal .midIcon {
   width: 20px;
   height: 20px;
   display: inline-block;
   margin-right: 10px;
 }
-
-.subTitle {
+.modal .subTitle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -831,12 +836,10 @@ input {
           align-items: center;
   padding-top: 30px;
 }
-
-h1 {
+.modal h1 {
   margin: 14px 0 25px;
 }
-
-.carousel {
+.modal .carousel {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -846,7 +849,7 @@ h1 {
           align-items: center;
   position: relative;
 }
-.carousel .carouselContainer {
+.modal .carousel .carouselContainer {
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -854,38 +857,34 @@ h1 {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 10px 0 5px 0;
 }
-.carousel .carouselCard {
+.modal .carousel .carouselCard {
   width: 167px;
   height: 156px;
   display: inline-block;
   padding: 0 5px;
   overflow: hidden;
 }
-.carousel .carouselCard img {
+.modal .carousel .carouselCard img {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.carousel button:hover {
+.modal .carousel button:hover {
   background-color: transparent;
 }
-
-.carouselControls {
+.modal .carouselControls {
   position: absolute;
   width: 40px;
   height: 40px;
   top: calc(50% - 20px);
 }
-
-.prev {
+.modal .prev {
   left: -45px;
 }
-
-.next {
+.modal .next {
   right: -45px;
 }
-
-.notSignedIn {
+.modal .notSignedIn {
   position: relative;
   width: min(90%, 496px);
   height: 350px;
@@ -902,24 +901,293 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
 }
-.notSignedIn .closeButton {
+.modal .notSignedIn .closeButton {
   position: absolute;
   top: 23px;
   right: 23px;
 }
-.notSignedIn .userAuth {
+.modal .notSignedIn .userAuth {
   padding-left: 0;
 }
-.notSignedIn a {
+.modal .notSignedIn a {
   margin: 0 auto;
 }
-.notSignedIn .userAuthTop {
+.modal .notSignedIn .userAuthTop {
   margin-bottom: 35px;
 }
-.notSignedIn .pinkButton {
+.modal .notSignedIn .pinkButton {
   width: 110px;
 }
-.notSignedIn button:hover {
+.modal .notSignedIn button:hover {
+  background-color: transparent;
+}
+
+.modalMovie {
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 30;
+}
+.modalMovie .modalContainer {
+  width: min(90vw, 767px);
+  padding-bottom: 123px;
+  height: calc(100vh - 20px);
+  overflow: auto;
+  margin: 20px auto 0 auto;
+  border-radius: 16px;
+  background-color: white;
+  border-radius: 16px;
+  position: relative;
+}
+.modalMovie .modalContainer .imageContainer {
+  height: 300px;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  background-color: #FFC7D0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.modalMovie .modalContainer .imageContainer .fullImage {
+  width: auto;
+}
+.modalMovie .modalContainer .modalBody {
+  padding: 0 20px;
+}
+.modalMovie .modalContainer .modalBody .infoSnippet {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+.modalMovie .modalContainer .modalBody .aboutSection a {
+  float: right;
+}
+.modalMovie .modalContainer .titleContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.modalMovie .modalContainer .textContainer {
+  margin-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: black;
+}
+.modalMovie .modalContainer .textContainer {
+  padding: 0 112.5px;
+}
+.modalMovie .modalContainer .topSide {
+  padding: 0 21px;
+}
+.modalMovie .modalContainer .topSide .heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 358px;
+}
+.modalMovie .modalContainer .topSide .heading a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px 30px;
+}
+.modalMovie .modalContainer .topSide .heading a img {
+  margin-right: 10px;
+}
+.modalMovie .modalContainer .topSide .heading h2 {
+  -webkit-transform: translate(50%);
+          transform: translate(50%);
+}
+.modalMovie .modalContainer .topSide .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.modalMovie .modalContainer .topSide img {
+  width: 29px;
+}
+.modalMovie .modalContainer .topSide h2 {
+  padding: 0 0 10px 0;
+}
+.modalMovie .modalContainer h2 {
+  padding: 5px 0 10px 0;
+}
+.modalMovie .modalContainer .midSide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 21px;
+}
+.modalMovie .modalContainer .leftSide,
+.modalMovie .modalContainer .rightSide {
+  width: 50%;
+}
+.modalMovie .modalContainer .rightSide {
+  padding-left: 50px;
+}
+.modalMovie .modalContainer .botSide .subTitle {
+  padding: 30px 21px 15px 21px;
+}
+.modalMovie .modalHeader {
+  background-color: black;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.modalMovie .modalHeader button {
+  width: 43px;
+  margin: 24px 41px;
+}
+.modalMovie .modalHeader button:hover {
+  background-color: transparent;
+}
+.modalMovie .modalHeader img {
+  background-color: transparent;
+}
+.modalMovie .modalHeader .heart {
+  width: 46px;
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+}
+.modalMovie .test {
+  border: 1px solid #941C2F;
+  width: 40%;
+  height: 200px;
+}
+.modalMovie .midIcon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.modalMovie .subTitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 30px;
+}
+.modalMovie h1 {
+  margin: 14px 0 25px;
+}
+.modalMovie .carousel {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+.modalMovie .carousel .carouselContainer {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px 0 5px 0;
+}
+.modalMovie .carousel .carouselCard {
+  width: 167px;
+  height: 156px;
+  display: inline-block;
+  padding: 0 5px;
+  overflow: hidden;
+}
+.modalMovie .carousel .carouselCard img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.modalMovie .carousel button:hover {
+  background-color: transparent;
+}
+.modalMovie .carouselControls {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: calc(50% - 20px);
+}
+.modalMovie .prev {
+  left: -45px;
+}
+.modalMovie .next {
+  right: -45px;
+}
+.modalMovie .notSignedIn {
+  position: relative;
+  width: min(90%, 496px);
+  height: 350px;
+  border-radius: 16px;
+  border: 1px solid #941C2F;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.modalMovie .notSignedIn .closeButton {
+  position: absolute;
+  top: 23px;
+  right: 23px;
+}
+.modalMovie .notSignedIn .userAuth {
+  padding-left: 0;
+}
+.modalMovie .notSignedIn a {
+  margin: 0 auto;
+}
+.modalMovie .notSignedIn .userAuthTop {
+  margin-bottom: 35px;
+}
+.modalMovie .notSignedIn .pinkButton {
+  width: 110px;
+}
+.modalMovie .notSignedIn button:hover {
   background-color: transparent;
 }
 

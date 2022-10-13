@@ -71,19 +71,27 @@ h4 {
     text-align: center;
 }
 
-.modal h2 {
+.modalMovie p {
+    color: black;
+}
+.modal h2,
+.modalMovie h2 {
     font-size: 24px;
 }
-.modal .textContainer p {
+.modal .textContainer p,
+.modalMovie .textContainer p {
     font-size: 20px;
 }
 .modal .textContainer h2,
-.modal .textContainer p {
+.modal .textContainer p,
+.modalMovie .textContainer h2,
+.modalMovie .textContainer p {
     color: black;
     font-weight: 400;
 }
 
-.modal .hoursContainer p {
+.modal .hoursContainer p,
+.modalMovie .hoursContainer p {
     font-family: 'Mirza', cursive;
     font-size: 20;
 }

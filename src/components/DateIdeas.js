@@ -6,6 +6,7 @@ import DateIdeasList from "./DateIdeasList";
 import Modal from "./Modal";
 import SavePopup from "./SavePopup";
 import mixpanel from "mixpanel-browser";
+import ModalMovie from "./ModalMovie";
 
 function DateIdeas({ userId, searchTerm, categoryName }) {
     const [dateIdeas, setDateIdeas] = useState({});
@@ -208,10 +209,21 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
         fetchEvents();
     }, [toggle]);
 
+    // track how many times homepage is visited
+    useEffect(() => {
+        mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+            debug: true,
+        });
+        mixpanel.track("Page View", {
+            userID: userId,
+            pageLocation: "homepage",
+        });
+    }, []);
+
     return (
         <div className="dateIdeas">
             {showModal && (
-                <Modal
+                <ModalMovie
                     eventDetails={chosenEvent}
                     closeModal={closeModal}
                     userId={userId}

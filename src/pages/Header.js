@@ -83,11 +83,13 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     };
 
     const handleClickSearchBar = () => {
+        console.log('search bar', context.pageIs)
         mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
             debug: true,
         });
         mixpanel.track("Search Bar Clicked", {
             userID: user.id,
+            location: context.pageIs
         });
     }
 
@@ -132,6 +134,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                             placeholder="Search Saved Ideas"
                             onChange={handleChange}
                             value={searchTerm}
+                            onClick={handleClickSearchBar}
                         />
                     )}
                     <div className="magnifyingGlass">
@@ -272,6 +275,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         placeholder="Search"
                         onChange={handleChange}
                         value={searchTerm}
+                        onClick={handleClickSearchBar}
                     />
                     <div className="magnifyingGlass">
                         <img src={magnifyingGlass} alt="magnifying glass" />
