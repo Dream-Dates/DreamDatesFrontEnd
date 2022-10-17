@@ -1,0 +1,20 @@
+// reviews.scss
+
+.reviews {
+    background-color: #D9D9D9;
+    .review {
+        background-color: #FFFFFF;
+        margin: 25px 80px;
+        padding: 28px 34px;
+    }
+}
+
+.reviewsHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.reviewHeader {
+    display: flex;
+    justify-content: space-between;
+}

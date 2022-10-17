@@ -45,12 +45,6 @@ button {
     cursor: pointer;
     outline: inherit;
     display: inline-block;
-    &:hover {
-        background-color: #941C2F;
-        p {
-            color: white;
-        }
-    }
 }
 
 
@@ -73,6 +67,12 @@ button {
     padding: 1px 0;
     min-width: 110px;
     cursor: pointer;
+    &:hover {
+        background-color: #941C2F;
+        p {
+            color: white;
+        }
+    }
 }
 
 .disable-link {

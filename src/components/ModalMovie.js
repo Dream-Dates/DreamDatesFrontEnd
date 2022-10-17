@@ -14,6 +14,8 @@ import defaultImagePlaceholder from "../assets/defaultImagePlaceholder.jpg";
 import Carousel from "./carousel";
 import SavePopup from "./SavePopup";
 import mixpanel from "mixpanel-browser";
+import Reviews from "./Reviews";
+import ticket from "../assets/ticket.svg"
 
 function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     const {
@@ -299,19 +301,30 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
                 <div className="modalBody">
                     <div className="infoSnippet">
-                        <p>cost</p>
-                        <p>restaurants</p>
-                        <p>***** rating</p>
+                        <p>$$$</p>
+                        <p>type of movie Austin, TX</p>
+                        <p> ⭐⭐⭐⭐⭐ rating</p>
                     </div>
 
                     <div className="aboutSection">
-                        <a href="">Website</a>
-                        <h1>About</h1>
+                        <div className="aboutSectionHeader">
+                            <div className="aboutSectionTitle">
+                                <img src={about} alt="information icon" />
+                                <h5>About</h5>
+                            </div>
+                            <a href="" className="pinkButton">
+                                <img src={ticket} alt="ticket icon" />
+                                <h5>Find tickets near me</h5>
+                            </a>
+                        </div>
+                        <p>2022 - 1hr 50min</p>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam dolores ratione totam incidunt eius? Esse unde praesentium nesciunt asperiores sapiente culpa quibusdam quod consequuntur assumenda, ea aliquid cupiditate quia, corrupti modi? Porro autem eligendi vel, obcaecati perspiciatis ea? Enim, cupiditate blanditiis molestias aut unde quibusdam a rerum facilis fugiat sapiente!</p>
                     </div>
 
 
                 </div>
+
+                <Reviews />
 
 
 

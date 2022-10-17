@@ -34,18 +34,52 @@
     }
 
     .modalBody {
-        padding: 0 20px;
+        margin: 25px 80px;
         .infoSnippet {
             display: flex;
             justify-content: space-around;
         }
-        .aboutSection {
-            a {
-                float: right;
-            }
+    }
+    
+    .aboutSectionHeader {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .aboutSectionTitle {
+        display: flex;
+        align-items: center;
+        img {
+            width: 25px;
+            height: 25px;
+            margin-right: 0.5rem;
         }
     }
 
+    .aboutSectionHeader a {
+        display: flex;
+        align-items: center;
+        img {
+            width: 31px;
+            height: 31px;
+        }
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     .titleContainer {
         // background-color: #941C2F;
         // height: 91px;
