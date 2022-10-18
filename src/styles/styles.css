@@ -384,6 +384,7 @@ h5 {
   font-size: 24px;
   font-weight: 400;
   line-height: 20px;
+  text-align: left;
 }
 
 .modalMovie p {
@@ -437,6 +438,7 @@ input {
 
 .headerMobile {
   display: none;
+  background-color: #FFFFFF;
 }
 
 .headerNormal {
@@ -1537,7 +1539,6 @@ h4 {
     grid-template-areas: "logo headerSearchBar right" "headerFilter headerFilter headerFilter";
     width: 100vw;
     z-index: 20;
-    background-color: #FFDEE4;
     padding-top: 20px;
     position: fixed;
   }

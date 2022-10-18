@@ -28,7 +28,8 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
             userID: userId,
             pageLocation: "homepage",
         });
-    }, []);
+        console.log('page visit home')
+    }, [userId]);
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails);
@@ -209,16 +210,16 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
         fetchEvents();
     }, [toggle]);
 
-    // track how many times homepage is visited
-    useEffect(() => {
-        mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
-            debug: true,
-        });
-        mixpanel.track("Page View", {
-            userID: userId,
-            pageLocation: "homepage",
-        });
-    }, []);
+    // // track how many times homepage is visited
+    // useEffect(() => {
+    //     mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+    //         debug: true,
+    //     });
+    //     mixpanel.track("Page View", {
+    //         userID: userId,
+    //         pageLocation: "homepage",
+    //     });
+    // }, []);
 
     return (
         <div className="dateIdeas">

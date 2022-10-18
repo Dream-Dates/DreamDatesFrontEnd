@@ -5,7 +5,7 @@ function Reviews() {
         <div className="reviews">
             <div className="reviewsContainer">
                 <div className="reviewsHeader">
-                    <h2>⭐ Reviews ⭐⭐⭐⭐⭐ (1,551)</h2>
+                    <h5>⭐ Reviews ⭐⭐⭐⭐⭐ (1,551)</h5>
                 </div>
                 <div className="review">
                     <div className="reviewHeader">
