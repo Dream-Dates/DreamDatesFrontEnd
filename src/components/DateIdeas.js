@@ -24,11 +24,19 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
         mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
             debug: true,
         });
-        mixpanel.track("Page View", {
-            userID: userId,
-            pageLocation: "homepage",
-        });
-        console.log('page visit home')
+        if (userId) {
+            mixpanel.track("Page View", {
+                userID: userId,
+                pageLocation: "homepage",
+            });
+        } else {
+            mixpanel.track("Page View", {
+                userID: 'No User ID',
+                pageLocation: "homepage",
+            });
+            // console.log('page visit home')
+        }
+        console.log('page visit home', userId)
     }, [userId]);
 
     const openModal = (e, eventDetails) => {

@@ -436,6 +436,10 @@ input {
   color: #941C2F;
 }
 
+.review > p {
+  font-weight: 400;
+}
+
 .headerMobile {
   display: none;
   background-color: #FFFFFF;
@@ -1243,9 +1247,8 @@ input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin: 0 80px;
+  padding-top: 40px;
 }
 
 .reviewHeader {
@@ -1255,6 +1258,16 @@ input {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.reviewsHeader img {
+  width: 24.17px;
+  height: 22.98px;
+}
+
+.scrollMore {
+  text-align: center;
+  padding: 20px;
 }
 
 .signIn form {

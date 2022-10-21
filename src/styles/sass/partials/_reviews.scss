@@ -11,10 +11,23 @@
 
 .reviewsHeader {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
+    // align-items: center;
+    margin: 0 80px;
+    padding-top: 40px;
 }
 
 .reviewHeader {
     display: flex;
     justify-content: space-between;
+}
+
+.reviewsHeader img {
+    width: 24.17px;
+    height: 22.98px;
+}
+
+.scrollMore {
+    text-align: center;
+    padding: 20px;
 }
