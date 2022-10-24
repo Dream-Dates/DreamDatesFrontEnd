@@ -37,13 +37,21 @@
         margin: 25px 80px;
         .infoSnippet {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
+            margin: 25px 0;
         }
+    }
+
+    .aboutSection>p {
+        margin: 7px 0;
     }
     
     .aboutSectionHeader {
         display: flex;
         justify-content: space-between;
+        a {
+            padding: 2px 5px;
+        }
     }
     
     .aboutSectionTitle {

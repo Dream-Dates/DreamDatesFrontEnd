@@ -320,10 +320,14 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                         <p>2022 - 1hr 50min</p>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam dolores ratione totam incidunt eius? Esse unde praesentium nesciunt asperiores sapiente culpa quibusdam quod consequuntur assumenda, ea aliquid cupiditate quia, corrupti modi? Porro autem eligendi vel, obcaecati perspiciatis ea? Enim, cupiditate blanditiis molestias aut unde quibusdam a rerum facilis fugiat sapiente!</p>
                     </div>
-
-
                 </div>
 
+
+                {/* Restaurant/Live Events/Attractions */}
+
+                <Carousel data={image} />
+
+                {/* MOVIE */}
                 <Reviews />
 
 
