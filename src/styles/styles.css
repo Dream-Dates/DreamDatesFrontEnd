@@ -950,7 +950,6 @@ input {
 }
 .modalMovie .modalContainer {
   width: min(90vw, 767px);
-  padding-bottom: 123px;
   height: calc(100vh - 20px);
   overflow: auto;
   margin: 20px auto 0 auto;
@@ -1024,6 +1023,24 @@ input {
 .modalMovie .modalContainer .aboutSectionHeader a img {
   width: 31px;
   height: 31px;
+}
+.modalMovie .modalContainer .additionalInformation {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  grid-template-areas: "phone hours" "location hours" "carousel carousel";
+}
+.modalMovie .modalContainer .phoneSection {
+  grid-area: phone;
+}
+.modalMovie .modalContainer .locationSection {
+  grid-area: location;
+}
+.modalMovie .modalContainer .hoursSection {
+  grid-area: hours;
+}
+.modalMovie .modalContainer .carouselSection {
+  grid-area: carousel;
 }
 .modalMovie .modalContainer .titleContainer {
   display: -webkit-box;
@@ -1205,10 +1222,10 @@ input {
   top: calc(50% - 20px);
 }
 .modalMovie .prev {
-  left: -45px;
+  left: -20px;
 }
 .modalMovie .next {
-  right: -45px;
+  right: -20px;
 }
 .modalMovie .notSignedIn {
   position: relative;

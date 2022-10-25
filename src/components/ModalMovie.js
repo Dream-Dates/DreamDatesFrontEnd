@@ -15,7 +15,7 @@ import Carousel from "./carousel";
 import SavePopup from "./SavePopup";
 import mixpanel from "mixpanel-browser";
 import Reviews from "./Reviews";
-import ticket from "../assets/ticket.svg"
+import ticket from "../assets/ticket.svg";
 
 function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     const {
@@ -318,156 +318,77 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                             </a>
                         </div>
                         <p>2022 - 1hr 50min</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam dolores ratione totam incidunt eius? Esse unde praesentium nesciunt asperiores sapiente culpa quibusdam quod consequuntur assumenda, ea aliquid cupiditate quia, corrupti modi? Porro autem eligendi vel, obcaecati perspiciatis ea? Enim, cupiditate blanditiis molestias aut unde quibusdam a rerum facilis fugiat sapiente!</p>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Magnam dolores ratione totam incidunt eius?
+                            Esse unde praesentium nesciunt asperiores sapiente
+                            culpa quibusdam quod consequuntur assumenda, ea
+                            aliquid cupiditate quia, corrupti modi? Porro autem
+                            eligendi vel, obcaecati perspiciatis ea? Enim,
+                            cupiditate blanditiis molestias aut unde quibusdam a
+                            rerum facilis fugiat sapiente!
+                        </p>
                     </div>
-                </div>
 
-
-                {/* Restaurant/Live Events/Attractions */}
-
-                <Carousel data={image} />
-
-                {/* MOVIE */}
-                <Reviews />
-
-
-
-
-
-                <div className="textContainer">
-                    <div className="topSide">
-                        <div className="heading">
-                            {website && (
-                                <a
-                                    href={website}
-                                    className="pinkButton"
-                                    target="_blank"
-                                    onClick={handleClickWebsite}
-                                >
-                                    <img src={globe} alt="globe icon" />{" "}
-                                    <p>Website</p>
-                                </a>
-                            )}
-                            {link && (
-                                <a
-                                    href={link}
-                                    className="pinkButton"
-                                    target="_blank"
-                                    onClick={handleClickWebsite}
-                                >
-                                    <img src={globe} alt="globe icon" />{" "}
-                                    <p>Website</p>
-                                </a>
-                            )}
-                            <h2>
-                                {price_range
-                                    ? dollarSigns(price_range)
-                                    : price
-                                    ? price
-                                    : " "}
-                            </h2>
-                            {categoryType === "events" && <h2>Ticket Event</h2>}
-                            {categoryType === "movies" && <h2>Movie</h2>}
-                            {categoryType === "restaurants" && (
-                                <h2>Restaurant</h2>
-                            )}
-                            {categoryType === "attractions" && (
-                                <h2>Attractions</h2>
-                            )}
+                    {/* Restaurant/Live Events/Attractions */}
+                    <div className="additionalInformation">
+                        <div className="phoneSection">
+                            <div className="subTitle">
+                                <div className="midIcon">
+                                    <img src={phone} alt='phone icon'/>
+                                </div>
+                                <h5>Phone</h5>
+                            </div>
+                            <p>(123)-456-7890</p>
                         </div>
-                    </div>
-                    <div className="midSide">
-                        <div className="leftSide">
-                            {description && (
-                                <div className="aboutContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img
-                                                src={about}
-                                                alt="information icon"
-                                            />
-                                        </div>
-                                        <h2>About</h2>
-                                    </div>
-                                    <p>{description}</p>
+                        <div className="locationSection">
+                            <div className="subTitle">
+                                <div className="midIcon">
+                                    <img src={location} alt="map pin icon" />
                                 </div>
-                            )}
-
-                            {/* <div className="phoneContainer">
-                                <div className="subTitle">
-                                    <div className="midIcon">
-                                        <img src={phone} alt='phone icon'/>
-                                    </div>
-                                    <h2>Phone</h2>
-                                </div>
-                                <p>(123)-456-7890</p>
-                            </div> */}
-
-                            {adress_street && (
-                                <div className="locationContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img
-                                                src={location}
-                                                alt="map pin icon"
-                                            />
-                                        </div>
-                                        <h2>Location</h2>
-                                    </div>
-                                    <p>{venue}</p>
-                                    <p>{adress_street}</p>
-                                    <p>{city}</p>
-                                </div>
-                            )}
+                                <h5>Location</h5>
+                            </div>
+                            <p>2330 W North Loop Blvd
+                        Austin, TX 78756
+                        Rosedale, Allandale</p>
+                        <iframe></iframe>
                         </div>
-                        <div className="rightSide">
-                            {opening_hours && (
-                                <div className="hoursContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img src={clock} alt="clock icon" />
-                                        </div>
-                                        <h2>Hours</h2>
-                                    </div>
-                                    {opening_hours.map((item) => {
-                                        return (
-                                            <>
-                                                {newLine(item).map((each) => {
-                                                    return <p>{each}</p>;
-                                                })}
-                                                {/* <br /> */}
-                                            </>
-                                        );
-                                    })}
+                        <div className="hoursSection">
+                            <div className="subTitle">
+                                <div className="midIcon">
+                                    <img src={clock} alt="clock icon" />
                                 </div>
-                            )}
-                            {time && (
-                                <div className="hoursContainer">
-                                    <div className="subTitle">
-                                        <div className="midIcon">
-                                            <img src={clock} alt="clock icon" />
-                                        </div>
-                                        <h2>Date</h2>
-                                    </div>
-                                    {newDateFormat(time).map((each) => {
-                                        return <p>{each}</p>;
-                                    })}
-                                </div>
-                            )}
+                                <h5>Hours</h5>
+                            </div>
+                            {opening_hours.map((item) => {
+                                            return (
+                                                <>
+                                                    {newLine(item).map((each) => {
+                                                        return <p>{each}</p>;
+                                                    })}
+                                                    {/* <br /> */}
+                                                </>
+                                            );
+                                        })}
                         </div>
-                    </div>
-                    {image && (
-                        <div className="botSide">
+                        <div className="carouselSection">
                             <div className="subTitle">
                                 <div className="midIcon">
                                     <img src={imageIcon} alt="image icon" />
                                 </div>
-                                <h2>Photos</h2>
+                                <h5>Photos</h5>
                             </div>
                             <Carousel data={image} />
                         </div>
-                    )}
+                    </div>
+
+
                 </div>
+
+
+                {/* MOVIE */}
+                <Reviews />
+
             </div>
 
             {showSavePopup && <SavePopup text={saveMessage} />}
