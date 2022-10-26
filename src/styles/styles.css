@@ -998,16 +998,18 @@ input {
 }
 .modalMovie .modalContainer .aboutSectionHeader a {
   padding: 2px 5px;
+  margin-top: 30px;
 }
-.modalMovie .modalContainer .aboutSectionTitle {
+.modalMovie .modalContainer .subTitle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 30px;
 }
-.modalMovie .modalContainer .aboutSectionTitle img {
+.modalMovie .modalContainer .subTitle img {
   width: 25px;
   height: 25px;
   margin-right: 0.5rem;
@@ -1038,6 +1040,7 @@ input {
 }
 .modalMovie .modalContainer .hoursSection {
   grid-area: hours;
+  padding-left: 90px;
 }
 .modalMovie .modalContainer .carouselSection {
   grid-area: carousel;
@@ -1169,15 +1172,6 @@ input {
   height: 20px;
   display: inline-block;
   margin-right: 10px;
-}
-.modalMovie .subTitle {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-top: 30px;
 }
 .modalMovie h1 {
   margin: 14px 0 25px;

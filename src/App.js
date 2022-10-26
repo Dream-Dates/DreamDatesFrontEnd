@@ -19,6 +19,7 @@ function App() {
     const [toggle, setToggle] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryName, setCategoryName] = useState("");
+    const [localStorageFinished, setLocalStorageFinished] =useState(false);
 
     // // track how many times homepage is visited
     // useEffect(() => {
@@ -42,6 +43,8 @@ function App() {
             id: localStorage.id,
             name: localStorage.name,
         });
+        // this is for the mixpanel in DateIdeas.js, it was tracking on render and the rerender when user was updated. With this it does not track the initial render because localStorageFinished is false
+        setLocalStorageFinished(true)
     }, [toggle]);
 
     // clear info when logged out
@@ -86,6 +89,7 @@ function App() {
                                 userId={user.id}
                                 searchTerm={searchTerm}
                                 categoryName={categoryName}
+                                localStorageFinished={localStorageFinished}
                             />
                         }
                     />

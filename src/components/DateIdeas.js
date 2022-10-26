@@ -8,7 +8,7 @@ import SavePopup from "./SavePopup";
 import mixpanel from "mixpanel-browser";
 import ModalMovie from "./ModalMovie";
 
-function DateIdeas({ userId, searchTerm, categoryName }) {
+function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished }) {
     const [dateIdeas, setDateIdeas] = useState({});
     const [chosenEvent, setChoseEvent] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -21,22 +21,24 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
 
     // track how many times homepage is visited
     useEffect(() => {
-        mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
-            debug: true,
-        });
-        if (userId) {
-            mixpanel.track("Page View", {
-                userID: userId,
-                pageLocation: "homepage",
+        if (localStorageFinished) {
+            mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                debug: true,
             });
-        } else {
-            mixpanel.track("Page View", {
-                userID: 'No User ID',
-                pageLocation: "homepage",
-            });
-            // console.log('page visit home')
+            if (userId) {
+                mixpanel.track("Page View", {
+                    userID: userId,
+                    pageLocation: "homepage",
+                });
+            } else {
+                mixpanel.track("Page View", {
+                    userID: 'No User ID',
+                    pageLocation: "homepage",
+                });
+                // console.log('page visit home')
+            }
+            console.log('page visit home', userId)
         }
-        console.log('page visit home', userId)
     }, [userId]);
 
     const openModal = (e, eventDetails) => {

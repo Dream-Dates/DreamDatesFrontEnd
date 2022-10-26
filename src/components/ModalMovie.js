@@ -308,7 +308,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
                     <div className="aboutSection">
                         <div className="aboutSectionHeader">
-                            <div className="aboutSectionTitle">
+                            <div className="subTitle">
                                 <img src={about} alt="information icon" />
                                 <h5>About</h5>
                             </div>
@@ -334,18 +334,14 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     <div className="additionalInformation">
                         <div className="phoneSection">
                             <div className="subTitle">
-                                <div className="midIcon">
-                                    <img src={phone} alt='phone icon'/>
-                                </div>
+                                <img src={phone} alt='phone icon'/>
                                 <h5>Phone</h5>
                             </div>
                             <p>(123)-456-7890</p>
                         </div>
                         <div className="locationSection">
                             <div className="subTitle">
-                                <div className="midIcon">
-                                    <img src={location} alt="map pin icon" />
-                                </div>
+                                <img src={location} alt="map pin icon" />
                                 <h5>Location</h5>
                             </div>
                             <p>2330 W North Loop Blvd
@@ -355,9 +351,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                         </div>
                         <div className="hoursSection">
                             <div className="subTitle">
-                                <div className="midIcon">
-                                    <img src={clock} alt="clock icon" />
-                                </div>
+                                <img src={clock} alt="clock icon" />
                                 <h5>Hours</h5>
                             </div>
                             {opening_hours.map((item) => {
@@ -373,9 +367,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                         </div>
                         <div className="carouselSection">
                             <div className="subTitle">
-                                <div className="midIcon">
-                                    <img src={imageIcon} alt="image icon" />
-                                </div>
+                                <img src={imageIcon} alt="image icon" />
                                 <h5>Photos</h5>
                             </div>
                             <Carousel data={image} />

@@ -51,18 +51,23 @@
         justify-content: space-between;
         a {
             padding: 2px 5px;
+            margin-top: 30px;
         }
     }
     
-    .aboutSectionTitle {
+    .subTitle {
         display: flex;
         align-items: center;
-        img {
-            width: 25px;
-            height: 25px;
-            margin-right: 0.5rem;
-        }
+        margin-top: 30px;
     }
+
+    .subTitle img {
+        width: 25px;
+        height: 25px;
+        margin-right: 0.5rem;
+    }
+
+
 
     .aboutSectionHeader a {
         display: flex;
@@ -94,6 +99,7 @@
 
     .hoursSection {
         grid-area: hours;
+        padding-left: 90px;
     }
 
     .carouselSection {
@@ -249,13 +255,6 @@
 
     // align-items: center;
 }
-
-.subTitle {
-    display: flex;
-    align-items: center;
-    padding-top: 30px;
-}
-
 
 h1 {
     margin: 14px 0 25px;

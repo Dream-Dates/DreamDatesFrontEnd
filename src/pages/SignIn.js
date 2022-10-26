@@ -42,7 +42,12 @@ function SignIn({ rerender }) {
                     rerender();
                     navigate("/");
                 }
-            });
+            })
+            .then(()=>{
+                console.log('then')
+            })
+            console.log('last')
+            ;
         return false;
     };
 
