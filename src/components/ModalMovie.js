@@ -354,23 +354,22 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <img src={clock} alt="clock icon" />
                                 <h5>Hours</h5>
                             </div>
-                            {opening_hours.map((item) => {
+                            {/* {opening_hours?.map((item) => {
                                             return (
                                                 <>
                                                     {newLine(item).map((each) => {
                                                         return <p>{each}</p>;
                                                     })}
-                                                    {/* <br /> */}
                                                 </>
                                             );
-                                        })}
+                                        })} */}
                         </div>
                         <div className="carouselSection">
                             <div className="subTitle">
                                 <img src={imageIcon} alt="image icon" />
                                 <h5>Photos</h5>
                             </div>
-                            <Carousel data={image} />
+                            {/* <Carousel data={image} /> */}
                         </div>
                     </div>
 
