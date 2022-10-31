@@ -286,7 +286,10 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <button
                             id="restaurants"
                             onClick={handleClickButtons}
-                            className="pinkButton"
+                            className={`pinkButton ${
+                                selectedCategory == "restaurants" &&
+                                "selectedCategory"
+                            }`}
                         >
                             <p>Food</p>
                         </button>
@@ -295,7 +298,10 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <button
                             id="movies"
                             onClick={handleClickButtons}
-                            className="pinkButton"
+                            className={`pinkButton ${
+                                selectedCategory == "movies" &&
+                                "selectedCategory"
+                            }`}
                         >
                             <p>Movies</p>
                         </button>
@@ -304,7 +310,10 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <button
                             id="active"
                             onClick={handleClickButtons}
-                            className="pinkButton disable-link"
+                            className={`pinkButton disable-link ${
+                                selectedCategory == "active" &&
+                                "selectedCategory"
+                            }`}
                         >
                             <p>Active</p>
                         </button>
@@ -313,7 +322,10 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <button
                             id="attractions"
                             onClick={handleClickButtons}
-                            className="pinkButton"
+                            className={`pinkButton ${
+                                selectedCategory == "attractions" &&
+                                "selectedCategory"
+                            }`}
                         >
                             <p>Attractions</p>
                         </button>
@@ -322,7 +334,10 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <button
                             id="events"
                             onClick={handleClickButtons}
-                            className="pinkButton"
+                            className={`pinkButton ${
+                                selectedCategory == "events" &&
+                                "selectedCategory"
+                            }`}
                         >
                             <p>Live Entertainment</p>
                         </button>
