@@ -313,8 +313,17 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <h5>About</h5>
                             </div>
                             <a href="" className="pinkButton">
-                                <img src={ticket} alt="ticket icon" />
-                                <h5>Find tickets near me</h5>
+                                {eventDetails.categoryType === 'movies' || eventDetails.categoryType === 'events' ? 
+                                <>
+                                    <img src={ticket} alt="ticket icon" />
+                                    <h5>Find tickets near me</h5>
+                                </>
+                                :
+                                <>
+                                    <img src={globe} alt="globe icon" />
+                                    <h5>Website</h5>
+                                </>
+                                }
                             </a>
                         </div>
                         <p>2022 - 1hr 50min</p>
@@ -331,6 +340,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     </div>
 
                     {/* Restaurant/Live Events/Attractions */}
+                    {eventDetails.categoryType !== "movies" && 
                     <div className="additionalInformation">
                         <div className="phoneSection">
                             <div className="subTitle">
@@ -354,24 +364,25 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <img src={clock} alt="clock icon" />
                                 <h5>Hours</h5>
                             </div>
-                            {/* {opening_hours?.map((item) => {
+                            {opening_hours?.map((item) => {
                                             return (
                                                 <>
-                                                    {newLine(item).map((each) => {
-                                                        return <p>{each}</p>;
+                                                    {newLine(item).map((each,i) => {
+                                                        return <p key={i}>{each}</p>;
                                                     })}
                                                 </>
                                             );
-                                        })} */}
+                                        })}
                         </div>
+                        {eventDetails.categoryType !=="events" &&
                         <div className="carouselSection">
                             <div className="subTitle">
                                 <img src={imageIcon} alt="image icon" />
                                 <h5>Photos</h5>
                             </div>
-                            {/* <Carousel data={image} /> */}
-                        </div>
-                    </div>
+                            <Carousel data={image} />
+                        </div>}
+                    </div>}
 
 
                 </div>
