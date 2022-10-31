@@ -339,6 +339,10 @@ button p {
   color: black;
 }
 
+.userAuth a p {
+  color: #941C2F;
+}
+
 .signOut {
   color: #941C2F;
   text-decoration: underline;
@@ -1603,6 +1607,9 @@ h4 {
     border-radius: 16px;
     width: 269px;
     height: 222px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -1633,11 +1640,14 @@ h4 {
   .showDropDown {
     display: block;
   }
-  .userAuth .pinkButton:hover {
-    background-color: #FFC7D0;
+  .userAuth .pinkButton {
+    background-color: #ffc7d0;
   }
-  .userAuth .pinkButton:hover p {
+  .userAuth .pinkButton p {
     color: black;
+  }
+  .userAuth .pinkButton .signOut p {
+    color: #941C2F;
   }
   .userAuth .pinkButton:hover img {
     -webkit-filter: none;
@@ -1667,7 +1677,7 @@ h4 {
     padding: 0;
   }
   .profileBody .pinkButton:hover {
-    background-color: #941C2F;
+    background-color: #941c2f;
   }
   .profileBody .pinkButton:hover p {
     color: white;
