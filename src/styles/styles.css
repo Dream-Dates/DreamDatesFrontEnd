@@ -1592,6 +1592,12 @@ h4 {
     position: relative;
   }
   .profile {
+    display: none;
+    position: absolute;
+    top: 33px;
+    margin-left: -200px;
+  }
+  .profileContainer {
     background-color: white;
     border: 1px solid black;
     border-radius: 16px;
@@ -1603,15 +1609,29 @@ h4 {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    display: none;
+  }
+  .triangleHatOutline {
+    position: relative;
+    top: 1px;
+    left: 224px;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    -webkit-clip-path: polygon(10px 0, 0 20px, 20px 20px);
+            clip-path: polygon(10px 0, 0 20px, 20px 20px);
+  }
+  .triangleHatBody {
     position: absolute;
-    top: 33px;
-    margin-left: -238px;
+    top: 1px;
+    left: 0.5px;
+    width: 18px;
+    height: 20px;
+    background-color: white;
+    -webkit-clip-path: polygon(10px 0, 0 20px, 20px 20px);
+            clip-path: polygon(10px 0, 0 20px, 20px 20px);
   }
   .showDropDown {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    display: block;
   }
   .userAuth .pinkButton:hover {
     background-color: #FFC7D0;
@@ -1623,7 +1643,7 @@ h4 {
     -webkit-filter: none;
             filter: none;
   }
-  .profileContainer {
+  .profileBody {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1638,24 +1658,24 @@ h4 {
         -ms-flex-align: center;
             align-items: center;
   }
-  .profileContainer .signInSignUp {
+  .profileBody .signInSignUp {
     padding-left: 0;
   }
-  .profileContainer .pinkButton {
+  .profileBody .pinkButton {
     margin: 0 auto;
     width: 110px;
     padding: 0;
   }
-  .profileContainer .pinkButton:hover {
+  .profileBody .pinkButton:hover {
     background-color: #941C2F;
   }
-  .profileContainer .pinkButton:hover p {
+  .profileBody .pinkButton:hover p {
     color: white;
   }
-  .profileContainer .userAuthTop {
+  .profileBody .userAuthTop {
     margin-bottom: 20px;
   }
-  .profileContainer p {
+  .profileBody p {
     min-width: 60px;
     text-align: center;
   }

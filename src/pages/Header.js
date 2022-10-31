@@ -370,38 +370,44 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                         <button className="pinkButton" onClick={handleClickProfile}>
                             <img src={profileIcon} alt="profile icon" id="profileIcon"/>
                             <div className={`profile ${showDropDown && 'showDropDown'}`}>
-                                {user.token ? (
-                                    <div className="profileContainer">
-                                        <p className="welcome">
-                                            Welcome back, {user.name}!
-                                        </p>
-                                        <br />
-                                        <Link
-                                            to="/"
-                                            onClick={logUserOut}
-                                            className="signOut"
-                                        >
-                                            <p>Sign out</p>
-                                        </Link>
-                                    </div>
-                                ) : (
-                                    <div className="profileContainer">
-                                        <div className="signInSignUp">
+                                <div className="triangleHatOutline">
+                                    <div className="triangleHatBody"></div>
+                                </div>
+                                
+                                <div className="profileContainer">
+                                    {user.token ? (
+                                        <div className="profileBody">
+                                            <p className="welcome">
+                                                Welcome back, {user.name}!
+                                            </p>
+                                            <br />
                                             <Link
-                                                to="/signin"
-                                                className="pinkButton userAuthTop"
+                                                to="/"
+                                                onClick={logUserOut}
+                                                className="signOut"
                                             >
-                                                <p>Sign In</p>
-                                            </Link>
-                                            <Link
-                                                to={"/signup"}
-                                                className="pinkButton"
-                                            >
-                                                <p>Sign Up</p>
+                                                <p>Sign out</p>
                                             </Link>
                                         </div>
-                                    </div>
-                                )}
+                                    ) : (
+                                        <div className="profileBody">
+                                            <div className="signInSignUp">
+                                                <Link
+                                                    to="/signin"
+                                                    className="pinkButton userAuthTop"
+                                                >
+                                                    <p>Sign In</p>
+                                                </Link>
+                                                <Link
+                                                    to={"/signup"}
+                                                    className="pinkButton"
+                                                >
+                                                    <p>Sign Up</p>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </button>
                     </div>
