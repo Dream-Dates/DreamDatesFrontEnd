@@ -16,6 +16,7 @@ import SavePopup from "./SavePopup";
 import mixpanel from "mixpanel-browser";
 import Reviews from "./Reviews";
 import ticket from "../assets/ticket.svg";
+import MobileCarousel from "./MobileCarousel";
 
 function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     const {
@@ -387,6 +388,91 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
                 </div>
 
+                <div className="modalBodyMobile">
+                    <div className="infoSnippet">
+                        <div className="locationWebsite">
+                            <p>Austin, TX</p>
+                            <a href="">Website</a>
+                        </div>
+                        <div className="categoryPrice">
+                            <p>Restaurant</p>
+                            <p>$$$</p>
+                        </div>
+                        <div className="starsReviews">
+                            <p>⭐⭐⭐</p>
+                            <p>1,542 Reviews</p>
+                        </div>
+                    </div>
+
+                    <div className="aboutSection">
+                        <div className="aboutSectionHeader">
+                            <div className="subTitle">
+                                <img src={about} alt="information icon" />
+                                <h5>About</h5>
+                            </div>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Magnam dolores ratione totam incidunt eius?
+                            Esse unde praesentium nesciunt asperiores sapiente
+                            culpa quibusdam quod consequuntur assumenda, ea
+                            aliquid cupiditate quia, corrupti modi? Porro autem
+                            eligendi vel, obcaecati perspiciatis ea? Enim,
+                            cupiditate blanditiis molestias aut unde quibusdam a
+                            rerum facilis fugiat sapiente!
+                        </p>
+                    </div>
+
+                    {/* Restaurant/Live Events/Attractions */}
+                    {eventDetails.categoryType !== "movies" && 
+                    <div className="additionalInformation">
+                        <div className="phoneSection">
+                            <div className="subTitle">
+                                <img src={phone} alt='phone icon'/>
+                                <h5>Phone</h5>
+                            </div>
+                            <p>(123)-456-7890</p>
+                        </div>
+                        <div className="locationSection">
+                            <div className="subTitle">
+                                <img src={location} alt="map pin icon" />
+                                <h5>Location</h5>
+                            </div>
+                            <p>2330 W North Loop Blvd
+                        Austin, TX 78756
+                        Rosedale, Allandale</p>
+                        <iframe></iframe>
+                        </div>
+                        <div className="hoursSection">
+                            <div className="subTitle">
+                                <img src={clock} alt="clock icon" />
+                                <h5>Hours</h5>
+                            </div>
+                            {opening_hours?.map((item) => {
+                                            return (
+                                                <>
+                                                    {newLine(item).map((each,i) => {
+                                                        return <p key={i}>{each}</p>;
+                                                    })}
+                                                </>
+                                            );
+                                        })}
+                        </div>
+                        {eventDetails.categoryType !=="events" &&
+                        <div className="carouselSection">
+                            <div className="subTitle">
+                                <img src={imageIcon} alt="image icon" />
+                                <h5>Photos</h5>
+                            </div>
+                            <MobileCarousel data={image} />
+                        </div>}
+                    </div>}
+
+
+
+
+
+                </div>
 
                 {/* MOVIE */}
                 <Reviews />

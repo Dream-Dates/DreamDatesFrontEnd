@@ -257,4 +257,54 @@
     .signUp section {
         display: block;
     }
+
+    .modalMovie {
+        h1 {
+            margin: 15px 0 17px;
+        }
+        .modalContainer {
+            width: 375px;
+            .imageContainer {
+                margin-top: 75px;
+            }
+            .modalBody {
+                display: none;
+            }
+            .modalBodyMobile {
+                &>div {
+                    padding: 0 29px;
+                }
+                &>div:not(.infoSnippet) p {
+                    padding: 0 20px;
+                }
+                .infoSnippet {
+                    background-color: #941C2F;
+                    div {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+                .additionalInformation {
+                    display: block;
+                }
+                .carouselSection {
+
+            }
+
+            }
+        }
+        .modalHeader {
+            height: 75px;
+            width: 375px;
+            position: fixed;
+            border-radius: 16px 16px 0 0;
+            .heart {
+                width: 38.48px;
+            }
+            button {
+                width: 35px;
+                    margin: 24px;
+            }
+        }
+    }
 }
