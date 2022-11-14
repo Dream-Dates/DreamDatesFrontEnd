@@ -1205,7 +1205,6 @@ input {
   overflow: hidden;
   white-space: nowrap;
   scroll-behavior: smooth;
-  background-color: rgba(0, 0, 0, 0.1);
   padding: 10px 0 5px 0;
 }
 .modalMovie .carousel .carouselCard {
@@ -1295,6 +1294,17 @@ input {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+.reviewHeader div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.reviewHeader img {
+  width: 33px;
 }
 
 .reviewsHeader img {
@@ -1709,6 +1719,9 @@ h4 {
   .modalMovie h1 {
     margin: 15px 0 17px;
   }
+  .modalMovie .modalHeader {
+    width: auto;
+  }
   .modalMovie .modalContainer {
     width: 375px;
   }
@@ -1721,7 +1734,7 @@ h4 {
   .modalMovie .modalContainer .modalBodyMobile > div {
     padding: 0 29px;
   }
-  .modalMovie .modalContainer .modalBodyMobile > div:not(.infoSnippet) p {
+  .modalMovie .modalContainer .modalBodyMobile > div:not(.infoSnippet .carousel) p {
     padding: 0 20px;
   }
   .modalMovie .modalContainer .modalBodyMobile .infoSnippet {
@@ -1738,16 +1751,37 @@ h4 {
   .modalMovie .modalContainer .modalBodyMobile .additionalInformation {
     display: block;
   }
-  .modalMovie .modalHeader {
+  .modalMovie .modalContainer .modalBodyMobile .carousel {
+    padding: 0 14px;
+  }
+  .modalMovie .modalContainer .modalBodyMobile .carouselContainer {
+    padding: 0;
+  }
+  .modalMovie .modalContainer .modalBodyMobile .carouselCard {
+    width: 272px;
+    height: 204px;
+    padding: 0;
+  }
+  .modalMovie .modalContainer .modalBodyMobile .review {
+    height: auto;
+    padding: 36px 29px 47.96px 29px;
+    border: 1px black solid;
+    border-radius: 16px;
+    white-space: normal;
+  }
+  .reviews {
+    display: none;
+  }
+  .modalHeader {
     height: 75px;
     width: 375px;
     position: fixed;
     border-radius: 16px 16px 0 0;
   }
-  .modalMovie .modalHeader .heart {
+  .modalHeader .heart {
     width: 38.48px;
   }
-  .modalMovie .modalHeader button {
+  .modalHeader button {
     width: 35px;
     margin: 24px;
   }

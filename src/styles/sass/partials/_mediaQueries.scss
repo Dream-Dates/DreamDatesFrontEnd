@@ -262,6 +262,9 @@
         h1 {
             margin: 15px 0 17px;
         }
+        .modalHeader {
+            width: auto;
+        }
         .modalContainer {
             width: 375px;
             .imageContainer {
@@ -274,7 +277,7 @@
                 &>div {
                     padding: 0 29px;
                 }
-                &>div:not(.infoSnippet) p {
+                &>div:not(.infoSnippet .carousel) p {
                     padding: 0 20px;
                 }
                 .infoSnippet {
@@ -287,11 +290,32 @@
                 .additionalInformation {
                     display: block;
                 }
-                .carouselSection {
+                .carousel {
+                    padding: 0 14px;
+                    }
+                    .carouselContainer {
+                        padding: 0;
+                    }
+                    .carouselCard {
+                        width: 272px;
+                        height: 204px;
+                        padding: 0;
+                    }
+                    .review {
+                        // margin: 25px 80px;
+                        height: auto;
+                        padding: 36px 29px 47.96px 29px;
+                        border: 1px black solid;
+                        border-radius: 16px;
+                        white-space: normal;
+                    }
 
             }
 
             }
+        }
+        .reviews {
+            display: none;
         }
         .modalHeader {
             height: 75px;
@@ -307,4 +331,4 @@
             }
         }
     }
-}
+

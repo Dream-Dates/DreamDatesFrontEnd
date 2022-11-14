@@ -22,6 +22,13 @@
 .reviewHeader {
     display: flex;
     justify-content: space-between;
+    div {
+        display: flex;
+        align-items: center;
+    }
+    img {
+        width: 33px;
+    }
 }
 
 .reviewsHeader img {
