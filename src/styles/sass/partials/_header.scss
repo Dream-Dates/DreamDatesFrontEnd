@@ -6,39 +6,36 @@
 }
 
 .headerNormal {
-    height: 186px;
-    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
-    display: grid;
-    grid-template-columns: 2fr minmax(200px, 4fr) 2fr;
-    grid-template-rows: 120px;
-    // grid-template-rows: auto;
-    column-gap: 30px;
-    grid-template-areas:
-        "logo headerSearchBar right"
-        "headerFilter headerFilter headerFilter";
-    position: fixed;
     width: 100vw;
+    height: 186px;
+    background-color: #FFFFFF;
+    position: fixed;
     z-index: 20;
-    background-color: #FFDEE4;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
 }
 
-.logo {
-    grid-area: logo;
-    width: 100%;
+.headerNormalTop {
+    display: flex;
+    gap: 26px;
+    max-width: 1440px;
+    height: 50px;
+    margin: 37px calc(70px/1440px * 100vw);
+}
+
+.headerLogo {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
     a {
-        max-width: 300px;
-        // margin: 0 auto;
-        margin-left: 60px;
-        &:hover {
-            background-color: transparent;
-        }
+        width: 100%;
     }
 }
 
 .headerSearchBar {
-    grid-area: headerSearchBar;
-    width: min(100%,700px);
-    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
     position: relative;
     input {
         border: 1px solid #B1B1B1;
@@ -46,7 +43,6 @@
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
         width: 100%;
         padding: 8px 0 8px 35px;
-        // padding-left: 30px;
         &:focus {
             border: 1px solid #941C2F;
         }
@@ -56,30 +52,19 @@
     }
 }
 
-.headerFilter {
-    grid-area: headerFilter;
-    width: 700px;
-    margin: 0 auto;
-    // border: 1px solid red;
-    // padding-bottom: 50px;
-}
-
-.headerRightSide {
-    grid-area: right;
+.homeSavedButtons {
     display: flex;
-    justify-content: end;
-    margin-right: 60px;
-    transform: translate(0px, 42px);
-
-}
-
-.savedButton, .userAuth {
-    // grid-area: saved;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 110px;
     .pinkButton {
+        width: 110px;
+        padding: 5px ;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        &:hover img{
+        &:hover img {
             filter: brightness(0) invert(1);
         }
     }
@@ -90,41 +75,59 @@
 }
 
 .userAuth {
-    // grid-area: userAuth;
-    padding-left: 20px;
+    flex-shrink: 0;
     width: 140px;
-    .signOut:hover {
-        background-color: transparent;
+    .pinkButton {
+        width: 110px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        &:hover img {
+            filter: brightness(0) invert(1);
+        }
     }
 }
 
-.signOut {
-    // grid-area: signOut;
+.br {
+    display: block;
+    margin-bottom: 10px;
 }
 
-.logo,
-.headerSearchBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.welcome {
+    padding-top: 8px;
 }
+
+.headerFilter {
+    grid-area: headerFilter;
+    width: 700px;
+    margin: 0 auto;
+    // border: 1px solid red;
+    // padding-bottom: 50px;
+}
+
+// .savedButton, .userAuth {
+//     .pinkButton {
+//         display: flex;
+//         justify-content: space-evenly;
+//         align-items: center;
+//         &:hover img{
+//             filter: brightness(0) invert(1);
+//         }
+//     }
+//     img {
+//         width: 22px;
+//         height: 22px;
+//     }
+// }
+
 
 .headerFilter {
     display: flex;
     justify-content: space-between;
 }
 
-// .saved,
-// .userAuth {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     text-align: center;
-// }
-
-// .welcome {
-//     text-align: left;
-// }
 
 .magnifyingGlass {
     position: absolute;
@@ -133,26 +136,6 @@
     width: 24px;
 }
 
-// .profile::after {
-//     content: '';
-//     width: 10px;
-//     height: 10px;
-//     border-left: 5px solid transparent;
-//     border-right: 5px solid transparent;
-//     border-bottom: 5px solid black;
-// }
-
-// .profile::before {
-//         content: "\a/";
-//         border-style: solid;
-//         border-width: 10px 15px 10px 0;
-//         border-color: transparent #dd4397 transparent transparent;
-//         // position: absolute;
-//         // left: -15px;
-//     }
-
-
-
 .userAuth svg polygon {
     fill:white;
     stroke:black;
@@ -160,8 +143,8 @@
 
 }
 
-.second {
-    fill: white;
-    stroke:white;
-    stroke-width: 5px;
-}
+// .second {
+//     fill: white;
+//     stroke:white;
+//     stroke-width: 5px;
+// }

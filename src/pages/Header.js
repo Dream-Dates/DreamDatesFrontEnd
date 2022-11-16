@@ -68,7 +68,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
             } else {
                 getCategoryName(e.target.parentElement.id);
                 setSelectedCategory(e.target.parentElement.id);
-                
+
                 // track every time a category is clicked
                 mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
                     debug: true,
@@ -83,173 +83,179 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
     };
 
     const handleClickSearchBar = () => {
-        console.log('search bar', context.pageIs)
+        console.log("search bar", context.pageIs);
         mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
             debug: true,
         });
         mixpanel.track("Search Bar Clicked", {
             userID: user.id,
-            location: context.pageIs
+            location: context.pageIs,
         });
-    }
+    };
 
     const handleClickProfile = (e) => {
-        console.log(e)
-        if (e.target.className === 'pinkButton' || e.target.id === 'profileIcon' || e.target.tagName === 'A' || e.target.parentElement.tagName === 'A') {
-            setShowDropDown(!showDropDown)
+        console.log(e);
+        if (
+            e.target.className === "pinkButton" ||
+            e.target.id === "profileIcon" ||
+            e.target.tagName === "A" ||
+            e.target.parentElement.tagName === "A"
+        ) {
+            setShowDropDown(!showDropDown);
         }
-    }
+    };
 
     return (
         <div className="header">
-            <div className="headerNormal wrapper">
-                <div className="logo">
-                    <Link to="/" onClick={handleClickHome}>
-                        <img src={logo} alt="DreamDates Logo" />
-                    </Link>
-                </div>
-
-                <form
-                    className="headerSearchBar"
-                    onSubmit={(e) => e.preventDefault()}
-                >
-                    <label htmlFor="search" className="sr-only">
-                        Search for
-                    </label>
-                    {context.pageIs === "home" ? (
-                        <input
-                            type="text"
-                            name="search"
-                            id="search"
-                            placeholder="Search for Food, Movies, Active..."
-                            onChange={handleChange}
-                            value={searchTerm}
-                            onClick={handleClickSearchBar}
-                        />
-                    ) : (
-                        <input
-                            type="text"
-                            name="search"
-                            id="search"
-                            placeholder="Search Saved Ideas"
-                            onChange={handleChange}
-                            value={searchTerm}
-                            onClick={handleClickSearchBar}
-                        />
-                    )}
-                    <div className="magnifyingGlass">
-                        <img src={magnifyingGlass} alt="magnifying glass" />
+            <div className="headerNormal">
+                <div className="headerNormalTop wrapper">
+                    <div className="headerLogo">
+                        <Link to="/" onClick={handleClickHome}>
+                            <img src={logo} alt="DreamDates Logo" />
+                        </Link>
                     </div>
-                </form>
-
-                <div className="headerFilter">
-                    <div>
-                        <button
-                            id="restaurants"
-                            onClick={handleClickButtons}
-                            className={`pinkButton ${
-                                selectedCategory == "restaurants" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Food</p>
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            id="movies"
-                            onClick={handleClickButtons}
-                            className={`pinkButton ${
-                                selectedCategory == "movies" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Movies</p>
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            id="active"
-                            onClick={handleClickButtons}
-                            className={`pinkButton disable-link ${
-                                selectedCategory == "active" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Active</p>
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            id="attractions"
-                            onClick={handleClickButtons}
-                            className={`pinkButton ${
-                                selectedCategory == "attractions" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Attractions</p>
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            id="events"
-                            onClick={handleClickButtons}
-                            className={`pinkButton ${
-                                selectedCategory == "events" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Live Entertainment</p>
-                        </button>
-                    </div>
-                </div>
-                <div className="headerRightSide">
-                    <div className="savedButton">
+                    <form
+                        className="headerSearchBar"
+                        onSubmit={(e) => e.preventDefault()}
+                    >
+                        <label htmlFor="search" className="sr-only">
+                            Search for
+                        </label>
                         {context.pageIs === "home" ? (
-                            <Link
-                                to="/saved"
-                                onClick={handleClickSaved}
+                            <input
+                                type="text"
+                                name="search"
+                                id="search"
+                                placeholder="Search for Food, Movies, Active..."
+                                onChange={handleChange}
+                                value={searchTerm}
+                                onClick={handleClickSearchBar}
+                            />
+                        ) : (
+                            <input
+                                type="text"
+                                name="search"
+                                id="search"
+                                placeholder="Search Saved Ideas"
+                                onChange={handleChange}
+                                value={searchTerm}
+                                onClick={handleClickSearchBar}
+                            />
+                        )}
+                        <div className="magnifyingGlass">
+                            <img src={magnifyingGlass} alt="magnifying glass" />
+                        </div>
+                    </form>
+                    
+                        <div className="homeSavedButtons">
+                            {context.pageIs === "home" ? (
+                                <Link
+                                    to="/saved"
+                                    onClick={handleClickSaved}
+                                    className={`pinkButton ${
+                                        !user.token && "disable-link"
+                                    }`}
+                                >
+                                    <img src={redHeart} alt="red heart" />
+                                    Saved
+                                </Link>
+                            ) : (
+                                <Link
+                                    to="/"
+                                    onClick={handleClickHome}
+                                    className="pinkButton"
+                                >
+                                    <img src={homeIcon} alt="home icon" />
+                                    Home
+                                </Link>
+                            )}
+                        </div>
+                        {user.token ? (
+                            <div className="userAuth">
+                                <p className="welcome">
+                                    Welcome back, {user.name}!
+                                </p>
+                                <span className="br" />
+                                <Link
+                                    to="/"
+                                    onClick={logUserOut}
+                                    className="signOut"
+                                >
+                                    Sign out
+                                </Link>
+                            </div>
+                        ) : (
+                            <div className="userAuth">
+                                <Link to={"/signin"} className="pinkButton">
+                                    Sign In
+                                </Link>
+                            </div>
+                        )}
+                    
+                </div>
+                <div className="headerNormalBottom">
+                    <div className="headerFilter">
+                        <div>
+                            <button
+                                id="restaurants"
+                                onClick={handleClickButtons}
                                 className={`pinkButton ${
-                                    !user.token && "disable-link"
+                                    selectedCategory == "restaurants" &&
+                                    "selectedCategory"
                                 }`}
                             >
-                                <img src={redHeart} alt="red heart" />
-                                <p>Saved</p>
-                            </Link>
-                        ) : (
-                            <Link
-                                to="/"
-                                onClick={handleClickHome}
-                                className="pinkButton"
+                                <p>Food</p>
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                id="movies"
+                                onClick={handleClickButtons}
+                                className={`pinkButton ${
+                                    selectedCategory == "movies" &&
+                                    "selectedCategory"
+                                }`}
                             >
-                                <img src={homeIcon} alt="home icon" />
-                                <p>Home</p>{" "}
-                            </Link>
-                        )}
+                                <p>Movies</p>
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                id="active"
+                                onClick={handleClickButtons}
+                                className={`pinkButton disable-link ${
+                                    selectedCategory == "active" &&
+                                    "selectedCategory"
+                                }`}
+                            >
+                                <p>Active</p>
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                id="attractions"
+                                onClick={handleClickButtons}
+                                className={`pinkButton ${
+                                    selectedCategory == "attractions" &&
+                                    "selectedCategory"
+                                }`}
+                            >
+                                <p>Attractions</p>
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                id="events"
+                                onClick={handleClickButtons}
+                                className={`pinkButton ${
+                                    selectedCategory == "events" &&
+                                    "selectedCategory"
+                                }`}
+                            >
+                                <p>Live Entertainment</p>
+                            </button>
+                        </div>
                     </div>
-
-                    {user.token ? (
-                        <div className="userAuth">
-                            <p className="welcome">
-                                Welcome back, {user.name}!
-                            </p>
-                            <br />
-                            <Link
-                                to="/"
-                                onClick={logUserOut}
-                                className="signOut"
-                            >
-                                Sign out
-                            </Link>
-                        </div>
-                    ) : (
-                        <div className="userAuth">
-                            <Link to={"/signin"} className="pinkButton">
-                                <p>Sign In</p>
-                            </Link>
-                        </div>
-                    )}
                 </div>
             </div>
 
@@ -367,13 +373,24 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                     </div>
 
                     <div className="userAuth">
-                        <button className="pinkButton" onClick={handleClickProfile}>
-                            <img src={profileIcon} alt="profile icon" id="profileIcon"/>
-                            <div className={`profile ${showDropDown && 'showDropDown'}`}>
+                        <button
+                            className="pinkButton"
+                            onClick={handleClickProfile}
+                        >
+                            <img
+                                src={profileIcon}
+                                alt="profile icon"
+                                id="profileIcon"
+                            />
+                            <div
+                                className={`profile ${
+                                    showDropDown && "showDropDown"
+                                }`}
+                            >
                                 <div className="triangleHatOutline">
                                     <div className="triangleHatBody"></div>
                                 </div>
-                                
+
                                 <div className="profileContainer">
                                     {user.token ? (
                                         <div className="profileBody">

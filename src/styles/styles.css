@@ -234,46 +234,15 @@ template {
 * {
   padding: 0;
   margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
 }
 
 img {
   width: 100%;
+  display: block;
 }
 
 a {
   text-decoration: none;
-}
-a:hover {
-  background-color: #941C2F;
-}
-a:hover p {
-  color: white;
-}
-
-.textContainer a:hover img {
-  -webkit-filter: invert(100%) sepia(93%) saturate(0%) hue-rotate(174deg) brightness(109%) contrast(101%);
-          filter: invert(100%) sepia(93%) saturate(0%) hue-rotate(174deg) brightness(109%) contrast(101%);
-}
-.textContainer a:hover p {
-  color: white;
-}
-
-p {
-  line-height: 1.6 !important;
-}
-
-button {
-  background-color: transparent;
-  border: none;
-  text-decoration: none;
-  color: inherit;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-  display: inline-block;
 }
 
 .wrapper {
@@ -285,7 +254,6 @@ button {
   border: 1px solid #000000;
   border-radius: 16px;
   padding: 1px 0;
-  min-width: 110px;
   cursor: pointer;
 }
 .pinkButton:hover {
@@ -315,139 +283,20 @@ input:focus {
   font-family: "Raleway", sans-serif;
 }
 
-p,
 a {
   font-weight: 600;
   font-size: 16px;
-  line-height: 20px;
+  color: black;
 }
 
-.pinkButton {
+.userAuth {
   font-weight: 600;
   font-size: 16px;
-  color: black;
-}
-.pinkButton p {
-  color: black;
-}
-
-button p {
-  padding: 0 20px;
-}
-
-.userAuth p {
-  color: black;
-}
-
-.userAuth a p {
-  color: black;
 }
 
 .signOut {
   color: #941C2F;
   text-decoration: underline;
-}
-
-.signInBottom > p,
-.signUpBottom > p {
-  color: black;
-  font-size: 24px;
-  font-weight: 400;
-}
-
-h1 {
-  font-family: "Mirza", cursive;
-  font-size: 40px;
-  font-weight: 700;
-  color: white;
-}
-
-h2 {
-  font-family: "Mirza", cursive;
-  font-size: 20px;
-  font-weight: 700;
-  color: white;
-}
-
-h3 {
-  font-family: "Mirza", cursive;
-  font-size: 32px;
-  font-weight: 600;
-  text-align: center;
-}
-
-h4 {
-  color: #CC0000;
-  font-size: 24px;
-  font-weight: 400;
-  text-align: center;
-}
-
-h5 {
-  font-family: "Mirza", cursive;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 20px;
-  text-align: left;
-}
-
-.modalMovie p {
-  color: black;
-}
-
-.modal h2,
-.modalMovie h2 {
-  font-size: 24px;
-}
-
-.modal .textContainer p,
-.modalMovie .textContainer p {
-  font-size: 20px;
-}
-
-.modal .textContainer h2,
-.modal .textContainer p,
-.modalMovie .textContainer h2,
-.modalMovie .textContainer p {
-  color: black;
-  font-weight: 400;
-}
-
-.modal .hoursContainer p,
-.modalMovie .hoursContainer p {
-  font-family: "Mirza", cursive;
-  font-size: 20;
-}
-
-.dateIdeasList .textContainer p {
-  font-weight: 500;
-  text-transform: capitalize;
-  color: white;
-}
-
-input {
-  font-family: "Raleway", sans-serif;
-}
-
-.savePopup p {
-  color: #941C2F;
-  font-family: "Inter", sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.profileContainer > a p {
-  color: #941C2F;
-}
-
-.review > p {
-  font-weight: 400;
-}
-
-.infoSnippet p {
-  font-weight: 700;
-  font-family: "Mirza", cursive;
-  font-size: 24px;
 }
 
 @media (max-width: 600px) {
@@ -461,38 +310,48 @@ input {
 }
 
 .headerNormal {
+  width: 100vw;
   height: 186px;
+  background-color: #FFFFFF;
+  position: fixed;
+  z-index: 20;
   -webkit-box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
-  display: grid;
-  grid-template-columns: 2fr minmax(200px, 4fr) 2fr;
-  grid-template-rows: 120px;
-  -webkit-column-gap: 30px;
-     -moz-column-gap: 30px;
-          column-gap: 30px;
-  grid-template-areas: "logo headerSearchBar right" "headerFilter headerFilter headerFilter";
-  position: fixed;
-  width: 100vw;
-  z-index: 20;
-  background-color: #FFDEE4;
 }
 
-.logo {
-  grid-area: logo;
+.headerNormalTop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 26px;
+  max-width: 1440px;
+  height: 50px;
+  margin: 37px 4.8611111111vw;
+}
+
+.headerLogo {
+  width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+.headerLogo a {
   width: 100%;
-}
-.logo a {
-  max-width: 300px;
-  margin-left: 60px;
-}
-.logo a:hover {
-  background-color: transparent;
 }
 
 .headerSearchBar {
-  grid-area: headerSearchBar;
-  width: min(100%, 700px);
-  margin: 0 auto;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
 }
 .headerSearchBar input {
@@ -511,26 +370,23 @@ input {
           filter: invert(24%) sepia(82%) saturate(1240%) hue-rotate(310deg) brightness(70%) contrast(56%);
 }
 
-.headerFilter {
-  grid-area: headerFilter;
-  width: 700px;
-  margin: 0 auto;
-}
-
-.headerRightSide {
-  grid-area: right;
+.homeSavedButtons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
-  margin-right: 60px;
-  -webkit-transform: translate(0px, 42px);
-          transform: translate(0px, 42px);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 110px;
 }
-
-.savedButton .pinkButton, .userAuth .pinkButton {
+.homeSavedButtons .pinkButton {
+  width: 110px;
+  padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -541,34 +397,51 @@ input {
       -ms-flex-align: center;
           align-items: center;
 }
-.savedButton .pinkButton:hover img, .userAuth .pinkButton:hover img {
+.homeSavedButtons .pinkButton:hover img {
   -webkit-filter: brightness(0) invert(1);
           filter: brightness(0) invert(1);
 }
-.savedButton img, .userAuth img {
+.homeSavedButtons img {
   width: 22px;
   height: 22px;
 }
 
 .userAuth {
-  padding-left: 20px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   width: 140px;
 }
-.userAuth .signOut:hover {
-  background-color: transparent;
-}
-
-.logo,
-.headerSearchBar {
+.userAuth .pinkButton {
+  width: 110px;
+  padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.userAuth .pinkButton:hover img {
+  -webkit-filter: brightness(0) invert(1);
+          filter: brightness(0) invert(1);
+}
+
+.br {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.welcome {
+  padding-top: 8px;
+}
+
+.headerFilter {
+  grid-area: headerFilter;
+  width: 700px;
+  margin: 0 auto;
 }
 
 .headerFilter {
@@ -591,12 +464,6 @@ input {
   fill: white;
   stroke: black;
   stroke-width: 1px;
-}
-
-.second {
-  fill: white;
-  stroke: white;
-  stroke-width: 5px;
 }
 
 .dateIdeasContainer {
