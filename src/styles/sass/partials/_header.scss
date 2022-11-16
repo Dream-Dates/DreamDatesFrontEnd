@@ -2,13 +2,13 @@
 
 .headerMobile {
     display: none;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 .headerNormal {
     width: 100vw;
     height: 186px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     position: fixed;
     z-index: 20;
     box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
@@ -19,7 +19,8 @@
     gap: 26px;
     max-width: 1440px;
     height: 50px;
-    margin: 37px calc(70px/1440px * 100vw);
+    padding: 0 calc(57px / 1440px * 100vw);
+    margin-top: 37px;
 }
 
 .headerLogo {
@@ -38,16 +39,17 @@
     align-items: center;
     position: relative;
     input {
-        border: 1px solid #B1B1B1;
+        border: 1px solid #b1b1b1;
         border-radius: 16px;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
         width: 100%;
         padding: 8px 0 8px 35px;
         &:focus {
-            border: 1px solid #941C2F;
+            border: 1px solid #941c2f;
         }
-        &:focus + .magnifyingGlass>img {
-            filter: invert(24%) sepia(82%) saturate(1240%) hue-rotate(310deg) brightness(70%) contrast(56%);
+        &:focus + .magnifyingGlass > img {
+            filter: invert(24%) sepia(82%) saturate(1240%) hue-rotate(310deg)
+                brightness(70%) contrast(56%);
         }
     }
 }
@@ -60,7 +62,7 @@
     width: 110px;
     .pinkButton {
         width: 110px;
-        padding: 5px ;
+        padding: 5px;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -83,11 +85,15 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-
         &:hover img {
             filter: brightness(0) invert(1);
         }
     }
+}
+
+.flexAlignCenter {
+    display: flex;
+    align-items: center;
 }
 
 .br {
@@ -99,35 +105,15 @@
     padding-top: 8px;
 }
 
-.headerFilter {
-    grid-area: headerFilter;
-    width: 700px;
-    margin: 0 auto;
-    // border: 1px solid red;
-    // padding-bottom: 50px;
+.headerNormalBottom {
+    padding-top: 30px;
 }
-
-// .savedButton, .userAuth {
-//     .pinkButton {
-//         display: flex;
-//         justify-content: space-evenly;
-//         align-items: center;
-//         &:hover img{
-//             filter: brightness(0) invert(1);
-//         }
-//     }
-//     img {
-//         width: 22px;
-//         height: 22px;
-//     }
-// }
-
 
 .headerFilter {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
 }
-
 
 .magnifyingGlass {
     position: absolute;
@@ -137,14 +123,7 @@
 }
 
 .userAuth svg polygon {
-    fill:white;
-    stroke:black;
-    stroke-width:1px
-
+    fill: white;
+    stroke: black;
+    stroke-width: 1px;
 }
-
-// .second {
-//     fill: white;
-//     stroke:white;
-//     stroke-width: 5px;
-// }

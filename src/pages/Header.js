@@ -185,7 +185,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                 </Link>
                             </div>
                         ) : (
-                            <div className="userAuth">
+                            <div className="userAuth flexAlignCenter">
                                 <Link to={"/signin"} className="pinkButton">
                                     Sign In
                                 </Link>
@@ -216,10 +216,10 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                     "selectedCategory"
                                 }`}
                             >
-                                <p>Movies</p>
+                                Movies
                             </button>
                         </div>
-                        <div>
+                        {/* <div>
                             <button
                                 id="active"
                                 onClick={handleClickButtons}
@@ -228,9 +228,9 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                     "selectedCategory"
                                 }`}
                             >
-                                <p>Active</p>
+                                Active
                             </button>
-                        </div>
+                        </div> */}
                         <div>
                             <button
                                 id="attractions"
@@ -240,7 +240,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                     "selectedCategory"
                                 }`}
                             >
-                                <p>Attractions</p>
+                                Attractions
                             </button>
                         </div>
                         <div>
@@ -252,7 +252,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                     "selectedCategory"
                                 }`}
                             >
-                                <p>Live Entertainment</p>
+                                Live Entertainment
                             </button>
                         </div>
                     </div>

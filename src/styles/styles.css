@@ -254,6 +254,7 @@ a {
   border: 1px solid #000000;
   border-radius: 16px;
   padding: 1px 0;
+  min-width: 110px;
   cursor: pointer;
 }
 .pinkButton:hover {
@@ -294,6 +295,13 @@ a {
   font-size: 16px;
 }
 
+.pinkButton {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 9px 22px;
+}
+
 .signOut {
   color: #941C2F;
   text-decoration: underline;
@@ -306,13 +314,13 @@ a {
 }
 .headerMobile {
   display: none;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .headerNormal {
   width: 100vw;
   height: 186px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   position: fixed;
   z-index: 20;
   -webkit-box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
@@ -326,7 +334,8 @@ a {
   gap: 26px;
   max-width: 1440px;
   height: 50px;
-  margin: 37px 4.8611111111vw;
+  padding: 0 3.9583333333vw;
+  margin-top: 37px;
 }
 
 .headerLogo {
@@ -355,7 +364,7 @@ a {
   position: relative;
 }
 .headerSearchBar input {
-  border: 1px solid #B1B1B1;
+  border: 1px solid #b1b1b1;
   border-radius: 16px;
   -webkit-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
           filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -363,7 +372,7 @@ a {
   padding: 8px 0 8px 35px;
 }
 .headerSearchBar input:focus {
-  border: 1px solid #941C2F;
+  border: 1px solid #941c2f;
 }
 .headerSearchBar input:focus + .magnifyingGlass > img {
   -webkit-filter: invert(24%) sepia(82%) saturate(1240%) hue-rotate(310deg) brightness(70%) contrast(56%);
@@ -429,6 +438,15 @@ a {
           filter: brightness(0) invert(1);
 }
 
+.flexAlignCenter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .br {
   display: block;
   margin-bottom: 10px;
@@ -438,19 +456,18 @@ a {
   padding-top: 8px;
 }
 
-.headerFilter {
-  grid-area: headerFilter;
-  width: 700px;
-  margin: 0 auto;
+.headerNormalBottom {
+  padding-top: 30px;
 }
 
 .headerFilter {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 10px;
 }
 
 .magnifyingGlass {
