@@ -8,6 +8,7 @@ import defaultImagePlaceholderSmall from "../assets/defaultImagePlaceholderSmall
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import Context from "../context/context";
+import reviewStar from "../assets/ReviewStar.svg"
 
 function DateIdeasList({
     ideas,
@@ -23,58 +24,61 @@ function DateIdeasList({
 
     const context = useContext(Context);
 
+    // useEffect(() => {
+    //     // making the object into an array
+    //     for (let category in ideas) {
+    //         ideas[category].forEach((item) => mainList.push(item));
+    //     }
+
+    //     // randomize the list
+    //     let mainList2 = mainList.sort(() => Math.random() - 0.5);
+
+    //     // if there is data in the array
+    //     if (mainList2.length) {
+    //         // if it matches saved and is the first time
+    //         if (
+    //             mainList2.every((item) => item.categoryType === "saved") &&
+    //             context.initialSaved
+    //         ) {
+    //             // update state and context state
+    //             // context.setInitialSavedArray(mainList2);
+    //             context.setInitialSaved(false);
+    //             //quick fix: save page has to remove date idea when unsaved
+    //             setList(mainList2);
+    //         // else if it does not match saved and is the first time
+    //         } else if (
+    //             mainList2.every((item) => item.categoryType !== "saved") &&
+    //             context.initialDates
+    //         ) {
+    //             // update stat and context state
+    //             context.setInitialDatesArray(mainList2);
+    //             context.setInitialDates(false);
+    //             setList(mainList2);
+    //         // else if it matches saved
+    //         } else if (
+    //             mainList2.every((item) => item.categoryType === "saved")
+    //         ) {
+    //             //set state to context state
+    //             //quick fix: save page has to remove date idea when unsaved
+    //             setList(mainList2);
+    //         // else if it does not match saved
+    //         } else if (
+    //             mainList2.every((item) => item.categoryType !== "saved")
+    //         ) {
+    //             // set state to context state
+    //             setList(context.initialDatesArray);
+    //         // back up just incase something goes wrong
+    //         } else {
+    //             setList(mainList2);
+    //         }
+    //     } else {
+    //         setList(mainList2)
+    //     }
+    // }, [ideas]);
+
     useEffect(() => {
-        // making the object into an array
-        for (let category in ideas) {
-            ideas[category].forEach((item) => mainList.push(item));
-        }
-
-        // randomize the list
-        let mainList2 = mainList.sort(() => Math.random() - 0.5);
-
-        // if there is data in the array
-        if (mainList2.length) {
-            // if it matches saved and is the first time
-            if (
-                mainList2.every((item) => item.categoryType === "saved") &&
-                context.initialSaved
-            ) {
-                // update state and context state
-                // context.setInitialSavedArray(mainList2);
-                context.setInitialSaved(false);
-                //quick fix: save page has to remove date idea when unsaved
-                setList(mainList2);
-            // else if it does not match saved and is the first time
-            } else if (
-                mainList2.every((item) => item.categoryType !== "saved") &&
-                context.initialDates
-            ) {
-                // update stat and context state
-                context.setInitialDatesArray(mainList2);
-                context.setInitialDates(false);
-                setList(mainList2);
-            // else if it matches saved
-            } else if (
-                mainList2.every((item) => item.categoryType === "saved")
-            ) {
-                //set state to context state
-                //quick fix: save page has to remove date idea when unsaved
-                setList(mainList2);
-            // else if it does not match saved
-            } else if (
-                mainList2.every((item) => item.categoryType !== "saved")
-            ) {
-                // set state to context state
-                setList(context.initialDatesArray);
-            // back up just incase something goes wrong
-            } else {
-                setList(mainList2);
-            }
-        } else {
-            setList(mainList2)
-        }
-    }, [ideas]);
-
+        setList(ideas)
+    }, [ideas])
     useEffect(() => {
         const fetchSaved = async () => {
             const response = await fetch(
@@ -132,7 +136,7 @@ function DateIdeasList({
     };
 
     // filtering the list by user text input
-    const filteredList = list.filter(
+    const filteredList = list?.filter(
         (item) =>
             item.title.toLowerCase().match(searchTerm.toLowerCase()) &&
             item.categoryType.match(categoryName)
@@ -169,39 +173,42 @@ function DateIdeasList({
             )}
 
             <div className="dateIdeasContainer wrapper">
-                {filteredList.map((idea) => {
+                {filteredList?.map((idea) => {
                     return (
                         <div
                             className="dateIdeasCard"
                             onClick={(e) => selectedEvent(e, idea)}
                             key={idea.id}
                         >
-                            <button
-                                className={`heart ${
-                                    checkIfSaved(idea.id) && "hideHeart"
-                                }`}
-                                onClick={handleClick}
-                            >
-                                <img
-                                    src={whiteHeart}
-                                    className="whiteHeart"
-                                    alt="White Heart"
-                                    id="save"
-                                />
-                            </button>
-                            <button
-                                className={`heart ${
-                                    !checkIfSaved(idea.id) && "hideHeart"
-                                }`}
-                                onClick={handleClick}
-                            >
-                                <img
-                                    src={redHeart}
-                                    className="redHeart"
-                                    alt="White Heart"
-                                    id="save"
-                                />
-                            </button>
+                            <div className="dateIdeaCardHeader">
+                                <button
+                                    className={`heart ${
+                                        checkIfSaved(idea.id) && "hideHeart"
+                                    }`}
+                                    onClick={handleClick}
+                                >
+                                    <img
+                                        src={whiteHeart}
+                                        className="whiteHeart"
+                                        alt="White Heart"
+                                        id="save"
+                                    />
+                                </button>
+                                <button
+                                    className={`heart ${
+                                        !checkIfSaved(idea.id) && "hideHeart"
+                                    }`}
+                                    onClick={handleClick}
+                                >
+                                    <img
+                                        src={redHeart}
+                                        className="redHeart"
+                                        alt="White Heart"
+                                        id="save"
+                                    />
+                                </button>
+                                <h3>{idea.title}</h3>
+                            </div>
                             <div className="imageContainer">
                                 <img
                                     src={
@@ -215,13 +222,13 @@ function DateIdeasList({
                                 />
                             </div>
                             <div className="textContainer">
-                                <h2>{idea.title}</h2>
-                                <p>
-                                    {idea.price_range &&
-                                        dollarSigns(idea.price_range)}{" "}
-                                    {idea.categoryType}
+                                <p className='city'>{idea.city && idea.city}</p>
+                                <p className='type'>{idea.categoryType}</p>
+                                <p className='price'>
+                                    {idea.price_range && dollarSigns(idea.price_range)}
                                 </p>
-                                <p>{idea.city && idea.city}</p>
+                                <p className='reviewStars'><img src={reviewStar} alt="star logo" /></p>
+                                <p className='reviewNumbers'>1,542 reviews</p>
                             </div>
                         </div>
                     );

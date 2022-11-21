@@ -241,13 +241,39 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished }) {
                     triggerToggle={triggerToggle}
                 />
             )}
+            <h2>Food <h3>View all Food</h3></h2>
             <DateIdeasList
-                ideas={dateIdeas}
+                ideas={dateIdeas.restaurants}
                 selectedEvent={openModal}
                 userId={userId}
                 searchTerm={searchTerm}
                 categoryName={categoryName}
             />
+            <h2>Movies <h3>View all Movie</h3></h2>
+            <DateIdeasList
+                ideas={dateIdeas.movies}
+                selectedEvent={openModal}
+                userId={userId}
+                searchTerm={searchTerm}
+                categoryName={categoryName}
+            />
+            <h2>Attractions <h3>View all Attractions</h3></h2>
+            <DateIdeasList
+                ideas={dateIdeas.attractions}
+                selectedEvent={openModal}
+                userId={userId}
+                searchTerm={searchTerm}
+                categoryName={categoryName}
+            />
+            <h2>Live Entertainment <h3>View all Live Entertainment</h3></h2>
+            <DateIdeasList
+                ideas={dateIdeas.events}
+                selectedEvent={openModal}
+                userId={userId}
+                searchTerm={searchTerm}
+                categoryName={categoryName}
+            />
+
             {showSavePopup && <SavePopup text={saveMessage} />}
         </div>
     );

@@ -302,9 +302,33 @@ a {
   padding: 9px 22px;
 }
 
+.dateIdeaCardHeader {
+  color: white;
+}
+
 .signOut {
   color: #941C2F;
   text-decoration: underline;
+}
+
+h2 {
+  font-family: "Mirza", cursive;
+  font-size: 36px;
+  font-weight: 700;
+}
+h2 h3 {
+  font-weight: 400;
+}
+
+h3 {
+  font-family: "Mirza", cursive;
+  font-size: 24px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.dateIdeasCard {
+  color: white;
 }
 
 @media (max-width: 600px) {
@@ -483,21 +507,26 @@ a {
   stroke-width: 1px;
 }
 
+.dateIdeas {
+  padding: 210px 71px;
+}
+.dateIdeas h2 {
+  padding-bottom: 20px;
+}
+
 .dateIdeasContainer {
-  padding: 236px 62px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  gap: max(5%, 60px);
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .dateIdeasCard {
-  width: max(12%, 182px);
+  width: 294px;
   height: 315px;
   border-radius: 8px;
   background: #941C2F;
@@ -507,10 +536,12 @@ a {
   margin-bottom: 15px;
   position: relative;
 }
+.dateIdeasCard:nth-child(n+5) {
+  display: none;
+}
 .dateIdeasCard .imageContainer {
-  height: 205px;
+  height: 142px;
   overflow: hidden;
-  border-radius: 8px 8px 0 0;
 }
 .dateIdeasCard .imageContainer img {
   height: 100%;
@@ -518,7 +549,31 @@ a {
      object-fit: cover;
 }
 .dateIdeasCard .textContainer {
-  margin: 10px 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 20px;
+}
+.dateIdeasCard .textContainer .city {
+  grid-area: 1/1/2/3;
+}
+.dateIdeasCard .textContainer .type {
+  grid-area: 2/1/3/2;
+  text-transform: capitalize;
+}
+.dateIdeasCard .textContainer .price {
+  grid-area: 2/2/3/3;
+  text-align: right;
+}
+.dateIdeasCard .textContainer .reviewStars {
+  width: 20px;
+  grid-area: 3/1/4/2;
+  -webkit-filter: invert(100%) sepia(100%) saturate(19%) hue-rotate(294deg) brightness(106%) contrast(104%);
+          filter: invert(100%) sepia(100%) saturate(19%) hue-rotate(294deg) brightness(106%) contrast(104%);
+}
+.dateIdeasCard .textContainer .reviewNumbers {
+  grid-area: 3/2/4/3;
+  text-align: right;
 }
 .dateIdeasCard h2 {
   white-space: nowrap;
@@ -541,12 +596,27 @@ a {
   background-color: transparent;
 }
 
+.dateIdeaCardHeader {
+  height: 63px;
+  padding: 0 20px;
+  background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+  border-radius: 8px 8px 0 0;
+}
+
 .heart {
   width: 30.48px;
   height: 26.59px;
-  position: absolute;
   top: 15px;
   left: 10px;
+  background-color: transparent;
+  border: none;
   background-position: center;
   background-size: cover;
 }
