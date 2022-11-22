@@ -19,6 +19,7 @@ import ticket from "../assets/ticket.svg";
 import MobileCarousel from "./MobileCarousel";
 import reviewStar from "../assets/ReviewStar.svg"
 import reviewStarRed from "../assets/reviewStarRed.svg"
+import reviewStarWhite from "../assets/reviewStarWhite.svg"
 
 function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     const {
@@ -304,28 +305,39 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
                 <div className="modalBody">
                     <div className="infoSnippet">
-                        <p>$$$</p>
-                        <p>type of movie Austin, TX</p>
-                        <p> ⭐⭐⭐⭐⭐ rating</p>
+                                <p className='city'>{eventDetails.city && eventDetails.city}</p>
+                                <p className='type'>{eventDetails.categoryType}</p>
+                                <p className='price'>
+                                    {eventDetails.price_range && dollarSigns(eventDetails.price_range)}
+                                </p>
+                                <p className='reviewStars'>
+                                    <img src={reviewStarWhite} alt="star logo" />
+                                    <img src={reviewStar} alt="star logo" />
+                                    <img src={reviewStar} alt="star logo" />
+                                    <img src={reviewStar} alt="star logo" />
+                                    <img src={reviewStar} alt="star logo" />
+                                </p>
+
+                                <p className='reviewNumbers'>1,542 reviews</p>
                     </div>
 
                     <div className="aboutSection">
                         <div className="aboutSectionHeader">
                             <div className="subTitle">
                                 <img src={about} alt="information icon" />
-                                <h5>About</h5>
+                                <h3>About</h3>
                             </div>
                             <a href="" className="pinkButton">
                                 {eventDetails.categoryType === "movies" ||
                                 eventDetails.categoryType === "events" ? (
                                     <>
                                         <img src={ticket} alt="ticket icon" />
-                                        <h5>Find tickets near me</h5>
+                                        <h3>Find tickets near me</h3>
                                     </>
                                 ) : (
                                     <>
                                         <img src={globe} alt="globe icon" />
-                                        <h5>Website</h5>
+                                        <h3>Website</h3>
                                     </>
                                 )}
                             </a>
@@ -349,25 +361,25 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                             <div className="phoneSection">
                                 <div className="subTitle">
                                     <img src={phone} alt="phone icon" />
-                                    <h5>Phone</h5>
+                                    <h3>Phone</h3>
                                 </div>
                                 <p>(123)-456-7890</p>
                             </div>
                             <div className="locationSection">
                                 <div className="subTitle">
                                     <img src={location} alt="map pin icon" />
-                                    <h5>Location</h5>
+                                    <h3>Location</h3>
                                 </div>
                                 <p>
                                     2330 W North Loop Blvd Austin, TX 78756
                                     Rosedale, Allandale
                                 </p>
-                                <iframe></iframe>
                             </div>
+                            <div className="map"><iframe></iframe></div>
                             <div className="hoursSection">
                                 <div className="subTitle">
                                     <img src={clock} alt="clock icon" />
-                                    <h5>Hours</h5>
+                                    <h3>Hours</h3>
                                 </div>
                                 {opening_hours?.map((item) => {
                                     return (
@@ -383,127 +395,11 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <div className="carouselSection">
                                     <div className="subTitle">
                                         <img src={imageIcon} alt="image icon" />
-                                        <h5>Photos</h5>
+                                        <h3>Photos</h3>
                                     </div>
                                     <Carousel data={image} />
                                 </div>
                             )}
-                        </div>
-                    )}
-                </div>
-
-                <div className="modalBodyMobile">
-                    <div className="infoSnippet">
-                        <div className="locationWebsite">
-                            <p>Austin, TX</p>
-                            <a href="">Website</a>
-                        </div>
-                        <div className="categoryPrice">
-                            <p>Restaurant</p>
-                            <p>$$$</p>
-                        </div>
-                        <div className="starsReviews">
-                            <p>⭐⭐⭐</p>
-                            <p>1,542 Reviews</p>
-                        </div>
-                    </div>
-
-                    <div className="aboutSection">
-                        <div className="aboutSectionHeader">
-                            <div className="subTitle">
-                                <img src={about} alt="information icon" />
-                                <h5>About</h5>
-                            </div>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Magnam dolores ratione totam incidunt eius?
-                            Esse unde praesentium nesciunt asperiores sapiente
-                            culpa quibusdam quod consequuntur assumenda, ea
-                            aliquid cupiditate quia, corrupti modi? Porro autem
-                            eligendi vel, obcaecati perspiciatis ea? Enim,
-                            cupiditate blanditiis molestias aut unde quibusdam a
-                            rerum facilis fugiat sapiente!
-                        </p>
-                    </div>
-
-                    {/* Restaurant/Live Events/Attractions */}
-                    {eventDetails.categoryType !== "movies" && (
-                        <div className="additionalInformation">
-                            <div className="phoneSection">
-                                <div className="subTitle">
-                                    <img src={phone} alt="phone icon" />
-                                    <h5>Phone</h5>
-                                </div>
-                                <p>(123)-456-7890</p>
-                            </div>
-                            <div className="locationSection">
-                                <div className="subTitle">
-                                    <img src={location} alt="map pin icon" />
-                                    <h5>Location</h5>
-                                </div>
-                                <p>
-                                    2330 W North Loop Blvd Austin, TX 78756
-                                    Rosedale, Allandale
-                                </p>
-                                <iframe></iframe>
-                            </div>
-                            <div className="hoursSection">
-                                <div className="subTitle">
-                                    <img src={clock} alt="clock icon" />
-                                    <h5>Hours</h5>
-                                </div>
-                                {opening_hours?.map((item) => {
-                                    return (
-                                        <>
-                                            {newLine(item).map((each, i) => {
-                                                return <p key={i}>{each}</p>;
-                                            })}
-                                        </>
-                                    );
-                                })}
-                            </div>
-                            {eventDetails.categoryType !== "events" && (
-                                <div className="carouselSection">
-                                    <div className="subTitle">
-                                        <img src={imageIcon} alt="image icon" />
-                                        <h5>Photos</h5>
-                                    </div>
-                                    <MobileCarousel imageData={image} />
-                                </div>
-                            )}
-
-                            <div className="reviewsSection">
-                                <div className="subTitle">
-                                    <img src={reviewStar} alt="star logo" />
-                                    <h5>
-                                        {" "}
-                                        Reviews{" "}
-                                        <img
-                                            src={reviewStarRed}
-                                            alt="red star logo"
-                                        />
-                                        <img
-                                            src={reviewStarRed}
-                                            alt="red star logo"
-                                        />
-                                        <img
-                                            src={reviewStarRed}
-                                            alt="red star logo"
-                                        />
-                                        <img
-                                            src={reviewStarRed}
-                                            alt="red star logo"
-                                        />
-                                        <img
-                                            src={reviewStarRed}
-                                            alt="red star logo"
-                                        />{" "}
-                                        (1,551)
-                                    </h5>
-                                </div>
-                                <MobileCarousel />
-                            </div>
                         </div>
                     )}
                 </div>

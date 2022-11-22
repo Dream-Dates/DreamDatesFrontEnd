@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import Context from "../context/context";
 import reviewStar from "../assets/ReviewStar.svg"
+import reviewStarWhite from "../assets/reviewStarWhite.svg"
 
 function DateIdeasList({
     ideas,
@@ -111,7 +112,7 @@ function DateIdeasList({
         // return str.replace(reg, "");
     };
 
-    // if no userId (not signed in) when trying to save
+    // if no userId (not signed in) when trying to save, sign in pop up
     const handleClick = () => {
         if (!userId) {
             // sign up or sign in pop up
@@ -147,6 +148,13 @@ function DateIdeasList({
         return saved.some((item) => item == eventId);
     };
 
+    const headerTitle = {
+        restaurants: 'Food',
+        movies: 'Movies',
+        attractions: 'Attractions',
+        events: 'Live Entertainments',
+    }
+
     return (
         <div className="dateIdeasList">
             {closeNotSignedIn && (
@@ -171,7 +179,7 @@ function DateIdeasList({
                     </div>
                 </div>
             )}
-
+            <h2>{headerTitle[ideas?.[0].categoryType]} {!categoryName && <h3>View all {headerTitle[ideas?.[0].categoryType]}</h3>}</h2>
             <div className="dateIdeasContainer wrapper">
                 {filteredList?.map((idea) => {
                     return (
@@ -227,7 +235,14 @@ function DateIdeasList({
                                 <p className='price'>
                                     {idea.price_range && dollarSigns(idea.price_range)}
                                 </p>
-                                <p className='reviewStars'><img src={reviewStar} alt="star logo" /></p>
+                                <p className='reviewStars'>
+                                    <img src={reviewStarWhite} alt="star logo" />
+                                    <img src={reviewStar} alt="star logo" />
+                                    <img src={reviewStar} alt="star logo" />
+                                    <img src={reviewStar} alt="star logo" />
+                                    <img src={reviewStar} alt="star logo" />
+                                </p>
+
                                 <p className='reviewNumbers'>1,542 reviews</p>
                             </div>
                         </div>

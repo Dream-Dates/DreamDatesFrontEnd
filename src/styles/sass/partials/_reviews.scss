@@ -9,14 +9,23 @@
         border: 1px black solid;
         border-radius: 16px;
     }
+    .reviewStars img {
+        width: 17px;
+    }
 }
 
 .reviewsHeader {
     display: flex;
     // justify-content: center;
-    // align-items: center;
+    align-items: flex-end;
     margin: 0 80px;
     padding-top: 40px;
+    .h3 {
+        display: flex;
+    }
+    .reviewStars {
+        align-items: center;
+    }
 }
 
 .reviewHeader {

@@ -5,12 +5,14 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 30;
 
     .modalContainer {
         width: min(90vw, 767px);
         // padding-bottom: 123px;
-        height: calc(100vh - 20px);
+        height: 100%;
         overflow: auto;
         margin: 20px auto 0 auto;
         // margin-top: 20px;
@@ -34,15 +36,29 @@
         }
 
         .modalBody {
-            margin: 25px 80px;
+            // margin: 25px 80px;
+            > div {
+                padding: 0 80px;
+            }
             .infoSnippet {
                 display: flex;
                 justify-content: space-between;
-                margin: 25px 0;
+                // margin: 25px 0;
+                background-color: #941c2f;
+                padding: 25px 80px;
+                .type {
+                    text-transform: capitalize;
+                }
+                .reviewStars {
+                    img {
+                        width: 17px;
+                    }
+                }
             }
-            .hoursSection {
-                padding-left: 90px;
-            }
+        }
+
+        .aboutSection {
+            margin-top: 30px;
         }
 
         .aboutSection > p {
@@ -55,14 +71,12 @@
             a {
                 min-width: 158px;
                 padding: 2px 5px;
-                margin-top: 30px;
             }
         }
 
         .subTitle {
             display: flex;
             align-items: center;
-            margin-top: 30px;
         }
 
         .subTitle img {
@@ -86,9 +100,12 @@
             grid-template-columns: 50% 50%;
             grid-template-rows: auto;
             grid-template-areas:
-                "phone hours"
-                "location hours"
+                "phone location"
+                "hours map"
                 "carousel carousel";
+            > div {
+                margin-top: 30px;
+            }
         }
 
         .phoneSection {
@@ -101,6 +118,13 @@
 
         .hoursSection {
             grid-area: hours;
+        }
+
+        .map {
+            grid-area: map;
+            iframe {
+                height: 100%;
+            }
         }
 
         .carouselSection {
@@ -205,16 +229,9 @@
         button {
             width: 43px;
             margin: 24px 41px;
-
             // background-image: url(../assets/whiteHeart.svg);
-            &:hover {
-                background-color: transparent;
-            }
         }
 
-        img {
-            background-color: transparent;
-        }
 
         .heart {
             // height: 60px;

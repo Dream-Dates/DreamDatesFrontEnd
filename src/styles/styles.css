@@ -245,6 +245,11 @@ a {
   text-decoration: none;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+}
+
 .wrapper {
   margin: 0 auto;
 }
@@ -311,6 +316,26 @@ a {
   text-decoration: underline;
 }
 
+p {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.review p {
+  font-size: 16px;
+}
+
+.infoSnippet {
+  color: white;
+}
+
+h1 {
+  font-family: "Mirza", cursive;
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+}
+
 h2 {
   font-family: "Mirza", cursive;
   font-size: 36px;
@@ -346,6 +371,7 @@ h3 {
   height: 186px;
   background-color: #ffffff;
   position: fixed;
+  top: 0;
   z-index: 20;
   -webkit-box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
@@ -508,7 +534,7 @@ h3 {
 }
 
 .dateIdeas {
-  padding: 210px 71px;
+  margin: 210px 71px;
 }
 .dateIdeas h2 {
   padding-bottom: 20px;
@@ -523,6 +549,9 @@ h3 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+.dateIdeasContainer h3 {
+  text-align: center;
 }
 
 .dateIdeasCard {
@@ -609,6 +638,9 @@ h3 {
   gap: 20px;
   border-radius: 8px 8px 0 0;
 }
+.dateIdeaCardHeader h3 {
+  width: calc(100% - 100px);
+}
 
 .heart {
   width: 30.48px;
@@ -648,6 +680,12 @@ h3 {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   z-index: 35;
+}
+
+.reviewStars {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .modal {
@@ -909,11 +947,13 @@ h3 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 30;
 }
 .modalMovie .modalContainer {
   width: min(90vw, 767px);
-  height: calc(100vh - 20px);
+  height: 100%;
   overflow: auto;
   margin: 20px auto 0 auto;
   border-radius: 16px;
@@ -935,8 +975,8 @@ h3 {
 .modalMovie .modalContainer .imageContainer .fullImage {
   width: auto;
 }
-.modalMovie .modalContainer .modalBody {
-  margin: 25px 80px;
+.modalMovie .modalContainer .modalBody > div {
+  padding: 0 80px;
 }
 .modalMovie .modalContainer .modalBody .infoSnippet {
   display: -webkit-box;
@@ -945,10 +985,17 @@ h3 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 25px 0;
+  background-color: #941c2f;
+  padding: 25px 80px;
 }
-.modalMovie .modalContainer .modalBody .hoursSection {
-  padding-left: 90px;
+.modalMovie .modalContainer .modalBody .infoSnippet .type {
+  text-transform: capitalize;
+}
+.modalMovie .modalContainer .modalBody .infoSnippet .reviewStars img {
+  width: 17px;
+}
+.modalMovie .modalContainer .aboutSection {
+  margin-top: 30px;
 }
 .modalMovie .modalContainer .aboutSection > p {
   margin: 7px 0;
@@ -964,7 +1011,6 @@ h3 {
 .modalMovie .modalContainer .aboutSectionHeader a {
   min-width: 158px;
   padding: 2px 5px;
-  margin-top: 30px;
 }
 .modalMovie .modalContainer .subTitle {
   display: -webkit-box;
@@ -973,7 +1019,6 @@ h3 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 30px;
 }
 .modalMovie .modalContainer .subTitle img {
   width: 25px;
@@ -999,7 +1044,10 @@ h3 {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: auto;
-  grid-template-areas: "phone hours" "location hours" "carousel carousel";
+  grid-template-areas: "phone location" "hours map" "carousel carousel";
+}
+.modalMovie .modalContainer .additionalInformation > div {
+  margin-top: 30px;
 }
 .modalMovie .modalContainer .phoneSection {
   grid-area: phone;
@@ -1009,6 +1057,12 @@ h3 {
 }
 .modalMovie .modalContainer .hoursSection {
   grid-area: hours;
+}
+.modalMovie .modalContainer .map {
+  grid-area: map;
+}
+.modalMovie .modalContainer .map iframe {
+  height: 100%;
 }
 .modalMovie .modalContainer .carouselSection {
   grid-area: carousel;
@@ -1115,12 +1169,6 @@ h3 {
 .modalMovie .modalHeader button {
   width: 43px;
   margin: 24px 41px;
-}
-.modalMovie .modalHeader button:hover {
-  background-color: transparent;
-}
-.modalMovie .modalHeader img {
-  background-color: transparent;
 }
 .modalMovie .modalHeader .heart {
   width: 46px;
@@ -1232,13 +1280,29 @@ h3 {
   border: 1px black solid;
   border-radius: 16px;
 }
+.reviews .reviewStars img {
+  width: 17px;
+}
 
 .reviewsHeader {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   margin: 0 80px;
   padding-top: 40px;
+}
+.reviewsHeader .h3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.reviewsHeader .reviewStars {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .reviewHeader {
