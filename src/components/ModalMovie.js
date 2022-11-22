@@ -51,7 +51,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     const [toggle, setToggle] = useState(false);
 
     const handleClickModalClose = (e) => {
-        if (e.target.className === "modal" || e.target.id === "close") {
+        if (e.target.className === "modalMovie" || e.target.id === "close") {
             closeModal();
         }
     };

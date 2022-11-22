@@ -204,7 +204,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
                                     "selectedCategory"
                                 }`}
                             >
-                                <p>Food</p>
+                                Food
                             </button>
                         </div>
                         <div>
