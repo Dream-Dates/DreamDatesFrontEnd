@@ -5,6 +5,10 @@
     background-color: #ffffff;
 }
 
+.userAuthMobile, .logoMobile {
+    display: none;
+}
+
 .headerNormal {
     width: 100vw;
     height: 186px;
@@ -60,9 +64,9 @@
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    width: 110px;
+    // width: 110px;
     .pinkButton {
-        width: 110px;
+        // width: 110px;
         padding: 5px;
         display: flex;
         justify-content: space-evenly;
@@ -107,7 +111,7 @@
 }
 
 .headerNormalBottom {
-    padding-top: 30px;
+    padding: 30px calc(57px / 1440px * 100vw);
 }
 
 .headerFilter {

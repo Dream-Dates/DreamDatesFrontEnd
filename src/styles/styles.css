@@ -372,6 +372,10 @@ h2 span {
   background-color: #ffffff;
 }
 
+.userAuthMobile, .logoMobile {
+  display: none;
+}
+
 .headerNormal {
   width: 100vw;
   height: 186px;
@@ -447,10 +451,8 @@ h2 span {
           align-items: center;
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  width: 110px;
 }
 .homeSavedButtons .pinkButton {
-  width: 110px;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -513,7 +515,7 @@ h2 span {
 }
 
 .headerNormalBottom {
-  padding-top: 30px;
+  padding: 30px 3.9583333333vw;
 }
 
 .headerFilter {
@@ -603,8 +605,6 @@ h2 span {
 .dateIdeasCard .textContainer .reviewStars {
   width: 20px;
   grid-area: 3/1/4/2;
-  -webkit-filter: invert(100%) sepia(100%) saturate(19%) hue-rotate(294deg) brightness(106%) contrast(104%);
-          filter: invert(100%) sepia(100%) saturate(19%) hue-rotate(294deg) brightness(106%) contrast(104%);
 }
 .dateIdeasCard .textContainer .reviewNumbers {
   grid-area: 3/2/4/3;
@@ -1509,47 +1509,117 @@ h4 {
   margin: 0 auto;
 }
 
-@media (max-width: 1080px) {
-  .userAuth {
-    -webkit-transform: translateY(-15px);
-            transform: translateY(-15px);
+@media (max-width: 1000px) {
+  .normalView {
+    display: none;
   }
-  .userAuth a {
-    margin-top: 15px;
+  .userAuth {
+    display: none;
+  }
+  .homeSavedButtons .pinkButton {
+    min-width: auto;
+  }
+  .userAuthMobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .userAuthMobile img {
+    width: 30px;
+    height: 30px;
+  }
+  .userAuthMobile .pinkButton {
+    min-width: auto;
+    width: 34px;
+    height: 34px;
+  }
+  .userAuthMobile button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0px;
+    position: relative;
+  }
+  .userAuthMobile .profile {
+    display: none;
+    position: absolute;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    top: calc(100% + 21px);
+  }
+  .userAuthMobile .profileBody {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .userAuthMobile .profileBody .signInSignUp {
+    padding-left: 0;
+  }
+  .userAuthMobile .profileBody .pinkButton {
+    margin: 0 auto;
+    width: 110px;
+    padding: 0;
+  }
+  .userAuthMobile .profileBody .pinkButton:hover {
+    background-color: #941c2f;
+  }
+  .userAuthMobile .profileBody .pinkButton:hover p {
+    color: white;
+  }
+  .userAuthMobile .profileBody .userAuthTop {
+    margin-bottom: 20px;
+  }
+  .userAuthMobile .profileBody p {
+    min-width: 60px;
+    text-align: center;
+  }
+  .userAuthMobile .triangleHatOutline {
+    position: relative;
+    top: -21px;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    -webkit-clip-path: polygon(10px 0, 0 20px, 20px 20px);
+            clip-path: polygon(10px 0, 0 20px, 20px 20px);
+  }
+  .userAuthMobile .triangleHatBody {
+    position: absolute;
+    top: 1px;
+    left: 0.5px;
+    width: 18px;
+    height: 20px;
+    background-color: white;
+    -webkit-clip-path: polygon(10px 0, 0 20px, 20px 20px);
+            clip-path: polygon(10px 0, 0 20px, 20px 20px);
+  }
+  .userAuthMobile .showDropDown {
+    display: block;
   }
 }
 @media (max-width: 900px) {
-  .headerNormal {
-    height: 274px;
-    grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
-    -webkit-column-gap: 20;
-       -moz-column-gap: 20;
-            column-gap: 20;
-    grid-template-areas: "logo right" "headerSearchBar headerSearchBar" "headerFilter x";
-  }
-  .headerSearchBar {
-    width: 100%;
-    margin: 0 60px;
-    padding-right: 121px;
-  }
-  .headerFilter {
-    width: 100vw;
-    overflow-x: auto;
-    padding: 0 50px;
-  }
-  .headerFilter div {
-    margin: 0 5px;
-  }
-  .headerFilter div p {
-    white-space: nowrap;
-  }
-  .userAuth {
-    -webkit-transform: translateY(-15px);
-            transform: translateY(-15px);
-  }
-  .userAuth a {
-    margin-top: 15px;
-  }
   .signIn form,
 .signUp form,
 .dateIdeasContainer,
@@ -1558,6 +1628,19 @@ h4 {
   }
 }
 @media (max-width: 800px) {
+  .logoNormal {
+    display: none;
+  }
+  .logoMobile {
+    display: block;
+  }
+  .headerLogo {
+    width: 26px;
+  }
+  .headerNormalBottom {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
   .modalContainer .midSide {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1573,6 +1656,11 @@ h4 {
   }
 }
 @media (max-width: 750px) {
+  .headerFilter {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
   .modalContainer .textContainer {
     padding: 0 50px;
   }
@@ -1595,142 +1683,6 @@ h4 {
   }
 }
 @media (max-width: 600px) {
-  .headerNormal {
-    display: none;
-  }
-  .headerRightSide .pinkButton {
-    min-width: auto;
-    padding: 5px;
-  }
-  .userAuth {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-    width: auto;
-  }
-  .userAuth a {
-    margin-top: 0px;
-  }
-  .userAuth ul {
-    width: auto;
-  }
-  .headerMobile {
-    height: 200px;
-    display: grid;
-    grid-template-columns: minmax(100px, 1fr) minmax(100px, 4fr) minmax(100px, 1fr);
-    -webkit-column-gap: 2px;
-       -moz-column-gap: 2px;
-            column-gap: 2px;
-    grid-template-areas: "logo headerSearchBar right" "headerFilter headerFilter headerFilter";
-    width: 100vw;
-    z-index: 20;
-    padding-top: 20px;
-    position: fixed;
-  }
-  .headerSearchBar {
-    margin: 0;
-    padding-right: 70px;
-  }
-  .headerRightSide {
-    -webkit-transform: translateY(30px);
-            transform: translateY(30px);
-  }
-  .userAuth .pinkButton {
-    position: relative;
-  }
-  .profile {
-    display: none;
-    position: absolute;
-    top: 33px;
-    margin-left: -200px;
-  }
-  .profileContainer {
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 16px;
-    width: 269px;
-    height: 222px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .triangleHatOutline {
-    position: relative;
-    top: 1px;
-    left: 224px;
-    width: 20px;
-    height: 20px;
-    background-color: black;
-    -webkit-clip-path: polygon(10px 0, 0 20px, 20px 20px);
-            clip-path: polygon(10px 0, 0 20px, 20px 20px);
-  }
-  .triangleHatBody {
-    position: absolute;
-    top: 1px;
-    left: 0.5px;
-    width: 18px;
-    height: 20px;
-    background-color: white;
-    -webkit-clip-path: polygon(10px 0, 0 20px, 20px 20px);
-            clip-path: polygon(10px 0, 0 20px, 20px 20px);
-  }
-  .showDropDown {
-    display: block;
-  }
-  .userAuth .pinkButton {
-    background-color: #ffc7d0;
-  }
-  .userAuth .pinkButton p {
-    color: black;
-  }
-  .userAuth .pinkButton .signOut p {
-    color: #941C2F;
-  }
-  .userAuth .pinkButton:hover img {
-    -webkit-filter: none;
-            filter: none;
-  }
-  .profileBody {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .profileBody .signInSignUp {
-    padding-left: 0;
-  }
-  .profileBody .pinkButton {
-    margin: 0 auto;
-    width: 110px;
-    padding: 0;
-  }
-  .profileBody .pinkButton:hover {
-    background-color: #941c2f;
-  }
-  .profileBody .pinkButton:hover p {
-    color: white;
-  }
-  .profileBody .userAuthTop {
-    margin-bottom: 20px;
-  }
-  .profileBody p {
-    min-width: 60px;
-    text-align: center;
-  }
   .signIn form,
 .signUp form,
 .dateIdeasContainer,

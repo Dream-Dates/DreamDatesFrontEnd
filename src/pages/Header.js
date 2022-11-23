@@ -117,7 +117,8 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                 <div className="headerNormalTop wrapper">
                     <div className="headerLogo">
                         <Link to="/" onClick={handleClickHome}>
-                            <img src={logo} alt="DreamDates Logo" />
+                            <img src={logo} alt="DreamDates Logo" className="logoNormal"/>
+                            <img src={logoMobile} alt="DreamDates Logo" className="logoMobile"/>
                         </Link>
                     </div>
                     <form
@@ -152,7 +153,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                             <img src={magnifyingGlass} alt="magnifying glass" />
                         </div>
                     </form>
-                    
+
                         <div className="homeSavedButtons">
                             {context.pageIs === "home" ? (
                                 <Link
@@ -163,7 +164,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                                     }`}
                                 >
                                     <img src={redHeart} alt="red heart" />
-                                    Saved
+                                    <span className="normalView">Saved</span>
                                 </Link>
                             ) : (
                                 <Link
@@ -172,10 +173,12 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                                     className="pinkButton"
                                 >
                                     <img src={homeIcon} alt="home icon" />
-                                    Home
+                                    <span className="normalView">Home</span>
                                 </Link>
                             )}
                         </div>
+
+                        {/* regular view userAuth */}
                         {user.token ? (
                             <div className="userAuth">
                                 <p className="welcome">
@@ -190,6 +193,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                                     Sign out
                                 </Link>
                             </div>
+                            
                         ) : (
                             <div className="userAuth flexAlignCenter">
                                 <Link to={"/signin"} className="pinkButton">
@@ -197,6 +201,65 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                                 </Link>
                             </div>
                         )}
+
+                        {/* mobile view */}
+                        <div className="userAuthMobile">
+                        <div>
+                            <button
+                                className="pinkButton"
+                                onClick={handleClickProfile}
+                            >
+                                <img
+                                    src={profileIcon}
+                                    alt="profile icon"
+                                    id="profileIcon"
+                                />
+                                <div
+                                    className={`profile ${
+                                        showDropDown && "showDropDown"
+                                    }`}
+                                >
+                                    <div className="triangleHatOutline">
+                                        <div className="triangleHatBody"></div>
+                                    </div>
+                                    <div className="profileContainer">
+                                        {user.token ? (
+                                            <div className="profileBody">
+                                                <p className="welcome">
+                                                    Welcome back, {user.name}!
+                                                </p>
+                                                <br />
+                                                <Link
+                                                    to="/"
+                                                    onClick={logUserOut}
+                                                    className="signOut"
+                                                >
+                                                    <p>Sign out</p>
+                                                </Link>
+                                            </div>
+                                        ) : (
+                                            <div className="profileBody">
+                                                <div className="signInSignUp">
+                                                    <Link
+                                                        to="/signin"
+                                                        className="pinkButton userAuthTop"
+                                                    >
+                                                        <p>Sign In</p>
+                                                    </Link>
+                                                    <Link
+                                                        to={"/signup"}
+                                                        className="pinkButton"
+                                                    >
+                                                        <p>Sign Up</p>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
                     
                 </div>
                 <div className="headerNormalBottom">
