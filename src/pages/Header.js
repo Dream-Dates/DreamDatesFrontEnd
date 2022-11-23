@@ -229,12 +229,13 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                                                     Welcome back, {user.name}!
                                                 </p>
                                                 <br />
+                                                <br />
                                                 <Link
                                                     to="/"
                                                     onClick={logUserOut}
                                                     className="signOut"
                                                 >
-                                                    <p>Sign out</p>
+                                                    Sign out
                                                 </Link>
                                             </div>
                                         ) : (
@@ -250,12 +251,13 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                                                         to={"/signup"}
                                                         className="pinkButton"
                                                     >
-                                                        <p>Sign Up</p>
+                                                        Sign Up
                                                     </Link>
                                                 </div>
                                             </div>
                                         )}
                                     </div>
+                                    <div></div>
                                 </div>
                             </button>
                         </div>
@@ -329,7 +331,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
             </div>
 
             {/* MOBILE */}
-            <div className="headerMobile wrapper">
+            {/* <div className="headerMobile wrapper">
                 <div className="logo">
                     <Link to="/" onClick={handleClickHome}>
                         <img src={logoMobile} alt="DreamDates Logo" />
@@ -499,7 +501,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                     </div>
                     <div className="userAuth"></div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

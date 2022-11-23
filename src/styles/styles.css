@@ -1555,10 +1555,20 @@ h4 {
   .userAuthMobile .profile {
     display: none;
     position: absolute;
+    right: -2vw;
+    width: 269px;
+    height: 209px;
+    border-radius: 16px;
     background-color: white;
     color: black;
     border: 1px solid black;
     top: calc(100% + 21px);
+  }
+  .userAuthMobile .pinkButton:hover {
+    background-color: #FFC7D0;
+  }
+  .userAuthMobile .pinkButton:hover p {
+    color: black;
   }
   .userAuthMobile .profileBody {
     display: -webkit-box;
@@ -1574,31 +1584,12 @@ h4 {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-  }
-  .userAuthMobile .profileBody .signInSignUp {
-    padding-left: 0;
-  }
-  .userAuthMobile .profileBody .pinkButton {
-    margin: 0 auto;
-    width: 110px;
-    padding: 0;
-  }
-  .userAuthMobile .profileBody .pinkButton:hover {
-    background-color: #941c2f;
-  }
-  .userAuthMobile .profileBody .pinkButton:hover p {
-    color: white;
-  }
-  .userAuthMobile .profileBody .userAuthTop {
-    margin-bottom: 20px;
-  }
-  .userAuthMobile .profileBody p {
-    min-width: 60px;
-    text-align: center;
+    margin-top: 15%;
   }
   .userAuthMobile .triangleHatOutline {
     position: relative;
-    top: -21px;
+    top: -20px;
+    right: -222px;
     width: 20px;
     height: 20px;
     background-color: black;
@@ -1714,7 +1705,7 @@ h4 {
     padding: 0 20px;
   }
   .modalMovie .modalContainer .modalBodyMobile .infoSnippet {
-    background-color: #941C2F;
+    background-color: #941c2f;
   }
   .modalMovie .modalContainer .modalBodyMobile .infoSnippet div {
     display: -webkit-box;
