@@ -17,6 +17,7 @@ function DateIdeasList({
     userId,
     searchTerm,
     categoryName,
+    viewAll,
 }) {
     let mainList = [];
     const [list, setList] = useState([]);
@@ -179,7 +180,7 @@ function DateIdeasList({
                     </div>
                 </div>
             )}
-            <h2>{headerTitle[ideas?.[0].categoryType]} {!categoryName && <h3>View all {headerTitle[ideas?.[0].categoryType]}</h3>}</h2>
+            <h2>{headerTitle[ideas?.[0].categoryType]} {!categoryName && <span onClick={() => viewAll(ideas?.[0].categoryType)}>View all {headerTitle[ideas?.[0].categoryType]}</span>}</h2>
             <div className="dateIdeasContainer wrapper">
                 {filteredList?.map((idea) => {
                     return (

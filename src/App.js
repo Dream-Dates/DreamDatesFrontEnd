@@ -71,6 +71,11 @@ function App() {
         setCategoryName(categoryNameName);
     };
 
+    // grab the category which view all was clicked on homepage
+    const viewAll = (categoryName) => {
+        setCategoryName(categoryName)
+    }
+
     return (
         <div className="App">
             <ContextProvider>
@@ -79,6 +84,7 @@ function App() {
                     logUserOut={logUserOut}
                     getSearchTerm={getSearchTerm}
                     getCategoryName={getCategoryName}
+                    categoryName={categoryName}
                 />
 
                 <Routes>
@@ -90,6 +96,7 @@ function App() {
                                 searchTerm={searchTerm}
                                 categoryName={categoryName}
                                 localStorageFinished={localStorageFinished}
+                                viewAll={viewAll}
                             />
                         }
                     />

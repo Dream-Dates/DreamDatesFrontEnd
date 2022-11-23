@@ -10,13 +10,19 @@ import { useState } from "react";
 import { useContext } from "react";
 import Context from "../context/context";
 import mixpanel from "mixpanel-browser";
+import { useEffect } from "react";
 
-function Header({ user, logUserOut, getSearchTerm, getCategoryName }) {
-    const [selectedCategory, setSelectedCategory] = useState("");
+function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName }) {
+    const [selectedCategory, setSelectedCategory] = useState('');
     const [searchTerm, setSearchTerm] = useState("");
     const [showDropDown, setShowDropDown] = useState(false);
 
     const context = useContext(Context);
+
+    // to get the category name form view all button so we can toggle the css color change for button
+    useEffect(() => {
+        setSelectedCategory(categoryName);
+    }, [categoryName])
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value);

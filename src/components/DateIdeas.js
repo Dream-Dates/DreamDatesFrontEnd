@@ -8,7 +8,7 @@ import SavePopup from "./SavePopup";
 import mixpanel from "mixpanel-browser";
 import ModalMovie from "./ModalMovie";
 
-function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished }) {
+function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, viewAll }) {
     const [dateIdeas, setDateIdeas] = useState({});
     const [chosenEvent, setChoseEvent] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -250,6 +250,7 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished }) {
                     userId={userId}
                     searchTerm={searchTerm}
                     categoryName={categoryName}
+                    viewAll={viewAll}
                 />
             }
 
@@ -261,6 +262,7 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished }) {
                     userId={userId}
                     searchTerm={searchTerm}
                     categoryName={categoryName}
+                    viewAll={viewAll}
                 />
             }
 
@@ -272,6 +274,7 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished }) {
                     userId={userId}
                     searchTerm={searchTerm}
                     categoryName={categoryName}
+                    viewAll={viewAll}
                 />
             }
             {/* live entertainment */}
@@ -282,6 +285,7 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished }) {
                     userId={userId}
                     searchTerm={searchTerm}
                     categoryName={categoryName}
+                    viewAll={viewAll}
                 />
             }
             {showSavePopup && <SavePopup text={saveMessage} />}
