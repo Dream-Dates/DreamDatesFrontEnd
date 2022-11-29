@@ -29,7 +29,9 @@
             background-color: #ffc7d0;
             display: flex;
             justify-content: center;
-
+            img {
+                object-fit: cover;
+            }
             .fullImage {
                 width: auto;
             }

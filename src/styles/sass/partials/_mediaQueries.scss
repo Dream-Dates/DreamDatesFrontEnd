@@ -62,7 +62,6 @@
         .triangleHatOutline {
             position: relative;
             top: -20px;
-            // left: 224px;
             right: -222px;
             width: 20px;
             height: 20px;
@@ -81,21 +80,18 @@
         }
         .showDropDown {
             display: block;
-            // align-content: flex-start;
-            // justify-content: center;
-            // flex-direction: column;
         }
     }
 }
 
-@media (max-width: 900px) {
-    .signIn form,
-    .signUp form,
-    .dateIdeasContainer,
-    .saved {
-        padding-top: 325px;
-    }
-}
+// @media (max-width: 900px) {
+//     .signIn form,
+//     .signUp form,
+//     .dateIdeasContainer,
+//     .saved {
+//         padding-top: 325px;
+//     }
+// }
 
 @media (max-width: 800px) {
     // header
@@ -157,12 +153,12 @@
 }
 
 @media (max-width: 600px) {
-    .signIn form,
-    .signUp form,
-    .dateIdeasContainer,
-    .saved {
-        padding-top: 255px;
-    }
+    // .signIn form,
+    // .signUp form,
+    // .dateIdeasContainer,
+    // .saved {
+    //     padding-top: 255px;
+    // }
 
     .signUp section {
         display: block;
@@ -181,7 +177,7 @@
                 margin-top: 75px;
             }
             .modalBody {
-                display: none;
+                // display: none;
             }
             .modalBodyMobile {
                 & > div {

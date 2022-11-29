@@ -347,7 +347,7 @@ h2 {
   font-weight: 700;
 }
 h2 h3 {
-  font-weight: 400;
+  font-weight: 700;
 }
 
 h2 span {
@@ -370,6 +370,10 @@ h2 span {
 .headerMobile {
   display: none;
   background-color: #ffffff;
+}
+
+.header .pinkButton:hover {
+  background-color: #FFC7D0;
 }
 
 .userAuthMobile, .logoMobile {
@@ -977,6 +981,10 @@ h2 span {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+.modalMovie .modalContainer .imageContainer img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .modalMovie .modalContainer .imageContainer .fullImage {
   width: auto;
@@ -1610,14 +1618,6 @@ h4 {
     display: block;
   }
 }
-@media (max-width: 900px) {
-  .signIn form,
-.signUp form,
-.dateIdeasContainer,
-.saved {
-    padding-top: 325px;
-  }
-}
 @media (max-width: 800px) {
   .logoNormal {
     display: none;
@@ -1674,12 +1674,6 @@ h4 {
   }
 }
 @media (max-width: 600px) {
-  .signIn form,
-.signUp form,
-.dateIdeasContainer,
-.saved {
-    padding-top: 255px;
-  }
   .signUp section {
     display: block;
   }
@@ -1694,9 +1688,6 @@ h4 {
   }
   .modalMovie .modalContainer .imageContainer {
     margin-top: 75px;
-  }
-  .modalMovie .modalContainer .modalBody {
-    display: none;
   }
   .modalMovie .modalContainer .modalBodyMobile > div {
     padding: 0 29px;
