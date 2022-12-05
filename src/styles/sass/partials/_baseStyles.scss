@@ -66,8 +66,9 @@ button {
     cursor: pointer;
     &:hover {
         background-color: #941C2F;
-        p {
-            color: white;
+        color: white;
+        img {
+            filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
         }
     }
 }
@@ -83,7 +84,5 @@ input:focus {
 
     .selectedCategory {
         background-color: #941C2F;
-            p {
-                color: white !important;
-            }
+        color: white;
     }

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import whiteHeart from "../assets/whiteHeart.svg";
+import whiteHeartNoOutline from "../assets/whiteHeartNoOutline.svg";
 import redHeart from "../assets/redHeart.svg";
 import x from "../assets/X.svg";
 import defaultImagePlaceholderSmall from "../assets/defaultImagePlaceholderSmall.jpg";
@@ -179,8 +180,9 @@ function DateIdeasList({
                         </div>
                     </div>
                 </div>
+                
             )}
-            <h2>{headerTitle[ideas?.[0].categoryType]} {!categoryName && <span onClick={() => viewAll(ideas?.[0].categoryType)}>View all {headerTitle[ideas?.[0].categoryType]}</span>}</h2>
+            <h2>{headerTitle[ideas?.[0].categoryType]} {!categoryName && <span onClick={() => viewAll(ideas?.[0].categoryType)}>View all</span>}</h2>
             <div className="dateIdeasContainer wrapper">
                 {filteredList?.map((idea) => {
                     return (
@@ -197,7 +199,7 @@ function DateIdeasList({
                                     onClick={handleClick}
                                 >
                                     <img
-                                        src={whiteHeart}
+                                        src={whiteHeartNoOutline}
                                         className="whiteHeart"
                                         alt="White Heart"
                                         id="save"
@@ -231,20 +233,24 @@ function DateIdeasList({
                                 />
                             </div>
                             <div className="textContainer">
-                                <p className='city'>{idea.city && idea.city}</p>
-                                <p className='type'>{idea.categoryType}</p>
-                                <p className='price'>
-                                    {idea.price_range && dollarSigns(idea.price_range)}
+                                <p className="city">{idea.city && idea.city}</p>
+                                <p className="type">{idea.categoryType}</p>
+                                <p className="price">
+                                    {idea.price_range &&
+                                        dollarSigns(idea.price_range)}
                                 </p>
-                                <p className='reviewStars'>
-                                    <img src={reviewStarWhite} alt="star logo" />
+                                <p className="reviewStars">
+                                    <img
+                                        src={reviewStarWhite}
+                                        alt="star logo"
+                                    />
                                     <img src={reviewStar} alt="star logo" />
                                     <img src={reviewStar} alt="star logo" />
                                     <img src={reviewStar} alt="star logo" />
                                     <img src={reviewStar} alt="star logo" />
                                 </p>
 
-                                <p className='reviewNumbers'>1,542 reviews</p>
+                                <p className="reviewNumbers">1,542 reviews</p>
                             </div>
                         </div>
                     );
