@@ -9,7 +9,7 @@ import defaultImagePlaceholderSmall from "../assets/defaultImagePlaceholderSmall
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import Context from "../context/context";
-import reviewStar from "../assets/ReviewStar.svg"
+import reviewStarWhiteOutline from "../assets/reviewStartWhtieOutline.svg";
 import reviewStarWhite from "../assets/reviewStarWhite.svg"
 
 function DateIdeasList({
@@ -85,7 +85,7 @@ function DateIdeasList({
     useEffect(() => {
         const fetchSaved = async () => {
             const response = await fetch(
-                "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
+                "https://dream-dates.onrender.com/dreamdates/saved/dates",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -183,78 +183,90 @@ function DateIdeasList({
                 
             )}
             <h2>{headerTitle[ideas?.[0].categoryType]} {!categoryName && <span onClick={() => viewAll(ideas?.[0].categoryType)}>View all</span>}</h2>
-            <div className="dateIdeasContainer wrapper">
-                {filteredList?.map((idea) => {
-                    return (
-                        <div
-                            className="dateIdeasCard"
-                            onClick={(e) => selectedEvent(e, idea)}
-                            key={idea.id}
-                        >
-                            <div className="dateIdeaCardHeader">
-                                <button
-                                    className={`heart ${
-                                        checkIfSaved(idea.id) && "hideHeart"
-                                    }`}
-                                    onClick={handleClick}
-                                >
+            <div className="wrapper">
+                <div className="dateIdeasContainer">
+                    {filteredList?.map((idea) => {
+                        return (
+                            <div
+                                className="dateIdeasCard"
+                                onClick={(e) => selectedEvent(e, idea)}
+                                key={idea.id}
+                            >
+                                <div className="dateIdeaCardHeader">
+                                    <button
+                                        className={`heart ${
+                                            checkIfSaved(idea.id) && "hideHeart"
+                                        }`}
+                                        onClick={handleClick}
+                                    >
+                                        <img
+                                            src={whiteHeartNoOutline}
+                                            className="whiteHeart"
+                                            alt="White Heart"
+                                            id="save"
+                                        />
+                                    </button>
+                                    <button
+                                        className={`heart ${
+                                            !checkIfSaved(idea.id) && "hideHeart"
+                                        }`}
+                                        onClick={handleClick}
+                                    >
+                                        <img
+                                            src={redHeart}
+                                            className="redHeart"
+                                            alt="White Heart"
+                                            id="save"
+                                        />
+                                    </button>
+                                    <div className="dateIdeaCardHeaderTitle">
+                                        <h3>{idea.title}</h3>
+                                    </div>
+                                </div>
+                                <div className="imageContainer">
                                     <img
-                                        src={whiteHeartNoOutline}
-                                        className="whiteHeart"
-                                        alt="White Heart"
-                                        id="save"
+                                        src={
+                                            idea.img
+                                                ? idea.img
+                                                : idea.image
+                                                ? idea.image[0]
+                                                : defaultImagePlaceholderSmall
+                                        }
+                                        alt={`Image of ${idea.title}`}
                                     />
-                                </button>
-                                <button
-                                    className={`heart ${
-                                        !checkIfSaved(idea.id) && "hideHeart"
-                                    }`}
-                                    onClick={handleClick}
-                                >
-                                    <img
-                                        src={redHeart}
-                                        className="redHeart"
-                                        alt="White Heart"
-                                        id="save"
-                                    />
-                                </button>
-                                <h3>{idea.title}</h3>
+                                </div>
+                                <div className="textContainer">
+                                    <p className="city">{idea.city && idea.city}</p>
+                                    <p className="type">{idea.categoryType}</p>
+                                    <p className="price">
+                                        {idea.price_range &&
+                                            dollarSigns(idea.price_range)}
+                                    </p>
+                                    <p className="reviewStars">
+                                        <img
+                                            src={reviewStarWhite}
+                                            alt="star logo"
+                                        />
+                                        <img src={reviewStarWhiteOutline} alt="star logo" />
+                                        <img src={reviewStarWhiteOutline} alt="star logo" />
+                                        <img src={reviewStarWhiteOutline} alt="star logo" />
+                                        <img src={reviewStarWhiteOutline} alt="star logo" />
+                                    </p>
+                                    <p className="reviewNumbers">1,542 reviews</p>
+                                </div>
                             </div>
-                            <div className="imageContainer">
-                                <img
-                                    src={
-                                        idea.img
-                                            ? idea.img
-                                            : idea.image
-                                            ? idea.image[0]
-                                            : defaultImagePlaceholderSmall
-                                    }
-                                    alt={`Image of ${idea.title}`}
-                                />
-                            </div>
-                            <div className="textContainer">
-                                <p className="city">{idea.city && idea.city}</p>
-                                <p className="type">{idea.categoryType}</p>
-                                <p className="price">
-                                    {idea.price_range &&
-                                        dollarSigns(idea.price_range)}
-                                </p>
-                                <p className="reviewStars">
-                                    <img
-                                        src={reviewStarWhite}
-                                        alt="star logo"
-                                    />
-                                    <img src={reviewStar} alt="star logo" />
-                                    <img src={reviewStar} alt="star logo" />
-                                    <img src={reviewStar} alt="star logo" />
-                                    <img src={reviewStar} alt="star logo" />
-                                </p>
+                        );
+                    })}
+                </div>
+            </div>
+            <div className="carouselContainer">
+                <div className="carouselWrapper">
+                    <div className="carouselContentWrapper">
+                        <div className="carouselContent">
 
-                                <p className="reviewNumbers">1,542 reviews</p>
-                            </div>
                         </div>
-                    );
-                })}
+                    </div>
+                </div>
             </div>
         </div>
     );
