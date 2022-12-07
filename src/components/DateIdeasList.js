@@ -11,6 +11,8 @@ import { useContext } from "react";
 import Context from "../context/context";
 import reviewStarWhiteOutline from "../assets/reviewStartWhiteOutline.svg";
 import reviewStarWhite from "../assets/reviewStarWhite.svg"
+import leftArrow from "../assets/leftArrow.svg";
+import rightArrow from "../assets/rightArrow.svg";
 
 function DateIdeasList({
     ideas,
@@ -239,7 +241,9 @@ function DateIdeasList({
             <div className="carouselContainer">
                 <div className="carouselWindow">
                     <div
-                        className={`carouselContent ${categoryName && 'flexWrap'}`}
+                        className={`carouselContent ${
+                            categoryName && "flexWrap"
+                        }`}
                         ref={carouselContent}
                         style={{
                             transform: `translateX(-${currentIndex * 100}%)`,
@@ -338,12 +342,27 @@ function DateIdeasList({
                             );
                         })}
                     </div>
-                    <button className="leftArrow" onClick={prev}>
-                        left
-                    </button>
-                    <button className="rightArrow" onClick={next}>
-                        right
-                    </button>
+                    {!categoryName && 
+                        <>
+                            <button
+                                className={`leftArrow ${
+                                    currentIndex == 0 && "disable-button"
+                                }`}
+                                onClick={prev}
+                            >
+                                <img src={leftArrow} alt="previous" />
+                            </button>
+                            <button
+                                className={`rightArrow ${
+                                    currentIndex == length - 1 &&
+                                    "disable-button"
+                                }`}
+                                onClick={next}
+                            >
+                                <img src={rightArrow} alt="next" />
+                            </button>
+                        </>
+                    }
                 </div>
             </div>
         </div>

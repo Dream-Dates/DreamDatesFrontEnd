@@ -50,6 +50,7 @@ a {
 button {
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 
 
@@ -75,7 +76,14 @@ button {
 
 .disable-link {
     pointer-events: none;
-    opacity: .25;
+        opacity: .25;
+}
+
+.disable-button {
+    pointer-events: none;
+    & > * {
+        opacity: .25;
+    }
 }
 
 input:focus {

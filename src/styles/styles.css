@@ -248,6 +248,7 @@ a {
 button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .wrapper {
@@ -273,6 +274,13 @@ button {
 
 .disable-link {
   pointer-events: none;
+  opacity: 0.25;
+}
+
+.disable-button {
+  pointer-events: none;
+}
+.disable-button > * {
   opacity: 0.25;
 }
 
@@ -702,10 +710,13 @@ h3 {
   display: flex;
 }
 
+.carouselContainer {
+  position: relative;
+}
+
 .carouselWindow {
   width: 100%;
   overflow: hidden;
-  position: relative;
 }
 
 .carouselContent {
@@ -739,15 +750,14 @@ h3 {
   height: 48px;
   border-radius: 24px;
   background-color: white;
-  border: 1px solid #ddd;
 }
 
 .leftArrow {
-  left: 24px;
+  left: -24px;
 }
 
 .rightArrow {
-  right: 24px;
+  right: -8px;
 }
 
 .modal {
