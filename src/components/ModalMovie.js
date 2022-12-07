@@ -17,7 +17,7 @@ import mixpanel from "mixpanel-browser";
 import Reviews from "./Reviews";
 import ticket from "../assets/ticket.svg";
 import MobileCarousel from "./MobileCarousel";
-import reviewStar from "../assets/ReviewStar.svg"
+import reviewStarWhiteOutline from "../assets/reviewStartWhiteOutline.svg";
 import reviewStarRed from "../assets/reviewStarRed.svg"
 import reviewStarWhite from "../assets/reviewStarWhite.svg"
 
@@ -64,6 +64,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
     const newLine = (time) => {
         let array = time.split(": ");
+        console.log(array);
         return array;
     };
 
@@ -312,10 +313,10 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 </p>
                                 <p className='reviewStars'>
                                     <img src={reviewStarWhite} alt="star logo" />
-                                    <img src={reviewStar} alt="star logo" />
-                                    <img src={reviewStar} alt="star logo" />
-                                    <img src={reviewStar} alt="star logo" />
-                                    <img src={reviewStar} alt="star logo" />
+                                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                                    <img src={reviewStarWhiteOutline} alt="star logo" />
                                 </p>
 
                                 <p className='reviewNumbers'>1,542 reviews</p>
@@ -383,11 +384,10 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 </div>
                                 {opening_hours?.map((item) => {
                                     return (
-                                        <>
-                                            {newLine(item).map((each, i) => {
-                                                return <p key={i}>{each}</p>;
-                                            })}
-                                        </>
+                                        <div className="hoursContainer">
+                                            <p>{newLine(item)[0]}</p>
+                                            <p>{newLine(item)[1]}</p>
+                                        </div>
                                     );
                                 })}
                             </div>

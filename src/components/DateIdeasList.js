@@ -9,7 +9,7 @@ import defaultImagePlaceholderSmall from "../assets/defaultImagePlaceholderSmall
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import Context from "../context/context";
-import reviewStarWhiteOutline from "../assets/reviewStartWhtieOutline.svg";
+import reviewStarWhiteOutline from "../assets/reviewStartWhiteOutline.svg";
 import reviewStarWhite from "../assets/reviewStarWhite.svg"
 
 function DateIdeasList({
