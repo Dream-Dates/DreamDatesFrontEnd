@@ -36,7 +36,7 @@ function Saved({ userId, searchTerm, categoryName }) {
         if (e.target.id === "save") {
             if (userId) {
                 fetch(
-                    "https://dream-dates.onrender.com/dreamdates/saved/dates",
+                    "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -50,7 +50,7 @@ function Saved({ userId, searchTerm, categoryName }) {
                         if (data.some((item) => item.id == eventDetails.id)) {
                             // if id match then we remove
                             fetch(
-                                `https://dream-dates.onrender.com/dreamdates/datingideas/delete/${eventDetails.id}`,
+                                `https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${eventDetails.id}`,
                                 {
                                     method: "DELETE",
                                     headers: {
@@ -68,7 +68,7 @@ function Saved({ userId, searchTerm, categoryName }) {
                         } else {
                             // if id does not match then we save
                             fetch(
-                                "https://dream-dates.onrender.com/dreamdates/datingideas/saved",
+                                "https://dream-dates.herokuapp.com/dreamdates/datingideas/saved",
                                 {
                                     method: "POST",
                                     headers: {
@@ -121,7 +121,7 @@ function Saved({ userId, searchTerm, categoryName }) {
     useEffect(() => {
         const fetchSaved = async () => {
             const response = await fetch(
-                "https://dream-dates.onrender.com/dreamdates/saved/dates",
+                "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

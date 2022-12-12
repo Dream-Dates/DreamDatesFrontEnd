@@ -85,7 +85,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     useEffect(() => {
         const fetchSaved = async () => {
             const response = await fetch(
-                "https://dream-dates.onrender.com/dreamdates/saved/dates",
+                "https://dream-dates.heroku.com/dreamdates/saved/dates",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -112,7 +112,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
             // if not signed in the pop up
             setCloseNotSignedIn(!closeNotSignedIn);
         } else {
-            fetch("https://dream-dates.onrender.com/dreamdates/saved/dates", {
+            fetch("https://dream-dates.heroku.com/dreamdates/saved/dates", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -124,7 +124,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     if (data.some((item) => item.id == id)) {
                         // if id match then we remove
                         fetch(
-                            `https://dream-dates.onrender.com/dreamdates/datingideas/delete/${id}`,
+                            `https://dream-dates.heroku.com/dreamdates/datingideas/delete/${id}`,
                             {
                                 method: "DELETE",
                                 headers: { "Content-Type": "application/json" },
@@ -146,7 +146,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     } else {
                         // if id does not match then we save
                         fetch(
-                            "https://dream-dates.onrender.com/dreamdates/datingideas/saved",
+                            "https://dream-dates.heroku.com/dreamdates/datingideas/saved",
                             {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
@@ -306,10 +306,10 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
                 <div className="modalBody">
                     <div className="infoSnippet">
-                                <p className='city'>{eventDetails.city && eventDetails.city}</p>
-                                <p className='type'>{eventDetails.categoryType}</p>
+                                <p className='city'>{city && city}</p>
+                                <p className='type'>{type || categoryType}</p>
                                 <p className='price'>
-                                    {eventDetails.price_range && dollarSigns(eventDetails.price_range)}
+                                    {price_range && dollarSigns(price_range)}
                                 </p>
                                 <p className='reviewStars'>
                                     <img src={reviewStarWhite} alt="star logo" />
@@ -328,9 +328,9 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <img src={about} alt="information icon" />
                                 <h3>About</h3>
                             </div>
-                            <a href="" className="pinkButton">
-                                {eventDetails.categoryType === "movies" ||
-                                eventDetails.categoryType === "events" ? (
+                            <a href={website} className="pinkButton" target="_blank">
+                                {categoryType === "movies" ||
+                                categoryType === "events" ? (
                                     <>
                                         <img src={ticket} alt="ticket icon" />
                                         <h3>Find tickets near me</h3>
@@ -343,8 +343,8 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 )}
                             </a>
                         </div>
-                        <p>2022 - 1hr 50min</p>
-                        <p>
+                        {/* <p>2022 - 1hr 50min</p> */}
+                        {/* <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicing
                             elit. Magnam dolores ratione totam incidunt eius?
                             Esse unde praesentium nesciunt asperiores sapiente
@@ -353,28 +353,26 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                             eligendi vel, obcaecati perspiciatis ea? Enim,
                             cupiditate blanditiis molestias aut unde quibusdam a
                             rerum facilis fugiat sapiente!
-                        </p>
+                        </p> */}
+                        <p>{description}</p>
                     </div>
 
                     {/* Restaurant/Live Events/Attractions */}
-                    {eventDetails.categoryType !== "movies" && (
+                    {categoryType !== "movies" && (
                         <div className="additionalInformation">
                             <div className="phoneSection">
                                 <div className="subTitle">
                                     <img src={phone} alt="phone icon" />
                                     <h3>Phone</h3>
                                 </div>
-                                <p>(123)-456-7890</p>
+                                {/* <p>(123)-456-7890</p> */}
                             </div>
                             <div className="locationSection">
                                 <div className="subTitle">
                                     <img src={location} alt="map pin icon" />
                                     <h3>Location</h3>
                                 </div>
-                                <p>
-                                    2330 W North Loop Blvd Austin, TX 78756
-                                    Rosedale, Allandale
-                                </p>
+                                <p>{adress_street}</p>
                             </div>
                             <div className="map"><iframe></iframe></div>
                             <div className="hoursSection">
@@ -391,7 +389,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                     );
                                 })}
                             </div>
-                            {eventDetails.categoryType !== "events" && (
+                            {categoryType !== "events" && (
                                 <div className="carouselSection">
                                     <div className="subTitle">
                                         <img src={imageIcon} alt="image icon" />

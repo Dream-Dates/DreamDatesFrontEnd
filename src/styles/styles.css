@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Mirza:wght@700&family=Raleway:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mirza:wght@400;600;700&family=Raleway:wght@500;600;700&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -347,6 +347,7 @@ h1 {
   font-size: 40px;
   font-weight: 700;
   color: white;
+  text-align: center;
 }
 
 h2 {
@@ -378,6 +379,11 @@ h3 {
 }
 .dateIdeasCard h3 {
   text-align: center;
+}
+
+.hoursContainer p {
+  font-family: "Mirza", cursive;
+  font-weight: 400;
 }
 
 @media (max-width: 600px) {
@@ -1141,6 +1147,7 @@ h3 {
   grid-area: map;
 }
 .modalMovie .modalContainer .map iframe {
+  width: 100%;
   height: 100%;
 }
 .modalMovie .modalContainer .hoursContainer {
@@ -1697,6 +1704,11 @@ h4 {
     display: block;
   }
 }
+@media (max-width: 900px) {
+  .modalMovie .modalContainer .additionalInformation {
+    grid-template-areas: "phone location" "map map" "hours hours" "carousel carousel";
+  }
+}
 @media (max-width: 800px) {
   .logoNormal {
     display: none;
@@ -1753,14 +1765,61 @@ h4 {
   }
 }
 @media (max-width: 600px) {
+  .modalMovie .modalContainer .additionalInformation {
+    grid-template-columns: 100%;
+    grid-template-areas: "phone" "location" "map" "hours" "carousel";
+  }
+  .modalMovie .modalContainer .hoursContainer {
+    display: block;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .modalMovie .modalContainer .hoursContainer > * {
+    padding: 0;
+  }
+  .modalMovie .modalContainer .hoursContainer p:first-child {
+    font-weight: 600;
+    padding-top: 0.5rem;
+  }
+  .modalMovie .modalContainer .modalBody > div {
+    padding: 0 40px;
+  }
+  .modalMovie .modalContainer .modalBody .infoSnippet {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas: "city city" "type price" "reviewStars reviewNumbers";
+    padding: 25px 40px;
+  }
+  .modalMovie .modalContainer .city {
+    grid-area: city;
+  }
+  .modalMovie .modalContainer .type {
+    grid-area: type;
+  }
+  .modalMovie .modalContainer .price {
+    grid-area: price;
+    text-align: right;
+  }
+  .modalMovie .modalContainer .reviewStars {
+    grid-area: reviewStars;
+  }
+  .modalMovie .modalContainer .reviewNumbers {
+    grid-area: reviewNumbers;
+    text-align: right;
+  }
+  .modalMovie .aboutSectionHeader a {
+    position: absolute;
+    top: 357px;
+    left: 50%;
+    translate: -50%;
+  }
   .signUp section {
     display: block;
   }
   .modalMovie h1 {
     margin: 15px 0 17px;
-  }
-  .modalMovie .modalHeader {
-    width: auto;
   }
   .modalMovie .modalContainer {
     width: 375px;

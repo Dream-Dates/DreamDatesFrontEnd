@@ -84,14 +84,23 @@
     }
 }
 
-// @media (max-width: 900px) {
-//     .signIn form,
-//     .signUp form,
-//     .dateIdeasContainer,
-//     .saved {
-//         padding-top: 325px;
-//     }
-// }
+@media (max-width: 900px) {
+    .modalMovie {
+        .modalContainer {
+            .additionalInformation {
+                    // display: grid;
+                    // grid-template-columns: 50% 50%;
+                    // grid-template-rows: auto;
+                    // column-gap: 20px;
+                    grid-template-areas:
+                        "phone location"
+                        "map map"
+                        "hours hours"
+                        "carousel carousel";
+                }
+            }
+        }
+}
 
 @media (max-width: 800px) {
     // header
@@ -153,13 +162,69 @@
 }
 
 @media (max-width: 600px) {
-    // .signIn form,
-    // .signUp form,
-    // .dateIdeasContainer,
-    // .saved {
-    //     padding-top: 255px;
-    // }
-
+    .modalMovie {
+            .modalContainer {
+                .additionalInformation {
+                    // display: grid;
+                    grid-template-columns: 100%;
+                    // grid-template-rows: auto;
+                    // column-gap: 20px;
+                    grid-template-areas:
+                        "phone"
+                        "location"
+                        "map"
+                        "hours"
+                        "carousel";
+                }
+                .hoursContainer {
+                    display: block;
+                    justify-content: space-between;
+                    &>* {
+                        padding: 0;
+                    }
+                    & p:first-child{
+                        font-weight: 600;
+                        padding-top: 0.5rem;
+                    }
+                }
+                .modalBody>div {
+                    padding: 0 40px;
+                }
+                .modalBody .infoSnippet {
+                    display: grid;
+                    grid-template-columns: 50% 50%;
+                    grid-template-rows: auto;
+                    grid-template-areas:
+                        "city city"
+                        "type price"
+                        "reviewStars reviewNumbers";
+                    padding: 25px 40px;
+                }
+                .city {
+                    grid-area: city;
+                }
+                .type {
+                    grid-area: type;
+                }
+                .price {
+                    grid-area: price;
+                    text-align: right;
+                }
+                .reviewStars {
+                    grid-area: reviewStars;
+                }
+                .reviewNumbers {
+                    grid-area: reviewNumbers;
+                    text-align: right;
+                }
+            }
+            .aboutSectionHeader a {
+                position: absolute;
+                top: 357px;
+                left: 50%;
+                translate: -50%;
+            }
+        }
     .signUp section {
         display: block;
     }
@@ -169,7 +234,7 @@
             margin: 15px 0 17px;
         }
         .modalHeader {
-            width: auto;
+            // width: auto;
         }
         .modalContainer {
             width: 375px;

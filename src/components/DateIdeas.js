@@ -48,7 +48,7 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
         if (e.target.id === "save") {
             if (userId) {
                 fetch(
-                    "https://dream-dates.onrender.com/dreamdates/saved/dates",
+                    "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -62,7 +62,7 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
                         if (data.some((item) => item.id === eventDetails.id)) {
                             // if id match then we remove
                             fetch(
-                                `https://dream-dates.onrender.com/dreamdates/datingideas/delete/${eventDetails.id}`,
+                                `https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${eventDetails.id}`,
                                 {
                                     method: "DELETE",
                                     headers: {
@@ -82,7 +82,7 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
                         } else {
                             // if id does not match then we save
                             fetch(
-                                "https://dream-dates.onrender.com/dreamdates/datingideas/saved",
+                                "https://dream-dates.herokuapp.com/dreamdates/datingideas/saved",
                                 {
                                     method: "POST",
                                     headers: {
@@ -163,30 +163,30 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
         const fetchEvents = async () => {
             try {
                 //events
-                // const eventsResponse = await fetch(
-                //     "https://dream-dates.onrender.com/dreamdates/events"
-                // );
-                const eventsResponse = await fetch("http://localhost:4000/dreamdates/events")
+                const eventsResponse = await fetch(
+                    "https://dream-dates.herokuapp.com/dreamdates/events"
+                );
+                // const eventsResponse = await fetch("http://localhost:4000/dreamdates/events")
                 if (!eventsResponse.ok)
                     throw Error("did not received expected data");
                 const listEvents = await eventsResponse.json();
                 listEvents.forEach((item) => (item.categoryType = "events"));
 
                 //movies
-                // const moviesResponse = await fetch(
-                //     "https://dream-dates.onrender.com/dreamdates/movies"
-                // );
-                const moviesResponse = await fetch("http://localhost:4000/dreamdates/movies")
+                const moviesResponse = await fetch(
+                    "https://dream-dates.herokuapp.com/dreamdates/movies"
+                );
+                // const moviesResponse = await fetch("http://localhost:4000/dreamdates/movies")
                 if (!moviesResponse.ok)
                     throw Error("did not received expected data");
                 const listMovies = await moviesResponse.json();
                 listMovies.forEach((item) => (item.categoryType = "movies"));
 
                 //restaurants
-                // const restaurantsResponse = await fetch(
-                //     "https://dream-dates.onrender.com/dreamdates/restaurants"
-                // );
-                const restaurantsResponse = await fetch("http://localhost:4000/dreamdates/restaurants")
+                const restaurantsResponse = await fetch(
+                    "https://dream-dates.herokuapp.com/dreamdates/restaurants"
+                );
+                // const restaurantsResponse = await fetch("http://localhost:4000/dreamdates/restaurants")
                 if (!restaurantsResponse.ok)
                     throw Error("did not received expected data");
                 const listRestaurants = await restaurantsResponse.json();
@@ -195,10 +195,10 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
                 );
 
                 //attractions
-                // const attractionsResponse = await fetch(
-                //     "https://dream-dates.onrender.com/dreamdates/attractions"
-                // );
-                const attractionsResponse = await fetch("http://localhost:4000/dreamdates/attractions")
+                const attractionsResponse = await fetch(
+                    "https://dream-dates.herokuapp.com/dreamdates/attractions"
+                );
+                // const attractionsResponse = await fetch("http://localhost:4000/dreamdates/attractions")
                 if (!attractionsResponse.ok)
                     throw Error("did not received expected data");
                 const listAttractions = await attractionsResponse.json();
