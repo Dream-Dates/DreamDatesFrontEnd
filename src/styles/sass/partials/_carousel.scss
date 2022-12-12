@@ -41,3 +41,17 @@
 .rightArrow {
     right: -8px;
 }
+
+.carouselSection {
+    .carouselContent{
+        gap: 10px;
+    }
+    .carouselCard {
+        width: 167px;
+        height: 156px;
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
