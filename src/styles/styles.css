@@ -391,6 +391,69 @@ h3 {
     font-size: 24px;
   }
 }
+.carouselContainer {
+  position: relative;
+}
+
+.carouselWindow {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carouselContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+  width: 100%;
+  gap: 25px;
+}
+
+.flexWrap {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.carouselContent > * {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.leftArrow,
+.rightArrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: white;
+}
+
+.leftArrow {
+  left: -24px;
+}
+
+.rightArrow {
+  right: -8px;
+}
+
+.carouselSection .carouselContent {
+  gap: 10px;
+}
+.carouselSection .carouselCard {
+  width: 167px;
+  height: 156px;
+}
+.carouselSection .carouselCard img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .headerMobile {
   display: none;
   background-color: #ffffff;
@@ -714,69 +777,6 @@ h3 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.carouselContainer {
-  position: relative;
-}
-
-.carouselWindow {
-  width: 100%;
-  overflow: hidden;
-}
-
-.carouselContent {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-  width: 100%;
-  gap: 25px;
-}
-
-.flexWrap {
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.carouselContent > * {
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-}
-
-.leftArrow,
-.rightArrow {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  background-color: white;
-}
-
-.leftArrow {
-  left: -24px;
-}
-
-.rightArrow {
-  right: -8px;
-}
-
-.carouselSection .carouselContent {
-  gap: 10px;
-}
-.carouselSection .carouselCard {
-  width: 167px;
-  height: 156px;
-}
-.carouselSection .carouselCard img {
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .modal {

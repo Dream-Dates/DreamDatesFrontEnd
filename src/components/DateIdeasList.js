@@ -57,60 +57,6 @@ function DateIdeasList({
         }
     };
 
-    const context = useContext(Context);
-
-    // useEffect(() => {
-    //     // making the object into an array
-    //     for (let category in ideas) {
-    //         ideas[category].forEach((item) => mainList.push(item));
-    //     }
-
-    //     // randomize the list
-    //     let mainList2 = mainList.sort(() => Math.random() - 0.5);
-
-    //     // if there is data in the array
-    //     if (mainList2.length) {
-    //         // if it matches saved and is the first time
-    //         if (
-    //             mainList2.every((item) => item.categoryType === "saved") &&
-    //             context.initialSaved
-    //         ) {
-    //             // update state and context state
-    //             // context.setInitialSavedArray(mainList2);
-    //             context.setInitialSaved(false);
-    //             //quick fix: save page has to remove date idea when unsaved
-    //             setList(mainList2);
-    //         // else if it does not match saved and is the first time
-    //         } else if (
-    //             mainList2.every((item) => item.categoryType !== "saved") &&
-    //             context.initialDates
-    //         ) {
-    //             // update stat and context state
-    //             context.setInitialDatesArray(mainList2);
-    //             context.setInitialDates(false);
-    //             setList(mainList2);
-    //         // else if it matches saved
-    //         } else if (
-    //             mainList2.every((item) => item.categoryType === "saved")
-    //         ) {
-    //             //set state to context state
-    //             //quick fix: save page has to remove date idea when unsaved
-    //             setList(mainList2);
-    //         // else if it does not match saved
-    //         } else if (
-    //             mainList2.every((item) => item.categoryType !== "saved")
-    //         ) {
-    //             // set state to context state
-    //             setList(context.initialDatesArray);
-    //         // back up just incase something goes wrong
-    //         } else {
-    //             setList(mainList2);
-    //         }
-    //     } else {
-    //         setList(mainList2)
-    //     }
-    // }, [ideas]);
-
     useEffect(() => {
         setList(ideas);
         // I do not understand why carouselContent.current?.offsetWidthWidth is not working and have to carouselContent.current ? carouselContent.current.offsetWidth : 0
@@ -131,6 +77,7 @@ function DateIdeasList({
         console.log(Math.ceil(totalContentWidth / carouselWidth));
         setLength(Math.ceil(totalContentWidth / carouselWidth));
     }, [ideas])
+
     useEffect(() => {
         const fetchSaved = async () => {
             const response = await fetch(
@@ -204,6 +151,78 @@ function DateIdeasList({
         movies: 'Movies',
         attractions: 'Attractions',
         events: 'Live Entertainments',
+    }
+
+    const reviewStarsDisplay = (score, category) => {
+        
+        // round the score to a whole number
+        let rating = Math.round(+score);
+
+        if (category == 'movies') rating/=2
+
+        if (rating == 0) 
+            return<>
+                <img src={reviewStarWhiteOutline} alt="star logo" />
+                <img src={reviewStarWhiteOutline} alt="star logo" />
+                <img src={reviewStarWhiteOutline} alt="star logo" />
+                <img src={reviewStarWhiteOutline} alt="star logo" />
+                <img src={reviewStarWhiteOutline} alt="star logo" />
+            </>;
+
+        if (rating == 1) 
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
+
+        if (rating == 2) 
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />{" "}
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
+
+        if (rating == 3) 
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
+
+        if (rating == 4) 
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
+
+        if (rating == 5) 
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                </>
+            );
     }
 
     return (
@@ -313,26 +332,8 @@ function DateIdeasList({
                                                 dollarSigns(idea.price_range)}
                                         </p>
                                         <p className="reviewStars">
-                                            <img
-                                                src={reviewStarWhite}
-                                                alt="star logo"
-                                            />
-                                            <img
-                                                src={reviewStarWhiteOutline}
-                                                alt="star logo"
-                                            />
-                                            <img
-                                                src={reviewStarWhiteOutline}
-                                                alt="star logo"
-                                            />
-                                            <img
-                                                src={reviewStarWhiteOutline}
-                                                alt="star logo"
-                                            />
-                                            <img
-                                                src={reviewStarWhiteOutline}
-                                                alt="star logo"
-                                            />
+                                            {idea.rating && reviewStarsDisplay(idea.rating, idea.categoryType)}
+                                            {idea.votes && reviewStarsDisplay(idea.votes, idea.categoryType)}
                                         </p>
                                         <p className="reviewNumbers">
                                             1,542 reviews

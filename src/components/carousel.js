@@ -1,23 +1,22 @@
 // Carousel.js
-import { useEffect, useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import leftArrow from "../assets/leftArrow.svg";
 import rightArrow from "../assets/rightArrow.svg";
 
-function Carousel({ data }) {
-    const [leftDisable, setLeftDisabled] = useState(true)
-    const [rightDisable, setRightDisabled] = useState(false)
-        const [currentIndex, setCurrentIndex] = useState(0);
-        // const [length, setLength] = useState(0);
+function Carousel({ data, location }) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [totalContentWidth, setTotalContentWidth] = useState(0);
 
-    const widthOfScroll = 300 // how much horizontal scroll we want
-    let totalContentWidth
+    const carouselContentRef = useRef(null);
+
+    const widthOfScroll = 300; // how much horizontal scroll we want
+
+    // get the total width of the carousel content element
+    useLayoutEffect(() => {
+        setTotalContentWidth(carouselContentRef.current.scrollWidth);
+    }, []);
 
     const next = () => {
-        // get slider element
-        const slider = document.getElementById("slider");
-        // get the total width
-        totalContentWidth = slider.scrollWidth
-
         if (currentIndex * widthOfScroll < totalContentWidth - widthOfScroll) {
             setCurrentIndex((prevState) => prevState + 1);
         }
@@ -29,13 +28,14 @@ function Carousel({ data }) {
         }
     };
 
-    return (
-        <>
+    if (location == "modalImage") {
+        return (
             <div className="carouselContainer">
                 <div className="carouselWindow">
                     <div
                         className="carouselContent"
                         id="slider"
+                        ref={carouselContentRef}
                         style={{
                             transform: `translateX(-${currentIndex * 300}px)`,
                         }}
@@ -50,7 +50,7 @@ function Carousel({ data }) {
                     </div>
                     <button
                         className={`leftArrow ${
-                        currentIndex == 0 && "disable-button"
+                            currentIndex == 0 && "disable-button"
                         }`}
                         onClick={prev}
                     >
@@ -58,7 +58,9 @@ function Carousel({ data }) {
                     </button>
                     <button
                         className={`rightArrow ${
-                            currentIndex * widthOfScroll < totalContentWidth - widthOfScroll && "disable-button"
+                            currentIndex * widthOfScroll >
+                                totalContentWidth - widthOfScroll &&
+                            "disable-button"
                         }`}
                         onClick={next}
                     >
@@ -66,8 +68,51 @@ function Carousel({ data }) {
                     </button>
                 </div>
             </div>
-        </>
-    );
+        );
+    }
+
+    if (location == "modalReviews") {
+        return (
+            <div className="carouselContainer">
+                <div className="carouselWindow">
+                    <div
+                        className="carouselContent"
+                        id="slider"
+                        ref={carouselContentRef}
+                        style={{
+                            transform: `translateX(-${currentIndex * 300}px)`,
+                        }}
+                    >
+                        {data.map((item, index) => {
+                            return (
+                                <div className="carouselCard" key={index}>
+                                    <img src={item} alt=".dd" />
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <button
+                        className={`leftArrow ${
+                            currentIndex == 0 && "disable-button"
+                        }`}
+                        onClick={prev}
+                    >
+                        <img src={leftArrow} alt="previous" />
+                    </button>
+                    <button
+                        className={`rightArrow ${
+                            currentIndex * widthOfScroll >
+                                totalContentWidth - widthOfScroll &&
+                            "disable-button"
+                        }`}
+                        onClick={next}
+                    >
+                        <img src={rightArrow} alt="next" />
+                    </button>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Carousel;

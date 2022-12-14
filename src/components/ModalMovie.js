@@ -18,8 +18,8 @@ import Reviews from "./Reviews";
 import ticket from "../assets/ticket.svg";
 import MobileCarousel from "./MobileCarousel";
 import reviewStarWhiteOutline from "../assets/reviewStartWhiteOutline.svg";
-import reviewStarRed from "../assets/reviewStarRed.svg"
-import reviewStarWhite from "../assets/reviewStarWhite.svg"
+import reviewStarRed from "../assets/reviewStarRed.svg";
+import reviewStarWhite from "../assets/reviewStarWhite.svg";
 
 function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     const {
@@ -64,7 +64,6 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
     const newLine = (time) => {
         let array = time.split(": ");
-        console.log(array);
         return array;
     };
 
@@ -80,6 +79,79 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
         dateArray[1] = dateArray[1].slice(0, 5);
         return dateArray;
+    };
+
+    const reviewStarsDisplay = (score, category) => {
+        // round the score to a whole number
+        let rating = Math.round(+score);
+
+        if (category == "movies") rating /= 2;
+
+        if (rating == 0)
+            return (
+                <>
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
+
+        if (rating == 1)
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
+
+        if (rating == 2)
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />{" "}
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
+
+        if (rating == 3)
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
+
+        if (rating == 4)
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
+
+        if (rating == 5)
+            return (
+                <>
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                    <img src={reviewStarWhite} alt="star logo" />
+                </>
+            );
     };
 
     useEffect(() => {
@@ -306,20 +378,17 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
                 <div className="modalBody">
                     <div className="infoSnippet">
-                                <p className='city'>{city && city}</p>
-                                <p className='type'>{type || categoryType}</p>
-                                <p className='price'>
-                                    {price_range && dollarSigns(price_range)}
-                                </p>
-                                <p className='reviewStars'>
-                                    <img src={reviewStarWhite} alt="star logo" />
-                                    <img src={reviewStarWhiteOutline} alt="star logo" />
-                                    <img src={reviewStarWhiteOutline} alt="star logo" />
-                                    <img src={reviewStarWhiteOutline} alt="star logo" />
-                                    <img src={reviewStarWhiteOutline} alt="star logo" />
-                                </p>
+                        <p className="city">{city && city}</p>
+                        <p className="type">{type || categoryType}</p>
+                        <p className="price">
+                            {price_range && dollarSigns(price_range)}
+                        </p>
+                        <p className="reviewStars">
+                            {rating && reviewStarsDisplay(rating, categoryType)}
+                            {votes && reviewStarsDisplay(votes, categoryType)}
+                        </p>
 
-                                <p className='reviewNumbers'>1,542 reviews</p>
+                        <p className="reviewNumbers">1,542 reviews</p>
                     </div>
 
                     <div className="aboutSection">
@@ -328,7 +397,11 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <img src={about} alt="information icon" />
                                 <h3>About</h3>
                             </div>
-                            <a href={website} className="pinkButton" target="_blank">
+                            <a
+                                href={website}
+                                className="pinkButton"
+                                target="_blank"
+                            >
                                 {categoryType === "movies" ||
                                 categoryType === "events" ? (
                                     <>
@@ -374,7 +447,9 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 </div>
                                 <p>{adress_street}</p>
                             </div>
-                            <div className="map"><iframe></iframe></div>
+                            <div className="map">
+                                <iframe></iframe>
+                            </div>
                             <div className="hoursSection">
                                 <div className="subTitle">
                                     <img src={clock} alt="clock icon" />
@@ -395,7 +470,10 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                         <img src={imageIcon} alt="image icon" />
                                         <h3>Photos</h3>
                                     </div>
-                                    <Carousel data={image} />
+                                    <Carousel
+                                        data={image}
+                                        location={"modalImage"}
+                                    />
                                 </div>
                             )}
                         </div>
