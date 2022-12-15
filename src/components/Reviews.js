@@ -47,7 +47,7 @@ function Reviews() {
                     <p>Read more</p>
                 </div>
                 
-                <p className="scrollMore">Scroll for more reviews</p>
+                {/* <p className="scrollMore">Scroll for more reviews</p> */}
             </div>
         </div>
     )

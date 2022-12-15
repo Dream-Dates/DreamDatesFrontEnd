@@ -31,12 +31,14 @@
 .reviewHeader {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
     div {
         display: flex;
         align-items: center;
     }
     img {
         width: 33px;
+        margin-right: 7px;
     }
 }
 

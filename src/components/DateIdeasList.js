@@ -36,7 +36,7 @@ function DateIdeasList({
         // each card is 294px wide multiple that by the number of total cards to get the total length
         // divide by the width of the carouselContent container to get total number of segments
         let totalCardWidth = filteredList?.length * 294;
-        let totalGapWidth = (filteredList?.length - 1) * 25;
+        let totalGapWidth = (filteredList?.length - 1) * 42; // gap or spacing between the cards
         let totalContentWidth = totalCardWidth + totalGapWidth;
         let carouselWidth = carouselContent.current
             ? carouselContent.current.offsetWidth

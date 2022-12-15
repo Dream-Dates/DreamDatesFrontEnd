@@ -329,6 +329,10 @@ p {
   font-weight: 400;
 }
 
+.dateIdeasCard p {
+  font-size: 16px;
+}
+
 .header p {
   font-size: 16px;
   font-weight: 600;
@@ -359,7 +363,7 @@ h2 {
 h2 span {
   font-family: "Mirza", cursive;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 400;
   display: inline-block;
   cursor: pointer;
 }
@@ -374,6 +378,11 @@ h3 {
   font-weight: 700;
 }
 
+.modalBody h3 {
+  height: 24px;
+  line-height: 17px;
+}
+
 .dateIdeasCard {
   color: white;
 }
@@ -384,6 +393,10 @@ h3 {
 .hoursContainer p {
   font-family: "Mirza", cursive;
   font-weight: 400;
+}
+
+.hoursContainer p:first-child {
+  font-weight: 600;
 }
 
 @media (max-width: 600px) {
@@ -407,7 +420,7 @@ h3 {
   -webkit-transition: all 0.25s linear;
   transition: all 0.25s linear;
   width: 100%;
-  gap: 25px;
+  gap: 42px;
 }
 
 .flexWrap {
@@ -632,7 +645,7 @@ h3 {
   margin: 210px 71px;
 }
 .dateIdeas h2 {
-  padding: 20px 0;
+  padding: 32px 0 20px 0;
 }
 
 .dateIdeasContainer {
@@ -648,7 +661,7 @@ h3 {
 .dateIdeasCard {
   width: 294px;
   height: 315px;
-  border-radius: 8px;
+  border-radius: 16px;
   background: #941C2F;
   cursor: pointer;
   -webkit-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -721,7 +734,7 @@ h3 {
       -ms-flex-align: center;
           align-items: center;
   gap: 20px;
-  border-radius: 8px 8px 0 0;
+  border-radius: 16px 16px 0 0;
 }
 
 .dateIdeaCardHeaderTitle {
@@ -1281,15 +1294,22 @@ h3 {
 }
 .modalMovie .modalHeader button {
   width: 43px;
-  margin: 24px 41px;
+  margin: 26px 41px;
 }
-.modalMovie .modalHeader .heart {
+.modalMovie .modalHeader .heartContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.modalMovie .modalHeader button {
+  height: 40px;
   width: 46px;
-  position: relative;
-  top: auto;
-  left: auto;
-  right: auto;
-  bottom: auto;
 }
 .modalMovie .test {
   border: 1px solid #941c2f;
@@ -1425,6 +1445,7 @@ h3 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding-bottom: 10px;
 }
 .reviewHeader div {
   display: -webkit-box;
@@ -1436,6 +1457,7 @@ h3 {
 }
 .reviewHeader img {
   width: 33px;
+  margin-right: 7px;
 }
 
 .reviewsHeader img {

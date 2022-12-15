@@ -398,7 +398,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <h3>About</h3>
                             </div>
                             <a
-                                href={website}
+                                href={categoryType === 'movies' || categoryType === 'events'? link : website}
                                 className="pinkButton"
                                 target="_blank"
                             >

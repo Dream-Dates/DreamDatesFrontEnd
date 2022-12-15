@@ -27,50 +27,18 @@ a {
     color: white;
 }
 
-// p,
-// a {
-//     font-weight: 600;
-//     font-size: 16px;
-//     line-height: 20px;
-// }
-
-// .pinkButton {
-//     font-weight: 600;
-//     font-size: 16px;
-//     color: black;
-//     p {
-//         color: black;
-//     }
-// }
-
-// button p {
-//     padding: 0 20px;
-// }
-
-
-// .userAuth p {
-//     color: black;
-// }
-// .userAuth a p {
-//     // color: #941C2F;
-//     color: black;
-// }
-
 .signOut {
     color: #941C2F;
     text-decoration: underline;
 }
 
-// .signInBottom>p,
-// .signUpBottom>p {
-//     color: black;
-//     font-size: 24px;
-//     font-weight: 400;
-// }
-
 p {
     font-size: 20px;
     font-weight: 400;
+}
+
+.dateIdeasCard p {
+    font-size: 16px;
 }
 
 .header p {
@@ -103,7 +71,7 @@ h2 {
 h2 span {
     font-family: 'Mirza', cursive;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 400;
     display: inline-block;
     cursor: pointer;
 }
@@ -116,6 +84,10 @@ h3 {
     font-family: 'Mirza', cursive;
     font-size: 24px;
     font-weight: 700;
+}
+.modalBody h3 {
+    height: 24px;
+    line-height: 17px;
 }
 
 .dateIdeasCard {
@@ -130,76 +102,10 @@ h3 {
     font-weight: 400;
 }
 
-// h4 {
-//     color: #CC0000;;
-//     font-size: 24px;
-//     font-weight: 400;
-//     text-align: center;
-// }
+.hoursContainer p:first-child {
+    font-weight: 600;
+}
 
-// h5 {
-//     font-family: 'Mirza', cursive;
-//     font-size: 24px;
-//     font-weight: 700;
-//     line-height: 20px;
-//     text-align: left;
-// }
-
-// .modalMovie p {
-//     color: black;
-// }
-// .modal h2,
-// .modalMovie h2 {
-//     font-size: 24px;
-// }
-// .modal .textContainer p,
-// .modalMovie .textContainer p {
-//     font-size: 20px;
-// }
-// .modal .textContainer h2,
-// .modal .textContainer p,
-// .modalMovie .textContainer h2,
-// .modalMovie .textContainer p {
-//     color: black;
-//     font-weight: 400;
-// }
-
-// .modal .hoursContainer p,
-// .modalMovie .hoursContainer p {
-//     font-family: 'Mirza', cursive;
-//     font-size: 20;
-// }
-
-// .dateIdeasList .textContainer p {
-//     font-weight: 500;
-//     text-transform: capitalize;
-//     color: white;
-// }
-
-// input {
-//     font-family: 'Raleway', sans-serif;
-// }
-
-// .savePopup p {
-//     color: #941C2F;
-//     font-family: 'Inter', sans-serif;
-//     font-size: 24px;
-//     font-weight: 700;
-// }
-
-// .profileContainer>a p {
-//     color: #941C2F;
-// }
-
-// .review>p {
-//     font-weight: 400;
-// }
-
-// .infoSnippet p {
-//     font-weight: 700;
-//     font-family: 'Mirza', cursive;
-//     font-size: 24px;
-// }
 
 @media (max-width: 600px) {
     h1 {

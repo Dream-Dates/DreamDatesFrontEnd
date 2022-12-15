@@ -240,19 +240,24 @@
 
         button {
             width: 43px;
-            margin: 24px 41px;
+            margin: 26px 41px;
             // background-image: url(../assets/whiteHeart.svg);
         }
 
+        .heartContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-        .heart {
-            // height: 60px;
+         button {
+            height: 40px;
             width: 46px;
-            position: relative;
-            top: auto;
-            left: auto;
-            right: auto;
-            bottom: auto;
+            // position: relative;
+            // top: auto;
+            // left: auto;
+            // right: auto;
+            // bottom: auto;
         }
     }
 

@@ -3,13 +3,12 @@
 .dateIdeas {
     margin: 210px 71px;
     h2 {
-        padding: 20px 0;
+        padding: 32px 0 20px 0;
     }
 }
 
 .dateIdeasContainer {
     display: flex;
-    // flex-wrap: wrap;
     justify-content: space-between;
     gap: 25px;
 
@@ -18,15 +17,11 @@
 .dateIdeasCard {
     width: 294px;
     height: 315px;
-    border-radius: 8px;
+    border-radius: 16px;
     background: #941C2F;
     cursor: pointer;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    // margin-bottom: 15px;
     position: relative;
-    // &:nth-child(n + 5) {
-    //         display: none;
-    //     }
     flex-shrink: 0;
 
     .imageContainer {
@@ -63,7 +58,6 @@
             .reviewStars {
                 width: 20px;
                 grid-area: 3 / 1 / 4 / 2;
-                // filter: invert(100%) sepia(100%) saturate(19%) hue-rotate(294deg) brightness(106%) contrast(104%);
             }
         
             .reviewNumbers {
@@ -92,7 +86,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    border-radius: 8px 8px 0 0;
+    border-radius: 16px 16px 0 0;
 }
 .dateIdeaCardHeaderTitle {
     width: calc(100% - 100px);
@@ -106,7 +100,6 @@
 .heart {
     width: 30.48px;
     height: 26.59px;
-    // position: absolute;
     top: 15px;
     left: 10px;
     background-color: transparent;
