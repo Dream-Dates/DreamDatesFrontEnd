@@ -8,7 +8,13 @@ import SavePopup from "./SavePopup";
 import mixpanel from "mixpanel-browser";
 import ModalMovie from "./ModalMovie";
 
-function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, viewAll }) {
+function DateIdeas({
+    userId,
+    searchTerm,
+    categoryName,
+    localStorageFinished,
+    viewAll,
+}) {
     const [dateIdeas, setDateIdeas] = useState({});
     const [chosenEvent, setChoseEvent] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -32,12 +38,12 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
                 });
             } else {
                 mixpanel.track("Page View", {
-                    userID: 'No User ID',
+                    userID: "No User ID",
                     pageLocation: "homepage",
                 });
                 // console.log('page visit home')
             }
-            console.log('page visit home', userId)
+            console.log("page visit home", userId);
         }
     }, [userId]);
 
@@ -119,22 +125,18 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
                             setTimeout(() => {
                                 setShowSavePopup(false);
                             }, 500);
-
                         }
                     });
-                }
-                // track every time a date is saved
-                mixpanel.init(
-                    `${process.env.REACT_APP_MIXPANEL_TOKEN}`,
-                    {
-                        debug: true,
-                    }
-                );
-                mixpanel.track("Save/Unsave", {
-                    userID: userId,
-                    dateID: eventDetails.id,
-                    dateTitle: eventDetails.title,
-                });
+            }
+            // track every time a date is saved
+            mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                debug: true,
+            });
+            mixpanel.track("Save/Unsave", {
+                userID: userId,
+                dateID: eventDetails.id,
+                dateTitle: eventDetails.title,
+            });
             setToggle(!toggle);
         } else {
             setShowModal(true);
@@ -243,7 +245,7 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
             )}
 
             {/* food  */}
-            {(!categoryName || categoryName == 'restaurants') && 
+            {(!categoryName || categoryName == "restaurants") && (
                 <DateIdeasList
                     ideas={dateIdeas.restaurants}
                     selectedEvent={openModal}
@@ -252,10 +254,10 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
                     categoryName={categoryName}
                     viewAll={viewAll}
                 />
-            }
+            )}
 
             {/* movies */}
-            {(!categoryName || categoryName == 'movies') && 
+            {(!categoryName || categoryName == "movies") && (
                 <DateIdeasList
                     ideas={dateIdeas.movies}
                     selectedEvent={openModal}
@@ -264,10 +266,10 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
                     categoryName={categoryName}
                     viewAll={viewAll}
                 />
-            }
+            )}
 
             {/* attractions */}
-            {(!categoryName || categoryName == 'attractions') && 
+            {(!categoryName || categoryName == "attractions") && (
                 <DateIdeasList
                     ideas={dateIdeas.attractions}
                     selectedEvent={openModal}
@@ -276,9 +278,9 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
                     categoryName={categoryName}
                     viewAll={viewAll}
                 />
-            }
+            )}
             {/* live entertainment */}
-            {(!categoryName || categoryName == 'events') && 
+            {(!categoryName || categoryName == "events") && (
                 <DateIdeasList
                     ideas={dateIdeas.events}
                     selectedEvent={openModal}
@@ -287,7 +289,7 @@ function DateIdeas({ userId, searchTerm, categoryName, localStorageFinished, vie
                     categoryName={categoryName}
                     viewAll={viewAll}
                 />
-            }
+            )}
             {showSavePopup && <SavePopup text={saveMessage} />}
         </div>
     );

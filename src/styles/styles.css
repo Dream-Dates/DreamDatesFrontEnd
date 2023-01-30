@@ -436,7 +436,7 @@ h3 {
 .leftArrow,
 .rightArrow {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -451,7 +451,7 @@ h3 {
 }
 
 .rightArrow {
-  right: -8px;
+  right: -24px;
 }
 
 .carouselSection .carouselContent {
@@ -646,6 +646,7 @@ h3 {
 }
 .dateIdeas h2 {
   padding: 32px 0 20px 0;
+  line-height: 1.5;
 }
 
 .dateIdeasContainer {
@@ -1063,6 +1064,7 @@ h3 {
   background-color: white;
   border-radius: 16px;
   position: relative;
+  padding-bottom: 30px;
 }
 .modalMovie .modalContainer .imageContainer {
   height: 300px;
@@ -1102,6 +1104,9 @@ h3 {
 .modalMovie .modalContainer .modalBody .infoSnippet .reviewStars img {
   width: 17px;
 }
+.modalMovie .modalContainer .modalBody h3 {
+  line-height: 21px;
+}
 .modalMovie .modalContainer .aboutSection {
   margin-top: 30px;
 }
@@ -1118,7 +1123,10 @@ h3 {
 }
 .modalMovie .modalContainer .aboutSectionHeader a {
   min-width: 158px;
-  padding: 2px 5px;
+  padding: 2px 20px;
+}
+.modalMovie .modalContainer .aboutSectionHeader a img {
+  margin-right: 10px;
 }
 .modalMovie .modalContainer .subTitle {
   display: -webkit-box;
@@ -1129,8 +1137,8 @@ h3 {
           align-items: center;
 }
 .modalMovie .modalContainer .subTitle img {
-  width: 25px;
-  height: 25px;
+  width: 18px;
+  height: 18px;
   margin-right: 0.5rem;
 }
 .modalMovie .modalContainer .aboutSectionHeader a {
@@ -1183,6 +1191,7 @@ h3 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-left: calc(18px + 0.5rem);
 }
 .modalMovie .modalContainer .hoursContainer > * {
   padding: 0.5rem 0;
@@ -1415,6 +1424,7 @@ h3 {
 }
 .reviews .reviewStars img {
   width: 17px;
+  margin-right: 7px;
 }
 
 .reviewsHeader {
@@ -1426,6 +1436,7 @@ h3 {
           align-items: flex-end;
   margin: 0 80px;
   padding-top: 40px;
+  gap: 0.5rem;
 }
 .reviewsHeader .h3 {
   display: -webkit-box;

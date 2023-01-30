@@ -382,13 +382,14 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                         <p className="type">{type || categoryType}</p>
                         <p className="price">
                             {price_range && dollarSigns(price_range)}
+                            {price && price}
                         </p>
                         <p className="reviewStars">
                             {rating && reviewStarsDisplay(rating, categoryType)}
                             {votes && reviewStarsDisplay(votes, categoryType)}
                         </p>
 
-                        <p className="reviewNumbers">1,542 reviews</p>
+                        <p className="reviewNumbers"></p>
                     </div>
 
                     <div className="aboutSection">
@@ -398,7 +399,12 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <h3>About</h3>
                             </div>
                             <a
-                                href={categoryType === 'movies' || categoryType === 'events'? link : website}
+                                href={
+                                    categoryType === "movies" ||
+                                    categoryType === "events"
+                                        ? link
+                                        : website
+                                }
                                 className="pinkButton"
                                 target="_blank"
                             >
@@ -448,7 +454,9 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <p>{adress_street}</p>
                             </div>
                             <div className="map">
-                                <iframe></iframe>
+                                <iframe
+                                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDoPEmjv8_EPKu_NpowjpIZ_n3O4Ovkp_w&q=${adress_street}`}
+                                ></iframe>
                             </div>
                             <div className="hoursSection">
                                 <div className="subTitle">
@@ -481,7 +489,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                 </div>
 
                 {/* MOVIE */}
-                <Reviews />
+                {/* <Reviews /> */}
             </div>
 
             {showSavePopup && <SavePopup text={saveMessage} />}

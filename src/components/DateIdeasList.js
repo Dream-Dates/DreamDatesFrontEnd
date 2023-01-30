@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import Context from "../context/context";
 import reviewStarWhiteOutline from "../assets/reviewStartWhiteOutline.svg";
-import reviewStarWhite from "../assets/reviewStarWhite.svg"
-import leftArrow from "../assets/leftArrow.svg";
+import reviewStarWhite from "../assets/reviewStarWhite.svg";
+import leftArrow from "../assets/leftArrow2.svg";
 import rightArrow from "../assets/rightArrow.svg";
 
 function DateIdeasList({
@@ -29,7 +29,7 @@ function DateIdeasList({
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [length, setLength] = useState(0);
-    const carouselContent = useRef()
+    const carouselContent = useRef();
 
     // Set the length to match current of the list after filter
     useEffect(() => {
@@ -41,8 +41,7 @@ function DateIdeasList({
         let carouselWidth = carouselContent.current
             ? carouselContent.current.offsetWidth
             : 0;
-        setLength(Math.ceil( totalContentWidth / carouselWidth));
-
+        setLength(Math.ceil(totalContentWidth / carouselWidth));
     }, [searchTerm]);
 
     const next = () => {
@@ -67,8 +66,8 @@ function DateIdeasList({
             carouselContent.current ? carouselContent.current.offsetWidth : 0
         );
         let totalCardWidth = ideas?.length * 294;
-        let totalGapWidth = (ideas?.length - 1) * 25
-        let totalContentWidth = totalCardWidth + totalGapWidth
+        let totalGapWidth = (ideas?.length - 1) * 25;
+        let totalContentWidth = totalCardWidth + totalGapWidth;
         let carouselWidth = carouselContent.current
             ? carouselContent.current.offsetWidth
             : 0;
@@ -76,7 +75,7 @@ function DateIdeasList({
         console.log(carouselWidth);
         console.log(Math.ceil(totalContentWidth / carouselWidth));
         setLength(Math.ceil(totalContentWidth / carouselWidth));
-    }, [ideas])
+    }, [ideas]);
 
     useEffect(() => {
         const fetchSaved = async () => {
@@ -139,7 +138,7 @@ function DateIdeasList({
         (item) =>
             item.title.toLowerCase().match(searchTerm.toLowerCase()) &&
             item.categoryType.match(categoryName)
-    )
+    );
 
     // check if idea has been save and will toggle between white and red heart
     const checkIfSaved = (eventId) => {
@@ -147,29 +146,30 @@ function DateIdeasList({
     };
 
     const headerTitle = {
-        restaurants: 'Food',
-        movies: 'Movies',
-        attractions: 'Attractions',
-        events: 'Live Entertainments',
-    }
+        restaurants: "Food",
+        movies: "Movies",
+        attractions: "Attractions",
+        events: "Live Entertainments",
+    };
 
     const reviewStarsDisplay = (score, category) => {
-        
         // round the score to a whole number
         let rating = Math.round(+score);
 
-        if (category == 'movies') rating/=2
+        if (category == "movies") rating /= 2;
 
-        if (rating == 0) 
-            return<>
-                <img src={reviewStarWhiteOutline} alt="star logo" />
-                <img src={reviewStarWhiteOutline} alt="star logo" />
-                <img src={reviewStarWhiteOutline} alt="star logo" />
-                <img src={reviewStarWhiteOutline} alt="star logo" />
-                <img src={reviewStarWhiteOutline} alt="star logo" />
-            </>;
+        if (rating == 0)
+            return (
+                <>
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                    <img src={reviewStarWhiteOutline} alt="star logo" />
+                </>
+            );
 
-        if (rating == 1) 
+        if (rating == 1)
             return (
                 <>
                     <img src={reviewStarWhite} alt="star logo" />
@@ -180,7 +180,7 @@ function DateIdeasList({
                 </>
             );
 
-        if (rating == 2) 
+        if (rating == 2)
             return (
                 <>
                     <img src={reviewStarWhite} alt="star logo" />
@@ -191,7 +191,7 @@ function DateIdeasList({
                 </>
             );
 
-        if (rating == 3) 
+        if (rating == 3)
             return (
                 <>
                     <img src={reviewStarWhite} alt="star logo" />
@@ -202,7 +202,7 @@ function DateIdeasList({
                 </>
             );
 
-        if (rating == 4) 
+        if (rating == 4)
             return (
                 <>
                     <img src={reviewStarWhite} alt="star logo" />
@@ -213,7 +213,7 @@ function DateIdeasList({
                 </>
             );
 
-        if (rating == 5) 
+        if (rating == 5)
             return (
                 <>
                     <img src={reviewStarWhite} alt="star logo" />
@@ -223,7 +223,7 @@ function DateIdeasList({
                     <img src={reviewStarWhite} alt="star logo" />
                 </>
             );
-    }
+    };
 
     return (
         <div className="dateIdeasList">
@@ -332,18 +332,26 @@ function DateIdeasList({
                                                 dollarSigns(idea.price_range)}
                                         </p>
                                         <p className="reviewStars">
-                                            {idea.rating && reviewStarsDisplay(idea.rating, idea.categoryType)}
-                                            {idea.votes && reviewStarsDisplay(idea.votes, idea.categoryType)}
+                                            {idea.rating &&
+                                                reviewStarsDisplay(
+                                                    idea.rating,
+                                                    idea.categoryType
+                                                )}
+                                            {idea.votes &&
+                                                reviewStarsDisplay(
+                                                    idea.votes,
+                                                    idea.categoryType
+                                                )}
                                         </p>
                                         <p className="reviewNumbers">
-                                            1,542 reviews
+                                            {/* 1,542 reviews */}
                                         </p>
                                     </div>
                                 </div>
                             );
                         })}
                     </div>
-                    {!categoryName && 
+                    {!categoryName && (
                         <>
                             <button
                                 className={`leftArrow ${
@@ -363,7 +371,7 @@ function DateIdeasList({
                                 <img src={rightArrow} alt="next" />
                             </button>
                         </>
-                    }
+                    )}
                 </div>
             </div>
         </div>

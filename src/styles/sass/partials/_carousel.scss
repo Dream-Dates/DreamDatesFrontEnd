@@ -18,14 +18,14 @@
     flex-wrap: wrap;
 }
 
-.carouselContent > * {
+.carouselContent>* {
     flex-shrink: 0;
 }
 
 .leftArrow,
 .rightArrow {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     top: 50%;
     transform: translateY(-50%);
     width: 48px;
@@ -34,21 +34,37 @@
     background-color: white;
 }
 
+// .leftArrow::before,
+// .rightArrow::before {
+//     content: "";
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     width: 48px;
+//     height: 48px;
+//     border-radius: 50%;
+//     background-color: blue;
+//     z-index: 1;
+// }
+
 .leftArrow {
     left: -24px;
 }
 
 .rightArrow {
-    right: -8px;
+    right: -24px;
 }
 
 .carouselSection {
-    .carouselContent{
+    .carouselContent {
         gap: 10px;
     }
+
     .carouselCard {
         width: 167px;
         height: 156px;
+
         img {
             height: 100%;
             object-fit: cover;
