@@ -12,6 +12,45 @@
     transition: all 0.25s linear;
     width: 100%;
     gap: 42px;
+
+}
+
+.carouselImageList {
+    width: 100%;
+    scroll-behavior: smooth;
+    display: inline-block;
+    // position: relative;
+    // vertical-align: middle;
+    // text-align: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    :first-child {
+        margin-left: 0;
+    }
+
+    :last-child {
+        margin-right: 0;
+    }
+
+    li {
+        list-style: none;
+        display: inline-block;
+        // position: relative;
+        // vertical-align: middle;
+        margin-left: 21px;
+        margin-right: 21px;
+
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 }
 
 .flexWrap {
@@ -70,4 +109,51 @@
             object-fit: cover;
         }
     }
+}
+
+.testCarousel {
+    width: 100%;
+    position: relative;
+
+    ul {
+        width: 100%;
+        scroll-behavior: smooth;
+        display: inline-block;
+        // position: relative;
+        // vertical-align: middle;
+        // text-align: center;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        :first-child {
+            margin-left: 0;
+        }
+
+        :last-child {
+            margin-right: 0;
+        }
+    }
+
+    li {
+        list-style: none;
+        display: inline-block;
+        // position: relative;
+        // vertical-align: middle;
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 167px;
+        height: 156px;
+
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .leftArrow {}
 }

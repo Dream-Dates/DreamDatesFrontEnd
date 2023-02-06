@@ -7,13 +7,16 @@ function Carousel({ data, location }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [totalContentWidth, setTotalContentWidth] = useState(0);
 
+        const [rightArrowDisabled, setRightArrowDisabled] = useState(false);
+        const [leftArrowDisabled, setLeftArrowDisabled] = useState(true);
+
     const carouselContentRef = useRef(null);
 
     const widthOfScroll = 300; // how much horizontal scroll we want
 
     // get the total width of the carousel content element
     useLayoutEffect(() => {
-        setTotalContentWidth(carouselContentRef.current.scrollWidth);
+        // setTotalContentWidth(carouselContentRef.current.scrollWidth);
     }, []);
 
     const next = () => {
@@ -28,7 +31,54 @@ function Carousel({ data, location }) {
         }
     };
 
-    if (location == "modalImage") {
+    let clickable = true
+    const right = (e) => {
+        console.log(e);
+        // find the closest carousel and scroll the ul by 500px to the right
+        const carouselRef = e.target.closest(".testCarousel");
+        carouselRef.firstChild.scrollBy(500, 0);
+
+        // if the left arrow is disabled, enable it after a right click
+        if (leftArrowDisabled) {
+            setLeftArrowDisabled(false);
+        }
+        setTimeout(() => {
+            // get the right position of the carousel
+            const { right } = carouselRef.getBoundingClientRect();
+            // get the right positionof the last li in the carousel
+            const lastLiElement = carouselRef.firstChild.lastChild;
+            const lastLiElementRec = lastLiElement.getBoundingClientRect();
+            if (lastLiElementRec.right === right) {
+                setRightArrowDisabled(true);
+            }
+            clickable = true;
+        }, 500);
+    }
+
+    const left = (e) => {
+        console.log(e);
+        // find the closest carousel and scroll the ul by 500px to the left
+        const carouselRef = e.target.closest(".testCarousel");
+        carouselRef.firstChild.scrollBy(-500, 0);
+
+        // if the left arrow is disabled, enable it after a right click
+        if (rightArrowDisabled) {
+            setRightArrowDisabled(false);
+        }
+        setTimeout(() => {
+            // get the left position of the carousel
+            const { left } = carouselRef.getBoundingClientRect();
+            // get the right position of the first li in the carousel
+            const firstLiElement = carouselRef.firstChild.firstChild;
+            const firstLiElementRec = firstLiElement.getBoundingClientRect();
+            if (firstLiElementRec.left === left) {
+                setLeftArrowDisabled(true);
+            }
+            clickable = true;
+        }, 500);
+    }
+
+    if (location == "modalImage1") {
         return (
             <div className="carouselContainer">
                 <div className="carouselWindow">
@@ -67,6 +117,38 @@ function Carousel({ data, location }) {
                         <img src={rightArrow} alt="next" />
                     </button>
                 </div>
+            </div>
+        );
+    }
+
+    if (location == "modalImage") {
+        return (
+            <div className="testCarousel">
+                <ul className="carouseImageList">
+                    {data.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                <img src={item} alt="event images" />
+                            </li>
+                        );
+                    })}
+                </ul>
+                <button
+                    className={`leftArrow ${
+                        leftArrowDisabled && "disable-button"
+                    }`}
+                    onClick={(e) => left(e)}
+                >
+                    <img src={leftArrow} alt="previous" />
+                </button>
+                <button
+                    className={`rightArrow ${
+                        rightArrowDisabled && "disable-button"
+                    }`}
+                    onClick={(e) => right(e)}
+                >
+                    <img src={rightArrow} alt="next" />
+                </button>
             </div>
         );
     }

@@ -30,7 +30,10 @@ function DateIdeasList({
     const [currentIndex, setCurrentIndex] = useState(0);
     const [length, setLength] = useState(0);
     const carouselContent = useRef();
-
+    
+    const [rightArrowDisabled, setRightArrowDisabled] = useState(false)
+    const [leftArrowDisabled, setLeftArrowDisabled] = useState(true)
+    
     // Set the length to match current of the list after filter
     useEffect(() => {
         // each card is 294px wide multiple that by the number of total cards to get the total length
@@ -225,6 +228,56 @@ function DateIdeasList({
             );
     };
 
+    let clickable = true
+    const right = (e) => {
+        if (clickable) {
+            clickable = false
+            console.log(e);
+            // find the closest carousel and scroll the ul by 500px to the right
+            const carouselRef = e.target.closest(".carouselContainer");
+            // console.log(carouselRef.firstChild);
+            carouselRef.firstChild.scrollBy(500, 0);
+
+            // if the left arrow is disabled, enable it after a right click
+            if (leftArrowDisabled) {
+                setLeftArrowDisabled(false)
+            }
+            setTimeout(() => {
+                // get the right position of the carousel
+                const {right} = carouselRef.getBoundingClientRect()
+                // get the right positionof the last li in the carousel
+                const lastLiElement = carouselRef.firstChild.lastChild
+                const lastLiElementRec = lastLiElement.getBoundingClientRect()
+                if (lastLiElementRec.right === right) {
+                    setRightArrowDisabled(true)
+                }
+                clickable = true
+            }, 500);
+        }
+    };
+    const left = (e) => {
+        // console.log(e);
+        // find the closest carousel and scroll the ul by 500px to the left
+        const carouselRef = e.target.closest(".carouselContainer");
+        carouselRef.firstChild.scrollBy(-500, 0);
+
+        // if the left arrow is disabled, enable it after a right click
+        if (rightArrowDisabled) {
+            setRightArrowDisabled(false);
+        }
+        setTimeout(() => {
+            // get the left position of the carousel
+            const { left } = carouselRef.getBoundingClientRect();
+            // get the right position of the first li in the carousel
+            const firstLiElement = carouselRef.firstChild.firstChild;
+            const firstLiElementRec = firstLiElement.getBoundingClientRect();
+            if (firstLiElementRec.left === left) {
+                setLeftArrowDisabled(true);
+            }
+            clickable = true;
+        }, 500);
+    };
+
     return (
         <div className="dateIdeasList">
             {closeNotSignedIn && (
@@ -258,121 +311,104 @@ function DateIdeasList({
                 )}
             </h2>
             <div className="carouselContainer">
-                <div className="carouselWindow">
-                    <div
-                        className={`carouselContent ${
-                            categoryName && "flexWrap"
-                        }`}
-                        ref={carouselContent}
-                        style={{
-                            transform: `translateX(-${currentIndex * 100}%)`,
-                        }}
-                    >
-                        {filteredList?.map((idea) => {
-                            return (
-                                <div
-                                    className="dateIdeasCard"
-                                    onClick={(e) => selectedEvent(e, idea)}
-                                    key={idea.id}
-                                >
-                                    <div className="dateIdeaCardHeader">
-                                        <button
-                                            className={`heart ${
-                                                checkIfSaved(idea.id) &&
-                                                "hideHeart"
-                                            }`}
-                                            onClick={handleClick}
-                                        >
-                                            <img
-                                                src={whiteHeartNoOutline}
-                                                className="whiteHeart"
-                                                alt="White Heart"
-                                                id="save"
-                                            />
-                                        </button>
-                                        <button
-                                            className={`heart ${
-                                                !checkIfSaved(idea.id) &&
-                                                "hideHeart"
-                                            }`}
-                                            onClick={handleClick}
-                                        >
-                                            <img
-                                                src={redHeart}
-                                                className="redHeart"
-                                                alt="White Heart"
-                                                id="save"
-                                            />
-                                        </button>
-                                        <div className="dateIdeaCardHeaderTitle">
-                                            <h3>{idea.title}</h3>
-                                        </div>
-                                    </div>
-                                    <div className="imageContainer">
+                <ul className={`carouselImageList`} ref={carouselContent}>
+                    {filteredList?.map((idea) => {
+                        return (
+                            <li
+                                className="dateIdeasCard"
+                                onClick={(e) => selectedEvent(e, idea)}
+                                key={idea.id}
+                            >
+                                <div className="dateIdeaCardHeader">
+                                    <button
+                                        className={`heart ${
+                                            checkIfSaved(idea.id) && "hideHeart"
+                                        }`}
+                                        onClick={handleClick}
+                                    >
                                         <img
-                                            src={
-                                                idea.img
-                                                    ? idea.img
-                                                    : idea.image
-                                                    ? idea.image[0]
-                                                    : defaultImagePlaceholderSmall
-                                            }
-                                            alt={`Image of ${idea.title}`}
+                                            src={whiteHeartNoOutline}
+                                            className="whiteHeart"
+                                            alt="White Heart"
+                                            id="save"
                                         />
-                                    </div>
-                                    <div className="textContainer">
-                                        <p className="city">
-                                            {idea.city && idea.city}
-                                        </p>
-                                        <p className="type">
-                                            {idea.categoryType}
-                                        </p>
-                                        <p className="price">
-                                            {idea.price_range &&
-                                                dollarSigns(idea.price_range)}
-                                        </p>
-                                        <p className="reviewStars">
-                                            {idea.rating &&
-                                                reviewStarsDisplay(
-                                                    idea.rating,
-                                                    idea.categoryType
-                                                )}
-                                            {idea.votes &&
-                                                reviewStarsDisplay(
-                                                    idea.votes,
-                                                    idea.categoryType
-                                                )}
-                                        </p>
-                                        <p className="reviewNumbers">
-                                            {/* 1,542 reviews */}
-                                        </p>
+                                    </button>
+                                    <button
+                                        className={`heart ${
+                                            !checkIfSaved(idea.id) &&
+                                            "hideHeart"
+                                        }`}
+                                        onClick={handleClick}
+                                    >
+                                        <img
+                                            src={redHeart}
+                                            className="redHeart"
+                                            alt="White Heart"
+                                            id="save"
+                                        />
+                                    </button>
+                                    <div className="dateIdeaCardHeaderTitle">
+                                        <h3>{idea.title}</h3>
                                     </div>
                                 </div>
-                            );
-                        })}
-                    </div>
-                    {!categoryName && (
-                        <>
-                            <button
-                                className={`leftArrow ${
-                                    currentIndex == 0 && "disable-button"
-                                }`}
-                                onClick={prev}
-                            >
-                                <img src={leftArrow} alt="previous" />
-                            </button>
-                            <button
-                                className={`rightArrow ${
-                                    currentIndex == length - 1 &&
-                                    "disable-button"
-                                }`}
-                                onClick={next}
-                            >
-                                <img src={rightArrow} alt="next" />
-                            </button>
-                        </>
-                    )}
-                </div>
+                                <div className="imageContainer">
+                                    <img
+                                        src={
+                                            idea.img
+                                                ? idea.img
+                                                : idea.image
+                                                ? idea.image[0]
+                                                : defaultImagePlaceholderSmall
+                                        }
+                                        alt={`Image of ${idea.title}`}
+                                    />
+                                </div>
+                                <div className="textContainer">
+                                    <p className="city">
+                                        {idea.city && idea.city}
+                                    </p>
+                                    <p className="type">{idea.categoryType}</p>
+                                    <p className="price">
+                                        {idea.price_range &&
+                                            dollarSigns(idea.price_range)}
+                                    </p>
+                                    <p className="reviewStars">
+                                        {idea.rating &&
+                                            reviewStarsDisplay(
+                                                idea.rating,
+                                                idea.categoryType
+                                            )}
+                                        {idea.votes &&
+                                            reviewStarsDisplay(
+                                                idea.votes,
+                                                idea.categoryType
+                                            )}
+                                    </p>
+                                    <p className="reviewNumbers">
+                                        {/* 1,542 reviews */}
+                                    </p>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
+                <button
+                    className={`leftArrow ${
+                        leftArrowDisabled && "disable-button"
+                    }`}
+                    onClick={(e) => left(e)}
+                >
+                    <img src={leftArrow} alt="previous" />
+                </button>
+                <button
+                    className={`rightArrow ${
+                        rightArrowDisabled && "disable-button"
+                    }`}
+                    onClick={(e) => right(e)}
+                >
+                    <img src={rightArrow} alt="next" />
+                </button>
+                {!categoryName && <></>}
             </div>
         </div>
     );
