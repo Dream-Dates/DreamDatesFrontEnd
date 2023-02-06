@@ -78,49 +78,6 @@ function Carousel({ data, location }) {
         }, 500);
     }
 
-    if (location == "modalImage1") {
-        return (
-            <div className="carouselContainer">
-                <div className="carouselWindow">
-                    <div
-                        className="carouselContent"
-                        id="slider"
-                        ref={carouselContentRef}
-                        style={{
-                            transform: `translateX(-${currentIndex * 300}px)`,
-                        }}
-                    >
-                        {data.map((item, index) => {
-                            return (
-                                <div className="carouselCard" key={index}>
-                                    <img src={item} alt=".dd" />
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <button
-                        className={`leftArrow ${
-                            currentIndex == 0 && "disable-button"
-                        }`}
-                        onClick={prev}
-                    >
-                        <img src={leftArrow} alt="previous" />
-                    </button>
-                    <button
-                        className={`rightArrow ${
-                            currentIndex * widthOfScroll >
-                                totalContentWidth - widthOfScroll &&
-                            "disable-button"
-                        }`}
-                        onClick={next}
-                    >
-                        <img src={rightArrow} alt="next" />
-                    </button>
-                </div>
-            </div>
-        );
-    }
-
     if (location == "modalImage") {
         return (
             <div className="testCarousel">
@@ -134,19 +91,21 @@ function Carousel({ data, location }) {
                     })}
                 </ul>
                 <button
-                    className={`leftArrow ${
+                    className={`carouselArrow leftArrow ${
                         leftArrowDisabled && "disable-button"
                     }`}
                     onClick={(e) => left(e)}
                 >
+                    <span></span>
                     <img src={leftArrow} alt="previous" />
                 </button>
                 <button
-                    className={`rightArrow ${
+                    className={`carouselArrow rightArrow ${
                         rightArrowDisabled && "disable-button"
                     }`}
                     onClick={(e) => right(e)}
                 >
+                    <span></span>
                     <img src={rightArrow} alt="next" />
                 </button>
             </div>
@@ -174,21 +133,23 @@ function Carousel({ data, location }) {
                         })}
                     </div>
                     <button
-                        className={`leftArrow ${
+                        className={`carouselArrow leftArrow ${
                             currentIndex == 0 && "disable-button"
                         }`}
                         onClick={prev}
                     >
                         <img src={leftArrow} alt="previous" />
+                        <span></span>
                     </button>
                     <button
-                        className={`rightArrow ${
+                        className={`carouselArrow rightArrow ${
                             currentIndex * widthOfScroll >
                                 totalContentWidth - widthOfScroll &&
                             "disable-button"
                         }`}
                         onClick={next}
                     >
+                        <span></span>
                         <img src={rightArrow} alt="next" />
                     </button>
                 </div>

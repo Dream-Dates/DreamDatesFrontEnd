@@ -393,19 +393,21 @@ function DateIdeasList({
                     })}
                 </ul>
                 <button
-                    className={`leftArrow ${
+                    className={`carouselArrow leftArrow ${
                         leftArrowDisabled && "disable-button"
                     }`}
                     onClick={(e) => left(e)}
                 >
+                    <span></span>
                     <img src={leftArrow} alt="previous" />
                 </button>
                 <button
-                    className={`rightArrow ${
+                    className={`carouselArrow rightArrow ${
                         rightArrowDisabled && "disable-button"
                     }`}
                     onClick={(e) => right(e)}
                 >
+                    <span></span>
                     <img src={rightArrow} alt="next" />
                 </button>
                 {!categoryName && <></>}

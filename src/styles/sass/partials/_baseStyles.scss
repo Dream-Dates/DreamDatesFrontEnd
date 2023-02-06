@@ -81,7 +81,7 @@ button {
 
 .disable-button {
     pointer-events: none;
-    & > * {
+    & > img {
         opacity: .25;
     }
 }

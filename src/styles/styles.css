@@ -280,7 +280,7 @@ button {
 .disable-button {
   pointer-events: none;
 }
-.disable-button > * {
+.disable-button > img {
   opacity: 0.25;
 }
 
@@ -472,7 +472,6 @@ h3 {
   width: 48px;
   height: 48px;
   border-radius: 24px;
-  background-color: white;
 }
 
 .leftArrow {
@@ -530,6 +529,24 @@ h3 {
   -o-object-fit: cover;
      object-fit: cover;
 }
+
+.carouselArrow {
+  display: relative;
+}
+.carouselArrow > span {
+  display: block;
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  background-color: white;
+  border-radius: 50%;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
 .headerMobile {
   display: none;
   background-color: #ffffff;
