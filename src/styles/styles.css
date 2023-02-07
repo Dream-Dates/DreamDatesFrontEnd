@@ -368,10 +368,6 @@ h2 span {
   cursor: pointer;
 }
 
-.dateIdeas h2 {
-  line-height: 20px;
-}
-
 h3 {
   font-family: "Mirza", cursive;
   font-size: 24px;
@@ -380,7 +376,6 @@ h3 {
 
 .modalBody h3 {
   height: 24px;
-  line-height: 17px;
 }
 
 .dateIdeasCard {
@@ -450,6 +445,25 @@ h3 {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.carouselImageListViewAll {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  gap: 42px;
+}
+.carouselImageListViewAll + .carouselArrow {
+  display: none;
+}
+.carouselImageListViewAll + .carouselArrow + .carouselArrow {
+  display: none;
 }
 
 .flexWrap {
@@ -1184,11 +1198,9 @@ h3 {
 .modalMovie .modalContainer .modalBody .infoSnippet .reviewStars img {
   width: 17px;
 }
-.modalMovie .modalContainer .modalBody h3 {
-  line-height: 21px;
-}
 .modalMovie .modalContainer .aboutSection {
   margin-top: 30px;
+  width: calc(100% + 20px);
 }
 .modalMovie .modalContainer .aboutSection > p {
   margin: 7px 0;
@@ -1271,10 +1283,15 @@ h3 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-left: calc(18px + 0.5rem);
 }
 .modalMovie .modalContainer .hoursContainer > * {
   padding: 0.5rem 0;
+}
+.modalMovie .modalContainer .hoursContainer,
+.modalMovie .modalContainer .aboutSection > p,
+.modalMovie .modalContainer .phoneSection > p,
+.modalMovie .modalContainer .locationSection > p {
+  margin-left: calc(18px + 0.5rem);
 }
 .modalMovie .modalContainer .carouselSection {
   grid-area: carousel;

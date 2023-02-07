@@ -30,10 +30,10 @@ function DateIdeasList({
     const [currentIndex, setCurrentIndex] = useState(0);
     const [length, setLength] = useState(0);
     const carouselContent = useRef();
-    
-    const [rightArrowDisabled, setRightArrowDisabled] = useState(false)
-    const [leftArrowDisabled, setLeftArrowDisabled] = useState(true)
-    
+
+    const [rightArrowDisabled, setRightArrowDisabled] = useState(false);
+    const [leftArrowDisabled, setLeftArrowDisabled] = useState(true);
+
     // Set the length to match current of the list after filter
     useEffect(() => {
         // each card is 294px wide multiple that by the number of total cards to get the total length
@@ -228,10 +228,10 @@ function DateIdeasList({
             );
     };
 
-    let clickable = true
+    let clickable = true;
     const right = (e) => {
         if (clickable) {
-            clickable = false
+            clickable = false;
             console.log(e);
             // find the closest carousel and scroll the ul by 500px to the right
             const carouselRef = e.target.closest(".carouselContainer");
@@ -240,18 +240,18 @@ function DateIdeasList({
 
             // if the left arrow is disabled, enable it after a right click
             if (leftArrowDisabled) {
-                setLeftArrowDisabled(false)
+                setLeftArrowDisabled(false);
             }
             setTimeout(() => {
                 // get the right position of the carousel
-                const {right} = carouselRef.getBoundingClientRect()
+                const { right } = carouselRef.getBoundingClientRect();
                 // get the right positionof the last li in the carousel
-                const lastLiElement = carouselRef.firstChild.lastChild
-                const lastLiElementRec = lastLiElement.getBoundingClientRect()
+                const lastLiElement = carouselRef.firstChild.lastChild;
+                const lastLiElementRec = lastLiElement.getBoundingClientRect();
                 if (lastLiElementRec.right === right) {
-                    setRightArrowDisabled(true)
+                    setRightArrowDisabled(true);
                 }
-                clickable = true
+                clickable = true;
             }, 500);
         }
     };
@@ -311,7 +311,14 @@ function DateIdeasList({
                 )}
             </h2>
             <div className="carouselContainer">
-                <ul className={`carouselImageList`} ref={carouselContent}>
+                <ul
+                    className={
+                        categoryName
+                            ? "carouselImageListViewAll"
+                            : "carouselImageList"
+                    }
+                    ref={carouselContent}
+                >
                     {filteredList?.map((idea) => {
                         return (
                             <li
@@ -374,6 +381,7 @@ function DateIdeasList({
                                     </p>
                                     <p className="reviewStars">
                                         {idea.rating &&
+                                            !idea.votes &&
                                             reviewStarsDisplay(
                                                 idea.rating,
                                                 idea.categoryType

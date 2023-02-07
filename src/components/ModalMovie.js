@@ -6,7 +6,7 @@ import redHeart from "../assets/redHeart.svg";
 import x from "../assets/X.svg";
 import clock from "../assets/clock.svg";
 import about from "../assets/about.svg";
-import phone from "../assets/phone.svg";
+import phoneIcon from "../assets/phone.svg";
 import location from "../assets/location.svg";
 import imageIcon from "../assets/image.svg";
 import { useState, useEffect } from "react";
@@ -42,7 +42,11 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         rating,
         image,
         categoryType,
+        phone,
+        reviews,
     } = eventDetails;
+
+    console.log(JSON.parse(reviews));
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false);
     const [showSavePopup, setShowSavePopup] = useState(false);
@@ -242,6 +246,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                     website: website,
                                     rating: rating,
                                     user_id: userId,
+                                    phone: phone,
                                 }),
                             }
                         )
@@ -385,7 +390,9 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                             {price && price}
                         </p>
                         <p className="reviewStars">
-                            {rating && reviewStarsDisplay(rating, categoryType)}
+                            {rating &&
+                                !votes &&
+                                reviewStarsDisplay(rating, categoryType)}
                             {votes && reviewStarsDisplay(votes, categoryType)}
                         </p>
 
@@ -395,8 +402,15 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     <div className="aboutSection">
                         <div className="aboutSectionHeader">
                             <div className="subTitle">
-                                <img src={about} alt="information icon" />
-                                <h3>About</h3>
+                                {description && (
+                                    <>
+                                        <img
+                                            src={about}
+                                            alt="information icon"
+                                        />
+                                        <h3>About</h3>
+                                    </>
+                                )}
                             </div>
                             <a
                                 href={
@@ -423,16 +437,6 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                             </a>
                         </div>
                         {/* <p>2022 - 1hr 50min</p> */}
-                        {/* <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Magnam dolores ratione totam incidunt eius?
-                            Esse unde praesentium nesciunt asperiores sapiente
-                            culpa quibusdam quod consequuntur assumenda, ea
-                            aliquid cupiditate quia, corrupti modi? Porro autem
-                            eligendi vel, obcaecati perspiciatis ea? Enim,
-                            cupiditate blanditiis molestias aut unde quibusdam a
-                            rerum facilis fugiat sapiente!
-                        </p> */}
                         <p>{description}</p>
                     </div>
 
@@ -441,10 +445,17 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                         <div className="additionalInformation">
                             <div className="phoneSection">
                                 <div className="subTitle">
-                                    <img src={phone} alt="phone icon" />
-                                    <h3>Phone</h3>
+                                    {phone && (
+                                        <>
+                                            <img
+                                                src={phoneIcon}
+                                                alt="phone icon"
+                                            />
+                                            <h3>Phone</h3>
+                                        </>
+                                    )}
                                 </div>
-                                {/* <p>(123)-456-7890</p> */}
+                                <p>{phone}</p>
                             </div>
                             <div className="locationSection">
                                 <div className="subTitle">
@@ -460,8 +471,12 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                             </div>
                             <div className="hoursSection">
                                 <div className="subTitle">
-                                    <img src={clock} alt="clock icon" />
-                                    <h3>Hours</h3>
+                                    {opening_hours && (
+                                        <>
+                                            <img src={clock} alt="clock icon" />
+                                            <h3>Hours</h3>
+                                        </>
+                                    )}
                                 </div>
                                 {opening_hours?.map((item) => {
                                     return (
@@ -490,6 +505,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
                 {/* MOVIE */}
                 {/* <Reviews /> */}
+                {/* <p>{JSON.parse(reviews)}</p> */}
             </div>
 
             {showSavePopup && <SavePopup text={saveMessage} />}

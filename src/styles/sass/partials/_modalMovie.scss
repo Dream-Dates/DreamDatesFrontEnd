@@ -62,14 +62,11 @@
                     }
                 }
             }
-
-            h3 {
-                line-height: 21px;
-            }
         }
 
         .aboutSection {
             margin-top: 30px;
+            width: calc(100% + 20px);
         }
 
         .aboutSection>p {
@@ -151,11 +148,18 @@
         .hoursContainer {
             display: flex;
             justify-content: space-between;
-            margin-left: calc(18px + 0.5rem);
+
 
             &>* {
                 padding: 0.5rem 0;
             }
+        }
+
+        .hoursContainer,
+        .aboutSection > p,
+        .phoneSection > p,
+        .locationSection > p {
+            margin-left: calc(18px + 0.5rem);
         }
 
         .carouselSection {
