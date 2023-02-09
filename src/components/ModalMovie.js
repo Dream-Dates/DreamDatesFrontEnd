@@ -46,7 +46,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         reviews,
     } = eventDetails;
 
-    console.log(JSON.parse(reviews));
+    // console.log(JSON.parse(reviews));
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false);
     const [showSavePopup, setShowSavePopup] = useState(false);
