@@ -20,7 +20,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
         id,
         type,
         title,
-        adress_street,
+        address_street,
         city,
         country,
         venue,
@@ -147,7 +147,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                     id: id,
                                     type: type,
                                     title: title,
-                                    adress_street: adress_street,
+                                    address_street: address_street,
                                     city: city,
                                     country: country,
                                     venue: venue,
@@ -358,7 +358,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <p>(123)-456-7890</p>
                             </div> */}
 
-                            {adress_street && (
+                            {address_street && (
                                 <div className="locationContainer">
                                     <div className="subTitle">
                                         <div className="midIcon">
@@ -370,7 +370,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                         <h2>Location</h2>
                                     </div>
                                     <p>{venue}</p>
-                                    <p>{adress_street}</p>
+                                    <p>{address_street}</p>
                                     <p>{city}</p>
                                 </div>
                             )}

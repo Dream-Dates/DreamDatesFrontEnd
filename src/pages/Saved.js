@@ -78,8 +78,8 @@ function Saved({ userId, searchTerm, categoryName }) {
                                         id: eventDetails.id,
                                         type: eventDetails.type,
                                         title: eventDetails.title,
-                                        adress_street:
-                                            eventDetails.adress_street,
+                                        address_street:
+                                            eventDetails.address_street,
                                         city: eventDetails.city,
                                         country: eventDetails.country,
                                         venue: eventDetails.venue,

@@ -26,7 +26,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         id,
         type,
         title,
-        adress_street,
+        address_street,
         city,
         country,
         venue,
@@ -230,7 +230,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                     id: id,
                                     type: type,
                                     title: title,
-                                    adress_street: adress_street,
+                                    address_street: address_street,
                                     city: city,
                                     country: country,
                                     venue: venue,
@@ -462,11 +462,11 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                     <img src={location} alt="map pin icon" />
                                     <h3>Location</h3>
                                 </div>
-                                <p>{adress_street}</p>
+                                <p>{address_street}</p>
                             </div>
                             <div className="map">
                                 <iframe
-                                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDoPEmjv8_EPKu_NpowjpIZ_n3O4Ovkp_w&q=${adress_street}`}
+                                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDoPEmjv8_EPKu_NpowjpIZ_n3O4Ovkp_w&q=${address_street}`}
                                 ></iframe>
                             </div>
                             <div className="hoursSection">
