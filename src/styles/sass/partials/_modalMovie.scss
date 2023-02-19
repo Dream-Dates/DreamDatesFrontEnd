@@ -66,7 +66,7 @@
 
         .aboutSection {
             margin-top: 30px;
-            width: calc(100% + 20px);
+            // width: calc(100% + 20px);
         }
 
         .aboutSection>p {
@@ -392,6 +392,14 @@
 
         button:hover {
             background-color: transparent;
+        }
+    }
+
+    .movieTrailer {
+        padding-top: 30px;
+        iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
         }
     }
 }

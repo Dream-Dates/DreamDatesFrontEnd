@@ -159,7 +159,8 @@ function DateIdeasList({
         // round the score to a whole number
         let rating = Math.round(+score);
 
-        if (category == "movies") rating /= 2;
+        // movies rating is out of 10 so we have to divide by 2 and round up
+        if (category == "movies") rating = Math.ceil(score / 2);
 
         if (rating == 0)
             return (
@@ -306,7 +307,7 @@ function DateIdeasList({
                 {headerTitle[ideas?.[0]?.categoryType]}{" "}
                 {!categoryName && (
                     <span onClick={() => viewAll(ideas?.[0]?.categoryType)}>
-                        View all
+                        View all {headerTitle[ideas?.[0]?.categoryType]}
                     </span>
                 )}
             </h2>

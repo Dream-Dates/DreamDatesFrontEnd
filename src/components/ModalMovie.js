@@ -44,6 +44,8 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         categoryType,
         phone,
         reviews,
+        trailer,
+        datetime_utc,
     } = eventDetails;
 
     // console.log(JSON.parse(reviews));
@@ -89,7 +91,8 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         // round the score to a whole number
         let rating = Math.round(+score);
 
-        if (category == "movies") rating /= 2;
+        // movies rating is out of 10 so we have to divide by 2 and round up
+        if (category == "movies") rating = Math.ceil(score / 2);
 
         if (rating == 0)
             return (
@@ -301,6 +304,12 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         });
     };
 
+    // converting utc time
+    const utcTime = (utc) => {
+        const date = new Date(utc)
+        return date.toDateString() + ' ' + date.toLocaleTimeString();
+    }
+
     return (
         <div className="modalMovie" onClick={handleClickModalClose}>
             {closeNotSignedIn && (
@@ -456,6 +465,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                     )}
                                 </div>
                                 <p>{phone}</p>
+                                <p>{utcTime(datetime_utc)}</p>
                             </div>
                             <div className="locationSection">
                                 <div className="subTitle">
@@ -504,6 +514,15 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                 </div>
 
                 {/* MOVIE */}
+                {categoryType === "movies" && (
+                    <div className="movieTrailer">
+                        <iframe
+                            src={trailer}
+                            frameborder="0"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                )}
                 {/* <Reviews /> */}
                 {/* <p>{JSON.parse(reviews)}</p> */}
             </div>
