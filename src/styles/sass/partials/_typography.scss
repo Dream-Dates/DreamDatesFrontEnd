@@ -1,5 +1,5 @@
 // typography.scss
-@import url('https://fonts.googleapis.com/css2?family=Nobile:wght@500;700&family=Raleway:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mirza:wght@500;600;700&family=Nobile:wght@500;700&family=Raleway:wght@500;600;700&display=swap');
 
 * {
     font-family: 'Raleway', sans-serif;
@@ -55,7 +55,7 @@ p {
 }
 
 h1 {
-    font-family: 'Nobile', sans-serif;
+    font-family: 'Mirza', cursive;
     font-size: 40px;
     font-weight: 700;
     color: white;
@@ -63,27 +63,34 @@ h1 {
 }
 
 h2 {
-    font-family: 'Nobile', sans-serif;
+    font-family: 'Mirza', cursive;
     font-size: 36px;
     font-weight: 700;
 }
 
 h2 span {
-    font-family: 'Nobile', sans-serif;
+    font-family: 'Mirza', cursive;
     font-size: 24px;
     font-weight: 400;
     display: inline-block;
     cursor: pointer;
 }
 
+.dateIdeas h2 {
+    // line-height: 1.5;
+}
+
 h3 {
-    font-family: 'Nobile', sans-serif;
+    font-family: 'Mirza', cursive;
     font-size: 24px;
     font-weight: 700;
+    background-color: green;
+    line-height: 13px;
+    height: 18px;
 }
 
 .modalBody h3 {
-    height: 24px;
+    // height: 24px;
     // line-height: 17px;
 }
 
@@ -96,7 +103,7 @@ h3 {
 }
 
 .hoursContainer p {
-    font-family: 'Nobile', sans-serif;
+    font-family: 'Mirza', cursive;
     font-weight: 400;
 }
 
@@ -109,4 +116,21 @@ h3 {
     h1 {
         font-size: 24px;
     }
+}
+
+h5 {
+    font-family: 'Mirza', cursive;
+    // align-self: center;
+    font-size: 50px;
+    background-color: green;
+    line-height: 34px;
+    height: 35px;
+}
+
+.test {
+    display: flex;
+    width: 50%;
+    border: 2px solid red;
+    justify-content: center;
+    align-items: center;
 }

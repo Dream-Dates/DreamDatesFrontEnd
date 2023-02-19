@@ -2,6 +2,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import redHeart from "../assets/redHeart.svg";
+
 function SignIn({ rerender }) {
     const navigate = useNavigate();
     const [signIn, setSignIn] = useState({
@@ -93,6 +95,10 @@ function SignIn({ rerender }) {
                 <Link to={"/signup"} className="pinkButton">
                     <p>Sign Up</p>
                 </Link>
+            </div>
+            <div className="test">
+                <button><img src={redHeart} alt="" /></button>
+                <h5>tickets</h5>
             </div>
         </div>
     );
