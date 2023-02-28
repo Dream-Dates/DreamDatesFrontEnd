@@ -45,11 +45,10 @@ function SignIn({ rerender }) {
                     navigate("/");
                 }
             })
-            .then(()=>{
-                console.log('then')
-            })
-            console.log('last')
-            ;
+            .then(() => {
+                console.log("then");
+            });
+        console.log("last");
         return false;
     };
 
@@ -95,10 +94,6 @@ function SignIn({ rerender }) {
                 <Link to={"/signup"} className="pinkButton">
                     <p>Sign Up</p>
                 </Link>
-            </div>
-            <div className="test">
-                <button><img src={redHeart} alt="" /></button>
-                <h5>tickets</h5>
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Mirza:wght@500;600;700&family=Nobile:wght@500;700&family=Raleway:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mirza:wght@500;600;700&family=Nobile:wght@400;500;700&family=Raleway:wght@500;600;700&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -338,8 +338,18 @@ p {
   font-weight: 600;
 }
 
+.reviewHeader p {
+  font-weight: 600;
+}
+
 .review p {
   font-size: 16px;
+}
+
+.reviewReadMore {
+  font-family: "Nobile", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .infoSnippet {
@@ -347,7 +357,7 @@ p {
 }
 
 h1 {
-  font-family: "Mirza", cursive;
+  font-family: "Nobile", sans-serif;
   font-size: 40px;
   font-weight: 700;
   color: white;
@@ -355,27 +365,25 @@ h1 {
 }
 
 h2 {
-  font-family: "Mirza", cursive;
+  font-family: "Nobile", sans-serif;
   font-size: 36px;
   font-weight: 700;
 }
 
 h2 span {
-  font-family: "Mirza", cursive;
-  font-size: 24px;
-  font-weight: 400;
+  font-family: "Nobile", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
   display: inline-block;
   cursor: pointer;
   color: #941C2F;
 }
 
 h3 {
-  font-family: "Mirza", cursive;
-  font-size: 24px;
+  font-family: "Nobile", sans-serif;
+  font-size: 20px;
   font-weight: 700;
-  background-color: green;
-  line-height: 13px;
-  height: 18px;
+  padding-top: 6px;
 }
 
 .dateIdeasCard {
@@ -386,12 +394,13 @@ h3 {
 }
 
 .hoursContainer p {
-  font-family: "Mirza", cursive;
+  font-family: "Nobile", sans-serif;
   font-weight: 400;
+  font-size: 16px;
 }
 
 .hoursContainer p:first-child {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @media (max-width: 600px) {
@@ -400,7 +409,7 @@ h3 {
   }
 }
 h5 {
-  font-family: "Mirza", cursive;
+  font-family: "Nobile", sans-serif;
   font-size: 50px;
   background-color: green;
   line-height: 34px;
@@ -1281,6 +1290,9 @@ h5 {
 .modalMovie .modalContainer .additionalInformation > div {
   margin-top: 30px;
 }
+.modalMovie .modalContainer .additionalInformation.events {
+  grid-template-areas: "location map";
+}
 .modalMovie .modalContainer .phoneSection {
   grid-area: phone;
 }
@@ -1311,7 +1323,8 @@ h5 {
 .modalMovie .modalContainer .hoursContainer,
 .modalMovie .modalContainer .aboutSection > p,
 .modalMovie .modalContainer .phoneSection > p,
-.modalMovie .modalContainer .locationSection > p {
+.modalMovie .modalContainer .locationSection > p,
+.modalMovie .modalContainer .utcTime {
   margin-left: calc(18px + 0.5rem);
 }
 .modalMovie .modalContainer .carouselSection {
@@ -1449,9 +1462,6 @@ h5 {
   display: inline-block;
   margin-right: 10px;
 }
-.modalMovie h1 {
-  margin: 14px 0 25px;
-}
 .modalMovie .carousel {
   width: 100%;
   display: -webkit-box;
@@ -1536,14 +1546,15 @@ h5 {
 .modalMovie .movieTrailer {
   padding-top: 30px;
 }
-.modalMovie .movieTrailer iframe {
-  width: 100%;
-  aspect-ratio: 16/9;
+.modalMovie .movieTrailer > div {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 640/360;
 }
 
 .reviews .review {
   margin: 25px 80px;
-  padding: 28px 34px;
+  padding: 28px 34px 15px 34px;
   border: 1px black solid;
   border-radius: 16px;
 }
@@ -1599,11 +1610,24 @@ h5 {
 .reviewsHeader img {
   width: 24.17px;
   height: 22.98px;
+  padding-bottom: 5px;
 }
 
-.scrollMore {
-  text-align: center;
+.reviewsScrollMore {
+  margin: 0 auto;
   padding: 20px;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.reviewReadMore {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  padding-top: 15px;
 }
 
 .signIn form {

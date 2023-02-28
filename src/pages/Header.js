@@ -1,5 +1,6 @@
 // Header.js
-import logo from "../assets/dreamDatesLogo.png";
+// import logo from "../assets/dreamDatesLogo.png";
+import logo from "../assets/dreamDatesLogoNobelFont.svg";
 import logoMobile from "../assets/logoMobile.png";
 import redHeart from "../assets/redHeart.svg";
 import profileIcon from "../assets/profileIcon.svg";
@@ -12,8 +13,14 @@ import Context from "../context/context";
 import mixpanel from "mixpanel-browser";
 import { useEffect } from "react";
 
-function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName }) {
-    const [selectedCategory, setSelectedCategory] = useState('');
+function Header({
+    user,
+    logUserOut,
+    getSearchTerm,
+    getCategoryName,
+    categoryName,
+}) {
+    const [selectedCategory, setSelectedCategory] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [showDropDown, setShowDropDown] = useState(false);
 
@@ -22,7 +29,7 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
     // to get the category name form view all button so we can toggle the css color change for button
     useEffect(() => {
         setSelectedCategory(categoryName);
-    }, [categoryName])
+    }, [categoryName]);
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value);
@@ -117,8 +124,16 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                 <div className="headerNormalTop wrapper">
                     <div className="headerLogo">
                         <Link to="/" onClick={handleClickHome}>
-                            <img src={logo} alt="DreamDates Logo" className="logoNormal"/>
-                            <img src={logoMobile} alt="DreamDates Logo" className="logoMobile"/>
+                            <img
+                                src={logo}
+                                alt="DreamDates Logo"
+                                className="logoNormal"
+                            />
+                            <img
+                                src={logoMobile}
+                                alt="DreamDates Logo"
+                                className="logoMobile"
+                            />
                         </Link>
                     </div>
                     <form
@@ -154,56 +169,55 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                         </div>
                     </form>
 
-                        <div className="homeSavedButtons">
-                            {context.pageIs === "home" ? (
-                                <Link
-                                    to="/saved"
-                                    onClick={handleClickSaved}
-                                    className={`pinkButton ${
-                                        !user.token && "disable-link"
-                                    }`}
-                                >
-                                    <img src={redHeart} alt="red heart" />
-                                    <span className="normalView">Saved</span>
-                                </Link>
-                            ) : (
-                                <Link
-                                    to="/"
-                                    onClick={handleClickHome}
-                                    className="pinkButton"
-                                >
-                                    <img src={homeIcon} alt="home icon" />
-                                    <span className="normalView">Home</span>
-                                </Link>
-                            )}
-                        </div>
-
-                        {/* regular view userAuth */}
-                        {user.token ? (
-                            <div className="userAuth">
-                                <p className="welcome">
-                                    Welcome back, {user.name}!
-                                </p>
-                                <span className="br" />
-                                <Link
-                                    to="/"
-                                    onClick={logUserOut}
-                                    className="signOut"
-                                >
-                                    Sign out
-                                </Link>
-                            </div>
-                            
+                    <div className="homeSavedButtons">
+                        {context.pageIs === "home" ? (
+                            <Link
+                                to="/saved"
+                                onClick={handleClickSaved}
+                                className={`pinkButton ${
+                                    !user.token && "disable-link"
+                                }`}
+                            >
+                                <img src={redHeart} alt="red heart" />
+                                <span className="normalView">Saved</span>
+                            </Link>
                         ) : (
-                            <div className="userAuth flexAlignCenter">
-                                <Link to={"/signin"} className="pinkButton">
-                                    Sign In
-                                </Link>
-                            </div>
+                            <Link
+                                to="/"
+                                onClick={handleClickHome}
+                                className="pinkButton"
+                            >
+                                <img src={homeIcon} alt="home icon" />
+                                <span className="normalView">Home</span>
+                            </Link>
                         )}
+                    </div>
 
-                        {/* mobile view */}
-                        <div className="userAuthMobile">
+                    {/* regular view userAuth */}
+                    {user.token ? (
+                        <div className="userAuth">
+                            <p className="welcome">
+                                Welcome back, {user.name}!
+                            </p>
+                            <span className="br" />
+                            <Link
+                                to="/"
+                                onClick={logUserOut}
+                                className="signOut"
+                            >
+                                Sign out
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="userAuth flexAlignCenter">
+                            <Link to={"/signin"} className="pinkButton">
+                                Sign In
+                            </Link>
+                        </div>
+                    )}
+
+                    {/* mobile view */}
+                    <div className="userAuthMobile">
                         <div>
                             <button
                                 className="pinkButton"
@@ -262,7 +276,6 @@ function Header({ user, logUserOut, getSearchTerm, getCategoryName, categoryName
                             </button>
                         </div>
                     </div>
-                    
                 </div>
                 <div className="headerNormalBottom">
                     <div className="headerFilter">

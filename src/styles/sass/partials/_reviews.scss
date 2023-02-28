@@ -6,7 +6,7 @@
     .review {
         // background-color: #FFFFFF;
         margin: 25px 80px;
-        padding: 28px 34px;
+        padding: 28px 34px 15px 34px;
         border: 1px black solid;
         border-radius: 16px;
     }
@@ -53,9 +53,20 @@
 .reviewsHeader img {
     width: 24.17px;
     height: 22.98px;
+    padding-bottom: 5px;
 }
 
-.scrollMore {
-    text-align: center;
+.reviewsScrollMore {
+    margin: 0 auto;
     padding: 20px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.reviewReadMore {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 15px;
 }

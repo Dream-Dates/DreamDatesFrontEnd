@@ -124,6 +124,11 @@
             }
         }
 
+        .additionalInformation.events {
+            grid-template-areas:
+                "location map";
+        }
+
         .phoneSection {
             grid-area: phone;
         }
@@ -156,9 +161,10 @@
         }
 
         .hoursContainer,
-        .aboutSection > p,
-        .phoneSection > p,
-        .locationSection > p {
+        .aboutSection>p,
+        .phoneSection>p,
+        .locationSection>p,
+        .utcTime {
             margin-left: calc(18px + 0.5rem);
         }
 
@@ -305,7 +311,7 @@
     }
 
     h1 {
-        margin: 14px 0 25px;
+        // margin: 14px 0 25px;
     }
 
     .carousel {
@@ -397,9 +403,11 @@
 
     .movieTrailer {
         padding-top: 30px;
-        iframe {
-            width: 100%;
-            aspect-ratio: 16 / 9;
+
+        >div {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 640 / 360;
         }
     }
 }

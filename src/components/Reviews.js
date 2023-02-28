@@ -1,56 +1,124 @@
 // Reviews.js
-import reviewStar from "../assets/ReviewStar.svg"
-import reviewStarRed from "../assets/reviewStarRed.svg"
-import reviewUserPicture from "../assets/ReviewUserPicture.svg"
+import reviewStar from "../assets/ReviewStar.svg";
+import reviewStarRed from "../assets/reviewStarRed.svg";
+import reviewUserPicture from "../assets/ReviewUserPicture.svg";
 
-function Reviews() {
+function Reviews({ reviews, rating }) {
+    const reviewStarsDisplay = (score, category) => {
+        // round the score to a whole number
+        let rating = Math.round(+score);
+
+        // movies rating is out of 10 so we have to divide by 2 and round up
+        if (category == "movies") rating = Math.ceil(score / 2);
+
+        if (rating == 0)
+            return (
+                <>
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
+
+        if (rating == 1)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
+
+        if (rating == 2)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />{" "}
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
+
+        if (rating == 3)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
+
+        if (rating == 4)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
+
+        if (rating == 5)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                </>
+            );
+    };
+
     return (
         <div className="reviews">
             <div className="reviewsContainer">
                 <div className="reviewsHeader">
                     <img src={reviewStar} alt="star logo" />
                     <h3> Reviews </h3>
-                    <div className="reviewStars"><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /></div>
-                    <p> (1,551)</p>
-                </div>
-                <div className="review">
-                    <div className="reviewHeader">
-                        <div>
-                            <img src={reviewUserPicture} alt="default user picture" />
-                            <p>Reviewer's name</p>
-                        </div>
-                        <div className="reviewStars"><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /></div>
+                    <div className="reviewStars">
+                        {reviewStarsDisplay(rating)}
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum voluptatibus amet possimus adipisci quam, tempore voluptate nobis atque officia earum reiciendis labore sint, obcaecati delectus non, harum ipsum architecto modi error consectetur? Sit temporibus ipsum minus consequuntur sunt. Itaque eos saepe excepturi velit illum ex nam magni aspernatur qui.</p>
-                    <p>Read more</p>
+                    {/* <p> (1,551)</p>  */}
                 </div>
-                <div className="review">
-                    <div className="reviewHeader">
-                        <div>
-                            <img src={reviewUserPicture} alt="default user picture" />
-                            <p>Reviewer's name</p>
+
+                {reviews?.map((review) => {
+                    return (
+                        <div className="review">
+                            <div className="reviewHeader">
+                                <div>
+                                    <img
+                                        src={review.profile_photo_url}
+                                        alt="reviewer's user picture"
+                                    />
+                                    <p>{review.author_name}</p>
+                                </div>
+                                <div className="reviewStars">
+                                    {reviewStarsDisplay(review.rating)}
+                                </div>
+                            </div>
+                            <p>{review.text}</p>
+                            <button className="reviewReadMore">
+                                Read More
+                            </button>
                         </div>
-                        <div className="reviewStars"><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /></div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum voluptatibus amet possimus adipisci quam, tempore voluptate nobis atque officia earum reiciendis labore sint, obcaecati delectus non, harum ipsum architecto modi error consectetur? Sit temporibus ipsum minus consequuntur sunt. Itaque eos saepe excepturi velit illum ex nam magni aspernatur qui.</p>
-                    <p>Read more</p>
-                </div>
-                <div className="review">
-                    <div className="reviewHeader">
-                        <div>
-                            <img src={reviewUserPicture} alt="default user picture" />
-                            <p>Reviewer's name</p>
-                        </div>
-                        <div className="reviewStars"><img src={reviewStarRed} alt="red star logo" /><img src={reviewStarRed} alt="red star logo" /></div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum voluptatibus amet possimus adipisci quam, tempore voluptate nobis atque officia earum reiciendis labore sint, obcaecati delectus non, harum ipsum architecto modi error consectetur? Sit temporibus ipsum minus consequuntur sunt. Itaque eos saepe excepturi velit illum ex nam magni aspernatur qui.</p>
-                    <p>Read more</p>
-                </div>
-                
-                {/* <p className="scrollMore">Scroll for more reviews</p> */}
+                    );
+                })}
+
+                <button className="reviewsScrollMore">
+                    Scroll for more reviews
+                </button>
             </div>
         </div>
-    )
+    );
 }
 
-export default Reviews
+export default Reviews;

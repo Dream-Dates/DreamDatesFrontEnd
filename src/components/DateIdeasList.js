@@ -307,7 +307,7 @@ function DateIdeasList({
                 {headerTitle[ideas?.[0]?.categoryType]}{" "}
                 {!categoryName && (
                     <span onClick={() => viewAll(ideas?.[0]?.categoryType)}>
-                        View all {headerTitle[ideas?.[0]?.categoryType]}
+                        View all
                     </span>
                 )}
             </h2>

@@ -20,6 +20,7 @@ import MobileCarousel from "./MobileCarousel";
 import reviewStarWhiteOutline from "../assets/reviewStartWhiteOutline.svg";
 import reviewStarRed from "../assets/reviewStarRed.svg";
 import reviewStarWhite from "../assets/reviewStarWhite.svg";
+import ReactPlayer from "react-player/youtube";
 
 function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     const {
@@ -48,7 +49,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         datetime_utc,
     } = eventDetails;
 
-    // console.log(JSON.parse(reviews));
+    console.log(reviews);
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false);
     const [showSavePopup, setShowSavePopup] = useState(false);
@@ -306,9 +307,9 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
 
     // converting utc time
     const utcTime = (utc) => {
-        const date = new Date(utc)
-        return date.toDateString() + ' ' + date.toLocaleTimeString();
-    }
+        const date = new Date(utc);
+        return date.toDateString() + " " + date.toLocaleTimeString();
+    };
 
     return (
         <div className="modalMovie" onClick={handleClickModalClose}>
@@ -411,46 +412,72 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     <div className="aboutSection">
                         <div className="aboutSectionHeader">
                             <div className="subTitle">
-                                {description && (
-                                    <>
-                                        <img
-                                            src={about}
-                                            alt="information icon"
-                                        />
-                                        <h3>About</h3>
-                                    </>
+                                {categoryType === "events" ? (
+                                    <div className="hoursSection">
+                                        <div className="subTitle">
+                                            {datetime_utc && (
+                                                <>
+                                                    <img
+                                                        src={clock}
+                                                        alt="clock icon"
+                                                    />
+                                                    <h3>Date</h3>
+                                                </>
+                                            )}
+                                        </div>
+
+                                        <p className="utcTime">
+                                            {utcTime(datetime_utc)}
+                                        </p>
+                                    </div>
+                                ) : (
+                                    description && (
+                                        <>
+                                            <img
+                                                src={about}
+                                                alt="information icon"
+                                            />
+                                            <h3>About</h3>
+                                        </>
+                                    )
                                 )}
                             </div>
-                            <a
-                                href={
-                                    categoryType === "movies" ||
-                                    categoryType === "events"
-                                        ? link
-                                        : website
-                                }
-                                className="pinkButton"
-                                target="_blank"
-                            >
-                                {categoryType === "movies" ||
-                                categoryType === "events" ? (
-                                    <>
-                                        <img src={ticket} alt="ticket icon" />
-                                        <h3>Find tickets near me</h3>
-                                    </>
-                                ) : (
-                                    <>
-                                        <img src={globe} alt="globe icon" />
-                                        <h3>Website</h3>
-                                    </>
-                                )}
-                            </a>
+                            <div>
+                                <a
+                                    href={
+                                        categoryType === "movies" ||
+                                        categoryType === "events"
+                                            ? link
+                                            : website
+                                    }
+                                    className="pinkButton"
+                                    target="_blank"
+                                >
+                                    {categoryType === "movies" ||
+                                    categoryType === "events" ? (
+                                        <>
+                                            <img
+                                                src={ticket}
+                                                alt="ticket icon"
+                                            />
+                                            <h3>Find tickets near me</h3>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <img src={globe} alt="globe icon" />
+                                            <h3>Website</h3>
+                                        </>
+                                    )}
+                                </a>
+                            </div>
                         </div>
                         {/* <p>2022 - 1hr 50min</p> */}
                         <p>{description}</p>
                     </div>
 
-                    {/* Restaurant/Live Events/Attractions */}
-                    {categoryType !== "movies" && (
+                    {/* Restaurant/Attractions */}
+                    {(categoryType === "restaurants" ||
+                        categoryType === "attractions") && (
                         <div className="additionalInformation">
                             <div className="phoneSection">
                                 <div className="subTitle">
@@ -465,7 +492,6 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                     )}
                                 </div>
                                 <p>{phone}</p>
-                                <p>{utcTime(datetime_utc)}</p>
                             </div>
                             <div className="locationSection">
                                 <div className="subTitle">
@@ -511,20 +537,38 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                             )}
                         </div>
                     )}
+                    {/* LIVE ENTERTAINMENT */}
+                    {categoryType === "events" && (
+                        <div className="additionalInformation events">
+                            <div className="locationSection">
+                                <div className="subTitle">
+                                    <img src={location} alt="map pin icon" />
+                                    <h3>Location</h3>
+                                </div>
+                                <p>{address_street}</p>
+                            </div>
+                            <div className="map">
+                                <iframe
+                                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDoPEmjv8_EPKu_NpowjpIZ_n3O4Ovkp_w&q=${address_street}`}
+                                ></iframe>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* MOVIE */}
                 {categoryType === "movies" && (
                     <div className="movieTrailer">
-                        <iframe
+                        {/* <iframe
                             src={trailer}
                             frameborder="0"
                             allowfullscreen
-                        ></iframe>
+                        ></iframe> */}
+                        <ReactPlayer url={trailer} />
                     </div>
                 )}
-                {/* <Reviews /> */}
-                {/* <p>{JSON.parse(reviews)}</p> */}
+
+                {reviews && <Reviews reviews={reviews} rating={rating} />}
             </div>
 
             {showSavePopup && <SavePopup text={saveMessage} />}

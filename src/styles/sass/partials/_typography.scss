@@ -1,5 +1,5 @@
 // typography.scss
-@import url('https://fonts.googleapis.com/css2?family=Mirza:wght@500;600;700&family=Nobile:wght@500;700&family=Raleway:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mirza:wght@500;600;700&family=Nobile:wght@400;500;700&family=Raleway:wght@500;600;700&display=swap');
 
 * {
     font-family: 'Raleway', sans-serif;
@@ -46,8 +46,19 @@ p {
     font-weight: 600;
 }
 
+.reviewHeader p {
+    font-weight: 600;
+    ;
+}
+
 .review p {
     font-size: 16px;
+}
+
+.reviewReadMore {
+    font-family: 'Nobile', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .infoSnippet {
@@ -55,7 +66,8 @@ p {
 }
 
 h1 {
-    font-family: 'Mirza', cursive;
+    // font-family: 'Mirza', cursive;
+    font-family: 'Nobile', sans-serif;
     font-size: 40px;
     font-weight: 700;
     color: white;
@@ -63,15 +75,17 @@ h1 {
 }
 
 h2 {
-    font-family: 'Mirza', cursive;
+    // font-family: 'Mirza', cursive;
+    font-family: 'Nobile', sans-serif;
     font-size: 36px;
     font-weight: 700;
 }
 
 h2 span {
-    font-family: 'Mirza', cursive;
-    font-size: 24px;
-    font-weight: 400;
+    // font-family: 'Mirza', cursive;
+    font-family: 'Nobile', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
     display: inline-block;
     cursor: pointer;
     color: #941C2F;
@@ -82,12 +96,14 @@ h2 span {
 }
 
 h3 {
-    font-family: 'Mirza', cursive;
-    font-size: 24px;
+    // font-family: 'Mirza', cursive;
+    font-family: 'Nobile', sans-serif;
+    font-size: 20px;
     font-weight: 700;
-    background-color: green;
-    line-height: 13px;
-    height: 18px;
+    // background-color: green;
+    // line-height: 13px;
+    // height: 18px;
+    padding-top: 6px;
 }
 
 .modalBody h3 {
@@ -104,12 +120,14 @@ h3 {
 }
 
 .hoursContainer p {
-    font-family: 'Mirza', cursive;
+    // font-family: 'Mirza', cursive;
+    font-family: 'Nobile', sans-serif;
     font-weight: 400;
+    font-size: 16px;
 }
 
 .hoursContainer p:first-child {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 
@@ -120,7 +138,8 @@ h3 {
 }
 
 h5 {
-    font-family: 'Mirza', cursive;
+    // font-family: 'Mirza', cursive;
+    font-family: 'Nobile', sans-serif;
     // align-self: center;
     font-size: 50px;
     background-color: green;
