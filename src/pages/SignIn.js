@@ -2,8 +2,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import redHeart from "../assets/redHeart.svg";
-
 function SignIn({ rerender }) {
     const navigate = useNavigate();
     const [signIn, setSignIn] = useState({

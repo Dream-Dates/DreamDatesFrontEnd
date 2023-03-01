@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useContext } from "react";
 import { useEffect } from "react";
 import DateIdeasList from "../components/DateIdeasList";
-import Modal from "../components/Modal";
+import ModalMovie from "../components/ModalMovie";
 import Context from "../context/context";
 import mixpanel from "mixpanel-browser";
 
 function Saved({ userId, searchTerm, categoryName }) {
-    const [saved, setSaved] = useState({});
+    const [saved, setSaved] = useState([]);
     const [chosenEvent, setChoseEvent] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [toggle, setToggle] = useState(false);
@@ -95,6 +95,9 @@ function Saved({ userId, searchTerm, categoryName }) {
                                         website: eventDetails.website,
                                         rating: eventDetails.rating,
                                         user_id: userId,
+                                        reviews: eventDetails.reviews,
+                                        trailer: eventDetails.trailer,
+                                        datetime_utc: eventDetails.datetime_utc,
                                     }),
                                 }
                             )
@@ -133,7 +136,8 @@ function Saved({ userId, searchTerm, categoryName }) {
                 .then((res) => res.json())
                 .then((data) => {
                     data.forEach((item) => (item.categoryType = "saved"));
-                    setSaved({ saved: data });
+                    // setSaved({ saved: data });
+                    setSaved(data);
                     setLoading(false);
                 });
         };
@@ -144,20 +148,20 @@ function Saved({ userId, searchTerm, categoryName }) {
     return (
         <div className="saved">
             {showModal && (
-                <Modal
+                <ModalMovie
                     eventDetails={chosenEvent}
                     closeModal={closeModal}
                     userId={userId}
                     triggerToggle={triggerToggle}
                 />
             )}
-            <h3>Saved</h3>
+            {/* <h3>Saved</h3> */}
             <DateIdeasList
                 ideas={saved}
                 selectedEvent={openModal}
                 userId={userId}
                 searchTerm={searchTerm}
-                categoryName={categoryName}
+                categoryName="saved"
             />
         </div>
     );

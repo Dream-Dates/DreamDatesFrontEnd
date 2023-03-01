@@ -1,7 +1,6 @@
 // Reviews.js
 import reviewStar from "../assets/ReviewStar.svg";
 import reviewStarRed from "../assets/reviewStarRed.svg";
-import reviewUserPicture from "../assets/ReviewUserPicture.svg";
 
 function Reviews({ reviews, rating }) {
     const reviewStarsDisplay = (score, category) => {

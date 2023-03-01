@@ -766,10 +766,12 @@ h5 {
   stroke-width: 1px;
 }
 
-.dateIdeas {
+.dateIdeas,
+.saved {
   margin: 210px 71px;
 }
-.dateIdeas h2 {
+.dateIdeas h2,
+.saved h2 {
   padding: 32px 0 20px 0;
   line-height: 1.5;
 }
@@ -1758,17 +1760,6 @@ h4 {
   gap: 30px;
   margin-top: 50px;
   text-align: center;
-}
-
-.saved {
-  position: relative;
-  padding-top: 210px;
-}
-.saved .dateIdeasContainer {
-  padding: 40px 62px;
-}
-.saved .modal {
-  top: 0;
 }
 
 .savePopup {

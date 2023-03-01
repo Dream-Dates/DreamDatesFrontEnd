@@ -21,6 +21,7 @@ function DateIdeas({
     const [showSavePopup, setShowSavePopup] = useState(false);
     const [saveMessage, setSaveMessage] = useState("");
     const [toggle, setToggle] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const context = useContext(Context);
     context.setPageIs("home");
@@ -41,9 +42,7 @@ function DateIdeas({
                     userID: "No User ID",
                     pageLocation: "homepage",
                 });
-                // console.log('page visit home')
             }
-            console.log("page visit home", userId);
         }
     }, [userId]);
 
@@ -79,7 +78,6 @@ function DateIdeas({
                                     }),
                                 }
                             ).then((res) => res.json());
-                            // .then(data => console.log(data))
                             setShowSavePopup(true);
                             setSaveMessage("Unsaved");
                             setTimeout(() => {
@@ -116,10 +114,12 @@ function DateIdeas({
                                         website: eventDetails.website,
                                         rating: eventDetails.rating,
                                         user_id: userId,
+                                        reviews: eventDetails.reviews,
+                                        trailer: eventDetails.trailer,
+                                        datetime_utc: eventDetails.datetime_utc,
                                     }),
                                 }
                             ).then((res) => res.json());
-                            // .then(data => console.log(data))
                             setShowSavePopup(true);
                             setSaveMessage("Saved");
                             setTimeout(() => {
@@ -215,6 +215,8 @@ function DateIdeas({
                     restaurants: listRestaurants,
                     attractions: listAttractions,
                 });
+
+                setIsLoading(false);
             } catch (err) {
                 alert(err.message);
             }
@@ -234,64 +236,66 @@ function DateIdeas({
     // }, []);
 
     return (
-        <div className="dateIdeas">
-            {showModal && (
-                <ModalMovie
-                    eventDetails={chosenEvent}
-                    closeModal={closeModal}
-                    userId={userId}
-                    triggerToggle={triggerToggle}
-                />
-            )}
+        !isLoading && (
+            <div className="dateIdeas">
+                {showModal && (
+                    <ModalMovie
+                        eventDetails={chosenEvent}
+                        closeModal={closeModal}
+                        userId={userId}
+                        triggerToggle={triggerToggle}
+                    />
+                )}
 
-            {/* food  */}
-            {(!categoryName || categoryName == "restaurants") && (
-                <DateIdeasList
-                    ideas={dateIdeas.restaurants}
-                    selectedEvent={openModal}
-                    userId={userId}
-                    searchTerm={searchTerm}
-                    categoryName={categoryName}
-                    viewAll={viewAll}
-                />
-            )}
+                {/* food  */}
+                {(!categoryName || categoryName == "restaurants") && (
+                    <DateIdeasList
+                        ideas={dateIdeas.restaurants}
+                        selectedEvent={openModal}
+                        userId={userId}
+                        searchTerm={searchTerm}
+                        categoryName={categoryName}
+                        viewAll={viewAll}
+                    />
+                )}
 
-            {/* movies */}
-            {(!categoryName || categoryName == "movies") && (
-                <DateIdeasList
-                    ideas={dateIdeas.movies}
-                    selectedEvent={openModal}
-                    userId={userId}
-                    searchTerm={searchTerm}
-                    categoryName={categoryName}
-                    viewAll={viewAll}
-                />
-            )}
+                {/* movies */}
+                {(!categoryName || categoryName == "movies") && (
+                    <DateIdeasList
+                        ideas={dateIdeas.movies}
+                        selectedEvent={openModal}
+                        userId={userId}
+                        searchTerm={searchTerm}
+                        categoryName={categoryName}
+                        viewAll={viewAll}
+                    />
+                )}
 
-            {/* attractions */}
-            {(!categoryName || categoryName == "attractions") && (
-                <DateIdeasList
-                    ideas={dateIdeas.attractions}
-                    selectedEvent={openModal}
-                    userId={userId}
-                    searchTerm={searchTerm}
-                    categoryName={categoryName}
-                    viewAll={viewAll}
-                />
-            )}
-            {/* live entertainment */}
-            {(!categoryName || categoryName == "events") && (
-                <DateIdeasList
-                    ideas={dateIdeas.events}
-                    selectedEvent={openModal}
-                    userId={userId}
-                    searchTerm={searchTerm}
-                    categoryName={categoryName}
-                    viewAll={viewAll}
-                />
-            )}
-            {showSavePopup && <SavePopup text={saveMessage} />}
-        </div>
+                {/* attractions */}
+                {(!categoryName || categoryName == "attractions") && (
+                    <DateIdeasList
+                        ideas={dateIdeas.attractions}
+                        selectedEvent={openModal}
+                        userId={userId}
+                        searchTerm={searchTerm}
+                        categoryName={categoryName}
+                        viewAll={viewAll}
+                    />
+                )}
+                {/* live entertainment */}
+                {(!categoryName || categoryName == "events") && (
+                    <DateIdeasList
+                        ideas={dateIdeas.events}
+                        selectedEvent={openModal}
+                        userId={userId}
+                        searchTerm={searchTerm}
+                        categoryName={categoryName}
+                        viewAll={viewAll}
+                    />
+                )}
+                {showSavePopup && <SavePopup text={saveMessage} />}
+            </div>
+        )
     );
 }
 

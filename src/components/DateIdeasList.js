@@ -23,6 +23,7 @@ function DateIdeasList({
     viewAll,
 }) {
     let mainList = [];
+    console.log("DATEIDEASLIST");
     const [list, setList] = useState([]);
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false);
     const [saved, setSaved] = useState([]);
@@ -61,13 +62,8 @@ function DateIdeasList({
 
     useEffect(() => {
         setList(ideas);
+        console.log(ideas);
         // I do not understand why carouselContent.current?.offsetWidthWidth is not working and have to carouselContent.current ? carouselContent.current.offsetWidth : 0
-        console.log(ideas?.length);
-        console.log(carouselContent.current?.offsetWidthWidth);
-        console.log(
-            "width",
-            carouselContent.current ? carouselContent.current.offsetWidth : 0
-        );
         let totalCardWidth = ideas?.length * 294;
         let totalGapWidth = (ideas?.length - 1) * 25;
         let totalContentWidth = totalCardWidth + totalGapWidth;
@@ -75,8 +71,6 @@ function DateIdeasList({
             ? carouselContent.current.offsetWidth
             : 0;
 
-        console.log(carouselWidth);
-        console.log(Math.ceil(totalContentWidth / carouselWidth));
         setLength(Math.ceil(totalContentWidth / carouselWidth));
     }, [ideas]);
 
@@ -153,6 +147,7 @@ function DateIdeasList({
         movies: "Movies",
         attractions: "Attractions",
         events: "Live Entertainments",
+        saved: "Saved",
     };
 
     const reviewStarsDisplay = (score, category) => {
@@ -305,11 +300,12 @@ function DateIdeasList({
             )}
             <h2>
                 {headerTitle[ideas?.[0]?.categoryType]}{" "}
-                {!categoryName && (
-                    <span onClick={() => viewAll(ideas?.[0]?.categoryType)}>
-                        View all
-                    </span>
-                )}
+                {categoryName !== "saved" &&
+                    (!categoryName && (
+                        <span onClick={() => viewAll(ideas?.[0]?.categoryType)}>
+                            View all
+                        </span>
+                    ))}
             </h2>
             <div className="carouselContainer">
                 <ul
