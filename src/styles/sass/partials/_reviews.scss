@@ -70,3 +70,17 @@
     transform: translateX(-50%);
     padding-top: 15px;
 }
+
+.reviewText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.showFullReview {
+    overflow: auto;
+    text-overflow: clip;
+    display: block;
+}

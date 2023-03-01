@@ -23,7 +23,6 @@ function DateIdeasList({
     viewAll,
 }) {
     let mainList = [];
-    console.log("DATEIDEASLIST");
     const [list, setList] = useState([]);
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false);
     const [saved, setSaved] = useState([]);
@@ -62,7 +61,6 @@ function DateIdeasList({
 
     useEffect(() => {
         setList(ideas);
-        console.log(ideas);
         // I do not understand why carouselContent.current?.offsetWidthWidth is not working and have to carouselContent.current ? carouselContent.current.offsetWidth : 0
         let totalCardWidth = ideas?.length * 294;
         let totalGapWidth = (ideas?.length - 1) * 25;

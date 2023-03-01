@@ -1,8 +1,12 @@
 // Reviews.js
+import { useState } from "react";
 import reviewStar from "../assets/ReviewStar.svg";
 import reviewStarRed from "../assets/reviewStarRed.svg";
 
 function Reviews({ reviews, rating }) {
+
+    const [reviewReadMore, setReviewReadMore] = useState([])
+
     const reviewStarsDisplay = (score, category) => {
         // round the score to a whole number
         let rating = Math.round(+score);
@@ -77,6 +81,15 @@ function Reviews({ reviews, rating }) {
             );
     };
 
+
+    const handleClick = (e) => {
+        console.log(e);
+        console.log(e.target.previousElementSibling.className);
+        e.target.style.display = "none"
+        e.target.previousElementSibling.className = "showFullReview";
+
+    }
+
     return (
         <div className="reviews">
             <div className="reviewsContainer">
@@ -104,8 +117,8 @@ function Reviews({ reviews, rating }) {
                                     {reviewStarsDisplay(review.rating)}
                                 </div>
                             </div>
-                            <p>{review.text}</p>
-                            <button className="reviewReadMore">
+                            <p className={`reviewText ${reviewReadMore.includes(review.text) && 'showFullReview'}`}>{review.text}</p>
+                            <button className={`reviewReadMore ${review.text.length < 195 && 'displayNone'}`} onClick={(e) => handleClick(e)} >
                                 Read More
                             </button>
                         </div>

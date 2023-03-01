@@ -15,7 +15,7 @@ a {
     text-decoration: none;
     // &:hover {
     //     background-color: #941C2F;
-        
+
     //         p {
     //             color: white;
     //         }
@@ -65,9 +65,11 @@ button {
     padding: 1px 0;
     min-width: 110px;
     cursor: pointer;
+
     &:hover {
         background-color: #941C2F;
         color: white;
+
         img {
             filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
         }
@@ -76,12 +78,13 @@ button {
 
 .disable-link {
     pointer-events: none;
-        opacity: .25;
+    opacity: .25;
 }
 
 .disable-button {
     pointer-events: none;
-    & > img {
+
+    &>img {
         opacity: .25;
     }
 }
@@ -90,7 +93,11 @@ input:focus {
     border: 1px solid #941C2F;
 }
 
-    .selectedCategory {
-        background-color: #941C2F;
-        color: white;
-    }
+.selectedCategory {
+    background-color: #941C2F;
+    color: white;
+}
+
+.displayNone {
+    display: none;
+}
