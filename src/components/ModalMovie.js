@@ -412,62 +412,70 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     <div className="aboutSection">
                         <div className="aboutSectionHeader">
                             <div className="subTitle">
-                                {categoryType === "events" ? (
-                                    <div className="hoursSection">
-                                        <div className="subTitle">
-                                            {datetime_utc && (
-                                                <>
-                                                    <img
-                                                        src={clock}
-                                                        alt="clock icon"
-                                                    />
-                                                    <h3>Date</h3>
-                                                </>
-                                            )}
-                                        </div>
+                                {
+                                    //categoryType === "events"
+                                    datetime_utc  ? (
+                                        <div className="hoursSection">
+                                            <div className="subTitle">
+                                                {datetime_utc && (
+                                                    <>
+                                                        <img
+                                                            src={clock}
+                                                            alt="clock icon"
+                                                        />
+                                                        <h3>Date</h3>
+                                                    </>
+                                                )}
+                                            </div>
 
-                                        <p className="utcTime">
-                                            {utcTime(datetime_utc)}
-                                        </p>
-                                    </div>
-                                ) : (
-                                    description && (
-                                        <>
-                                            <img
-                                                src={about}
-                                                alt="information icon"
-                                            />
-                                            <h3>About</h3>
-                                        </>
+                                            <p className="utcTime">
+                                                {utcTime(datetime_utc)}
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        description && (
+                                            <>
+                                                <img
+                                                    src={about}
+                                                    alt="information icon"
+                                                />
+                                                <h3>About</h3>
+                                            </>
+                                        )
                                     )
-                                )}
+                                }
                             </div>
                             <div>
                                 <a
                                     href={
-                                        categoryType === "movies" ||
-                                        categoryType === "events"
-                                            ? link
-                                            : website
+                                        // categoryType === "movies" ||
+                                        // categoryType === "events"
+                                        reviews ? link : website
                                     }
                                     className="pinkButton"
                                     target="_blank"
                                 >
-                                    {categoryType === "movies" ||
-                                    categoryType === "events" ? (
-                                        <>
-                                            <img
-                                                src={ticket}
-                                                alt="ticket icon"
-                                            />
-                                            <h3>Find tickets near me</h3>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <img src={globe} alt="globe icon" />
-                                            <h3>Website</h3>
-                                        </>
-                                    )}
+                                    {
+                                        //categoryType === "movies" ||
+                                        // categoryType === "events"
+                                        reviews ? (
+                                            <>
+                                                <img
+                                                    src={ticket}
+                                                    alt="ticket icon"
+                                                />
+                                                <h3>Find tickets near me</h3>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <img
+                                                    src={globe}
+                                                    alt="globe icon"
+                                                />
+                                                <h3>Website</h3>
+                                            </>
+                                        )
+                                    }
                                 </a>
                             </div>
                         </div>
@@ -476,69 +484,84 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     </div>
 
                     {/* Restaurant/Attractions */}
-                    {(categoryType === "restaurants" ||
-                        categoryType === "attractions") && (
-                        <div className="additionalInformation">
-                            <div className="phoneSection">
-                                <div className="subTitle">
-                                    {phone && (
-                                        <>
-                                            <img
-                                                src={phoneIcon}
-                                                alt="phone icon"
-                                            />
-                                            <h3>Phone</h3>
-                                        </>
-                                    )}
-                                </div>
-                                <p>{phone}</p>
-                            </div>
-                            <div className="locationSection">
-                                <div className="subTitle">
-                                    <img src={location} alt="map pin icon" />
-                                    <h3>Location</h3>
-                                </div>
-                                <p>{address_street}</p>
-                            </div>
-                            <div className="map">
-                                <iframe
-                                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDoPEmjv8_EPKu_NpowjpIZ_n3O4Ovkp_w&q=${address_street}`}
-                                ></iframe>
-                            </div>
-                            <div className="hoursSection">
-                                <div className="subTitle">
-                                    {opening_hours && (
-                                        <>
-                                            <img src={clock} alt="clock icon" />
-                                            <h3>Hours</h3>
-                                        </>
-                                    )}
-                                </div>
-                                {opening_hours?.map((item) => {
-                                    return (
-                                        <div className="hoursContainer">
-                                            <p>{newLine(item)[0]}</p>
-                                            <p>{newLine(item)[1]}</p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                            {categoryType !== "events" && (
-                                <div className="carouselSection">
+                    {
+                        /*(categoryType === "restaurants" ||
+                        categoryType === "attractions")*/ reviews && (
+                            <div className="additionalInformation">
+                                <div className="phoneSection">
                                     <div className="subTitle">
-                                        <img src={imageIcon} alt="image icon" />
-                                        <h3>Photos</h3>
+                                        {phone && (
+                                            <>
+                                                <img
+                                                    src={phoneIcon}
+                                                    alt="phone icon"
+                                                />
+                                                <h3>Phone</h3>
+                                            </>
+                                        )}
                                     </div>
-                                    <Carousel
-                                        data={image}
-                                        location={"modalImage"}
-                                    />
+                                    <p>{phone}</p>
                                 </div>
-                            )}
-                        </div>
-                    )}
+                                <div className="locationSection">
+                                    <div className="subTitle">
+                                        <img
+                                            src={location}
+                                            alt="map pin icon"
+                                        />
+                                        <h3>Location</h3>
+                                    </div>
+                                    <p>{address_street}</p>
+                                </div>
+                                <div className="map">
+                                    <iframe
+                                        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDoPEmjv8_EPKu_NpowjpIZ_n3O4Ovkp_w&q=${address_street}`}
+                                    ></iframe>
+                                </div>
+                                <div className="hoursSection">
+                                    <div className="subTitle">
+                                        {opening_hours && (
+                                            <>
+                                                <img
+                                                    src={clock}
+                                                    alt="clock icon"
+                                                />
+                                                <h3>Hours</h3>
+                                            </>
+                                        )}
+                                    </div>
+                                    {opening_hours?.map((item, i) => {
+                                        return (
+                                            <div
+                                                className="hoursContainer"
+                                                key={i}
+                                            >
+                                                <p>{newLine(item)[0]}</p>
+                                                <p>{newLine(item)[1]}</p>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                {categoryType !== "events" && (
+                                    <div className="carouselSection">
+                                        <div className="subTitle">
+                                            <img
+                                                src={imageIcon}
+                                                alt="image icon"
+                                            />
+                                            <h3>Photos</h3>
+                                        </div>
+                                        <Carousel
+                                            data={image}
+                                            location={"modalImage"}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        )
+                    }
                     {/* LIVE ENTERTAINMENT */}
-                    {categoryType === "events" && (
+                    {//categoryType === "events" 
+                    datetime_utc && (
                         <div className="additionalInformation events">
                             <div className="locationSection">
                                 <div className="subTitle">
@@ -557,7 +580,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                 </div>
 
                 {/* MOVIE */}
-                {categoryType === "movies" && (
+                {trailer && (
                     <div className="movieTrailer">
                         {/* <iframe
                             src={trailer}

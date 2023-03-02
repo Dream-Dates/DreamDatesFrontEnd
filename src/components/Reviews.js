@@ -81,13 +81,10 @@ function Reviews({ reviews, rating }) {
             );
     };
 
-
+    // show the full user review
     const handleClick = (e) => {
-        console.log(e);
-        console.log(e.target.previousElementSibling.className);
         e.target.style.display = "none"
         e.target.previousElementSibling.className = "showFullReview";
-
     }
 
     return (
@@ -104,7 +101,7 @@ function Reviews({ reviews, rating }) {
 
                 {reviews?.map((review) => {
                     return (
-                        <div className="review">
+                        <div className="review" key={review.author_name}>
                             <div className="reviewHeader">
                                 <div>
                                     <img
