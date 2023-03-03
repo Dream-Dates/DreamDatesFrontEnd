@@ -298,12 +298,11 @@ function DateIdeasList({
             )}
             <h2>
                 {headerTitle[ideas?.[0]?.categoryType]}{" "}
-                {categoryName !== "saved" &&
-                    (!categoryName && (
-                        <span onClick={() => viewAll(ideas?.[0]?.categoryType)}>
-                            View all
-                        </span>
-                    ))}
+                {categoryName !== "saved" && !categoryName && (
+                    <span onClick={() => viewAll(ideas?.[0]?.categoryType)}>
+                        View all
+                    </span>
+                )}
             </h2>
             <div className="carouselContainer">
                 <ul
@@ -369,7 +368,11 @@ function DateIdeasList({
                                     <p className="city">
                                         {idea.city && idea.city}
                                     </p>
-                                    <p className="type">{idea.categoryType === "restaurants" && 'Food' || idea.categoryType}</p>
+                                    <p className="type">
+                                        {(idea.categoryType === "restaurants" &&
+                                            "Food") ||
+                                            idea.categoryType}
+                                    </p>
                                     <p className="price">
                                         {idea.price_range &&
                                             dollarSigns(idea.price_range)}

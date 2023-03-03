@@ -275,7 +275,8 @@
             // background-image: url(../assets/whiteHeart.svg);
         }
 
-        .heartContainer {
+        .heartContainer,
+        .closeContainer {
             display: flex;
             justify-content: center;
             align-items: center;

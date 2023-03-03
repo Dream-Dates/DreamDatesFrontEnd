@@ -1445,7 +1445,8 @@ h5 {
   width: 43px;
   margin: 26px 41px;
 }
-.modalMovie .modalHeader .heartContainer {
+.modalMovie .modalHeader .heartContainer,
+.modalMovie .modalHeader .closeContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

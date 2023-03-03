@@ -1,31 +1,38 @@
 // _mediaQueries.scss
 
 @media (max-width: 1000px) {
+
     // header
     .normalView {
         display: none;
     }
+
     .userAuth {
         display: none;
     }
+
     .homeSavedButtons {
         .pinkButton {
             min-width: auto;
         }
     }
+
     .userAuthMobile {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+
         img {
             width: 30px;
             height: 30px;
         }
+
         .pinkButton {
             min-width: auto;
             width: 34px;
             height: 34px;
         }
+
         button {
             display: flex;
             justify-content: space-evenly;
@@ -33,6 +40,7 @@
             padding: 0px;
             position: relative;
         }
+
         .profile {
             display: none;
             position: absolute;
@@ -45,12 +53,15 @@
             border: 1px solid black;
             top: calc(100% + 21px);
         }
+
         .pinkButton:hover {
             background-color: #FFC7D0;
+
             p {
                 color: black;
             }
         }
+
         .profileBody {
             display: flex;
             flex-direction: column;
@@ -78,6 +89,7 @@
             background-color: white;
             clip-path: polygon(10px 0, 0 20px, 20px 20px);
         }
+
         .showDropDown {
             display: block;
         }
@@ -88,36 +100,41 @@
     .modalMovie {
         .modalContainer {
             .additionalInformation {
-                    // display: grid;
-                    // grid-template-columns: 50% 50%;
-                    // grid-template-rows: auto;
-                    // column-gap: 20px;
-                    grid-template-areas:
-                        "phone location"
-                        "map map"
-                        "hours hours"
-                        "carousel carousel";
-                }
-                .additionalInformation.events {
-                    grid-template-areas:
-                        "location location"
-                        "map map";
-                }
+                // display: grid;
+                // grid-template-columns: 50% 50%;
+                // grid-template-rows: auto;
+                // column-gap: 20px;
+                grid-template-areas:
+                    "phone location"
+                    "map map"
+                    "hours hours"
+                    "carousel carousel";
+            }
+
+            .additionalInformation.events {
+                grid-template-areas:
+                    "location location"
+                    "map map";
             }
         }
+    }
 }
 
 @media (max-width: 800px) {
+
     // header
     .logoNormal {
         display: none;
     }
+
     .logoMobile {
         display: block;
     }
+
     .headerLogo {
         width: 26px;
     }
+
     .headerNormalBottom {
         white-space: nowrap;
         overflow-x: auto;
@@ -128,9 +145,11 @@
         .midSide {
             flex-direction: column;
         }
+
         .rightSide {
             padding-left: 0;
         }
+
         .rightSide,
         .leftSide {
             width: 100%;
@@ -142,20 +161,25 @@
     .headerFilter {
         justify-content: space-between;
     }
+
     //modal
     .modalContainer {
         .textContainer {
             padding: 0 50px;
         }
+
         .topSide {
             text-align: center;
+
             .heading {
                 display: block;
                 width: auto;
+
                 a {
                     width: 177px;
                     margin: 0 auto;
                 }
+
                 h2 {
                     transform: translate(0);
                     display: inline-block;
@@ -168,68 +192,80 @@
 
 @media (max-width: 600px) {
     .modalMovie {
-            .modalContainer {
-                .additionalInformation {
-                    // display: grid;
-                    grid-template-columns: 100%;
-                    // grid-template-rows: auto;
-                    // column-gap: 20px;
-                    grid-template-areas:
-                        "phone"
-                        "location"
-                        "map"
-                        "hours"
-                        "carousel";
+        .modalContainer {
+            .additionalInformation {
+                // display: grid;
+                grid-template-columns: 100%;
+                // grid-template-rows: auto;
+                // column-gap: 20px;
+                grid-template-areas:
+                    "phone"
+                    "location"
+                    "map"
+                    "hours"
+                    "carousel";
+            }
+
+            .hoursContainer {
+                display: block;
+                justify-content: space-between;
+
+                &>* {
+                    padding: 0;
                 }
-                .hoursContainer {
-                    display: block;
-                    justify-content: space-between;
-                    &>* {
-                        padding: 0;
-                    }
-                    & p:first-child{
-                        font-weight: 600;
-                        padding-top: 0.5rem;
-                    }
-                }
-                .modalBody>div {
-                    padding: 0 40px;
-                }
-                .modalBody .infoSnippet {
-                    display: grid;
-                    grid-template-columns: 50% 50%;
-                    grid-template-rows: auto;
-                    grid-template-areas:
-                        "city city"
-                        "type price"
-                        "reviewStars reviewNumbers";
-                    padding: 25px 40px;
-                }
-                .city {
-                    grid-area: city;
-                }
-                .type {
-                    grid-area: type;
-                }
-                .price {
-                    grid-area: price;
-                    text-align: right;
-                }
-                .reviewStars {
-                    grid-area: reviewStars;
-                }
-                .reviewNumbers {
-                    grid-area: reviewNumbers;
-                    text-align: right;
+
+                & p:first-child {
+                    font-weight: 600;
+                    padding-top: 0.5rem;
                 }
             }
-            .aboutSectionHeader a {
-                position: absolute;
-                top: 357px;
-                left: 50%;
-                translate: -50%;
+
+            .modalBody>div {
+                padding: 0 40px;
+            }
+
+            .modalBody .infoSnippet {
+                display: grid;
+                grid-template-columns: 50% 50%;
+                grid-template-rows: auto;
+                grid-template-areas:
+                    "city city"
+                    "type price"
+                    "reviewStars reviewNumbers";
+                padding: 25px 40px;
+            }
+
+            .city {
+                grid-area: city;
+            }
+
+            .type {
+                grid-area: type;
+            }
+
+            .price {
+                grid-area: price;
+                text-align: right;
+            }
+
+            .reviewStars {
+                grid-area: reviewStars;
+            }
+
+            .reviewNumbers {
+                grid-area: reviewNumbers;
+                text-align: right;
             }
         }
+
+        .aboutSectionHeader a {
+            position: absolute;
+            top: 357px;
+            left: 50%;
+            translate: -50%;
+        }
+    }
+
     .signUp section {
         display: block;
     }
@@ -238,45 +274,58 @@
         h1 {
             margin: 15px 0 17px;
         }
+
         .modalHeader {
             // width: auto;
         }
+
         .modalContainer {
             width: 375px;
+
             .imageContainer {
                 margin-top: 75px;
             }
+
             .modalBody {
                 // display: none;
             }
+
             .modalBodyMobile {
-                & > div {
+                &>div {
                     padding: 0 29px;
                 }
-                & > div:not(.infoSnippet .carousel) p {
+
+                &>div:not(.infoSnippet .carousel) p {
                     padding: 0 20px;
                 }
+
                 .infoSnippet {
                     background-color: #941c2f;
+
                     div {
                         display: flex;
                         justify-content: space-between;
                     }
                 }
+
                 .additionalInformation {
                     display: block;
                 }
+
                 .carousel {
                     padding: 0 14px;
                 }
+
                 .carouselContainer {
                     padding: 0;
                 }
+
                 .carouselCard {
                     width: 272px;
                     height: 204px;
                     padding: 0;
                 }
+
                 .review {
                     // margin: 25px 80px;
                     height: auto;
@@ -288,17 +337,21 @@
             }
         }
     }
+
     .reviews {
         // display: none;
     }
+
     .modalHeader {
         height: 75px;
         width: 375px;
         position: fixed;
         border-radius: 16px 16px 0 0;
+
         .heart {
             width: 38.48px;
         }
+
         button {
             width: 35px;
             margin: 24px;

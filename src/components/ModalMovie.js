@@ -165,7 +165,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     useEffect(() => {
         const fetchSaved = async () => {
             const response = await fetch(
-                "https://dream-dates.heroku.com/dreamdates/saved/dates",
+                "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -192,7 +192,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
             // if not signed in the pop up
             setCloseNotSignedIn(!closeNotSignedIn);
         } else {
-            fetch("https://dream-dates.heroku.com/dreamdates/saved/dates", {
+            fetch("https://dream-dates.herokuapp.com/dreamdates/saved/dates", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -204,7 +204,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     if (data.some((item) => item.id == id)) {
                         // if id match then we remove
                         fetch(
-                            `https://dream-dates.heroku.com/dreamdates/datingideas/delete/${id}`,
+                            `https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${id}`,
                             {
                                 method: "DELETE",
                                 headers: { "Content-Type": "application/json" },
@@ -226,7 +226,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     } else {
                         // if id does not match then we save
                         fetch(
-                            "https://dream-dates.heroku.com/dreamdates/datingideas/saved",
+                            "https://dream-dates.herokuapp.com/dreamdates/datingideas/saved",
                             {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
