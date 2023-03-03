@@ -318,6 +318,9 @@ a {
   font-size: 16px;
   padding: 9px 22px;
 }
+.pinkButton h3 {
+  white-space: nowrap;
+}
 
 .dateIdeaCardHeader {
   color: white;
@@ -1911,6 +1914,9 @@ h4 {
 @media (max-width: 900px) {
   .modalMovie .modalContainer .additionalInformation {
     grid-template-areas: "phone location" "map map" "hours hours" "carousel carousel";
+  }
+  .modalMovie .modalContainer .additionalInformation.events {
+    grid-template-areas: "location location" "map map";
   }
 }
 @media (max-width: 800px) {

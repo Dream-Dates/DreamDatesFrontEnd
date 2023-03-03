@@ -369,7 +369,7 @@ function DateIdeasList({
                                     <p className="city">
                                         {idea.city && idea.city}
                                     </p>
-                                    <p className="type">{idea.categoryType}</p>
+                                    <p className="type">{idea.categoryType === "restaurants" && 'Food' || idea.categoryType}</p>
                                     <p className="price">
                                         {idea.price_range &&
                                             dollarSigns(idea.price_range)}

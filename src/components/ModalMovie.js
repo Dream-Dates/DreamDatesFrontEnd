@@ -47,9 +47,9 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         reviews,
         trailer,
         datetime_utc,
+        release_date,
+        genres,
     } = eventDetails;
-
-    console.log(reviews);
 
     const [closeNotSignedIn, setCloseNotSignedIn] = useState(false);
     const [showSavePopup, setShowSavePopup] = useState(false);
@@ -311,6 +311,17 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         return date.toDateString() + " " + date.toLocaleTimeString();
     };
 
+    // parse the genre
+    const genreParse = (genre) => {
+        try {
+            return JSON.parse(genre)[0].name;
+        } catch (err) {
+            // 👇️ This runs
+            console.log("Error: ", err.message);
+        }
+        if (genre) return JSON.parse(genre)[0].name;
+    }
+
     return (
         <div className="modalMovie" onClick={handleClickModalClose}>
             {closeNotSignedIn && (
@@ -394,7 +405,11 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                 <div className="modalBody">
                     <div className="infoSnippet">
                         <p className="city">{city && city}</p>
-                        <p className="type">{type || categoryType}</p>
+                        <p className="type">
+                            {(categoryType === "restaurants" && "Food") ||
+                                type ||
+                                categoryType}
+                        </p>
                         <p className="price">
                             {price_range && dollarSigns(price_range)}
                             {price && price}
@@ -414,7 +429,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                             <div className="subTitle">
                                 {
                                     //categoryType === "events"
-                                    datetime_utc  ? (
+                                    datetime_utc ? (
                                         <div className="hoursSection">
                                             <div className="subTitle">
                                                 {datetime_utc && (
@@ -479,7 +494,12 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 </a>
                             </div>
                         </div>
-                        {/* <p>2022 - 1hr 50min</p> */}
+                        {release_date && (
+                            <p>
+                                {release_date} -{" "}
+                                {genres && JSON.parse(genres)[0].name}
+                            </p>
+                        )}
                         <p>{description}</p>
                     </div>
 
@@ -560,23 +580,28 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                         )
                     }
                     {/* LIVE ENTERTAINMENT */}
-                    {//categoryType === "events" 
-                    datetime_utc && (
-                        <div className="additionalInformation events">
-                            <div className="locationSection">
-                                <div className="subTitle">
-                                    <img src={location} alt="map pin icon" />
-                                    <h3>Location</h3>
+                    {
+                        //categoryType === "events"
+                        datetime_utc && (
+                            <div className="additionalInformation events">
+                                <div className="locationSection">
+                                    <div className="subTitle">
+                                        <img
+                                            src={location}
+                                            alt="map pin icon"
+                                        />
+                                        <h3>Location</h3>
+                                    </div>
+                                    <p>{address_street}</p>
                                 </div>
-                                <p>{address_street}</p>
+                                <div className="map">
+                                    <iframe
+                                        src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDoPEmjv8_EPKu_NpowjpIZ_n3O4Ovkp_w&q=${address_street}`}
+                                    ></iframe>
+                                </div>
                             </div>
-                            <div className="map">
-                                <iframe
-                                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDoPEmjv8_EPKu_NpowjpIZ_n3O4Ovkp_w&q=${address_street}`}
-                                ></iframe>
-                            </div>
-                        </div>
-                    )}
+                        )
+                    }
                 </div>
 
                 {/* MOVIE */}

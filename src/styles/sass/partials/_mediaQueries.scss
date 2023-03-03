@@ -98,6 +98,11 @@
                         "hours hours"
                         "carousel carousel";
                 }
+                .additionalInformation.events {
+                    grid-template-areas:
+                        "location location"
+                        "map map";
+                }
             }
         }
 }
