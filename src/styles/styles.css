@@ -410,9 +410,9 @@ h3 {
   font-weight: 500;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   h1 {
-    font-size: 24px;
+    font-size: 20px;
   }
 }
 h5 {
