@@ -98,6 +98,8 @@ function Saved({ userId, searchTerm, categoryName }) {
                                         reviews: eventDetails.reviews,
                                         trailer: eventDetails.trailer,
                                         datetime_utc: eventDetails.datetime_utc,
+                                        release_date: eventDetails.release_date,
+                                        genres: eventDetails.genres,
                                     }),
                                 }
                             )

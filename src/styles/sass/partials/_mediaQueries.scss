@@ -338,9 +338,15 @@
         }
     }
 
-    .reviews {
-        // display: none;
+    .reviews, .carouselSection>.subtitle, .carouselSection>.testCarousel {
+        display: none;
     }
+
+    .mobileCarouselContainer {
+        display: block;
+    }
+
+
 
     .modalHeader {
         height: 75px;

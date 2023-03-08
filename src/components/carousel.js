@@ -78,7 +78,7 @@ function Carousel({ data, location }) {
         }, 500);
     }
 
-    if (location == "modalImage") {
+    if (location === "modalImage") {
         return (
             <div className="testCarousel">
                 <ul className="carouseImageList">
@@ -112,7 +112,7 @@ function Carousel({ data, location }) {
         );
     }
 
-    if (location == "modalReviews") {
+    if (location === "modalReviews") {
         return (
             <div className="carouselContainer">
                 <div className="carouselWindow">

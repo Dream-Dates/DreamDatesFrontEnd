@@ -2,101 +2,202 @@
 import { useState } from "react";
 import leftArrow from "../assets/leftArrow.svg";
 import rightArrow from "../assets/rightArrow.svg";
-import reviewStarRed from "../assets/reviewStarRed.svg"
-import reviewUserPicture from "../assets/ReviewUserPicture.svg"
+import reviewStarRed from "../assets/reviewStarRed.svg";
+import reviewUserPicture from "../assets/ReviewUserPicture.svg";
+import reviewStar from "../assets/ReviewStar.svg";
 
-function MobileCarousel({ imageData }) {
-    const [leftDisable, setLeftDisabled] = useState(true)
-    const [rightDisable, setRightDisabled] = useState(false)
+function MobileCarousel({ imageData, location, rating }) {
+    const [currentSlide, setCurrentSlide] = useState(0);
 
-    const widthOfImg = 272; 
-    let ready = true;
-
-    const slideLeft = () => {
-        if (ready) {
-            ready = false
-            const slider = document.getElementById("mobileSlider");
-            slider.scrollLeft = slider.scrollLeft - widthOfImg;
-            
-            setTimeout(() => {
-                checkSlideLocation(slider.scrollLeft, slider.scrollWidth)
-                ready = true
-            }, 300);
-        }
+    const nextSlide = () => {
+        setCurrentSlide(
+            currentSlide === imageData.length - 1 ? 0 : currentSlide + 1
+        );
     };
 
-    const slideRight = () => {
-        if (ready) {
-            ready = false
-            const slider = document.getElementById("mobileSlider");
-            slider.scrollLeft = slider.scrollLeft + widthOfImg;
-            
-            setTimeout(() => {
-                checkSlideLocation(slider.scrollLeft, slider.scrollWidth)
-                ready = true
-            }, 300);
-        }
+    const prevSlide = () => {
+        setCurrentSlide(
+            currentSlide === 0 ? imageData.length - 1 : currentSlide - 1
+        );
     };
 
-    // check the value of scrollLeft is less than 290 disable left button, if scrollwidth - left - 300 is less than 300 disable right button
-    const checkSlideLocation = (left, width) => {
-        console.log(left)
-            if (left == 0) {
-                console.log('left disabled')
-                setLeftDisabled(true)
-            } else {
-                console.log('left is enabled')
-                setLeftDisabled(false)
-            }
+    const [reviewReadMore, setReviewReadMore] = useState([]);
 
-            if (width - widthOfImg - left < widthOfImg ) {
-                console.log('right disabled')
-                setRightDisabled(true)
-            } else {
-                console.log('right is enabled')
-                setRightDisabled(false)
-            }
-    }
+    const reviewStarsDisplay = (score, category) => {
+        // round the score to a whole number
+        let rating = Math.round(+score);
 
-    return (
-        <div className="carousel">
-            <button className={`carouselControls prev ${leftDisable && 'disable-link'}`} onClick={slideLeft}>
-                {" "}
-                <img src={leftArrow} alt="previous" />{" "}
-            </button>
+        // movies rating is out of 10 so we have to divide by 2 and round up
+        if (category == "movies") rating = Math.ceil(score / 2);
 
+        if (rating == 0)
+            return (
+                <>
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
 
-            <div className="carouselContainer" id="mobileSlider">
-                {imageData?.map((item, index) => {
-                    return (
-                        <div className="carouselCard" key={index}>
-                            <img src={item} alt=".dd" />
-                        </div>
-                    );
-                })}
-                <div className="carouselCard review">
-                    <div className="reviewHeader">
-                        <p>Reviewer's name</p>
-                        <p>⭐⭐⭐⭐⭐</p>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum voluptatibus amet possimus adipisci quam, tempore voluptate nobis atque officia earum reiciendis labore sint, obcaecati delectus non, harum ipsum architecto modi error consectetur? Sit temporibus ipsum minus consequuntur sunt. Itaque eos saepe excepturi velit illum ex nam magni aspernatur qui.</p>
-                </div>
-                <div className="carouselCard review">
-                    <div className="reviewHeader">
-                        <p>Reviewer's name</p>
-                        <p>⭐⭐⭐⭐⭐</p>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum voluptatibus amet possimus adipisci quam, tempore voluptate nobis atque officia earum reiciendis labore sint, obcaecati delectus non, harum ipsum architecto modi error consectetur? Sit temporibus ipsum minus consequuntur sunt. Itaque eos saepe excepturi velit illum ex nam magni aspernatur qui.</p>
+        if (rating == 1)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
+
+        if (rating == 2)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />{" "}
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
+
+        if (rating == 3)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
+
+        if (rating == 4)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStar} alt="star logo" />
+                </>
+            );
+
+        if (rating == 5)
+            return (
+                <>
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                    <img src={reviewStarRed} alt="star logo" />
+                </>
+            );
+    };
+
+    // show the full user review
+    const handleClick = (e) => {
+        e.target.style.display = "none";
+        e.target.previousElementSibling.className = "showFullReview";
+    };
+
+    if (location === "images") {
+        return (
+            <div className="mobileCarouselContainer">
+                <div className="mobileCarouselWindow">
+                    <img src={imageData[currentSlide]} alt="carousel slide" />
+                    <button
+                        className={`carouselArrow leftArrow`}
+                        onClick={prevSlide}
+                    >
+                        <img src={leftArrow} alt="previous" />
+                        <span></span>
+                    </button>
+                    <button
+                        className={`carouselArrow rightArrow`}
+                        onClick={nextSlide}
+                    >
+                        <span></span>
+                        <img src={rightArrow} alt="next" />
+                    </button>
                 </div>
             </div>
+        );
+    }
 
+    if (location === "reviews") {
+        return (
+            <div className="mobileCarouselContainer mobileReview">
+                <div className="mobileCarouselWindow">
+                    <div className="reviewsHeader">
+                        <img src={reviewStar} alt="star logo" />
+                        <h3> Reviews </h3>
+                        <div className="reviewStars">
+                            {reviewStarsDisplay(rating)}
+                        </div>
+                        {/* <p> (1,551)</p>  */}
+                    </div>
 
-            <button className={`carouselControls next ${rightDisable && 'disable-link'}`} onClick={slideRight}>
-                {" "}
-                <img src={rightArrow} alt="next" />{" "}
-            </button>
-        </div>
-    );
+                    <div
+                        className="review"
+                        key={imageData[currentSlide].author_name}
+                    >
+                        <div className="reviewHeader">
+                            <div>
+                                <img
+                                    src={
+                                        imageData[currentSlide]
+                                            .profile_photo_url
+                                    }
+                                    alt="reviewer's user picture"
+                                />
+                                <p>{imageData[currentSlide].author_name}</p>
+                            </div>
+                            <div className="reviewStars">
+                                {reviewStarsDisplay(
+                                    imageData[currentSlide].rating
+                                )}
+                            </div>
+                        </div>
+                        <p
+                            className={`reviewText ${
+                                reviewReadMore.includes(
+                                    imageData[currentSlide].text
+                                ) && "showFullReview"
+                            }`}
+                        >
+                            {imageData[currentSlide].text}
+                        </p>
+                        <button
+                            className={`reviewReadMore ${
+                                imageData[currentSlide].text.length < 195 &&
+                                "displayNone"
+                            }`}
+                            onClick={(e) => handleClick(e)}
+                        >
+                            Read More
+                        </button>
+                    </div>
+                    <button
+                        className={`carouselArrow leftArrow`}
+                        onClick={prevSlide}
+                    >
+                        <img src={leftArrow} alt="previous" />
+                        <span></span>
+                    </button>
+                    <button
+                        className={`carouselArrow rightArrow`}
+                        onClick={nextSlide}
+                    >
+                        <span></span>
+                        <img src={rightArrow} alt="next" />
+                    </button>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default MobileCarousel;

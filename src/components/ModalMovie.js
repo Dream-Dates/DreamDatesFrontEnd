@@ -241,7 +241,6 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                     price_range: price_range,
                                     link: link,
                                     img: img,
-                                    image: image,
                                     time: time,
                                     description: description,
                                     votes: votes,
@@ -250,7 +249,11 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                     website: website,
                                     rating: rating,
                                     user_id: userId,
-                                    phone: phone,
+                                    reviews: reviews,
+                                    trailer: trailer,
+                                    datetime_utc: datetime_utc,
+                                    release_date: release_date,
+                                    genres: genres,
                                 }),
                             }
                         )
@@ -574,6 +577,10 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                             data={image}
                                             location={"modalImage"}
                                         />
+                                        <MobileCarousel
+                                            imageData={image}
+                                            location={"images"}
+                                        />
                                     </div>
                                 )}
                             </div>
@@ -617,6 +624,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                 )}
 
                 {reviews && <Reviews reviews={reviews} rating={rating} />}
+                <MobileCarousel imageData={reviews} location={"reviews"} rating={rating}/>
             </div>
 
             {showSavePopup && <SavePopup text={saveMessage} />}
