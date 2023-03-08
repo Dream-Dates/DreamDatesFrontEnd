@@ -306,11 +306,11 @@ function DateIdeasList({
             </h2>
             <div className="carouselContainer">
                 <ul
-                    className={
+                    className={`mobileViewAll ${
                         categoryName
                             ? "carouselImageListViewAll"
                             : "carouselImageList"
-                    }
+                    }`}
                     ref={carouselContent}
                 >
                     {filteredList?.map((idea) => {

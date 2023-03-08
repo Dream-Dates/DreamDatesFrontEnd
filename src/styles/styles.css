@@ -654,6 +654,10 @@ h5 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -670,6 +674,9 @@ h5 {
 .mobileCarouselContainer.mobileReview .reviewHeader > img {
   width: 33px;
   margin-right: 7px;
+}
+.mobileCarouselContainer.mobileReview .reviewHeader .reviewStars {
+  margin-left: 40px;
 }
 .mobileCarouselContainer.mobileReview .reviewsHeader img {
   width: 24.17px;
@@ -2199,5 +2206,29 @@ h4 {
   .modalHeader button {
     width: 35px;
     margin: 24px;
+  }
+  .dateIdeasList {
+    padding-top: 42px;
+  }
+  .dateIdeasList h2 {
+    display: none;
+  }
+  .dateIdeasList .mobileViewAll {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: start !important;
+        -ms-flex-pack: start !important;
+            justify-content: start !important;
+    -ms-flex-wrap: wrap !important;
+        flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 42px !important;
+  }
+  .dateIdeasList .carouselImageList li {
+    margin: 0 auto;
+  }
+  .dateIdeasList .carouselArrow {
+    display: none;
   }
 }

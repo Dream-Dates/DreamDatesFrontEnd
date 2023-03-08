@@ -46,11 +46,13 @@
 
         .reviewStars {
             align-items: center;
+            // margin-right: 40px;
         }
     }
 
     .reviewHeader {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         padding-bottom: 10px;
 
@@ -59,9 +61,13 @@
             align-items: center;
         }
 
-        > img {
+        >img {
             width: 33px;
             margin-right: 7px;
+        }
+
+        .reviewStars {
+            margin-left: 40px;
         }
     }
 
