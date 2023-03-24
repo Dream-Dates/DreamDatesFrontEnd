@@ -181,6 +181,28 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                         savedId.push(item.id);
                     });
                     setSaved(savedId);
+                    console.log(savedId);
+                });
+            const response2 = await fetch(
+                "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        id: id,
+                        type: categoryType,
+                        user_id: userId,
+                    }),
+                }
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    const savedId = [];
+                    data.forEach((item) => {
+                        savedId.push(item.id);
+                    });
+                    // setSaved(savedId);
+                    console.log(savedId);
                 });
         };
 
@@ -270,6 +292,67 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                         }, 500);
                     }
                 });
+
+            fetch("https://dream-dates.herokuapp.com/dreamdates/save/idea", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id: id,
+                    type: categoryType,
+                    user_id: userId,
+                }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.some((item) => item.id == id)) {
+                        // if id match then we remove
+                        fetch(
+                            `https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${id}`,
+                            {
+                                method: "DELETE",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    userid: userId,
+                                }),
+                            }
+                        )
+                            .then((res) => res.json())
+                            .then((data) => {
+                                setToggle(!toggle);
+                                triggerToggle();
+                            });
+                        setShowSavePopup(true);
+                        setSaveMessage("Unsaved");
+                        setTimeout(() => {
+                            setShowSavePopup(false);
+                        }, 500);
+                    } else {
+                        // if id does not match then we save
+                        fetch(
+                            "https://dream-dates.herokuapp.com/dreamdates/save/idea",
+                            {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    id: id,
+                                    type: categoryType,
+                                    user_id: userId,
+                                }),
+                            }
+                        )
+                            .then((res) => res.json())
+                            .then((data) => {
+                                console.log(data);
+                                setToggle(!toggle);
+                                triggerToggle();
+                            });
+                        setShowSavePopup(true);
+                        setSaveMessage("Saved");
+                        setTimeout(() => {
+                            setShowSavePopup(false);
+                        }, 500);
+                    }
+                });
             // track every time a date is saved
             mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
                 debug: true,
@@ -281,6 +364,43 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
             });
         }
     };
+
+    const handleClickTestSave = () => {
+        console.log(userId, id, categoryType);
+        fetch("https://dream-dates.herokuapp.com/dreamdates/save/idea", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                id: id,
+                type: categoryType,
+                user_id: userId,
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+    };
+    useEffect(() => {
+        console.log("Testing");
+        const fetchSaved = async () => {
+            const response = await fetch(
+                "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        id: id,
+                        type: categoryType,
+                        user_id: userId,
+                    }),
+                }
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                });
+        };
+        fetchSaved();
+    }, []);
 
     // converting the price range from numbers to $
     const dollarSigns = (num) => {
@@ -323,7 +443,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
             console.log("Error: ", err.message);
         }
         if (genre) return JSON.parse(genre)[0].name;
-    }
+    };
 
     return (
         <div className="modalMovie" onClick={handleClickModalClose}>
@@ -468,7 +588,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                     href={
                                         // categoryType === "movies" ||
                                         // categoryType === "events"
-                                        reviews ? link : website
+                                        reviews ? website : link
                                     }
                                     className="pinkButton"
                                     target="_blank"
@@ -623,8 +743,20 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     </div>
                 )}
 
-                {reviews && <Reviews reviews={reviews} rating={rating} />}
-                <MobileCarousel imageData={reviews} location={"reviews"} rating={rating}/>
+                {reviews && (
+                    <>
+                        <Reviews reviews={reviews} rating={rating} />
+                        <MobileCarousel
+                            imageData={reviews}
+                            location={"reviews"}
+                            rating={rating}
+                        />
+                    </>
+                )}
+
+                <button onClick={handleClickTestSave}>
+                    TEST NEW SAVE ENDPOINT
+                </button>
             </div>
 
             {showSavePopup && <SavePopup text={saveMessage} />}

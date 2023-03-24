@@ -122,9 +122,9 @@ function Reviews({ reviews, rating }) {
                     );
                 })}
 
-                <button className="reviewsScrollMore">
+                {/* <button className="reviewsScrollMore">
                     Scroll for more reviews
-                </button>
+                </button> */}
             </div>
         </div>
     );

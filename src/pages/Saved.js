@@ -137,14 +137,41 @@ function Saved({ userId, searchTerm, categoryName }) {
             )
                 .then((res) => res.json())
                 .then((data) => {
+                    console.log('old saved', data)
                     data.forEach((item) => (item.categoryType = "saved"));
                     // setSaved({ saved: data });
-                    setSaved(data);
+                    // setSaved(data);
                     setLoading(false);
+                });
+        };
+        const fetchSaved2 = async () => {
+            const response = await fetch(
+                "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        // id: id,
+                        // type: categoryType,
+                        user_id: userId,
+                    }),
+                }
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log("new saved", data);
+                    if (Array.isArray(data.data)) {
+                        data.data.forEach((item) => (item[0].categoryType = "saved"));
+                        // setSaved({ saved: data });
+                        setSaved(data);
+                        setLoading(false);
+                        // console.log("new2", data);
+                    }
                 });
         };
 
         fetchSaved();
+        fetchSaved2();
     }, [toggle, loading]);
 
     return (

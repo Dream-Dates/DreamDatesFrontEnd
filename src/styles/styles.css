@@ -365,7 +365,7 @@ p {
 
 h1 {
   font-family: "Nobile", sans-serif;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
   color: white;
   text-align: center;
@@ -679,7 +679,7 @@ h5 {
   margin-left: 40px;
 }
 .mobileCarouselContainer.mobileReview .reviewsHeader img {
-  width: 24.17px;
+  width: 20.17px;
   height: 22.98px;
   padding-bottom: 5px;
 }
