@@ -136,3 +136,15 @@
     stroke: black;
     stroke-width: 1px;
 }
+
+.signInSignUp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    > div {
+        height: 60px;
+    }
+    .pinkButton {
+        min-width: 110px;
+    }
+}

@@ -181,7 +181,8 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                         savedId.push(item.id);
                     });
                     setSaved(savedId);
-                    console.log(savedId);
+                    // console.log('Old saved data', savedId);
+                    console.log("Old saved data", data);
                 });
             const response2 = await fetch(
                 "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
@@ -379,8 +380,9 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
             .then((res) => res.json())
             .then((data) => console.log(data));
     };
+
     useEffect(() => {
-        console.log("Testing");
+        // console.log("Testing");
         const fetchSaved = async () => {
             const response = await fetch(
                 "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
@@ -396,7 +398,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
             )
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data);
+                    console.log("New saved data", data);
                 });
         };
         fetchSaved();

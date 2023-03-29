@@ -20,6 +20,7 @@ function App() {
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryName, setCategoryName] = useState("");
     const [localStorageFinished, setLocalStorageFinished] = useState(false);
+    const [showProfileDropDown, setShowProfileDropDown] = useState(false);
 
     // // track how many times homepage is visited
     // useEffect(() => {
@@ -76,8 +77,22 @@ function App() {
         setCategoryName(categoryName);
     };
 
+    const handleClickProfile = (e) => {
+        console.log(e);
+        if (
+            e.target.className === "pinkButton" ||
+            e.target.id === "profileIcon" ||
+            e.target.tagName === "A" ||
+            e.target.parentElement.tagName === "A"
+        ) {
+            setShowProfileDropDown(!showProfileDropDown);
+        } else {
+            setShowProfileDropDown(false);
+        }
+    };
+
     return (
-        <div className="App">
+        <div className="App" onClick={handleClickProfile}>
             <ContextProvider>
                 <Header
                     user={user}
@@ -85,6 +100,7 @@ function App() {
                     getSearchTerm={getSearchTerm}
                     getCategoryName={getCategoryName}
                     categoryName={categoryName}
+                    showProfileDropDown={showProfileDropDown}
                 />
 
                 <Routes>

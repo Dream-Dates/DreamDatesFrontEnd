@@ -489,9 +489,9 @@ h5 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 100%;
@@ -885,6 +885,25 @@ h5 {
   stroke-width: 1px;
 }
 
+.signInSignUp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.signInSignUp > div {
+  height: 60px;
+}
+.signInSignUp .pinkButton {
+  min-width: 110px;
+}
+
 .dateIdeas,
 .saved {
   margin: 210px 71px;
@@ -1031,6 +1050,45 @@ h5 {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   z-index: 35;
+  left: 0;
+  top: 0;
+}
+.catch .notSignedIn {
+  position: relative;
+  width: min(90%, 496px);
+  height: 350px;
+  border-radius: 16px;
+  border: 1px solid #941c2f;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.catch .notSignedIn .closeButton {
+  position: absolute;
+  top: 23px;
+  right: 23px;
+}
+.catch .notSignedIn .userAuth {
+  padding-left: 0;
+}
+.catch .notSignedIn a {
+  margin: 0 auto;
+}
+.catch .notSignedIn .userAuthTop {
+  margin-bottom: 35px;
+}
+.catch .notSignedIn .pinkButton {
+  width: 110px;
+}
+.catch .notSignedIn button:hover {
+  background-color: transparent;
 }
 
 .reviewStars {
@@ -1628,43 +1686,6 @@ h5 {
 .modalMovie .next {
   right: -20px;
 }
-.modalMovie .notSignedIn {
-  position: relative;
-  width: min(90%, 496px);
-  height: 350px;
-  border-radius: 16px;
-  border: 1px solid #941c2f;
-  background-color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.modalMovie .notSignedIn .closeButton {
-  position: absolute;
-  top: 23px;
-  right: 23px;
-}
-.modalMovie .notSignedIn .userAuth {
-  padding-left: 0;
-}
-.modalMovie .notSignedIn a {
-  margin: 0 auto;
-}
-.modalMovie .notSignedIn .userAuthTop {
-  margin-bottom: 35px;
-}
-.modalMovie .notSignedIn .pinkButton {
-  width: 110px;
-}
-.modalMovie .notSignedIn button:hover {
-  background-color: transparent;
-}
 .modalMovie .movieTrailer {
   padding-top: 30px;
 }
@@ -1998,7 +2019,7 @@ h4 {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-top: 15%;
+    margin-top: 5%;
   }
   .userAuthMobile .triangleHatOutline {
     position: relative;
@@ -2021,6 +2042,13 @@ h4 {
             clip-path: polygon(10px 0, 0 20px, 20px 20px);
   }
   .userAuthMobile .showDropDown {
+    display: block;
+  }
+  .signInSignUp > div {
+    padding: 20px;
+  }
+  .signInSignUp .pinkButton {
+    min-width: 120px;
     display: block;
   }
 }
@@ -2088,6 +2116,10 @@ h4 {
   }
 }
 @media (max-width: 600px) {
+  .dateIdeas,
+  .saved {
+    margin: 210px 10px;
+  }
   .modalMovie .modalContainer .additionalInformation {
     grid-template-columns: 100%;
     grid-template-areas: "phone" "location" "map" "hours" "carousel";
@@ -2188,7 +2220,9 @@ h4 {
     border-radius: 16px;
     white-space: normal;
   }
-  .reviews, .carouselSection > .subtitle, .carouselSection > .testCarousel {
+  .reviews,
+  .carouselSection > .subtitle,
+  .carouselSection > .testCarousel {
     display: none;
   }
   .mobileCarouselContainer {
@@ -2212,18 +2246,6 @@ h4 {
   }
   .dateIdeasList h2 {
     display: none;
-  }
-  .dateIdeasList .mobileViewAll {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-    -webkit-box-pack: start !important;
-        -ms-flex-pack: start !important;
-            justify-content: start !important;
-    -ms-flex-wrap: wrap !important;
-        flex-wrap: wrap !important;
-    width: 100% !important;
-    gap: 42px !important;
   }
   .dateIdeasList .carouselImageList li {
     margin: 0 auto;

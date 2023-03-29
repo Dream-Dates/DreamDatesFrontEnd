@@ -19,10 +19,11 @@ function Header({
     getSearchTerm,
     getCategoryName,
     categoryName,
+    showProfileDropDown,
 }) {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
-    const [showDropDown, setShowDropDown] = useState(false);
+    // const [showProfileDropDown, setShowProfileDropDown] = useState(false);
 
     const context = useContext(Context);
 
@@ -107,15 +108,15 @@ function Header({
     };
 
     const handleClickProfile = (e) => {
-        console.log(e);
-        if (
-            e.target.className === "pinkButton" ||
-            e.target.id === "profileIcon" ||
-            e.target.tagName === "A" ||
-            e.target.parentElement.tagName === "A"
-        ) {
-            setShowDropDown(!showDropDown);
-        }
+        // console.log(e);
+        // if (
+        //     e.target.className === "pinkButton" ||
+        //     e.target.id === "profileIcon" ||
+        //     e.target.tagName === "A" ||
+        //     e.target.parentElement.tagName === "A"
+        // ) {
+        //     setShowProfileDropDown(!showProfileDropDown);
+        // }
     };
 
     return (
@@ -148,7 +149,7 @@ function Header({
                                 type="text"
                                 name="search"
                                 id="search"
-                                placeholder="Search for Food, Movies, Active..."
+                                placeholder="Search for Food, Movies, Attractions"
                                 onChange={handleChange}
                                 value={searchTerm}
                                 onClick={handleClickSearchBar}
@@ -230,7 +231,7 @@ function Header({
                                 />
                                 <div
                                     className={`profile ${
-                                        showDropDown && "showDropDown"
+                                        showProfileDropDown && "showDropDown"
                                     }`}
                                 >
                                     <div className="triangleHatOutline">
@@ -255,18 +256,22 @@ function Header({
                                         ) : (
                                             <div className="profileBody">
                                                 <div className="signInSignUp">
-                                                    <Link
-                                                        to="/signin"
-                                                        className="pinkButton userAuthTop"
-                                                    >
-                                                        <p>Sign In</p>
-                                                    </Link>
-                                                    <Link
-                                                        to={"/signup"}
-                                                        className="pinkButton"
-                                                    >
-                                                        Sign Up
-                                                    </Link>
+                                                    <div>
+                                                        <Link
+                                                            to="/signin"
+                                                            className="pinkButton userAuthTop"
+                                                        >
+                                                            Sign In
+                                                        </Link>
+                                                    </div>
+                                                    <div>
+                                                        <Link
+                                                            to={"/signup"}
+                                                            className="pinkButton"
+                                                        >
+                                                            Sign Up
+                                                        </Link>
+                                                    </div>
                                                 </div>
                                             </div>
                                         )}
@@ -468,7 +473,7 @@ function Header({
                             />
                             <div
                                 className={`profile ${
-                                    showDropDown && "showDropDown"
+                                    showProfileDropDown && "showProfileDropDown"
                                 }`}
                             >
                                 <div className="triangleHatOutline">
