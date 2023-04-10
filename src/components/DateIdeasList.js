@@ -75,7 +75,7 @@ function DateIdeasList({
     useEffect(() => {
         const fetchSaved = async () => {
             const response = await fetch(
-                "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
+                "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

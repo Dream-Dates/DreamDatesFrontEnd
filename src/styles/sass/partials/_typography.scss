@@ -70,7 +70,6 @@ p {
 }
 
 h1 {
-    // font-family: 'Mirza', cursive;
     font-family: 'Nobile', sans-serif;
     font-size: 30px;
     font-weight: 700;
@@ -79,40 +78,26 @@ h1 {
 }
 
 h2 {
-    // font-family: 'Mirza', cursive;
     font-family: 'Nobile', sans-serif;
     font-size: 36px;
     font-weight: 700;
 }
 
 h2 span {
-    // font-family: 'Mirza', cursive;
     font-family: 'Nobile', sans-serif;
     font-size: 20px;
     font-weight: 500;
     display: inline-block;
     cursor: pointer;
     color: #941C2F;
-}
-
-.dateIdeas h2 {
-    // line-height: 1.5;
+    text-decoration: underline;
 }
 
 h3 {
-    // font-family: 'Mirza', cursive;
     font-family: 'Nobile', sans-serif;
     font-size: 20px;
     font-weight: 700;
-    // background-color: green;
-    // line-height: 13px;
-    // height: 18px;
     padding-top: 6px;
-}
-
-.modalBody h3 {
-    // height: 24px;
-    // line-height: 17px;
 }
 
 .dateIdeasCard {
@@ -124,7 +109,6 @@ h3 {
 }
 
 .hoursContainer p {
-    // font-family: 'Mirza', cursive;
     font-family: 'Nobile', sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -142,9 +126,7 @@ h3 {
 }
 
 h5 {
-    // font-family: 'Mirza', cursive;
     font-family: 'Nobile', sans-serif;
-    // align-self: center;
     font-size: 50px;
     background-color: green;
     line-height: 34px;

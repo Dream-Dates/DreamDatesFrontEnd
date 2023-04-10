@@ -53,7 +53,7 @@ function DateIdeas({
         if (e.target.id === "save") {
             if (userId) {
                 fetch(
-                    "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
+                    "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -86,7 +86,7 @@ function DateIdeas({
                         } else {
                             // if id does not match then we save
                             fetch(
-                                "https://dream-dates.herokuapp.com/dreamdates/datingideas/saved",
+                                "https://dream-dates.herokuapp.com/dreamdates/save/idea",
                                 {
                                     method: "POST",
                                     headers: {
@@ -94,29 +94,8 @@ function DateIdeas({
                                     },
                                     body: JSON.stringify({
                                         id: eventDetails.id,
-                                        type: eventDetails.type,
-                                        title: eventDetails.title,
-                                        address_street:
-                                            eventDetails.address_street,
-                                        city: eventDetails.city,
-                                        country: eventDetails.country,
-                                        venue: eventDetails.venue,
-                                        price_range: eventDetails.price_range,
-                                        link: eventDetails.link,
-                                        img: eventDetails.img,
-                                        image: eventDetails.image,
-                                        time: eventDetails.time,
-                                        description: eventDetails.description,
-                                        votes: eventDetails.votes,
-                                        price: eventDetails.price,
-                                        opening_hours:
-                                            eventDetails.opening_hours,
-                                        website: eventDetails.website,
-                                        rating: eventDetails.rating,
+                                        type: eventDetails.categoryType,
                                         user_id: userId,
-                                        reviews: eventDetails.reviews,
-                                        trailer: eventDetails.trailer,
-                                        datetime_utc: eventDetails.datetime_utc,
                                     }),
                                 }
                             ).then((res) => res.json());

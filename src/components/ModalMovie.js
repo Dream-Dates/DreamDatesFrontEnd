@@ -165,7 +165,7 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
     useEffect(() => {
         const fetchSaved = async () => {
             const response = await fetch(
-                "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
+                "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -184,27 +184,6 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     // console.log('Old saved data', savedId);
                     console.log("Old saved data", data);
                 });
-            const response2 = await fetch(
-                "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        id: id,
-                        type: categoryType,
-                        user_id: userId,
-                    }),
-                }
-            )
-                .then((res) => res.json())
-                .then((data) => {
-                    const savedId = [];
-                    data.forEach((item) => {
-                        savedId.push(item.id);
-                    });
-                    // setSaved(savedId);
-                    console.log(savedId);
-                });
         };
 
         fetchSaved();
@@ -215,91 +194,10 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
             // if not signed in the pop up
             setCloseNotSignedIn(!closeNotSignedIn);
         } else {
-            fetch("https://dream-dates.herokuapp.com/dreamdates/saved/dates", {
+            fetch("https://dream-dates.herokuapp.com/dreamdates/saved/ideas", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    user_id: userId,
-                }),
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.some((item) => item.id == id)) {
-                        // if id match then we remove
-                        fetch(
-                            `https://dream-dates.herokuapp.com/dreamdates/datingideas/delete/${id}`,
-                            {
-                                method: "DELETE",
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({
-                                    userid: userId,
-                                }),
-                            }
-                        )
-                            .then((res) => res.json())
-                            .then((data) => {
-                                setToggle(!toggle);
-                                triggerToggle();
-                            });
-                        setShowSavePopup(true);
-                        setSaveMessage("Unsaved");
-                        setTimeout(() => {
-                            setShowSavePopup(false);
-                        }, 500);
-                    } else {
-                        // if id does not match then we save
-                        fetch(
-                            "https://dream-dates.herokuapp.com/dreamdates/datingideas/saved",
-                            {
-                                method: "POST",
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({
-                                    id: id,
-                                    type: type,
-                                    title: title,
-                                    address_street: address_street,
-                                    city: city,
-                                    country: country,
-                                    venue: venue,
-                                    price_range: price_range,
-                                    link: link,
-                                    img: img,
-                                    time: time,
-                                    description: description,
-                                    votes: votes,
-                                    price: price,
-                                    opening_hours: opening_hours,
-                                    website: website,
-                                    rating: rating,
-                                    user_id: userId,
-                                    reviews: reviews,
-                                    trailer: trailer,
-                                    datetime_utc: datetime_utc,
-                                    release_date: release_date,
-                                    genres: genres,
-                                }),
-                            }
-                        )
-                            .then((res) => res.json())
-                            .then((data) => {
-                                console.log(data);
-                                setToggle(!toggle);
-                                triggerToggle();
-                            });
-                        setShowSavePopup(true);
-                        setSaveMessage("Saved");
-                        setTimeout(() => {
-                            setShowSavePopup(false);
-                        }, 500);
-                    }
-                });
-
-            fetch("https://dream-dates.herokuapp.com/dreamdates/save/idea", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    id: id,
-                    type: categoryType,
                     user_id: userId,
                 }),
             })
@@ -366,43 +264,43 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
         }
     };
 
-    const handleClickTestSave = () => {
-        console.log(userId, id, categoryType);
-        fetch("https://dream-dates.herokuapp.com/dreamdates/save/idea", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                id: id,
-                type: categoryType,
-                user_id: userId,
-            }),
-        })
-            .then((res) => res.json())
-            .then((data) => console.log(data));
-    };
+    // const handleClickTestSave = () => {
+    //     console.log(userId, id, categoryType);
+    //     fetch("https://dream-dates.herokuapp.com/dreamdates/save/idea", {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify({
+    //             id: id,
+    //             type: categoryType,
+    //             user_id: userId,
+    //         }),
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => console.log(data));
+    // };
 
-    useEffect(() => {
-        // console.log("Testing");
-        const fetchSaved = async () => {
-            const response = await fetch(
-                "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        id: id,
-                        type: categoryType,
-                        user_id: userId,
-                    }),
-                }
-            )
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log("New saved data", data);
-                });
-        };
-        fetchSaved();
-    }, []);
+    // useEffect(() => {
+    //     // console.log("Testing");
+    //     const fetchSaved = async () => {
+    //         const response = await fetch(
+    //             "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
+    //             {
+    //                 method: "POST",
+    //                 headers: { "Content-Type": "application/json" },
+    //                 body: JSON.stringify({
+    //                     id: id,
+    //                     type: categoryType,
+    //                     user_id: userId,
+    //                 }),
+    //             }
+    //         )
+    //             .then((res) => res.json())
+    //             .then((data) => {
+    //                 console.log("New saved data", data);
+    //             });
+    //     };
+    //     fetchSaved();
+    // }, []);
 
     // converting the price range from numbers to $
     const dollarSigns = (num) => {
@@ -756,9 +654,9 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                     </>
                 )}
 
-                <button onClick={handleClickTestSave}>
+                {/* <button onClick={handleClickTestSave}>
                     TEST NEW SAVE ENDPOINT
-                </button>
+                </button> */}
             </div>
 
             {showSavePopup && <SavePopup text={saveMessage} />}
