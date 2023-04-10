@@ -402,6 +402,12 @@
             // gap: 42px !important;
         }
 
+
+        .carouselImageList {
+            display: flex;
+            flex-direction: column;
+            gap: 42px;
+        }
         .carouselImageList li {
             margin: 0 auto;
         }
