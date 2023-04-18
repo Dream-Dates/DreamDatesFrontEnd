@@ -66,6 +66,7 @@ function SignUp({ rerender }) {
                         placeholder="First Name"
                         required
                         value={signUp.name}
+                        autoFocus
                     />
                     <label className="sr-only" htmlFor="lastName">
                         Last Name

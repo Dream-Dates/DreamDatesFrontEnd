@@ -1,81 +1,127 @@
 // _dateIdeas.scss
 
-.dateIdeasList {
-    // border: 1px solid green;
-    // position: relative;
+.dateIdeas,
+.saved {
+    margin: 210px 71px;
+
+    h2 {
+        padding: 32px 0 20px 0;
+        line-height: 1.5;
+    }
 }
 
 .dateIdeasContainer {
-    padding: 236px 62px;
-    // border: 1px solid purple;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: max(5%, 60px);
-    // display: none
+    justify-content: space-between;
+    gap: 25px;
+
 }
 
 .dateIdeasCard {
-    // width: 182px;
-    // width: 12%;
-    width: max(12%, 182px);
+    width: 294px;
     height: 315px;
-    border-radius: 8px;
+    border-radius: 16px;
     background: #941C2F;
     cursor: pointer;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    margin-bottom: 15px;
     position: relative;
+    flex-shrink: 0;
+
     .imageContainer {
-        height: 205px;
+        height: 142px;
         overflow: hidden;
-        border-radius: 8px 8px 0 0;
+
         img {
+            transition: all 2s linear;
             height: 100%;
             object-fit: cover;
+
+            &:hover {
+                transform: scale(1.3);
+            }
         }
     }
+
     .textContainer {
-        // border: 1px solid green;
-        margin: 10px 15px;
-        // overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        padding: 20px;
+
+        .city {
+            grid-area: 1 / 1 / 2 / 3;
+        }
+
+        .type {
+            grid-area: 2 / 1 / 3 / 2;
+            text-transform: capitalize;
+        }
+
+        .price {
+            grid-area: 2 / 2 / 3 / 3;
+            text-align: right;
+        }
+
+        .reviewStars {
+            width: 20px;
+            grid-area: 3 / 1 / 4 / 2;
+        }
+
+        .reviewNumbers {
+            grid-area: 3 / 2 / 4 / 3;
+            text-align: right;
+        }
     }
+
     h2 {
         white-space: nowrap;
         overflow: hidden;
         padding: 5px 0;
         text-overflow: ellipsis;
     }
+
     p {
         padding: 2px 0;
     }
-    &:hover {
-        transform: scale(1.3);
-        height: auto;
-        h2 {
-            white-space: normal;
-        }
-    }
-    button:hover{
+
+    button:hover {
         background-color: transparent;
     }
+}
+
+.dateIdeaCardHeader {
+    height: 63px;
+    padding: 0 20px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 16px 16px 0 0;
+}
+
+.dateIdeaCardHeaderTitle {
+    width: calc(100% - 100px);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .heart {
     width: 30.48px;
     height: 26.59px;
-    position: absolute;
     top: 15px;
     left: 10px;
-    // background-color: red;
-    // border: 1px solid white;
+    background-color: transparent;
+    border: none;
     background-position: center;
     background-size: cover;
+
     .whiteHeart:hover {
-        // filter: invert(15%) sepia(33%) saturate(6563%) hue-rotate(336deg) brightness(87%) contrast(92%);
-        // filter: invert(26%) sepia(20%) saturate(7407%) hue-rotate(330deg) brightness(65%) contrast(99%);
-        filter: invert(26%) sepia(20%) saturate(7415%) hue-rotate(320deg) brightness(51%) contrast(93%);
+        filter: brightness(0) saturate(100%) invert(16%) sepia(31%) saturate(6083%) hue-rotate(333deg) brightness(94%) contrast(95%);
     }
+
     .redHeart:hover {
         filter: brightness(0) invert(1);
     }
@@ -84,13 +130,6 @@
 .hideHeart {
     display: none
 }
-
-// .whiteHeart {
-//     background-image: url(../assets/whiteHeart.svg);
-// }
-// .redHeart {
-//     background-image: url(../assets/redHeart.svg);
-// }
 
 .catch {
     display: flex;
@@ -101,36 +140,48 @@
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
     z-index: 35;
+    left: 0;
+    top: 0;
+
+    .notSignedIn {
+        position: relative;
+        width: min(90%, 496px);
+        height: 350px;
+        border-radius: 16px;
+        border: 1px solid #941c2f;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .closeButton {
+            position: absolute;
+            top: 23px;
+            right: 23px;
+        }
+
+        .userAuth {
+            padding-left: 0;
+        }
+
+        a {
+            margin: 0 auto;
+        }
+
+        .userAuthTop {
+            margin-bottom: 35px;
+        }
+
+        .pinkButton {
+            width: 110px;
+        }
+
+        button:hover {
+            background-color: transparent;
+        }
+    }
 }
 
-.notSignedIn {
-    position: relative;
-    width: min(90%,496px);
-    height: 350px;
-    border-radius: 16px;
-    border: 1px solid #941C2F;
-    background-color: white;
+.reviewStars {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    .closeButton {
-        position: absolute;
-        top: 23px;
-        right: 23px
-    }
-    .userAuth {
-        padding-left: 0;
-    }
-    a {
-        margin: 0 auto;
-    }
-    .userAuthTop{
-        margin-bottom: 35px;
-    }
-    .pinkButton {
-        width: 110px;
-    }
-    button:hover {
-        background-color: transparent;
-    }
 }

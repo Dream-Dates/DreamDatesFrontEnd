@@ -8,6 +8,7 @@ import { useState } from "react";
 import ContextProvider from "../src/context/contextProvider";
 import { useEffect } from "react";
 import Saved from "./pages/Saved";
+// import mixpanel from "mixpanel-browser";
 
 function App() {
     const [user, setUser] = useState({
@@ -18,6 +19,19 @@ function App() {
     const [toggle, setToggle] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryName, setCategoryName] = useState("");
+    const [localStorageFinished, setLocalStorageFinished] = useState(false);
+    const [showProfileDropDown, setShowProfileDropDown] = useState(false);
+
+    // // track how many times homepage is visited
+    // useEffect(() => {
+    //     mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+    //         debug: true,
+    //     });
+    //     mixpanel.track("Page Visit", {
+    //         userID: user.id,
+    //         pageLocation: "homepage",
+    //     });
+    // }, []);
 
     const rerender = () => {
         setToggle(!toggle);
@@ -30,6 +44,8 @@ function App() {
             id: localStorage.id,
             name: localStorage.name,
         });
+        // this is for the mixpanel in DateIdeas.js, it was tracking on render and the rerender when user was updated. With this it does not track the initial render because localStorageFinished is false
+        setLocalStorageFinished(true);
     }, [toggle]);
 
     // clear info when logged out
@@ -56,14 +72,35 @@ function App() {
         setCategoryName(categoryNameName);
     };
 
+    // grab the category which view all was clicked on homepage
+    const viewAll = (categoryName) => {
+        setCategoryName(categoryName);
+    };
+
+    const handleClickProfile = (e) => {
+        console.log(e);
+        if (
+            e.target.className === "pinkButton" ||
+            e.target.id === "profileIcon" ||
+            e.target.tagName === "A" ||
+            e.target.parentElement.tagName === "A"
+        ) {
+            setShowProfileDropDown(!showProfileDropDown);
+        } else {
+            setShowProfileDropDown(false);
+        }
+    };
+
     return (
-        <div className="App">
+        <div className="App" onClick={handleClickProfile}>
             <ContextProvider>
                 <Header
                     user={user}
                     logUserOut={logUserOut}
                     getSearchTerm={getSearchTerm}
                     getCategoryName={getCategoryName}
+                    categoryName={categoryName}
+                    showProfileDropDown={showProfileDropDown}
                 />
 
                 <Routes>
@@ -74,6 +111,8 @@ function App() {
                                 userId={user.id}
                                 searchTerm={searchTerm}
                                 categoryName={categoryName}
+                                localStorageFinished={localStorageFinished}
+                                viewAll={viewAll}
                             />
                         }
                     />

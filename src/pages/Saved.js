@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useContext } from "react";
 import { useEffect } from "react";
 import DateIdeasList from "../components/DateIdeasList";
-import Modal from "../components/Modal";
+import ModalMovie from "../components/ModalMovie";
 import Context from "../context/context";
+import mixpanel from "mixpanel-browser";
 
 function Saved({ userId, searchTerm, categoryName }) {
-    const [saved, setSaved] = useState({});
+    const [saved, setSaved] = useState([]);
     const [chosenEvent, setChoseEvent] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [toggle, setToggle] = useState(false);
@@ -17,6 +18,17 @@ function Saved({ userId, searchTerm, categoryName }) {
     const context = useContext(Context);
     context.setPageIs("saved");
 
+    // track how many times saved page is visited
+    useEffect(() => {
+        mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+            debug: true,
+        });
+        mixpanel.track("Page View", {
+            userID: userId,
+            pageLocation: "savedPage",
+        });
+    }, []);
+
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails);
 
@@ -24,7 +36,7 @@ function Saved({ userId, searchTerm, categoryName }) {
         if (e.target.id === "save") {
             if (userId) {
                 fetch(
-                    "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
+                    "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -66,8 +78,8 @@ function Saved({ userId, searchTerm, categoryName }) {
                                         id: eventDetails.id,
                                         type: eventDetails.type,
                                         title: eventDetails.title,
-                                        adress_street:
-                                            eventDetails.adress_street,
+                                        address_street:
+                                            eventDetails.address_street,
                                         city: eventDetails.city,
                                         country: eventDetails.country,
                                         venue: eventDetails.venue,
@@ -83,12 +95,18 @@ function Saved({ userId, searchTerm, categoryName }) {
                                         website: eventDetails.website,
                                         rating: eventDetails.rating,
                                         user_id: userId,
+                                        reviews: eventDetails.reviews,
+                                        trailer: eventDetails.trailer,
+                                        datetime_utc: eventDetails.datetime_utc,
+                                        release_date: eventDetails.release_date,
+                                        genres: eventDetails.genres,
                                     }),
                                 }
-                            ).then((res) => res.json())
-                            .then(data => {
-                                setToggle(!toggle)
-                            })
+                            )
+                                .then((res) => res.json())
+                                .then((data) => {
+                                    setToggle(!toggle);
+                                });
                         }
                     });
             }
@@ -108,7 +126,7 @@ function Saved({ userId, searchTerm, categoryName }) {
     useEffect(() => {
         const fetchSaved = async () => {
             const response = await fetch(
-                "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
+                "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -119,8 +137,10 @@ function Saved({ userId, searchTerm, categoryName }) {
             )
                 .then((res) => res.json())
                 .then((data) => {
+                    console.log("old saved", data);
                     data.forEach((item) => (item.categoryType = "saved"));
-                    setSaved({ saved: data });
+                    // setSaved({ saved: data });
+                    setSaved(data);
                     setLoading(false);
                 });
         };
@@ -131,20 +151,20 @@ function Saved({ userId, searchTerm, categoryName }) {
     return (
         <div className="saved">
             {showModal && (
-                <Modal
+                <ModalMovie
                     eventDetails={chosenEvent}
                     closeModal={closeModal}
                     userId={userId}
                     triggerToggle={triggerToggle}
                 />
             )}
-            <h3>Saved</h3>
+            {/* <h3>Saved</h3> */}
             <DateIdeasList
                 ideas={saved}
                 selectedEvent={openModal}
                 userId={userId}
                 searchTerm={searchTerm}
-                categoryName={categoryName}
+                categoryName="saved"
             />
         </div>
     );

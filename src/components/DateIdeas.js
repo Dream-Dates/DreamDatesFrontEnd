@@ -5,17 +5,46 @@ import Context from "../context/context";
 import DateIdeasList from "./DateIdeasList";
 import Modal from "./Modal";
 import SavePopup from "./SavePopup";
+import mixpanel from "mixpanel-browser";
+import ModalMovie from "./ModalMovie";
 
-function DateIdeas({ userId, searchTerm, categoryName }) {
+function DateIdeas({
+    userId,
+    searchTerm,
+    categoryName,
+    localStorageFinished,
+    viewAll,
+}) {
     const [dateIdeas, setDateIdeas] = useState({});
     const [chosenEvent, setChoseEvent] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [showSavePopup, setShowSavePopup] = useState(false);
     const [saveMessage, setSaveMessage] = useState("");
     const [toggle, setToggle] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const context = useContext(Context);
     context.setPageIs("home");
+
+    // track how many times homepage is visited
+    useEffect(() => {
+        if (localStorageFinished) {
+            mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                debug: true,
+            });
+            if (userId) {
+                mixpanel.track("Page View", {
+                    userID: userId,
+                    pageLocation: "homepage",
+                });
+            } else {
+                mixpanel.track("Page View", {
+                    userID: "No User ID",
+                    pageLocation: "homepage",
+                });
+            }
+        }
+    }, [userId]);
 
     const openModal = (e, eventDetails) => {
         setChoseEvent(eventDetails);
@@ -24,7 +53,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
         if (e.target.id === "save") {
             if (userId) {
                 fetch(
-                    "https://dream-dates.herokuapp.com/dreamdates/saved/dates",
+                    "https://dream-dates.herokuapp.com/dreamdates/saved/ideas",
                     {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -49,7 +78,6 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                                     }),
                                 }
                             ).then((res) => res.json());
-                            // .then(data => console.log(data))
                             setShowSavePopup(true);
                             setSaveMessage("Unsaved");
                             setTimeout(() => {
@@ -58,7 +86,7 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                         } else {
                             // if id does not match then we save
                             fetch(
-                                "https://dream-dates.herokuapp.com/dreamdates/datingideas/saved",
+                                "https://dream-dates.herokuapp.com/dreamdates/save/idea",
                                 {
                                     method: "POST",
                                     headers: {
@@ -66,30 +94,11 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                                     },
                                     body: JSON.stringify({
                                         id: eventDetails.id,
-                                        type: eventDetails.type,
-                                        title: eventDetails.title,
-                                        adress_street:
-                                            eventDetails.adress_street,
-                                        city: eventDetails.city,
-                                        country: eventDetails.country,
-                                        venue: eventDetails.venue,
-                                        price_range: eventDetails.price_range,
-                                        link: eventDetails.link,
-                                        img: eventDetails.img,
-                                        image: eventDetails.image,
-                                        time: eventDetails.time,
-                                        description: eventDetails.description,
-                                        votes: eventDetails.votes,
-                                        price: eventDetails.price,
-                                        opening_hours:
-                                            eventDetails.opening_hours,
-                                        website: eventDetails.website,
-                                        rating: eventDetails.rating,
+                                        type: eventDetails.categoryType,
                                         user_id: userId,
                                     }),
                                 }
                             ).then((res) => res.json());
-                            // .then(data => console.log(data))
                             setShowSavePopup(true);
                             setSaveMessage("Saved");
                             setTimeout(() => {
@@ -98,9 +107,28 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                         }
                     });
             }
+            // track every time a date is saved
+            mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                debug: true,
+            });
+            mixpanel.track("Save/Unsave", {
+                userID: userId,
+                dateID: eventDetails.id,
+                dateTitle: eventDetails.title,
+            });
             setToggle(!toggle);
         } else {
             setShowModal(true);
+
+            // track when date detail modal is opened
+            mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                debug: true,
+            });
+            mixpanel.track("Date Idea Viewed", {
+                userID: userId,
+                dateID: eventDetails.id,
+                dateTitle: eventDetails.title,
+            });
         }
     };
 
@@ -166,6 +194,8 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
                     restaurants: listRestaurants,
                     attractions: listAttractions,
                 });
+
+                setIsLoading(false);
             } catch (err) {
                 alert(err.message);
             }
@@ -173,25 +203,78 @@ function DateIdeas({ userId, searchTerm, categoryName }) {
         fetchEvents();
     }, [toggle]);
 
+    // // track how many times homepage is visited
+    // useEffect(() => {
+    //     mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+    //         debug: true,
+    //     });
+    //     mixpanel.track("Page View", {
+    //         userID: userId,
+    //         pageLocation: "homepage",
+    //     });
+    // }, []);
+
     return (
-        <div className="dateIdeas">
-            {showModal && (
-                <Modal
-                    eventDetails={chosenEvent}
-                    closeModal={closeModal}
-                    userId={userId}
-                    triggerToggle={triggerToggle}
-                />
-            )}
-            <DateIdeasList
-                ideas={dateIdeas}
-                selectedEvent={openModal}
-                userId={userId}
-                searchTerm={searchTerm}
-                categoryName={categoryName}
-            />
-            {showSavePopup && <SavePopup text={saveMessage} />}
-        </div>
+        !isLoading && (
+            <div className="dateIdeas">
+                {showModal && (
+                    <ModalMovie
+                        eventDetails={chosenEvent}
+                        closeModal={closeModal}
+                        userId={userId}
+                        triggerToggle={triggerToggle}
+                    />
+                )}
+
+                {/* food  */}
+                {(!categoryName || categoryName == "restaurants") && (
+                    <DateIdeasList
+                        ideas={dateIdeas.restaurants}
+                        selectedEvent={openModal}
+                        userId={userId}
+                        searchTerm={searchTerm}
+                        categoryName={categoryName}
+                        viewAll={viewAll}
+                    />
+                )}
+
+                {/* movies */}
+                {(!categoryName || categoryName == "movies") && (
+                    <DateIdeasList
+                        ideas={dateIdeas.movies}
+                        selectedEvent={openModal}
+                        userId={userId}
+                        searchTerm={searchTerm}
+                        categoryName={categoryName}
+                        viewAll={viewAll}
+                    />
+                )}
+
+                {/* attractions */}
+                {(!categoryName || categoryName == "attractions") && (
+                    <DateIdeasList
+                        ideas={dateIdeas.attractions}
+                        selectedEvent={openModal}
+                        userId={userId}
+                        searchTerm={searchTerm}
+                        categoryName={categoryName}
+                        viewAll={viewAll}
+                    />
+                )}
+                {/* live entertainment */}
+                {(!categoryName || categoryName == "events") && (
+                    <DateIdeasList
+                        ideas={dateIdeas.events}
+                        selectedEvent={openModal}
+                        userId={userId}
+                        searchTerm={searchTerm}
+                        categoryName={categoryName}
+                        viewAll={viewAll}
+                    />
+                )}
+                {showSavePopup && <SavePopup text={saveMessage} />}
+            </div>
+        )
     );
 }
 

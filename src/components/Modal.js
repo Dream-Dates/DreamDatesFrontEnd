@@ -13,13 +13,14 @@ import { useState, useEffect } from "react";
 import defaultImagePlaceholder from "../assets/defaultImagePlaceholder.jpg";
 import Carousel from "./carousel";
 import SavePopup from "./SavePopup";
+import mixpanel from 'mixpanel-browser';
 
 function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
     const {
         id,
         type,
         title,
-        adress_street,
+        address_street,
         city,
         country,
         venue,
@@ -146,7 +147,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                     id: id,
                                     type: type,
                                     title: title,
-                                    adress_street: adress_street,
+                                    address_street: address_street,
                                     city: city,
                                     country: country,
                                     venue: venue,
@@ -178,6 +179,18 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                         }, 500);
                     }
                 });
+            // track every time a date is saved
+            mixpanel.init(
+                `${process.env.REACT_APP_MIXPANEL_TOKEN}`,
+                {
+                    debug: true,
+                }
+            );
+            mixpanel.track("Save/Unsave", {
+                userID: userId,
+                dateID: eventDetails.id,
+                dateTitle: eventDetails.title,
+            });
         }
     };
 
@@ -194,6 +207,18 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
     const checkIfSaved = (eventId) => {
         return saved.some((item) => item == eventId);
     };
+
+    // track when the website link is clicked
+    const handleClickWebsite = () => {
+            mixpanel.init(`${process.env.REACT_APP_MIXPANEL_TOKEN}`, {
+                debug: true,
+            });
+            mixpanel.track("Website Button Clicked", {
+                userID: userId,
+                dateID: id,
+                dateTitle: title,
+            });
+    }
 
     return (
         <div className="modal" onClick={handleClickModalClose}>
@@ -272,6 +297,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                     href={website}
                                     className="pinkButton"
                                     target="_blank"
+                                    onClick={handleClickWebsite}
                                 >
                                     <img src={globe} alt="globe icon" />{" "}
                                     <p>Website</p>
@@ -282,6 +308,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                     href={link}
                                     className="pinkButton"
                                     target="_blank"
+                                    onClick={handleClickWebsite}
                                 >
                                     <img src={globe} alt="globe icon" />{" "}
                                     <p>Website</p>
@@ -331,7 +358,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                 <p>(123)-456-7890</p>
                             </div> */}
 
-                            {adress_street && (
+                            {address_street && (
                                 <div className="locationContainer">
                                     <div className="subTitle">
                                         <div className="midIcon">
@@ -343,7 +370,7 @@ function Modal({ eventDetails, closeModal, userId, triggerToggle }) {
                                         <h2>Location</h2>
                                     </div>
                                     <p>{venue}</p>
-                                    <p>{adress_street}</p>
+                                    <p>{address_street}</p>
                                     <p>{city}</p>
                                 </div>
                             )}

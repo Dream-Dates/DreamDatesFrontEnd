@@ -1,0 +1,108 @@
+.mobileCarouselContainer {
+    position: relative;
+    display: none;
+}
+
+
+.mobileCarouselWindow {
+    width: 100%;
+    aspect-ratio: 1/1;
+
+    img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+}
+
+.mobileCarouselContainer.mobileReview {
+    margin: 0 40px;
+
+    .review {
+        padding: 28px 34px 15px 34px;
+        border: 1px black solid;
+        border-radius: 16px;
+        min-height: 340px;
+    }
+
+    .reviewStars img {
+        width: 17px;
+        height: auto;
+        margin-right: 7px;
+    }
+
+    .reviewsHeader {
+        display: flex;
+        // justify-content: center;
+        align-items: flex-end;
+        margin: 0;
+        padding-top: 20px;
+        padding-bottom: 5px;
+        gap: 0.5rem;
+
+        .h3 {
+            display: flex;
+        }
+
+        .reviewStars {
+            align-items: center;
+            // margin-right: 40px;
+        }
+    }
+
+    .reviewHeader {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: 10px;
+
+        div {
+            display: flex;
+            align-items: center;
+        }
+
+        >img {
+            width: 33px;
+            margin-right: 7px;
+        }
+
+        .reviewStars {
+            margin-left: 40px;
+        }
+    }
+
+    .reviewsHeader img {
+        width: 20.17px;
+        height: 22.98px;
+        padding-bottom: 5px;
+    }
+
+    .reviewsScrollMore {
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .reviewReadMore {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-top: 15px;
+    }
+
+    .reviewText {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 10;
+        -webkit-box-orient: vertical;
+    }
+
+    .showFullReview {
+        overflow: auto;
+        text-overflow: clip;
+        display: block;
+    }
+}
