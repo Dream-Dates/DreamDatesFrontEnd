@@ -45,6 +45,7 @@ function DateIdeasList({
             ? carouselContent.current.offsetWidth
             : 0;
         setLength(Math.ceil(totalContentWidth / carouselWidth));
+        console.log(searchTerm);
     }, [searchTerm]);
 
     const next = () => {
@@ -131,9 +132,13 @@ function DateIdeasList({
     // filtering the list by user text input
     const filteredList = list?.filter(
         (item) =>
-            item.title.toLowerCase().match(searchTerm.toLowerCase()) &&
-            item.categoryType.match(categoryName)
+            item.title.toLowerCase().match(searchTerm.toLowerCase()) 
     );
+
+    console.log("filtered", filteredList, "search", searchTerm);
+    useEffect(() => {
+        
+    },[])
 
     // check if idea has been save and will toggle between white and red heart
     const checkIfSaved = (eventId) => {

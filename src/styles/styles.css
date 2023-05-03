@@ -1988,6 +1988,9 @@ h4 {
   .userAuth {
     display: none;
   }
+  .catch .userAuth {
+    display: block;
+  }
   .homeSavedButtons .pinkButton {
     min-width: auto;
   }

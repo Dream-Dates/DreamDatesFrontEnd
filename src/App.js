@@ -79,11 +79,13 @@ function App() {
 
     const handleClickProfile = (e) => {
         console.log(e);
+        // console.log(!e.target.className.include("doNotTriggerProfilePopUp"));
         if (
-            e.target.className === "pinkButton" ||
-            e.target.id === "profileIcon" ||
-            e.target.tagName === "A" ||
-            e.target.parentElement.tagName === "A"
+            (e.target.className === "pinkButton" ||
+                e.target.id === "profileIcon" ||
+                e.target.tagName === "A" ||
+                e.target.parentElement.tagName === "A") &&
+            !e.target.className.includes("doNotTriggerProfilePopUp")
         ) {
             setShowProfileDropDown(!showProfileDropDown);
         } else {

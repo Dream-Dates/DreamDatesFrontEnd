@@ -11,6 +11,10 @@
         display: none;
     }
 
+    .catch .userAuth {
+        display: block;
+    }
+
     .homeSavedButtons {
         .pinkButton {
             min-width: auto;
@@ -293,7 +297,7 @@
 
     .modalMovie {
         h1 {
-            margin: 15px 0 17px;
+            margin: 7px 0 17px;
         }
 
         .modalHeader {
@@ -408,6 +412,7 @@
             flex-direction: column;
             gap: 42px;
         }
+
         .carouselImageList li {
             margin: 0 auto;
         }

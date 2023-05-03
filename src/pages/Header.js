@@ -133,7 +133,7 @@ function Header({
                             <img
                                 src={logoMobile}
                                 alt="DreamDates Logo"
-                                className="logoMobile"
+                                className="logoMobile doNotTriggerProfilePopUp"
                             />
                         </Link>
                     </div>
@@ -179,7 +179,11 @@ function Header({
                                     !user.token && "disable-link"
                                 }`}
                             >
-                                <img src={redHeart} alt="red heart" />
+                                <img
+                                    src={redHeart}
+                                    className="doNotTriggerProfilePopUp"
+                                    alt="red heart"
+                                />
                                 <span className="normalView">Saved</span>
                             </Link>
                         ) : (
@@ -188,7 +192,11 @@ function Header({
                                 onClick={handleClickHome}
                                 className="pinkButton"
                             >
-                                <img src={homeIcon} alt="home icon" />
+                                <img
+                                    src={homeIcon}
+                                    className="doNotTriggerProfilePopUp"
+                                    alt="home icon"
+                                />
                                 <span className="normalView">Home</span>
                             </Link>
                         )}
@@ -347,179 +355,6 @@ function Header({
                     </div>
                 </div>
             </div>
-
-            {/* MOBILE */}
-            {/* <div className="headerMobile wrapper">
-                <div className="logo">
-                    <Link to="/" onClick={handleClickHome}>
-                        <img src={logoMobile} alt="DreamDates Logo" />
-                    </Link>
-                </div>
-
-                <form
-                    className="headerSearchBar"
-                    onSubmit={(e) => e.preventDefault()}
-                >
-                    <label htmlFor="search" className="sr-only">
-                        Search for
-                    </label>
-                    <input
-                        type="text"
-                        name="search"
-                        id="search"
-                        placeholder="Search"
-                        onChange={handleChange}
-                        value={searchTerm}
-                        onClick={handleClickSearchBar}
-                    />
-                    <div className="magnifyingGlass">
-                        <img src={magnifyingGlass} alt="magnifying glass" />
-                    </div>
-                </form>
-                <div className="headerFilter">
-                    <div>
-                        <button
-                            id="restaurants"
-                            onClick={handleClickButtons}
-                            className={`pinkButton ${
-                                selectedCategory == "restaurants" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Food</p>
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            id="movies"
-                            onClick={handleClickButtons}
-                            className={`pinkButton ${
-                                selectedCategory == "movies" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Movies</p>
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            id="active"
-                            onClick={handleClickButtons}
-                            className={`pinkButton disable-link ${
-                                selectedCategory == "active" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Active</p>
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            id="attractions"
-                            onClick={handleClickButtons}
-                            className={`pinkButton ${
-                                selectedCategory == "attractions" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Attractions</p>
-                        </button>
-                    </div>
-                    <div>
-                        <button
-                            id="events"
-                            onClick={handleClickButtons}
-                            className={`pinkButton ${
-                                selectedCategory == "events" &&
-                                "selectedCategory"
-                            }`}
-                        >
-                            <p>Live Entertainment</p>
-                        </button>
-                    </div>
-                </div>
-                <div className="headerRightSide">
-                    <div className="savedButton">
-                        {context.pageIs === "home" ? (
-                            <Link
-                                to="/saved"
-                                onClick={handleClickSaved}
-                                className={`pinkButton ${
-                                    !user.token && "disable-link"
-                                }`}
-                            >
-                                <img src={redHeart} alt="red heart" />
-                            </Link>
-                        ) : (
-                            <Link
-                                to="/"
-                                onClick={handleClickHome}
-                                className="pinkButton"
-                            >
-                                <img src={homeIcon} alt="home icon" />
-                            </Link>
-                        )}
-                    </div>
-
-                    <div className="userAuth">
-                        <button
-                            className="pinkButton"
-                            onClick={handleClickProfile}
-                        >
-                            <img
-                                src={profileIcon}
-                                alt="profile icon"
-                                id="profileIcon"
-                            />
-                            <div
-                                className={`profile ${
-                                    showProfileDropDown && "showProfileDropDown"
-                                }`}
-                            >
-                                <div className="triangleHatOutline">
-                                    <div className="triangleHatBody"></div>
-                                </div>
-
-                                <div className="profileContainer">
-                                    {user.token ? (
-                                        <div className="profileBody">
-                                            <p className="welcome">
-                                                Welcome back, {user.name}!
-                                            </p>
-                                            <br />
-                                            <Link
-                                                to="/"
-                                                onClick={logUserOut}
-                                                className="signOut"
-                                            >
-                                                <p>Sign out</p>
-                                            </Link>
-                                        </div>
-                                    ) : (
-                                        <div className="profileBody">
-                                            <div className="signInSignUp">
-                                                <Link
-                                                    to="/signin"
-                                                    className="pinkButton userAuthTop"
-                                                >
-                                                    <p>Sign In</p>
-                                                </Link>
-                                                <Link
-                                                    to={"/signup"}
-                                                    className="pinkButton"
-                                                >
-                                                    <p>Sign Up</p>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </button>
-                    </div>
-                    <div className="userAuth"></div>
-                </div>
-            </div> */}
         </div>
     );
 }

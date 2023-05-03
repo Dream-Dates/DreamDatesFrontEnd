@@ -484,37 +484,41 @@ function ModalMovie({ eventDetails, closeModal, userId, triggerToggle }) {
                                 }
                             </div>
                             <div>
-                                <a
-                                    href={
-                                        // categoryType === "movies" ||
-                                        // categoryType === "events"
-                                        reviews ? website : link
-                                    }
-                                    className="pinkButton"
-                                    target="_blank"
-                                >
-                                    {
-                                        //categoryType === "movies" ||
-                                        // categoryType === "events"
-                                        reviews ? (
-                                            <>
-                                                <img
-                                                    src={ticket}
-                                                    alt="ticket icon"
-                                                />
-                                                <h3>Find tickets near me</h3>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <img
-                                                    src={globe}
-                                                    alt="globe icon"
-                                                />
-                                                <h3>Website</h3>
-                                            </>
-                                        )
-                                    }
-                                </a>
+                                {(website || link) && (
+                                    <a
+                                        href={
+                                            // categoryType === "movies" ||
+                                            // categoryType === "events"
+                                            reviews ? website : link
+                                        }
+                                        className="pinkButton"
+                                        target="_blank"
+                                    >
+                                        {
+                                            //categoryType === "movies" ||
+                                            // categoryType === "events"
+                                            link ? (
+                                                <>
+                                                    <img
+                                                        src={ticket}
+                                                        alt="ticket icon"
+                                                    />
+                                                    <h3>
+                                                        Find tickets near me
+                                                    </h3>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <img
+                                                        src={globe}
+                                                        alt="globe icon"
+                                                    />
+                                                    <h3>Website</h3>
+                                                </>
+                                            )
+                                        }
+                                    </a>
+                                )}
                             </div>
                         </div>
                         {release_date && (
